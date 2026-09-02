@@ -1,0 +1,45 @@
+# ============================================================
+# CI-only requirements (Ubuntu/headless, no GPU, no audio HW).
+#
+# Includes every package needed to import the backend and run
+# the full pytest suite, but intentionally OMITS the heavy /
+# platform-specific optional runtimes that are only needed when
+# the app is actually running in production:
+#
+#   faster-whisper  - requires native ctranslate2 / CUDA libs
+#   pyttsx3         - requires a running audio subsystem
+#   edge-tts        - network TTS; not tested in unit tests
+#   pywin32         - Windows-only; already guarded by marker
+#
+# These are all imported lazily (inside functions) in the
+# production code, so they never cause an ImportError at test
+# time - the tests mock or skip those code paths entirely.
+# ============================================================
+
+# --- Core web framework ---
+fastapi>=0.115
+uvicorn[standard]>=0.30
+python-multipart>=0.0.9
+python-dotenv>=1.0.1
+pydantic>=2.8
+
+# --- LLM connectivity ---
+requests>=2.32
+openai>=1.40
+
+# --- Resume Builder ---
+pdfplumber>=0.11.4
+python-docx>=1.1.2
+reportlab>=4.2.5
+
+# --- Roadmap Generator ---
+Pillow>=10.4
+
+# --- Technical Interview / RAG ---
+scikit-learn>=1.5
+numpy>=1.26
+pandas>=2.2
+
+# --- Test runner ---
+pytest>=8.0
+httpx>=0.27
