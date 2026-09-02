@@ -253,7 +253,13 @@ def run_against_tests(student_code: str, test_cases: list[dict], driver_template
                     **extra_kwargs,
                 )
             actual = proc.stdout
-            err = proc.stderr.strip()
+            # Only treat stderr as a real error when the process exited
+            # non-zero. When Docker runs a container for the first time it
+            # prints image-pull progress to stderr (e.g. "Pulling fs layer...")
+            # but still exits 0 after the student's code runs successfully -
+            # that pull noise should NOT count as a code error.
+            is_runtime_error = proc.returncode != 0
+            err = proc.stderr.strip() if is_runtime_error else ""
             passed = _normalize(actual) == _normalize(expected) and not err
             result.results.append(TestCaseResult(stdin_data, expected, actual.strip(), passed, err))
         except subprocess.TimeoutExpired:
