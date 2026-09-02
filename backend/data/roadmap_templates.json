@@ -1,0 +1,67 @@
+{
+  "Software Development Engineer (SDE)": {
+    "description": "General-purpose software engineering track focused on DSA, CS fundamentals, and building projects.",
+    "phases": [
+      {"name": "Foundations (Weeks 1-4)", "topics": ["Pick one language deeply (Python/Java/C++)", "Arrays, Strings, Time/Space Complexity", "Git & GitHub basics", "OOP concepts"],
+       "resources": ["freeCodeCamp - your chosen language full course", "GeeksforGeeks - DSA basics", "Git official docs (git-scm.com)"]},
+      {"name": "Core DSA (Weeks 5-10)", "topics": ["Recursion & Backtracking", "Linked Lists, Stacks, Queues", "Trees & Graphs (BFS/DFS)", "Sorting & Searching", "Hashing"],
+       "resources": ["NeetCode 150 (neetcode.io)", "Striver's SDE Sheet (takeuforward.org)", "GeeksforGeeks practice"]},
+      {"name": "Advanced DSA + CS Fundamentals (Weeks 11-16)", "topics": ["Dynamic Programming", "Greedy Algorithms", "DBMS + SQL basics", "Operating Systems basics", "Computer Networks basics"],
+       "resources": ["NeetCode DP roadmap", "freeCodeCamp SQL course", "Gate Smashers (YouTube) for OS/CN/DBMS"]},
+      {"name": "Projects & Interview Prep (Weeks 17-20)", "topics": ["Build 2-3 full-stack or backend projects", "Mock interviews", "Resume polishing", "System design basics (for experienced roles)"],
+       "resources": ["build 1 CRUD app end-to-end and deploy it free (Render/Vercel/Railway)", "Pramp / peer mock interviews", "This platform's Resume Builder + Mock Interview modules"]}
+    ]
+  },
+  "Data Analyst": {
+    "description": "Focused on SQL, Excel, Python data analysis, and visualization for entry-level analytics roles.",
+    "phases": [
+      {"name": "Foundations (Weeks 1-3)", "topics": ["Excel formulas, pivot tables, charts", "SQL basics (SELECT, JOIN, GROUP BY)", "Statistics basics (mean, median, std dev, distributions)"],
+       "resources": ["freeCodeCamp SQL course", "Khan Academy - Statistics & Probability", "Mode Analytics SQL tutorial (mode.com)"]},
+      {"name": "Python for Data (Weeks 4-7)", "topics": ["Python basics", "pandas & numpy", "Data cleaning techniques", "Matplotlib/Seaborn visualization"],
+       "resources": ["Kaggle Learn - Pandas & Data Visualization (free)", "freeCodeCamp Data Analysis with Python"]},
+      {"name": "Analytics Tools (Weeks 8-11)", "topics": ["Power BI or Tableau Public basics", "Dashboard design", "A/B testing fundamentals", "Advanced SQL (window functions, CTEs)"],
+       "resources": ["Tableau Public free tier + tutorials", "Microsoft Power BI free learning path (learn.microsoft.com)", "Mode Analytics advanced SQL tutorial"]},
+      {"name": "Portfolio & Interview Prep (Weeks 12-14)", "topics": ["Build 2-3 end-to-end analysis projects with public datasets", "Case study interview practice", "Resume + LinkedIn polish"],
+       "resources": ["Kaggle public datasets", "This platform's Resume Builder + Mock Interview modules"]}
+    ]
+  },
+  "Data Scientist / ML Engineer": {
+    "description": "Focused on statistics, machine learning fundamentals, and applied ML projects.",
+    "phases": [
+      {"name": "Foundations (Weeks 1-4)", "topics": ["Python, numpy, pandas", "Linear algebra & calculus refresher", "Probability & statistics"],
+       "resources": ["Kaggle Learn - Python & Intro to ML (free)", "3Blue1Brown - Essence of Linear Algebra (YouTube)", "Khan Academy Statistics"]},
+      {"name": "Core Machine Learning (Weeks 5-10)", "topics": ["Regression & classification algorithms", "Model evaluation metrics", "scikit-learn workflow", "Feature engineering"],
+       "resources": ["Andrew Ng's Machine Learning Specialization (Coursera, audit free)", "scikit-learn official docs & tutorials"]},
+      {"name": "Deep Learning & Specialization (Weeks 11-16)", "topics": ["Neural networks basics", "One specialization: NLP or Computer Vision", "PyTorch or TensorFlow basics"],
+       "resources": ["fast.ai Practical Deep Learning (free)", "PyTorch official 60-minute blitz tutorial"]},
+      {"name": "Projects & Interview Prep (Weeks 17-20)", "topics": ["2-3 end-to-end ML projects with a deployed demo", "Kaggle competition (even a beginner one)", "ML system design basics, mock interviews"],
+       "resources": ["Kaggle competitions", "Hugging Face Spaces (free ML app hosting)", "This platform's Mock Interview + Technical Interview modules"]}
+    ]
+  },
+  "Frontend Developer": {
+    "description": "Focused on modern web fundamentals and a production-quality portfolio.",
+    "phases": [
+      {"name": "Foundations (Weeks 1-3)", "topics": ["HTML5 & semantic markup", "CSS (Flexbox, Grid, responsive design)", "JavaScript fundamentals (ES6+)"],
+       "resources": ["freeCodeCamp Responsive Web Design", "javascript.info", "MDN Web Docs"]},
+      {"name": "Modern Framework (Weeks 4-8)", "topics": ["React fundamentals (components, hooks, state)", "Routing & API calls (fetch/axios)", "State management basics"],
+       "resources": ["React official docs (react.dev)", "freeCodeCamp Front End Development Libraries"]},
+      {"name": "Tooling & Quality (Weeks 9-11)", "topics": ["Git/GitHub workflows", "Basic accessibility (a11y)", "Performance basics", "Testing basics (Jest/React Testing Library)"],
+       "resources": ["web.dev by Google (performance & a11y)", "Testing Library official docs"]},
+      {"name": "Portfolio & Interview Prep (Weeks 12-14)", "topics": ["Build & deploy 2-3 polished projects", "Mock interviews on JS fundamentals + a live-coding UI task"],
+       "resources": ["Vercel/Netlify free hosting", "This platform's Mock Interview + Technical Interview modules"]}
+    ]
+  },
+  "DevOps / Cloud Engineer": {
+    "description": "Focused on Linux, cloud fundamentals, containers, and CI/CD for infrastructure-oriented roles.",
+    "phases": [
+      {"name": "Foundations (Weeks 1-4)", "topics": ["Linux command line & shell scripting", "Networking basics", "Git & version control workflows"],
+       "resources": ["Linux Journey (linuxjourney.com, free)", "freeCodeCamp Linux/Bash tutorials"]},
+      {"name": "Cloud & Containers (Weeks 5-9)", "topics": ["One cloud provider fundamentals (AWS/Azure/GCP free tier)", "Docker basics", "Kubernetes basics"],
+       "resources": ["AWS Cloud Practitioner free digital training", "Docker official 'Getting Started' guide", "Kubernetes official basics tutorial (kubernetes.io)"]},
+      {"name": "Automation (Weeks 10-13)", "topics": ["CI/CD pipelines (GitHub Actions)", "Infrastructure as Code basics (Terraform)", "Monitoring & logging basics"],
+       "resources": ["GitHub Actions official docs", "Terraform 'Learn' free tutorials (developer.hashicorp.com)"]},
+      {"name": "Projects & Interview Prep (Weeks 14-16)", "topics": ["Set up a full CI/CD pipeline for a sample app", "Deploy a containerized app to a free-tier cloud service", "Mock interviews"],
+       "resources": ["Render/Fly.io free tiers", "This platform's Mock Interview module"]}
+    ]
+  }
+}

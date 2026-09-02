@@ -1,0 +1,4985 @@
+[
+  {
+    "id": "arr-001",
+    "topic": "Arrays",
+    "difficulty": "Easy",
+    "companies": [
+      "TCS",
+      "Infosys",
+      "Amazon",
+      "Google"
+    ],
+    "title": "Two Sum",
+    "description": "You are given an array of n integers and a target value. Print the 0-indexed positions (smaller index first) of the two numbers that add up to target. Exactly one valid pair exists.",
+    "input_format": "Line 1: n\nLine 2: n space-separated integers\nLine 3: target",
+    "output_format": "Two integers (the indices), space-separated, on one line.",
+    "starter_code": "n = int(input())\nnums = list(map(int, input().split()))\ntarget = int(input())\n\n# TODO: find indices i < j such that nums[i] + nums[j] == target, then print them\n",
+    "hints": [
+      "A hash map from value -> index lets you check 'have I seen target - nums[i] before?' in O(1).",
+      "This gets you from O(n^2) brute force down to O(n)."
+    ],
+    "test_cases": [
+      {
+        "input": "4\n2 7 11 15\n9\n",
+        "expected": "0 1"
+      },
+      {
+        "input": "3\n3 2 4\n6\n",
+        "expected": "1 2"
+      }
+    ]
+  },
+  {
+    "id": "arr-002",
+    "topic": "Arrays",
+    "difficulty": "Medium",
+    "companies": [
+      "Amazon",
+      "Microsoft",
+      "Flipkart"
+    ],
+    "title": "Maximum Subarray Sum (Kadane's Algorithm)",
+    "description": "Given an array of n integers, print the maximum possible sum of a contiguous subarray (at least one element).",
+    "input_format": "Line 1: n\nLine 2: n space-separated integers",
+    "output_format": "A single integer: the maximum subarray sum.",
+    "starter_code": "n = int(input())\nnums = list(map(int, input().split()))\n\n# TODO: implement Kadane's algorithm\n",
+    "hints": [
+      "At each index, decide: extend the previous subarray, or start a new one here.",
+      "current_sum = max(nums[i], current_sum + nums[i])"
+    ],
+    "test_cases": [
+      {
+        "input": "5\n-2 1 -3 4 -1\n",
+        "expected": "4"
+      },
+      {
+        "input": "8\n-2 1 -3 4 -1 2 1 -5\n",
+        "expected": "6"
+      }
+    ]
+  },
+  {
+    "id": "str-001",
+    "topic": "Strings",
+    "difficulty": "Easy",
+    "companies": [
+      "TCS",
+      "Wipro",
+      "Accenture"
+    ],
+    "title": "Reverse a String",
+    "description": "Read a line of text and print it reversed.",
+    "input_format": "Line 1: a string s",
+    "output_format": "The reversed string.",
+    "starter_code": "s = input()\n\n# TODO: print the reverse of s\n",
+    "hints": [
+      "Python slicing: s[::-1]"
+    ],
+    "test_cases": [
+      {
+        "input": "hello\n",
+        "expected": "olleh"
+      },
+      {
+        "input": "AI Placement\n",
+        "expected": "tnemecalP IA"
+      }
+    ]
+  },
+  {
+    "id": "str-002",
+    "topic": "Strings",
+    "difficulty": "Easy",
+    "companies": [
+      "TCS",
+      "Infosys",
+      "Cognizant"
+    ],
+    "title": "Palindrome Check",
+    "description": "Read a line of text (letters only) and print YES if it is a palindrome (ignoring case), otherwise print NO.",
+    "input_format": "Line 1: a string s",
+    "output_format": "YES or NO",
+    "starter_code": "s = input().strip().lower()\n\n# TODO: check if s reads the same forwards and backwards\n",
+    "hints": [
+      "Compare s to s[::-1]."
+    ],
+    "test_cases": [
+      {
+        "input": "madam\n",
+        "expected": "YES"
+      },
+      {
+        "input": "hello\n",
+        "expected": "NO"
+      }
+    ]
+  },
+  {
+    "id": "str-003",
+    "topic": "Strings",
+    "difficulty": "Easy",
+    "companies": [
+      "Infosys",
+      "Amazon",
+      "Wipro"
+    ],
+    "title": "Anagram Check",
+    "description": "Read two lines s1 and s2. Print YES if they are anagrams of each other, otherwise print NO.",
+    "input_format": "Line 1: string s1\nLine 2: string s2",
+    "output_format": "YES or NO",
+    "starter_code": "s1 = input().strip()\ns2 = input().strip()\n\n# TODO: check whether s1 and s2 use exactly the same letters (same multiset)\n",
+    "hints": [
+      "sorted(s1) == sorted(s2), or compare Counter(s1) to Counter(s2)."
+    ],
+    "test_cases": [
+      {
+        "input": "listen\nsilent\n",
+        "expected": "YES"
+      },
+      {
+        "input": "hello\nworld\n",
+        "expected": "NO"
+      }
+    ]
+  },
+  {
+    "id": "rec-001",
+    "topic": "Recursion",
+    "difficulty": "Easy",
+    "companies": [
+      "TCS",
+      "Accenture"
+    ],
+    "title": "Factorial (Recursive)",
+    "description": "Read an integer n and print n! (n factorial) using a recursive function.",
+    "input_format": "Line 1: n (0 <= n <= 20)",
+    "output_format": "A single integer.",
+    "starter_code": "n = int(input())\n\ndef factorial(k):\n    # TODO: base case + recursive case\n    pass\n\nprint(factorial(n))\n",
+    "hints": [
+      "Base case: factorial(0) == 1.",
+      "Recursive case: factorial(k) = k * factorial(k-1)."
+    ],
+    "test_cases": [
+      {
+        "input": "5\n",
+        "expected": "120"
+      },
+      {
+        "input": "0\n",
+        "expected": "1"
+      }
+    ]
+  },
+  {
+    "id": "rec-002",
+    "topic": "Recursion / Dynamic Programming",
+    "difficulty": "Easy",
+    "companies": [
+      "TCS",
+      "Infosys",
+      "Amazon"
+    ],
+    "title": "Nth Fibonacci Number",
+    "description": "Read an integer n and print the nth Fibonacci number, where F(0)=0, F(1)=1.",
+    "input_format": "Line 1: n",
+    "output_format": "A single integer.",
+    "starter_code": "n = int(input())\n\n# TODO: compute F(n) efficiently (iterative or memoized recursion - plain\n# recursion without memoization will be too slow for larger n)\n",
+    "hints": [
+      "Plain recursive Fibonacci is O(2^n) - use memoization or an iterative loop instead."
+    ],
+    "test_cases": [
+      {
+        "input": "10\n",
+        "expected": "55"
+      },
+      {
+        "input": "1\n",
+        "expected": "1"
+      }
+    ]
+  },
+  {
+    "id": "search-001",
+    "topic": "Searching",
+    "difficulty": "Easy",
+    "companies": [
+      "TCS",
+      "Infosys",
+      "Microsoft",
+      "Google"
+    ],
+    "title": "Binary Search",
+    "description": "Given a sorted array of n integers and a target, print the 0-indexed position of target, or -1 if it is not present.",
+    "input_format": "Line 1: n\nLine 2: n space-separated sorted integers\nLine 3: target",
+    "output_format": "A single integer (index or -1).",
+    "starter_code": "n = int(input())\narr = list(map(int, input().split()))\ntarget = int(input())\n\n# TODO: implement binary search (O(log n))\n",
+    "hints": [
+      "Maintain lo/hi pointers; compare arr[mid] to target and shrink the range."
+    ],
+    "test_cases": [
+      {
+        "input": "6\n1 3 5 7 9 11\n7\n",
+        "expected": "3"
+      },
+      {
+        "input": "5\n2 4 6 8 10\n5\n",
+        "expected": "-1"
+      }
+    ]
+  },
+  {
+    "id": "sort-001",
+    "topic": "Sorting",
+    "difficulty": "Medium",
+    "companies": [
+      "Infosys",
+      "Wipro",
+      "Cognizant"
+    ],
+    "title": "Implement a Sort From Scratch",
+    "description": "Read n integers and print them sorted in ascending order, space-separated. You must implement the sorting logic yourself (bubble/selection/insertion/merge/quick) rather than calling a built-in sort.",
+    "input_format": "Line 1: n\nLine 2: n space-separated integers",
+    "output_format": "The sorted array, space-separated, on one line.",
+    "starter_code": "n = int(input())\narr = list(map(int, input().split()))\n\n# TODO: implement a sorting algorithm by hand (do not use sorted()/list.sort())\n",
+    "hints": [
+      "Start with something simple like bubble or selection sort, then try to explain its O(n^2) complexity."
+    ],
+    "test_cases": [
+      {
+        "input": "5\n5 3 4 1 2\n",
+        "expected": "1 2 3 4 5"
+      },
+      {
+        "input": "4\n-1 0 -5 2\n",
+        "expected": "-5 -1 0 2"
+      }
+    ]
+  },
+  {
+    "id": "twoptr-001",
+    "topic": "Two Pointers",
+    "difficulty": "Medium",
+    "companies": [
+      "Amazon",
+      "Flipkart"
+    ],
+    "title": "Pair With Given Sum in a Sorted Array",
+    "description": "Given a sorted array of n integers and a target sum, print the unique pair of values (smaller value first) that add up to target, using the two-pointer technique.",
+    "input_format": "Line 1: n\nLine 2: n space-separated sorted integers\nLine 3: target",
+    "output_format": "Two integers, space-separated.",
+    "starter_code": "n = int(input())\narr = list(map(int, input().split()))\ntarget = int(input())\n\n# TODO: use two pointers (left=0, right=n-1) moving inward based on the current sum\n",
+    "hints": [
+      "If arr[left]+arr[right] < target, move left forward; if > target, move right backward."
+    ],
+    "test_cases": [
+      {
+        "input": "5\n1 2 3 4 6\n6\n",
+        "expected": "2 4"
+      },
+      {
+        "input": "4\n1 3 5 7\n10\n",
+        "expected": "3 7"
+      }
+    ]
+  },
+  {
+    "id": "dp-001",
+    "topic": "Dynamic Programming",
+    "difficulty": "Medium",
+    "companies": [
+      "Amazon",
+      "Microsoft",
+      "Google"
+    ],
+    "title": "Longest Common Subsequence (Length Only)",
+    "description": "Read two strings s1 and s2 and print the length of their longest common subsequence.",
+    "input_format": "Line 1: s1\nLine 2: s2",
+    "output_format": "A single integer.",
+    "starter_code": "s1 = input().strip()\ns2 = input().strip()\n\n# TODO: build a 2D DP table where dp[i][j] = LCS length of s1[:i] and s2[:j]\n",
+    "hints": [
+      "dp[i][j] = dp[i-1][j-1] + 1 if s1[i-1]==s2[j-1] else max(dp[i-1][j], dp[i][j-1])."
+    ],
+    "test_cases": [
+      {
+        "input": "abcde\nace\n",
+        "expected": "3"
+      },
+      {
+        "input": "abc\ndef\n",
+        "expected": "0"
+      }
+    ]
+  },
+  {
+    "id": "dp-002",
+    "topic": "Dynamic Programming",
+    "difficulty": "Hard",
+    "companies": [
+      "Amazon",
+      "Google",
+      "Microsoft"
+    ],
+    "title": "0/1 Knapsack",
+    "description": "Given n items each with a weight and a value, and a knapsack capacity W, print the maximum total value achievable without exceeding capacity W (each item can be used at most once).",
+    "input_format": "Line 1: n\nLine 2: W\nLine 3: n space-separated weights\nLine 4: n space-separated values",
+    "output_format": "A single integer: the maximum achievable value.",
+    "starter_code": "n = int(input())\nW = int(input())\nweights = list(map(int, input().split()))\nvalues = list(map(int, input().split()))\n\n# TODO: classic 0/1 knapsack DP, dp[w] = best value using capacity w\n",
+    "hints": [
+      "1D DP: iterate items outer, capacity inner in REVERSE (W down to weight[i]) to keep it 0/1 (not unbounded)."
+    ],
+    "test_cases": [
+      {
+        "input": "3\n50\n10 20 30\n60 100 120\n",
+        "expected": "220"
+      },
+      {
+        "input": "2\n10\n5 4\n10 40\n",
+        "expected": "50"
+      }
+    ]
+  },
+  {
+    "id": "bit-001",
+    "topic": "Bit Manipulation",
+    "difficulty": "Easy",
+    "companies": [
+      "TCS",
+      "Infosys"
+    ],
+    "title": "Count Set Bits",
+    "description": "Read an integer n and print the number of 1s in its binary representation.",
+    "input_format": "Line 1: n (n >= 0)",
+    "output_format": "A single integer.",
+    "starter_code": "n = int(input())\n\n# TODO: count the number of set (1) bits in n\n",
+    "hints": [
+      "bin(n).count('1') works, or use the n & (n-1) trick to strip the lowest set bit each iteration."
+    ],
+    "test_cases": [
+      {
+        "input": "13\n",
+        "expected": "3"
+      },
+      {
+        "input": "0\n",
+        "expected": "0"
+      }
+    ]
+  },
+  {
+    "id": "bit-002",
+    "topic": "Bit Manipulation",
+    "difficulty": "Medium",
+    "companies": [
+      "Amazon",
+      "Microsoft"
+    ],
+    "title": "Find the Missing Number",
+    "description": "You are given n integers, all distinct, chosen from the range 1 to n+1 with exactly one number missing. Print the missing number.",
+    "input_format": "Line 1: n\nLine 2: n space-separated integers",
+    "output_format": "A single integer: the missing number.",
+    "starter_code": "n = int(input())\narr = list(map(int, input().split()))\n\n# TODO: find the missing number in O(n) time, O(1) extra space (XOR trick or sum formula)\n",
+    "hints": [
+      "XOR all numbers 1..n+1 together, then XOR that with all array elements - what's left is the missing number."
+    ],
+    "test_cases": [
+      {
+        "input": "4\n1 2 4 5\n",
+        "expected": "3"
+      },
+      {
+        "input": "3\n1 3 4\n",
+        "expected": "2"
+      }
+    ]
+  },
+  {
+    "id": "stack-001",
+    "topic": "Stacks",
+    "difficulty": "Medium",
+    "companies": [
+      "Amazon",
+      "Microsoft",
+      "Flipkart",
+      "Google"
+    ],
+    "title": "Valid Parentheses",
+    "description": "Read a line containing only the characters ( ) [ ] { }. Print YES if the brackets are balanced/valid, otherwise print NO.",
+    "input_format": "Line 1: a string of bracket characters",
+    "output_format": "YES or NO",
+    "starter_code": "s = input().strip()\n\n# TODO: use a stack - push opening brackets, pop and match on closing brackets\n",
+    "hints": [
+      "Use a dict mapping each closing bracket to its matching opening bracket."
+    ],
+    "test_cases": [
+      {
+        "input": "{[()()]}\n",
+        "expected": "YES"
+      },
+      {
+        "input": "{[(])}\n",
+        "expected": "NO"
+      }
+    ]
+  },
+  {
+    "id": "stack-002",
+    "topic": "Stacks",
+    "difficulty": "Hard",
+    "companies": [
+      "Amazon",
+      "Microsoft",
+      "Google"
+    ],
+    "title": "Next Greater Element",
+    "description": "Given an array of n integers, for each element print the next element to its right that is strictly greater than it, or -1 if none exists.",
+    "input_format": "Line 1: n\nLine 2: n space-separated integers",
+    "output_format": "n integers, space-separated, on one line.",
+    "starter_code": "n = int(input())\narr = list(map(int, input().split()))\n\n# TODO: use a monotonic decreasing stack of indices for an O(n) solution\n",
+    "hints": [
+      "Iterate the array; while the stack's top index has a smaller value than the current element, pop it and record the current element as its answer."
+    ],
+    "test_cases": [
+      {
+        "input": "4\n4 5 2 25\n",
+        "expected": "5 25 25 -1"
+      },
+      {
+        "input": "4\n13 7 6 12\n",
+        "expected": "-1 12 12 -1"
+      }
+    ]
+  },
+  {
+    "id": "ll-001",
+    "topic": "Linked Lists",
+    "difficulty": "Easy",
+    "companies": [
+      "TCS",
+      "Wipro",
+      "Amazon"
+    ],
+    "title": "Reverse a Linked List",
+    "description": "You are given a sequence of n integers representing a singly linked list, head to tail. Build the list (a Node class with a `next` pointer is the intended practice, though any correct approach is accepted), reverse it, and print the values tail-to-head.",
+    "input_format": "Line 1: n\nLine 2: n space-separated integers (the list, head to tail)",
+    "output_format": "The n integers in reversed order, space-separated, on one line.",
+    "starter_code": "n = int(input())\nvals = list(map(int, input().split()))\n\nclass Node:\n    def __init__(self, val):\n        self.val = val\n        self.next = None\n\n# TODO: build a linked list from vals, reverse it, print the values head-to-tail\n",
+    "hints": [
+      "Reversing in place means walking the list once, flipping each node's `next` pointer to point at the previous node.",
+      "Track three pointers as you go: prev, current, and next \u2014 this is the classic O(n) iterative reversal."
+    ],
+    "test_cases": [
+      {
+        "input": "5\n1 2 3 4 5\n",
+        "expected": "5 4 3 2 1"
+      },
+      {
+        "input": "1\n42\n",
+        "expected": "42"
+      },
+      {
+        "input": "4\n10 20 30 40\n",
+        "expected": "40 30 20 10"
+      }
+    ]
+  },
+  {
+    "id": "ll-002",
+    "topic": "Linked Lists",
+    "difficulty": "Medium",
+    "companies": [
+      "Infosys",
+      "Microsoft"
+    ],
+    "title": "Merge Two Sorted Linked Lists",
+    "description": "You're given two already-sorted linked lists (as sequences). Merge them into one sorted sequence and print it \u2014 the classic building block behind merge sort and the merge step of external sorting.",
+    "input_format": "Line 1: n (size of list A)\nLine 2: n space-separated sorted integers\nLine 3: m (size of list B)\nLine 4: m space-separated sorted integers",
+    "output_format": "The merged, sorted sequence of all n + m integers, space-separated, on one line.",
+    "starter_code": "n = int(input())\na = list(map(int, input().split()))\nm = int(input())\nb = list(map(int, input().split()))\n\n# TODO: merge the two already-sorted lists into one sorted list, then print it\n",
+    "hints": [
+      "Walk both lists with two pointers, always taking the smaller current head \u2014 O(n + m), no extra sorting needed since both inputs are already sorted.",
+      "Don't forget to append whatever's left over once one list runs out."
+    ],
+    "test_cases": [
+      {
+        "input": "4\n1 3 5 7\n3\n2 4 6\n",
+        "expected": "1 2 3 4 5 6 7"
+      },
+      {
+        "input": "3\n1 2 3\n0\n\n",
+        "expected": "1 2 3"
+      },
+      {
+        "input": "2\n-5 0\n2\n-3 10\n",
+        "expected": "-5 -3 0 10"
+      }
+    ]
+  },
+  {
+    "id": "ll-003",
+    "topic": "Linked Lists",
+    "difficulty": "Medium",
+    "companies": [
+      "Amazon",
+      "Flipkart"
+    ],
+    "title": "Remove Duplicates from a Sorted Linked List",
+    "description": "Given a sorted linked list (which may contain duplicate values), remove the duplicates so each value appears exactly once, and print the resulting sequence.",
+    "input_format": "Line 1: n\nLine 2: n space-separated integers, already sorted (may repeat)",
+    "output_format": "The distinct values in sorted order, space-separated, on one line.",
+    "starter_code": "n = int(input())\nvals = list(map(int, input().split()))\n\n# TODO: walk the (sorted) list once, skipping any value equal to the previous one\n",
+    "hints": [
+      "Because the list is sorted, duplicates are always adjacent \u2014 one linear pass with a 'last value seen' variable is enough."
+    ],
+    "test_cases": [
+      {
+        "input": "7\n1 1 2 2 2 3 4\n",
+        "expected": "1 2 3 4"
+      },
+      {
+        "input": "1\n5\n",
+        "expected": "5"
+      },
+      {
+        "input": "6\n-2 -2 -1 0 0 0\n",
+        "expected": "-2 -1 0"
+      }
+    ]
+  },
+  {
+    "id": "hash-001",
+    "topic": "Hashing",
+    "difficulty": "Easy",
+    "companies": [
+      "TCS",
+      "Accenture",
+      "Amazon"
+    ],
+    "title": "First Non-Repeating Character",
+    "description": "Given a string, find the first character that does not repeat anywhere else in the string. If every character repeats, print -1 instead.",
+    "input_format": "Line 1: a string s (lowercase letters, no spaces)",
+    "output_format": "The first non-repeating character, or -1 if none exists.",
+    "starter_code": "s = input().strip()\n\n# TODO: find the first character in s with count 1, or print -1\n",
+    "hints": [
+      "A hash map from character -> count, built with one pass, lets you answer 'does this repeat?' in O(1) on a second pass that preserves original order."
+    ],
+    "test_cases": [
+      {
+        "input": "swiss\n",
+        "expected": "w"
+      },
+      {
+        "input": "aabbcc\n",
+        "expected": "-1"
+      },
+      {
+        "input": "z\n",
+        "expected": "z"
+      }
+    ]
+  },
+  {
+    "id": "hash-002",
+    "topic": "Hashing",
+    "difficulty": "Easy",
+    "companies": [
+      "Infosys",
+      "Cognizant"
+    ],
+    "title": "Anagram Frequency Match",
+    "description": "Given two arrays of integers, determine whether they contain exactly the same elements with the same frequencies (i.e. one is a permutation of the other).",
+    "input_format": "Line 1: n\nLine 2: n space-separated integers (array A)\nLine 3: m\nLine 4: m space-separated integers (array B)",
+    "output_format": "\"Yes\" if A and B have identical element frequencies, \"No\" otherwise.",
+    "starter_code": "n = int(input())\na = list(map(int, input().split()))\nm = int(input())\nb = list(map(int, input().split()))\n\n# TODO: compare frequency counts of a and b\n",
+    "hints": [
+      "Two hash maps of value -> count (or one Counter subtracted from another) answer this in O(n + m), no sorting required."
+    ],
+    "test_cases": [
+      {
+        "input": "4\n1 2 2 3\n4\n3 2 1 2\n",
+        "expected": "Yes"
+      },
+      {
+        "input": "3\n1 2 3\n3\n1 2 2\n",
+        "expected": "No"
+      },
+      {
+        "input": "0\n\n0\n\n",
+        "expected": "Yes"
+      }
+    ]
+  },
+  {
+    "id": "hash-003",
+    "topic": "Hashing",
+    "difficulty": "Medium",
+    "companies": [
+      "Google",
+      "Amazon"
+    ],
+    "title": "Count Distinct Anagram Groups",
+    "description": "Given a list of words, group the ones that are anagrams of each other, and print how many distinct groups there are.",
+    "input_format": "Line 1: n\nLine 2: n space-separated lowercase words",
+    "output_format": "A single integer \u2014 the number of distinct anagram groups.",
+    "starter_code": "n = int(input())\nwords = input().split()\n\n# TODO: group words by their sorted-letters signature, print the number of groups\n",
+    "hints": [
+      "Two words are anagrams iff their letters, sorted, are identical \u2014 use that sorted string as a hash map key to bucket words into groups in one pass."
+    ],
+    "test_cases": [
+      {
+        "input": "6\neat tea tan ate nat bat\n",
+        "expected": "3"
+      },
+      {
+        "input": "3\nabc bca xyz\n",
+        "expected": "2"
+      },
+      {
+        "input": "1\nhello\n",
+        "expected": "1"
+      }
+    ]
+  },
+  {
+    "id": "graph-001",
+    "topic": "Graphs",
+    "difficulty": "Medium",
+    "companies": [
+      "Amazon",
+      "Google",
+      "Microsoft"
+    ],
+    "title": "Number of Connected Components",
+    "description": "Given an undirected graph with n nodes (labeled 0 to n-1) and a list of edges, count how many separate connected components it has.",
+    "input_format": "Line 1: n (number of nodes) and m (number of edges), space-separated\nNext m lines: two space-separated integers u v \u2014 an edge between node u and node v",
+    "output_format": "A single integer \u2014 the number of connected components.",
+    "starter_code": "n, m = map(int, input().split())\nedges = [tuple(map(int, input().split())) for _ in range(m)]\n\n# TODO: build an adjacency list, then BFS/DFS from every unvisited node, counting how many times you start a new search\n",
+    "hints": [
+      "Build an adjacency list, then repeatedly BFS/DFS from any unvisited node \u2014 each time you have to start a fresh search is one more component.",
+      "Don't forget isolated nodes (no edges at all) still count as their own component."
+    ],
+    "test_cases": [
+      {
+        "input": "5 2\n0 1\n2 3\n",
+        "expected": "3"
+      },
+      {
+        "input": "4 0\n",
+        "expected": "4"
+      },
+      {
+        "input": "6 5\n0 1\n1 2\n2 0\n3 4\n4 5\n",
+        "expected": "2"
+      }
+    ]
+  },
+  {
+    "id": "graph-002",
+    "topic": "Graphs",
+    "difficulty": "Medium",
+    "companies": [
+      "Amazon",
+      "Flipkart"
+    ],
+    "title": "Shortest Path in an Unweighted Graph",
+    "description": "Given an unweighted, undirected graph and a source and target node, find the length of the shortest path between them (number of edges). Print -1 if no path exists.",
+    "input_format": "Line 1: n (nodes) and m (edges)\nNext m lines: u v \u2014 an edge\nLast line: source and target, space-separated",
+    "output_format": "A single integer \u2014 the shortest path length in edges, or -1 if unreachable.",
+    "starter_code": "n, m = map(int, input().split())\nedges = [tuple(map(int, input().split())) for _ in range(m)]\nsrc, dst = map(int, input().split())\n\n# TODO: BFS from src, tracking distance, print the distance to dst (or -1)\n",
+    "hints": [
+      "BFS naturally explores nodes in order of distance from the source in an unweighted graph \u2014 the first time you reach the target, that's the shortest path."
+    ],
+    "test_cases": [
+      {
+        "input": "5 4\n0 1\n1 2\n2 3\n3 4\n0 4\n",
+        "expected": "4"
+      },
+      {
+        "input": "4 1\n0 1\n2 3\n",
+        "expected": "-1"
+      },
+      {
+        "input": "3 0\n0 2\n",
+        "expected": "-1"
+      }
+    ]
+  },
+  {
+    "id": "graph-003",
+    "topic": "Graphs",
+    "difficulty": "Hard",
+    "companies": [
+      "Google",
+      "Microsoft"
+    ],
+    "title": "Detect a Cycle in a Directed Graph",
+    "description": "Given a directed graph, determine whether it contains a cycle.",
+    "input_format": "Line 1: n (nodes) and m (edges)\nNext m lines: u v \u2014 a directed edge from u to v",
+    "output_format": "\"Yes\" if the graph has a cycle, \"No\" otherwise.",
+    "starter_code": "n, m = map(int, input().split())\nedges = [tuple(map(int, input().split())) for _ in range(m)]\n\n# TODO: DFS with a 'currently on this path' set to detect back-edges (cycles)\n",
+    "hints": [
+      "Track three states per node: unvisited, 'on the current DFS path', and 'fully done'. A cycle exists iff DFS ever reaches a node that's currently on the path."
+    ],
+    "test_cases": [
+      {
+        "input": "3 3\n0 1\n1 2\n2 0\n",
+        "expected": "Yes"
+      },
+      {
+        "input": "3 2\n0 1\n1 2\n",
+        "expected": "No"
+      },
+      {
+        "input": "4 4\n0 1\n1 2\n2 3\n3 1\n",
+        "expected": "Yes"
+      }
+    ]
+  },
+  {
+    "id": "greedy-001",
+    "topic": "Greedy",
+    "difficulty": "Medium",
+    "companies": [
+      "Amazon",
+      "Goldman Sachs"
+    ],
+    "title": "Maximum Non-Overlapping Intervals",
+    "description": "You're given n intervals (start, end). Find the maximum number of them you can select such that no two selected intervals overlap.",
+    "input_format": "Line 1: n\nNext n lines: start end (space-separated integers)",
+    "output_format": "A single integer \u2014 the maximum number of non-overlapping intervals selectable.",
+    "starter_code": "n = int(input())\nintervals = [tuple(map(int, input().split())) for _ in range(n)]\n\n# TODO: sort by end time, greedily pick the interval that finishes earliest and is compatible with what's already picked\n",
+    "hints": [
+      "Sort intervals by their END time. Greedily take an interval if its start is >= the end of the last interval you took \u2014 this classic greedy is provably optimal here."
+    ],
+    "test_cases": [
+      {
+        "input": "4\n1 3\n2 4\n3 5\n0 6\n",
+        "expected": "2"
+      },
+      {
+        "input": "3\n1 2\n2 3\n3 4\n",
+        "expected": "3"
+      },
+      {
+        "input": "1\n5 10\n",
+        "expected": "1"
+      }
+    ]
+  },
+  {
+    "id": "greedy-002",
+    "topic": "Greedy",
+    "difficulty": "Medium",
+    "companies": [
+      "Amazon",
+      "TCS",
+      "Ola"
+    ],
+    "title": "Minimum Platforms Needed",
+    "description": "A railway station has n trains, each with an arrival and departure time (in 24-hour format as integers, e.g. 900 for 9:00). Find the minimum number of platforms required so that no train ever has to wait.",
+    "input_format": "Line 1: n\nLine 2: n space-separated arrival times\nLine 3: n space-separated departure times",
+    "output_format": "A single integer \u2014 the minimum number of platforms needed.",
+    "starter_code": "n = int(input())\narr = list(map(int, input().split()))\ndep = list(map(int, input().split()))\n\n# TODO: sort arrivals and departures separately, sweep with two pointers tracking how many platforms are in use at once\n",
+    "hints": [
+      "Sort arrivals and departures independently, then sweep both with two pointers: each new arrival before the next departure needs one more platform; each departure frees one."
+    ],
+    "test_cases": [
+      {
+        "input": "6\n900 940 950 1100 1500 1800\n910 1200 1120 1130 1900 2000\n",
+        "expected": "3"
+      },
+      {
+        "input": "1\n1000\n1030\n",
+        "expected": "1"
+      },
+      {
+        "input": "3\n900 900 900\n1000 1000 1000\n",
+        "expected": "3"
+      }
+    ]
+  },
+  {
+    "id": "mat-001",
+    "topic": "Matrix",
+    "difficulty": "Easy",
+    "companies": [
+      "TCS",
+      "Wipro"
+    ],
+    "title": "Transpose of a Matrix",
+    "description": "Given an r x c matrix, print its transpose (a c x r matrix where row i, column j becomes row j, column i).",
+    "input_format": "Line 1: r and c, space-separated\nNext r lines: c space-separated integers each (the matrix)",
+    "output_format": "The transposed matrix \u2014 c lines, each with r space-separated integers.",
+    "starter_code": "r, c = map(int, input().split())\nmatrix = [list(map(int, input().split())) for _ in range(r)]\n\n# TODO: print the transpose, one row per line\n",
+    "hints": [
+      "Column j of the input becomes row j of the output \u2014 `zip(*matrix)` does exactly this in Python."
+    ],
+    "test_cases": [
+      {
+        "input": "2 3\n1 2 3\n4 5 6\n",
+        "expected": "1 4\n2 5\n3 6"
+      },
+      {
+        "input": "1 1\n7\n",
+        "expected": "7"
+      },
+      {
+        "input": "3 2\n1 2\n3 4\n5 6\n",
+        "expected": "1 3 5\n2 4 6"
+      }
+    ]
+  },
+  {
+    "id": "mat-002",
+    "topic": "Matrix",
+    "difficulty": "Medium",
+    "companies": [
+      "Amazon",
+      "Microsoft",
+      "Google"
+    ],
+    "title": "Spiral Order Traversal",
+    "description": "Given an r x c matrix, print its elements in spiral order (starting top-left, moving right, then down, then left, then up, and so on inward).",
+    "input_format": "Line 1: r and c, space-separated\nNext r lines: c space-separated integers each (the matrix)",
+    "output_format": "All r*c values in spiral order, space-separated, on one line.",
+    "starter_code": "r, c = map(int, input().split())\nmatrix = [list(map(int, input().split())) for _ in range(r)]\n\n# TODO: walk the matrix in a shrinking rectangle (right, down, left, up), printing as you go\n",
+    "hints": [
+      "Track four boundaries (top, bottom, left, right) and shrink whichever one you just finished traversing after each of the four directional sweeps."
+    ],
+    "test_cases": [
+      {
+        "input": "3 3\n1 2 3\n4 5 6\n7 8 9\n",
+        "expected": "1 2 3 6 9 8 7 4 5"
+      },
+      {
+        "input": "2 4\n1 2 3 4\n5 6 7 8\n",
+        "expected": "1 2 3 4 8 7 6 5"
+      },
+      {
+        "input": "1 4\n1 2 3 4\n",
+        "expected": "1 2 3 4"
+      }
+    ]
+  },
+  {
+    "id": "queue-001",
+    "topic": "Queues",
+    "difficulty": "Medium",
+    "companies": [
+      "Amazon",
+      "Microsoft"
+    ],
+    "title": "First Negative Number in Every Window of Size K",
+    "description": "Given an array and a window size k, for every contiguous window of size k print the first negative number in that window, or 0 if the window has none.",
+    "input_format": "Line 1: n and k, space-separated\nLine 2: n space-separated integers",
+    "output_format": "n - k + 1 integers, space-separated, on one line \u2014 the first negative number in each window (0 if none).",
+    "starter_code": "n, k = map(int, input().split())\narr = list(map(int, input().split()))\n\n# TODO: use a deque to track indices of negative numbers currently in the window\n",
+    "hints": [
+      "Keep a deque of indices of negative numbers within the current window; the front of the deque is always the first negative \u2014 pop from the front once it slides out of the window."
+    ],
+    "test_cases": [
+      {
+        "input": "8 3\n12 -1 -7 8 -15 30 16 28\n",
+        "expected": "-1 -1 -7 -15 -15 0"
+      },
+      {
+        "input": "5 2\n1 2 3 4 5\n",
+        "expected": "0 0 0 0"
+      },
+      {
+        "input": "6 3\n-1 -2 -3 -4 -5 -6\n",
+        "expected": "-1 -2 -3 -4"
+      }
+    ]
+  },
+  {
+    "id": "arr-003",
+    "topic": "Arrays",
+    "difficulty": "Easy",
+    "companies": [
+      "Wipro",
+      "Cognizant",
+      "Flipkart"
+    ],
+    "title": "Move Zeroes to the End",
+    "description": "Given an array of integers, move all zeroes to the end while keeping the relative order of the non-zero elements unchanged.",
+    "input_format": "Line 1: n\nLine 2: n space-separated integers",
+    "output_format": "The array after moving all zeroes to the end, space-separated, on one line.",
+    "starter_code": "n = int(input())\na = list(map(int, input().split()))\n\n# TODO: move every 0 to the end, keeping non-zero elements in their original order\n",
+    "hints": [
+      "Collect the non-zero elements in order first, then pad the result with the right number of zeroes."
+    ],
+    "test_cases": [
+      {
+        "input": "5\n0 1 0 3 12\n",
+        "expected": "1 3 12 0 0"
+      },
+      {
+        "input": "3\n0 0 0\n",
+        "expected": "0 0 0"
+      },
+      {
+        "input": "4\n4 2 4 0\n",
+        "expected": "4 2 4 0"
+      }
+    ]
+  },
+  {
+    "id": "arr-004",
+    "topic": "Arrays",
+    "difficulty": "Medium",
+    "companies": [
+      "Amazon",
+      "Ola",
+      "Goldman Sachs"
+    ],
+    "title": "Merge Overlapping Intervals",
+    "description": "Given n intervals, merge all overlapping ones and print the resulting non-overlapping intervals sorted by start time.",
+    "input_format": "Line 1: n\nNext n lines: start end (space-separated integers)",
+    "output_format": "Each merged interval on its own line, as \"start end\", sorted by start.",
+    "starter_code": "n = int(input())\nintervals = [tuple(map(int, input().split())) for _ in range(n)]\n\n# TODO: sort by start, then merge any interval whose start is <= the current merged end\n",
+    "hints": [
+      "Sort by start time first. Walk through and merge into the last kept interval whenever the next start <= its end."
+    ],
+    "test_cases": [
+      {
+        "input": "4\n1 3\n2 6\n8 10\n15 18\n",
+        "expected": "1 6\n8 10\n15 18"
+      },
+      {
+        "input": "2\n1 4\n4 5\n",
+        "expected": "1 5"
+      },
+      {
+        "input": "1\n1 4\n",
+        "expected": "1 4"
+      }
+    ]
+  },
+  {
+    "id": "arr-005",
+    "topic": "Arrays",
+    "difficulty": "Medium",
+    "companies": [
+      "Microsoft",
+      "Flipkart",
+      "Google"
+    ],
+    "title": "Product of Array Except Self",
+    "description": "Given an array of n integers, print an array where each element is the product of all the other elements (not itself), without using division.",
+    "input_format": "Line 1: n\nLine 2: n space-separated integers",
+    "output_format": "n integers, space-separated \u2014 the products, on one line.",
+    "starter_code": "n = int(input())\na = list(map(int, input().split()))\n\n# TODO: compute prefix products and suffix products, multiply them per index\n",
+    "hints": [
+      "Build a prefix-product array and a suffix-product array in two passes, then multiply prefix[i] * suffix[i]."
+    ],
+    "test_cases": [
+      {
+        "input": "4\n1 2 3 4\n",
+        "expected": "24 12 8 6"
+      },
+      {
+        "input": "3\n0 4 0\n",
+        "expected": "0 0 0"
+      },
+      {
+        "input": "2\n5 6\n",
+        "expected": "6 5"
+      }
+    ]
+  },
+  {
+    "id": "arr-006",
+    "topic": "Arrays",
+    "difficulty": "Hard",
+    "companies": [
+      "Amazon",
+      "Google",
+      "Goldman Sachs"
+    ],
+    "title": "Trapping Rain Water",
+    "description": "Given n non-negative integers representing an elevation map where the width of each bar is 1, compute how much rainwater it can trap after it rains.",
+    "input_format": "Line 1: n\nLine 2: n space-separated non-negative integers (bar heights)",
+    "output_format": "A single integer \u2014 the total trapped water.",
+    "starter_code": "n = int(input())\nheights = list(map(int, input().split()))\n\n# TODO: for each bar, trapped water = min(max height to its left, max height to its right) - its own height\n",
+    "hints": [
+      "Precompute the running max height from the left and from the right for every index, then sum min(left_max, right_max) - height[i] (never negative)."
+    ],
+    "test_cases": [
+      {
+        "input": "12\n0 1 0 2 1 0 1 3 2 1 2 1\n",
+        "expected": "6"
+      },
+      {
+        "input": "6\n4 2 0 3 2 5\n",
+        "expected": "9"
+      },
+      {
+        "input": "3\n1 1 1\n",
+        "expected": "0"
+      }
+    ]
+  },
+  {
+    "id": "str-004",
+    "topic": "Strings",
+    "difficulty": "Medium",
+    "companies": [
+      "Amazon",
+      "Microsoft",
+      "Ola"
+    ],
+    "title": "Longest Substring Without Repeating Characters",
+    "description": "Given a string, find the length of the longest contiguous substring that has no repeated characters.",
+    "input_format": "Line 1: a string s",
+    "output_format": "A single integer \u2014 the length of the longest repeat-free substring.",
+    "starter_code": "s = input()\n\n# TODO: sliding window with a set/dict of characters currently in the window\n",
+    "hints": [
+      "Use a sliding window: expand the right edge, and whenever a repeat is found, shrink the left edge past the previous occurrence."
+    ],
+    "test_cases": [
+      {
+        "input": "abcabcbb\n",
+        "expected": "3"
+      },
+      {
+        "input": "bbbbb\n",
+        "expected": "1"
+      },
+      {
+        "input": "pwwkew\n",
+        "expected": "3"
+      }
+    ]
+  },
+  {
+    "id": "str-005",
+    "topic": "Strings",
+    "difficulty": "Easy",
+    "companies": [
+      "TCS",
+      "Accenture",
+      "Wipro"
+    ],
+    "title": "Run-Length Encoding",
+    "description": "Given a string, compress it using run-length encoding: each maximal run of the same character becomes that character followed by its run length.",
+    "input_format": "Line 1: a string s (letters only, no spaces)",
+    "output_format": "The run-length-encoded string, e.g. \"aaab\" becomes \"a3b1\".",
+    "starter_code": "s = input().strip()\n\n# TODO: walk the string once, counting consecutive runs of the same character\n",
+    "hints": [
+      "Track the current character and a running count; whenever the next character differs, flush 'char + count' to the output and reset."
+    ],
+    "test_cases": [
+      {
+        "input": "aaabbc\n",
+        "expected": "a3b2c1"
+      },
+      {
+        "input": "abcd\n",
+        "expected": "a1b1c1d1"
+      },
+      {
+        "input": "wwwwwww\n",
+        "expected": "w7"
+      }
+    ]
+  },
+  {
+    "id": "str-006",
+    "topic": "Strings",
+    "difficulty": "Easy",
+    "companies": [
+      "Infosys",
+      "Cognizant",
+      "Flipkart"
+    ],
+    "title": "Longest Common Prefix",
+    "description": "Given n words, find the longest string that is a prefix of every one of them. Print an empty line if there is no common prefix.",
+    "input_format": "Line 1: n\nLine 2: n space-separated words",
+    "output_format": "The longest common prefix (may be empty).",
+    "starter_code": "n = int(input())\nwords = input().split()\n\n# TODO: compare characters column-by-column across all words until a mismatch\n",
+    "hints": [
+      "Compare the first word against every other word character by character; stop at the first mismatch or the shortest word's length."
+    ],
+    "test_cases": [
+      {
+        "input": "3\nflower flow flight\n",
+        "expected": "fl"
+      },
+      {
+        "input": "3\ndog racecar car\n",
+        "expected": ""
+      },
+      {
+        "input": "2\ninterview interstellar\n",
+        "expected": "inter"
+      }
+    ]
+  },
+  {
+    "id": "rec-003",
+    "topic": "Recursion",
+    "difficulty": "Medium",
+    "companies": [
+      "Goldman Sachs",
+      "Google"
+    ],
+    "title": "Fast Power (Exponentiation by Squaring)",
+    "description": "Given a base and a non-negative integer exponent, compute base^exponent using recursive exponentiation by squaring (O(log n) multiplications, not a plain loop).",
+    "input_format": "Line 1: base and exponent, space-separated integers (exponent >= 0)",
+    "output_format": "A single integer \u2014 base raised to the power exponent.",
+    "starter_code": "base, exp = map(int, input().split())\n\n# TODO: recursive power(base, exp): if exp==0 return 1; if exp is even, square power(base, exp//2); if odd, multiply base by power(base, exp-1)\n",
+    "hints": [
+      "power(b, e) = power(b, e//2)**2 when e is even, and b * power(b, e-1) when e is odd -- this halves the exponent roughly every two calls."
+    ],
+    "test_cases": [
+      {
+        "input": "2 10\n",
+        "expected": "1024"
+      },
+      {
+        "input": "3 0\n",
+        "expected": "1"
+      },
+      {
+        "input": "5 4\n",
+        "expected": "625"
+      }
+    ]
+  },
+  {
+    "id": "rec-004",
+    "topic": "Recursion",
+    "difficulty": "Medium",
+    "companies": [
+      "Amazon",
+      "Microsoft"
+    ],
+    "title": "Generate All Subsets (Power Set)",
+    "description": "Given a list of n distinct integers, recursively generate every subset (the power set) and print them, one per line, in the order produced by including/excluding each element in index order.",
+    "input_format": "Line 1: n\nLine 2: n space-separated integers",
+    "output_format": "Each subset on its own line as space-separated integers (an empty line for the empty subset), in the order: recurse skipping index 0 fully before recursing including index 0.",
+    "starter_code": "n = int(input())\na = list(map(int, input().split()))\n\n# TODO: recursively decide, for each index, to exclude it then include it, printing the current subset when you've decided for every index\n",
+    "hints": [
+      "At each index, first recurse with that element excluded, then recurse with it included -- classic include/exclude recursion tree."
+    ],
+    "test_cases": [
+      {
+        "input": "2\n1 2\n",
+        "expected": "2\n1\n1 2"
+      },
+      {
+        "input": "1\n5\n",
+        "expected": "5"
+      },
+      {
+        "input": "3\n1 2 3\n",
+        "expected": "3\n2\n2 3\n1\n1 3\n1 2\n1 2 3"
+      }
+    ]
+  },
+  {
+    "id": "rec-005",
+    "topic": "Recursion",
+    "difficulty": "Medium",
+    "companies": [
+      "TCS",
+      "Accenture"
+    ],
+    "title": "Tower of Hanoi \u2014 Move Count",
+    "description": "Given n disks, compute the minimum number of moves required to solve the classic Tower of Hanoi puzzle (move all disks from one rod to another using a third, never placing a larger disk on a smaller one), using the recursive relation.",
+    "input_format": "Line 1: n (number of disks)",
+    "output_format": "A single integer \u2014 the minimum number of moves.",
+    "starter_code": "n = int(input())\n\n# TODO: moves(n) = 2*moves(n-1) + 1, with moves(0) = 0\n",
+    "hints": [
+      "To move n disks: move the top n-1 out of the way, move the biggest disk, then move the n-1 back on top -- moves(n) = 2*moves(n-1) + 1."
+    ],
+    "test_cases": [
+      {
+        "input": "1\n",
+        "expected": "1"
+      },
+      {
+        "input": "3\n",
+        "expected": "7"
+      },
+      {
+        "input": "10\n",
+        "expected": "1023"
+      }
+    ]
+  },
+  {
+    "id": "rec-006",
+    "topic": "Recursion",
+    "difficulty": "Easy",
+    "companies": [
+      "Wipro",
+      "Cognizant",
+      "Infosys"
+    ],
+    "title": "Digit Sum (Recursive)",
+    "description": "Given a non-negative integer, compute the sum of its digits using recursion (no loops, no converting the whole number to a string and summing with sum()).",
+    "input_format": "Line 1: a non-negative integer n",
+    "output_format": "A single integer \u2014 the sum of the digits of n.",
+    "starter_code": "n = int(input())\n\n# TODO: recursive digit_sum(n): base case n < 10, else n%10 + digit_sum(n//10)\n",
+    "hints": [
+      "digit_sum(n) = n if n < 10, else (n % 10) + digit_sum(n // 10) -- peel off one digit per call."
+    ],
+    "test_cases": [
+      {
+        "input": "12345\n",
+        "expected": "15"
+      },
+      {
+        "input": "7\n",
+        "expected": "7"
+      },
+      {
+        "input": "1000\n",
+        "expected": "1"
+      }
+    ]
+  },
+  {
+    "id": "recdp-001",
+    "topic": "Recursion / Dynamic Programming",
+    "difficulty": "Easy",
+    "companies": [
+      "Amazon",
+      "Ola",
+      "TCS"
+    ],
+    "title": "Climbing Stairs",
+    "description": "You're climbing a staircase of n steps. Each move you can climb either 1 or 2 steps. Count how many distinct ways there are to reach the top.",
+    "input_format": "Line 1: n (number of steps)",
+    "output_format": "A single integer \u2014 the number of distinct ways to reach step n.",
+    "starter_code": "n = int(input())\n\n# TODO: ways(n) = ways(n-1) + ways(n-2), same recurrence as Fibonacci -- use DP, not naive recursion\n",
+    "hints": [
+      "The last move to reach step n was either a 1-step from n-1 or a 2-step from n-2, so ways(n) = ways(n-1) + ways(n-2). Build it bottom-up to avoid exponential blowup."
+    ],
+    "test_cases": [
+      {
+        "input": "2\n",
+        "expected": "2"
+      },
+      {
+        "input": "5\n",
+        "expected": "8"
+      },
+      {
+        "input": "1\n",
+        "expected": "1"
+      }
+    ]
+  },
+  {
+    "id": "recdp-002",
+    "topic": "Recursion / Dynamic Programming",
+    "difficulty": "Medium",
+    "companies": [
+      "Google",
+      "Goldman Sachs"
+    ],
+    "title": "House Robber",
+    "description": "Given n houses in a row, each with a certain amount of money, find the maximum amount you can rob without robbing two adjacent houses.",
+    "input_format": "Line 1: n\nLine 2: n space-separated non-negative integers (money per house)",
+    "output_format": "A single integer \u2014 the maximum amount robbable.",
+    "starter_code": "n = int(input())\namounts = list(map(int, input().split()))\n\n# TODO: dp[i] = max(dp[i-1], dp[i-2] + amounts[i]) -- either skip house i or take it\n",
+    "hints": [
+      "dp[i] = max(dp[i-1], dp[i-2] + amounts[i]): at each house, either skip it (keep the best so far) or rob it (best up to two houses back, plus this one)."
+    ],
+    "test_cases": [
+      {
+        "input": "4\n1 2 3 1\n",
+        "expected": "4"
+      },
+      {
+        "input": "5\n2 7 9 3 1\n",
+        "expected": "12"
+      },
+      {
+        "input": "1\n5\n",
+        "expected": "5"
+      }
+    ]
+  },
+  {
+    "id": "recdp-003",
+    "topic": "Recursion / Dynamic Programming",
+    "difficulty": "Medium",
+    "companies": [
+      "Flipkart",
+      "Amazon",
+      "Infosys"
+    ],
+    "title": "Minimum Coins for Change",
+    "description": "Given n coin denominations and a target amount, find the minimum number of coins needed to make exactly that amount (each denomination can be used any number of times). Print -1 if it's impossible.",
+    "input_format": "Line 1: n\nLine 2: n space-separated coin denominations\nLine 3: target amount",
+    "output_format": "A single integer \u2014 the minimum number of coins, or -1 if the amount can't be made.",
+    "starter_code": "n = int(input())\ncoins = list(map(int, input().split()))\namount = int(input())\n\n# TODO: dp[a] = 1 + min(dp[a-c] for c in coins if c<=a), dp[0]=0, unreachable = infinity\n",
+    "hints": [
+      "Bottom-up DP over amounts 0..target: dp[a] = 1 + the smallest dp[a-c] over every coin c <= a; dp[0] = 0."
+    ],
+    "test_cases": [
+      {
+        "input": "3\n1 2 5\n11\n",
+        "expected": "3"
+      },
+      {
+        "input": "2\n2 4\n7\n",
+        "expected": "-1"
+      },
+      {
+        "input": "1\n3\n0\n",
+        "expected": "0"
+      }
+    ]
+  },
+  {
+    "id": "search-002",
+    "topic": "Searching",
+    "difficulty": "Medium",
+    "companies": [
+      "Amazon",
+      "Microsoft",
+      "Flipkart"
+    ],
+    "title": "Search in a Rotated Sorted Array",
+    "description": "An array, originally sorted ascending, has been rotated at some unknown pivot. Given the rotated array and a target value, find its index using O(log n) search. Print -1 if the target isn't present.",
+    "input_format": "Line 1: n\nLine 2: n space-separated integers (rotated sorted, distinct values)\nLine 3: target",
+    "output_format": "The index of target in the array, or -1 if not found.",
+    "starter_code": "n = int(input())\na = list(map(int, input().split()))\ntarget = int(input())\n\n# TODO: modified binary search -- at each step, one half of [lo, mid] or [mid, hi] is guaranteed sorted; check whether target lies in that sorted half\n",
+    "hints": [
+      "At any midpoint, at least one side (left of mid, or right of mid) is normally sorted -- check which side is sorted, then check whether target falls in that side's range to decide where to search next."
+    ],
+    "test_cases": [
+      {
+        "input": "7\n4 5 6 7 0 1 2\n0\n",
+        "expected": "4"
+      },
+      {
+        "input": "7\n4 5 6 7 0 1 2\n3\n",
+        "expected": "-1"
+      },
+      {
+        "input": "1\n1\n0\n",
+        "expected": "-1"
+      }
+    ]
+  },
+  {
+    "id": "search-003",
+    "topic": "Searching",
+    "difficulty": "Medium",
+    "companies": [
+      "Google",
+      "Ola"
+    ],
+    "title": "First and Last Position of an Element",
+    "description": "Given a sorted array (with possible duplicates) and a target, find the first and last index at which target appears, using O(log n) binary searches. Print \"-1 -1\" if the target isn't present.",
+    "input_format": "Line 1: n\nLine 2: n space-separated sorted integers\nLine 3: target",
+    "output_format": "Two space-separated integers \u2014 the first and last index of target (or -1 -1).",
+    "starter_code": "n = int(input())\na = list(map(int, input().split()))\ntarget = int(input())\n\n# TODO: binary search for the leftmost occurrence, then binary search for the rightmost\n",
+    "hints": [
+      "Run two separate binary searches: one biased to keep searching left after finding a match (for the first index), one biased to keep searching right (for the last index)."
+    ],
+    "test_cases": [
+      {
+        "input": "6\n5 7 7 8 8 10\n8\n",
+        "expected": "3 4"
+      },
+      {
+        "input": "6\n5 7 7 8 8 10\n6\n",
+        "expected": "-1 -1"
+      },
+      {
+        "input": "3\n2 2 2\n2\n",
+        "expected": "0 2"
+      }
+    ]
+  },
+  {
+    "id": "search-004",
+    "topic": "Searching",
+    "difficulty": "Medium",
+    "companies": [
+      "Goldman Sachs",
+      "Microsoft"
+    ],
+    "title": "Find a Peak Element",
+    "description": "Given an array of n distinct integers, find the index of any \"peak\" element -- one that is strictly greater than both of its neighbors (edge elements only need to beat their single neighbor) -- using O(log n) binary search.",
+    "input_format": "Line 1: n\nLine 2: n space-separated distinct integers",
+    "output_format": "The index of any one valid peak element.",
+    "starter_code": "n = int(input())\na = list(map(int, input().split()))\n\n# TODO: binary search toward the side with the larger neighbor -- a peak always exists in that direction\n",
+    "hints": [
+      "If a[mid] < a[mid+1], a peak must exist to the right (values are climbing); otherwise a peak exists at mid or to the left -- this halves the search space each step."
+    ],
+    "test_cases": [
+      {
+        "input": "4\n1 2 3 1\n",
+        "expected": "2"
+      },
+      {
+        "input": "1\n1\n",
+        "expected": "0"
+      },
+      {
+        "input": "5\n1 2 1 3 5\n",
+        "expected": "4"
+      }
+    ]
+  },
+  {
+    "id": "search-005",
+    "topic": "Searching",
+    "difficulty": "Easy",
+    "companies": [
+      "TCS",
+      "Wipro",
+      "Infosys"
+    ],
+    "title": "Integer Square Root",
+    "description": "Given a non-negative integer n, find floor(sqrt(n)) \u2014 the largest integer whose square is <= n \u2014 using binary search (not the built-in sqrt).",
+    "input_format": "Line 1: a non-negative integer n",
+    "output_format": "A single integer \u2014 floor(sqrt(n)).",
+    "starter_code": "n = int(input())\n\n# TODO: binary search over candidate answers 0..n, testing mid*mid <= n\n",
+    "hints": [
+      "Binary search the answer itself over the range [0, n]: if mid*mid <= n, the true answer is mid or higher; otherwise it's lower."
+    ],
+    "test_cases": [
+      {
+        "input": "8\n",
+        "expected": "2"
+      },
+      {
+        "input": "16\n",
+        "expected": "4"
+      },
+      {
+        "input": "0\n",
+        "expected": "0"
+      }
+    ]
+  },
+  {
+    "id": "sort-002",
+    "topic": "Sorting",
+    "difficulty": "Easy",
+    "companies": [
+      "Accenture",
+      "Cognizant",
+      "Amazon"
+    ],
+    "title": "Sort an Array of 0s, 1s, and 2s",
+    "description": "Given an array containing only the values 0, 1, and 2, sort it in a single pass using the Dutch National Flag algorithm (three pointers), not a general sort.",
+    "input_format": "Line 1: n\nLine 2: n space-separated integers, each 0, 1, or 2",
+    "output_format": "The sorted array, space-separated, on one line.",
+    "starter_code": "n = int(input())\na = list(map(int, input().split()))\n\n# TODO: three pointers low/mid/high partitioning the array into 0s, 1s, 2s in one pass\n",
+    "hints": [
+      "Maintain low/mid/high pointers: swap 0s to the front (advance low, mid), leave 1s in place (advance mid), swap 2s to the back (advance high only, re-examine mid)."
+    ],
+    "test_cases": [
+      {
+        "input": "6\n2 0 2 1 1 0\n",
+        "expected": "0 0 1 1 2 2"
+      },
+      {
+        "input": "3\n1 1 1\n",
+        "expected": "1 1 1"
+      },
+      {
+        "input": "5\n0 1 2 0 1\n",
+        "expected": "0 0 1 1 2"
+      }
+    ]
+  },
+  {
+    "id": "sort-003",
+    "topic": "Sorting",
+    "difficulty": "Medium",
+    "companies": [
+      "Flipkart",
+      "Google",
+      "Microsoft"
+    ],
+    "title": "Kth Largest Element in an Array",
+    "description": "Given an unsorted array of n integers and an integer k, find the kth largest element (the kth largest in sorted-descending order, counting duplicates).",
+    "input_format": "Line 1: n and k, space-separated\nLine 2: n space-separated integers",
+    "output_format": "A single integer \u2014 the kth largest element.",
+    "starter_code": "n, k = map(int, input().split())\na = list(map(int, input().split()))\n\n# TODO: sort descending and index k-1 (a full sort is fine here; a heap is the O(n log k) refinement)\n",
+    "hints": [
+      "Sorting the array descending and taking index k-1 is simplest and correct; a min-heap of size k is the more efficient refinement worth mentioning in an interview."
+    ],
+    "test_cases": [
+      {
+        "input": "6 2\n3 2 1 5 6 4\n",
+        "expected": "5"
+      },
+      {
+        "input": "9 4\n3 2 3 1 2 4 5 5 6\n",
+        "expected": "4"
+      },
+      {
+        "input": "1 1\n7\n",
+        "expected": "7"
+      }
+    ]
+  },
+  {
+    "id": "sort-004",
+    "topic": "Sorting",
+    "difficulty": "Hard",
+    "companies": [
+      "Goldman Sachs",
+      "Amazon"
+    ],
+    "title": "Count Inversions in an Array",
+    "description": "An inversion is a pair of indices i < j where a[i] > a[j]. Given an array, count the total number of inversions using an O(n log n) merge-sort-based approach (not the O(n^2) brute force).",
+    "input_format": "Line 1: n\nLine 2: n space-separated integers",
+    "output_format": "A single integer \u2014 the total number of inversions.",
+    "starter_code": "n = int(input())\na = list(map(int, input().split()))\n\n# TODO: modified merge sort that counts, during each merge step, how many elements from the right half had to jump ahead of remaining elements in the left half\n",
+    "hints": [
+      "During the merge step of merge sort, whenever you take an element from the right half before the left half is exhausted, it forms an inversion with every remaining element in the left half."
+    ],
+    "test_cases": [
+      {
+        "input": "5\n2 4 1 3 5\n",
+        "expected": "3"
+      },
+      {
+        "input": "3\n3 2 1\n",
+        "expected": "3"
+      },
+      {
+        "input": "4\n1 2 3 4\n",
+        "expected": "0"
+      }
+    ]
+  },
+  {
+    "id": "sort-005",
+    "topic": "Sorting",
+    "difficulty": "Medium",
+    "companies": [
+      "Ola",
+      "TCS"
+    ],
+    "title": "Sort Characters by Frequency",
+    "description": "Given a string, sort its characters in decreasing order of frequency. Characters with the same frequency should keep the relative order in which they first appeared in the input.",
+    "input_format": "Line 1: a string s (letters only, no spaces)",
+    "output_format": "The rearranged string, most frequent characters (expanded to their full count) first.",
+    "starter_code": "s = input().strip()\n\n# TODO: count frequencies, then output each distinct character repeated by its count, highest frequency first (stable on first-appearance order for ties)\n",
+    "hints": [
+      "Count occurrences with a dict (which preserves first-insertion order in Python), then sort the distinct characters by -count using a stable sort, and repeat each one its count times."
+    ],
+    "test_cases": [
+      {
+        "input": "tree\n",
+        "expected": "eetr"
+      },
+      {
+        "input": "cccaaa\n",
+        "expected": "cccaaa"
+      },
+      {
+        "input": "aabbcc\n",
+        "expected": "aabbcc"
+      }
+    ]
+  },
+  {
+    "id": "twoptr-002",
+    "topic": "Two Pointers",
+    "difficulty": "Easy",
+    "companies": [
+      "Wipro",
+      "Infosys",
+      "Cognizant"
+    ],
+    "title": "Remove Duplicates from a Sorted Array (In-Place Count)",
+    "description": "Given a sorted array (possibly with duplicates), count how many distinct values it has and print those distinct values in order, as if duplicates were removed in place using two pointers.",
+    "input_format": "Line 1: n\nLine 2: n space-separated sorted integers",
+    "output_format": "The distinct values, in sorted order, space-separated, on one line.",
+    "starter_code": "n = int(input())\na = list(map(int, input().split()))\n\n# TODO: a 'write' pointer only advances when the current value differs from the last written value\n",
+    "hints": [
+      "Keep a slow 'write' pointer; a fast pointer scans forward, and only when it finds a new distinct value does it get copied to the write pointer's position."
+    ],
+    "test_cases": [
+      {
+        "input": "5\n1 1 2 2 3\n",
+        "expected": "1 2 3"
+      },
+      {
+        "input": "1\n7\n",
+        "expected": "7"
+      },
+      {
+        "input": "6\n1 1 1 1 1 1\n",
+        "expected": "1"
+      }
+    ]
+  },
+  {
+    "id": "twoptr-003",
+    "topic": "Two Pointers",
+    "difficulty": "Medium",
+    "companies": [
+      "Amazon",
+      "Google",
+      "Goldman Sachs"
+    ],
+    "title": "Container With Most Water",
+    "description": "Given n non-negative integers where each represents a vertical line's height at that index, find two lines that, together with the x-axis, form a container that holds the most water. Print the maximum area.",
+    "input_format": "Line 1: n\nLine 2: n space-separated non-negative integers (heights)",
+    "output_format": "A single integer \u2014 the maximum water area.",
+    "starter_code": "n = int(input())\nheights = list(map(int, input().split()))\n\n# TODO: two pointers from both ends, always moving the pointer at the shorter line inward\n",
+    "hints": [
+      "Start with pointers at both ends; the area is limited by the shorter line, so moving the taller line's pointer can never help -- always move the shorter one inward."
+    ],
+    "test_cases": [
+      {
+        "input": "9\n1 8 6 2 5 4 8 3 7\n",
+        "expected": "49"
+      },
+      {
+        "input": "2\n1 1\n",
+        "expected": "1"
+      },
+      {
+        "input": "4\n1 2 1 2\n",
+        "expected": "4"
+      }
+    ]
+  },
+  {
+    "id": "twoptr-004",
+    "topic": "Two Pointers",
+    "difficulty": "Medium",
+    "companies": [
+      "Microsoft",
+      "Flipkart",
+      "Ola"
+    ],
+    "title": "Triplets Summing to Zero",
+    "description": "Given an array of n integers, find all unique triplets [a, b, c] (by value, not index) such that a + b + c == 0. Print the count of such unique triplets.",
+    "input_format": "Line 1: n\nLine 2: n space-separated integers",
+    "output_format": "A single integer \u2014 the number of unique zero-sum triplets.",
+    "starter_code": "n = int(input())\na = list(map(int, input().split()))\n\n# TODO: sort, fix one element, then two-pointer scan the rest for pairs summing to its negation, skipping duplicates\n",
+    "hints": [
+      "Sort the array. Fix each index i in turn (skipping duplicate values of a[i]), then use a two-pointer scan on the remainder to find pairs summing to -a[i], also skipping duplicate pairs."
+    ],
+    "test_cases": [
+      {
+        "input": "6\n-1 0 1 2 -1 -4\n",
+        "expected": "2"
+      },
+      {
+        "input": "3\n0 0 0\n",
+        "expected": "1"
+      },
+      {
+        "input": "3\n1 2 3\n",
+        "expected": "0"
+      }
+    ]
+  },
+  {
+    "id": "twoptr-005",
+    "topic": "Two Pointers",
+    "difficulty": "Medium",
+    "companies": [
+      "Amazon",
+      "Accenture"
+    ],
+    "title": "Valid Palindrome After Deleting At Most One Character",
+    "description": "Given a string, determine whether it can become a palindrome by deleting at most one character.",
+    "input_format": "Line 1: a string s (lowercase letters, no spaces)",
+    "output_format": "\"Yes\" if s is a palindrome after deleting at most one character, \"No\" otherwise.",
+    "starter_code": "s = input().strip()\n\n# TODO: two pointers from both ends; on the first mismatch, try skipping either the left or the right character and check if what remains is a plain palindrome\n",
+    "hints": [
+      "Walk pointers inward from both ends; on the first mismatch, check if skipping the left character OR skipping the right character makes the rest a palindrome -- if either works, one deletion suffices."
+    ],
+    "test_cases": [
+      {
+        "input": "aba\n",
+        "expected": "Yes"
+      },
+      {
+        "input": "abca\n",
+        "expected": "Yes"
+      },
+      {
+        "input": "abc\n",
+        "expected": "No"
+      }
+    ]
+  },
+  {
+    "id": "dp-003",
+    "topic": "Dynamic Programming",
+    "difficulty": "Medium",
+    "companies": [
+      "Google",
+      "Microsoft",
+      "Goldman Sachs"
+    ],
+    "title": "Longest Increasing Subsequence (Length Only)",
+    "description": "Given an array of n integers, find the length of the longest strictly increasing subsequence (elements need not be contiguous, but must appear in increasing order).",
+    "input_format": "Line 1: n\nLine 2: n space-separated integers",
+    "output_format": "A single integer \u2014 the length of the longest strictly increasing subsequence.",
+    "starter_code": "n = int(input())\na = list(map(int, input().split()))\n\n# TODO: dp[i] = length of the longest increasing subsequence ending exactly at index i\n",
+    "hints": [
+      "dp[i] = 1 + max(dp[j] for j < i where a[j] < a[i]), or 1 if no such j exists. The O(n^2) version is fine to start; an O(n log n) patience-sorting version is the follow-up."
+    ],
+    "test_cases": [
+      {
+        "input": "8\n10 9 2 5 3 7 101 18\n",
+        "expected": "4"
+      },
+      {
+        "input": "1\n7\n",
+        "expected": "1"
+      },
+      {
+        "input": "5\n5 4 3 2 1\n",
+        "expected": "1"
+      }
+    ]
+  },
+  {
+    "id": "dp-004",
+    "topic": "Dynamic Programming",
+    "difficulty": "Hard",
+    "companies": [
+      "Amazon",
+      "Google"
+    ],
+    "title": "Edit Distance",
+    "description": "Given two strings, find the minimum number of single-character insertions, deletions, or substitutions required to transform the first into the second (the classic Levenshtein distance).",
+    "input_format": "Line 1: string a\nLine 2: string b",
+    "output_format": "A single integer \u2014 the minimum edit distance between a and b.",
+    "starter_code": "a = input()\nb = input()\n\n# TODO: dp[i][j] = edit distance between a[:i] and b[:j]; base cases dp[i][0]=i, dp[0][j]=j\n",
+    "hints": [
+      "dp[i][j] = dp[i-1][j-1] if a[i-1]==b[j-1], else 1 + min(dp[i-1][j], dp[i][j-1], dp[i-1][j-1]) for delete/insert/substitute."
+    ],
+    "test_cases": [
+      {
+        "input": "horse\nros\n",
+        "expected": "3"
+      },
+      {
+        "input": "intention\nexecution\n",
+        "expected": "5"
+      },
+      {
+        "input": "abc\nabc\n",
+        "expected": "0"
+      }
+    ]
+  },
+  {
+    "id": "dp-005",
+    "topic": "Dynamic Programming",
+    "difficulty": "Medium",
+    "companies": [
+      "Flipkart",
+      "Ola"
+    ],
+    "title": "Maximum Product Subarray",
+    "description": "Given an array of n integers (which may include negatives and zeroes), find the contiguous subarray with the largest product, and print that product.",
+    "input_format": "Line 1: n\nLine 2: n space-separated integers",
+    "output_format": "A single integer \u2014 the maximum product of any contiguous subarray.",
+    "starter_code": "n = int(input())\na = list(map(int, input().split()))\n\n# TODO: track both the max AND min product ending at each index -- a negative number can flip the min into the new max\n",
+    "hints": [
+      "Because a negative number can turn the smallest running product into the largest, track both a running max and a running min ending at each index, updating both at every step."
+    ],
+    "test_cases": [
+      {
+        "input": "4\n2 3 -2 4\n",
+        "expected": "6"
+      },
+      {
+        "input": "3\n-2 0 -1\n",
+        "expected": "0"
+      },
+      {
+        "input": "5\n-2 3 -4 1 2\n",
+        "expected": "48"
+      }
+    ]
+  },
+  {
+    "id": "dp-006",
+    "topic": "Dynamic Programming",
+    "difficulty": "Medium",
+    "companies": [
+      "Microsoft",
+      "Amazon",
+      "TCS"
+    ],
+    "title": "Unique Paths in a Grid",
+    "description": "A robot starts at the top-left corner of an r x c grid and can only move right or down. Count how many unique paths lead to the bottom-right corner.",
+    "input_format": "Line 1: r and c, space-separated",
+    "output_format": "A single integer \u2014 the number of unique paths.",
+    "starter_code": "r, c = map(int, input().split())\n\n# TODO: dp[i][j] = dp[i-1][j] + dp[i][j-1], with the first row and first column all 1\n",
+    "hints": [
+      "Every cell in the first row or first column has exactly 1 path (only one direction is possible); every other cell's path count is the sum of the cell above it and the cell to its left."
+    ],
+    "test_cases": [
+      {
+        "input": "3 7\n",
+        "expected": "28"
+      },
+      {
+        "input": "3 2\n",
+        "expected": "3"
+      },
+      {
+        "input": "1 1\n",
+        "expected": "1"
+      }
+    ]
+  },
+  {
+    "id": "bit-003",
+    "topic": "Bit Manipulation",
+    "difficulty": "Easy",
+    "companies": [
+      "TCS",
+      "Wipro"
+    ],
+    "title": "Power of Two Check",
+    "description": "Given a positive integer, determine whether it is a power of two, using bitwise operations (not a loop of repeated division).",
+    "input_format": "Line 1: a positive integer n",
+    "output_format": "\"Yes\" if n is a power of two, \"No\" otherwise.",
+    "starter_code": "n = int(input())\n\n# TODO: a power of two has exactly one bit set -- check n & (n-1) == 0\n",
+    "hints": [
+      "A power of two in binary is a single 1 bit followed by zeroes. n & (n-1) clears the lowest set bit, so the result is 0 exactly when n had only one bit set."
+    ],
+    "test_cases": [
+      {
+        "input": "16\n",
+        "expected": "Yes"
+      },
+      {
+        "input": "18\n",
+        "expected": "No"
+      },
+      {
+        "input": "1\n",
+        "expected": "Yes"
+      }
+    ]
+  },
+  {
+    "id": "bit-004",
+    "topic": "Bit Manipulation",
+    "difficulty": "Easy",
+    "companies": [
+      "Amazon",
+      "Cognizant"
+    ],
+    "title": "Single Number (XOR Trick)",
+    "description": "Given an array where every element appears exactly twice except for one which appears exactly once, find that single element using XOR (O(n) time, O(1) space).",
+    "input_format": "Line 1: n\nLine 2: n space-separated integers",
+    "output_format": "A single integer \u2014 the element that appears only once.",
+    "starter_code": "n = int(input())\na = list(map(int, input().split()))\n\n# TODO: XOR every element together -- pairs cancel out to 0, leaving only the unique one\n",
+    "hints": [
+      "x XOR x == 0 and x XOR 0 == x, so XOR-ing every element together cancels all the pairs, leaving only the value that appeared once."
+    ],
+    "test_cases": [
+      {
+        "input": "5\n4 1 2 1 2\n",
+        "expected": "4"
+      },
+      {
+        "input": "1\n7\n",
+        "expected": "7"
+      },
+      {
+        "input": "7\n1 1 2 2 3 3 9\n",
+        "expected": "9"
+      }
+    ]
+  },
+  {
+    "id": "bit-005",
+    "topic": "Bit Manipulation",
+    "difficulty": "Medium",
+    "companies": [
+      "Microsoft",
+      "Infosys"
+    ],
+    "title": "Count Set Bits from 0 to N",
+    "description": "Given a non-negative integer n, count the total number of set (1) bits across the binary representations of every integer from 0 to n inclusive.",
+    "input_format": "Line 1: a non-negative integer n",
+    "output_format": "A single integer \u2014 the total count of set bits from 0 to n.",
+    "starter_code": "n = int(input())\n\n# TODO: dp[i] = dp[i >> 1] + (i & 1) -- i's set-bit count equals i//2's set-bit count plus whether i's lowest bit is set\n",
+    "hints": [
+      "dp[i] = dp[i >> 1] + (i & 1): shifting right by one drops the lowest bit, so i's popcount is i//2's popcount plus i's own lowest bit."
+    ],
+    "test_cases": [
+      {
+        "input": "5\n",
+        "expected": "7"
+      },
+      {
+        "input": "0\n",
+        "expected": "0"
+      },
+      {
+        "input": "10\n",
+        "expected": "17"
+      }
+    ]
+  },
+  {
+    "id": "bit-006",
+    "topic": "Bit Manipulation",
+    "difficulty": "Easy",
+    "companies": [
+      "Accenture",
+      "Ola"
+    ],
+    "title": "Swap Two Numbers Without a Temp Variable",
+    "description": "Given two integers, print them swapped, computing the swap using only XOR operations (no temporary variable, no arithmetic +/-).",
+    "input_format": "Line 1: two space-separated integers a and b",
+    "output_format": "The two integers swapped (b then a), space-separated.",
+    "starter_code": "a, b = map(int, input().split())\n\n# TODO: a ^= b; b ^= a; a ^= b -- the classic no-temp XOR swap\n",
+    "hints": [
+      "a ^= b, then b ^= a (which is now the original a XOR b XOR b = original a), then a ^= b (now original b) -- three XORs fully swap the pair."
+    ],
+    "test_cases": [
+      {
+        "input": "5 9\n",
+        "expected": "9 5"
+      },
+      {
+        "input": "0 7\n",
+        "expected": "7 0"
+      },
+      {
+        "input": "-3 3\n",
+        "expected": "3 -3"
+      }
+    ]
+  },
+  {
+    "id": "stack-003",
+    "topic": "Stacks",
+    "difficulty": "Medium",
+    "companies": [
+      "Amazon",
+      "Microsoft",
+      "Google"
+    ],
+    "title": "Min Stack Simulation",
+    "description": "You're given a sequence of operations to simulate on an initially-empty stack: \"push x\", \"pop\", or \"min\" (print the current minimum element in O(1)). Process them in order and print the result of every \"min\" operation.",
+    "input_format": "Line 1: q (number of operations)\nNext q lines: one operation each (\"push x\", \"pop\", or \"min\")",
+    "output_format": "One line per \"min\" operation, printing the current minimum at that point.",
+    "starter_code": "q = int(input())\nops = [input().split() for _ in range(q)]\n\n# TODO: maintain a normal stack plus a parallel min-stack that always tracks the minimum of everything currently pushed\n",
+    "hints": [
+      "Alongside the main stack, keep a second stack where each push also pushes min(new value, current min-stack top) -- its top is always the current overall minimum, updated automatically on pop too."
+    ],
+    "test_cases": [
+      {
+        "input": "5\npush 3\npush 5\nmin\npush 1\nmin\n",
+        "expected": "3\n1"
+      },
+      {
+        "input": "6\npush -2\npush 0\npush -3\nmin\npop\nmin\n",
+        "expected": "-3\n-2"
+      },
+      {
+        "input": "3\npush 4\nmin\nmin\n",
+        "expected": "4\n4"
+      }
+    ]
+  },
+  {
+    "id": "stack-004",
+    "topic": "Stacks",
+    "difficulty": "Medium",
+    "companies": [
+      "TCS",
+      "Infosys",
+      "Wipro"
+    ],
+    "title": "Evaluate a Postfix Expression",
+    "description": "Given a postfix (Reverse Polish Notation) arithmetic expression with space-separated tokens, evaluate it and print the result. Operators are + - * / (integer division, truncating toward zero).",
+    "input_format": "Line 1: a postfix expression, space-separated tokens (integers and + - * /)",
+    "output_format": "A single integer \u2014 the evaluated result.",
+    "starter_code": "tokens = input().split()\n\n# TODO: push numbers onto a stack; on an operator, pop two operands, apply it, push the result back\n",
+    "hints": [
+      "Scan left to right: push every number; on an operator, pop the top two values (second-popped is the left operand), apply the operator, and push the result back onto the stack."
+    ],
+    "test_cases": [
+      {
+        "input": "2 3 +\n",
+        "expected": "5"
+      },
+      {
+        "input": "4 13 5 / +\n",
+        "expected": "6"
+      },
+      {
+        "input": "5 1 2 + 4 * + 3 -\n",
+        "expected": "14"
+      }
+    ]
+  },
+  {
+    "id": "stack-005",
+    "topic": "Stacks",
+    "difficulty": "Hard",
+    "companies": [
+      "Google",
+      "Goldman Sachs"
+    ],
+    "title": "Largest Rectangle in a Histogram",
+    "description": "Given n bars of a histogram with given heights (each bar has width 1), find the area of the largest rectangle that can be formed within the histogram, using an O(n) monotonic-stack approach.",
+    "input_format": "Line 1: n\nLine 2: n space-separated non-negative integers (bar heights)",
+    "output_format": "A single integer \u2014 the largest rectangular area.",
+    "starter_code": "n = int(input())\nheights = list(map(int, input().split()))\n\n# TODO: monotonic increasing stack of indices; when a shorter bar is seen, pop and compute the area of the rectangle using the popped bar's height\n",
+    "hints": [
+      "Keep a stack of indices with increasing heights. When you hit a bar shorter than the stack top, pop it and compute its rectangle's width as (current index - new stack top index - 1), or all the way to the start if the stack empties."
+    ],
+    "test_cases": [
+      {
+        "input": "6\n2 1 5 6 2 3\n",
+        "expected": "10"
+      },
+      {
+        "input": "2\n2 4\n",
+        "expected": "4"
+      },
+      {
+        "input": "1\n5\n",
+        "expected": "5"
+      }
+    ]
+  },
+  {
+    "id": "stack-006",
+    "topic": "Stacks",
+    "difficulty": "Medium",
+    "companies": [
+      "Amazon",
+      "Ola"
+    ],
+    "title": "Sort a Stack Using Recursion",
+    "description": "Given a stack of n integers, sort it in ascending order (top of stack = smallest after sorting) using only recursion \u2014 no loops, and no auxiliary array/list besides the call stack and one helper stack.",
+    "input_format": "Line 1: n\nLine 2: n space-separated integers, given bottom-to-top (last number is the top of stack)",
+    "output_format": "The sorted stack's contents printed bottom-to-top, space-separated.",
+    "starter_code": "n = int(input())\nstack = list(map(int, input().split()))  # index -1 is the top\n\n# TODO: recursively pop everything off, then recursively insert each popped value back in sorted position\n",
+    "hints": [
+      "Two mutually recursive helpers: sort_stack pops the top, recursively sorts what's left, then inserts the popped value back in order; insert_sorted places one value into an already-sorted stack by popping bigger elements out of the way first."
+    ],
+    "test_cases": [
+      {
+        "input": "5\n34 3 31 98 92\n",
+        "expected": "3 31 34 92 98"
+      },
+      {
+        "input": "3\n1 2 3\n",
+        "expected": "1 2 3"
+      },
+      {
+        "input": "1\n7\n",
+        "expected": "7"
+      }
+    ]
+  },
+  {
+    "id": "ll-004",
+    "topic": "Linked Lists",
+    "difficulty": "Medium",
+    "companies": [
+      "Amazon",
+      "Microsoft",
+      "Flipkart"
+    ],
+    "title": "Detect a Cycle in a Linked List",
+    "description": "A linked list is given as n node values plus a \"next pointer for the last node\": an index (0-based) it points back to, or -1 if the list ends normally. Determine whether the list has a cycle, using Floyd's slow/fast pointer technique.",
+    "input_format": "Line 1: n\nLine 2: n space-separated integers (node values)\nLine 3: the index the last node's next pointer points to (-1 if none)",
+    "output_format": "\"Yes\" if the list has a cycle, \"No\" otherwise.",
+    "starter_code": "n = int(input())\nvals = list(map(int, input().split()))\ntail_next = int(input())\n\n# TODO: build the 'next' array from the chain 0->1->2->...->(n-1), with the last node's next set to tail_next (or None), then run slow/fast pointers\n",
+    "hints": [
+      "Build a next[] array where next[i] = i+1 for all but the last node, and next[n-1] = tail_next. Then move a slow pointer one step and a fast pointer two steps at a time -- if they ever meet, there's a cycle."
+    ],
+    "test_cases": [
+      {
+        "input": "4\n1 2 3 4\n1\n",
+        "expected": "Yes"
+      },
+      {
+        "input": "4\n1 2 3 4\n-1\n",
+        "expected": "No"
+      },
+      {
+        "input": "1\n1\n0\n",
+        "expected": "Yes"
+      }
+    ]
+  },
+  {
+    "id": "ll-005",
+    "topic": "Linked Lists",
+    "difficulty": "Easy",
+    "companies": [
+      "TCS",
+      "Infosys"
+    ],
+    "title": "Middle of a Linked List",
+    "description": "Given a linked list as a sequence of n values, find the value at its middle node using the slow/fast pointer technique (one pass, no counting the length first). For an even-length list, return the second of the two middle nodes.",
+    "input_format": "Line 1: n\nLine 2: n space-separated integers",
+    "output_format": "A single integer \u2014 the value at the middle node.",
+    "starter_code": "n = int(input())\nvals = list(map(int, input().split()))\n\n# TODO: move slow one step and fast two steps at a time; when fast reaches the end, slow is at the middle\n",
+    "hints": [
+      "Move a slow pointer one index at a time and a fast pointer two at a time; when the fast pointer runs off the end, the slow pointer is sitting on the middle node."
+    ],
+    "test_cases": [
+      {
+        "input": "5\n1 2 3 4 5\n",
+        "expected": "3"
+      },
+      {
+        "input": "6\n1 2 3 4 5 6\n",
+        "expected": "4"
+      },
+      {
+        "input": "1\n9\n",
+        "expected": "9"
+      }
+    ]
+  },
+  {
+    "id": "ll-006",
+    "topic": "Linked Lists",
+    "difficulty": "Medium",
+    "companies": [
+      "Amazon",
+      "Google",
+      "Goldman Sachs"
+    ],
+    "title": "Add Two Numbers Represented as Linked Lists",
+    "description": "Two non-negative integers are represented as linked lists where each node holds a single digit, stored in reverse order (least significant digit first, as would sit at the head of the list). Add the two numbers and print the sum's digits, also in reverse order.",
+    "input_format": "Line 1: n1 followed by n1 digits (list A, least significant digit first)\nLine 2: n2 followed by n2 digits (list B, least significant digit first)",
+    "output_format": "The sum's digits, least significant digit first, space-separated.",
+    "starter_code": "parts_a = list(map(int, input().split()))\nparts_b = list(map(int, input().split()))\na = parts_a[1:]\nb = parts_b[1:]\n\n# TODO: simulate grade-school addition digit by digit (both already least-significant-first), tracking carry\n",
+    "hints": [
+      "Walk both digit lists together (padding the shorter with zeroes once it runs out), adding digit + digit + carry at each step and keeping the new carry for the next position."
+    ],
+    "test_cases": [
+      {
+        "input": "3 2 4 3\n3 5 6 4\n",
+        "expected": "7 0 8"
+      },
+      {
+        "input": "1 0\n1 0\n",
+        "expected": "0"
+      },
+      {
+        "input": "1 9\n2 9 9\n",
+        "expected": "8 0 1"
+      }
+    ]
+  },
+  {
+    "id": "hash-004",
+    "topic": "Hashing",
+    "difficulty": "Medium",
+    "companies": [
+      "Amazon",
+      "Microsoft"
+    ],
+    "title": "Subarray Sum Equals K",
+    "description": "Given an array of n integers and a target sum k, count the number of contiguous subarrays whose elements sum to exactly k, using a running prefix-sum hash map (O(n), not the O(n^2) brute force).",
+    "input_format": "Line 1: n and k, space-separated\nLine 2: n space-separated integers",
+    "output_format": "A single integer \u2014 the number of subarrays summing to exactly k.",
+    "starter_code": "n, k = map(int, input().split())\na = list(map(int, input().split()))\n\n# TODO: track prefix sums seen so far in a hash map of sum -> count; a subarray ending here sums to k whenever (running_sum - k) was seen before\n",
+    "hints": [
+      "Keep a running prefix sum and a hash map counting how many times each prefix-sum value has occurred; at each step, add the count of (running_sum - k) seen so far to the answer, then record the current running_sum."
+    ],
+    "test_cases": [
+      {
+        "input": "5 2\n1 1 1 1 1\n",
+        "expected": "4"
+      },
+      {
+        "input": "3 3\n1 2 3\n",
+        "expected": "2"
+      },
+      {
+        "input": "4 0\n0 0 0 0\n",
+        "expected": "10"
+      }
+    ]
+  },
+  {
+    "id": "hash-005",
+    "topic": "Hashing",
+    "difficulty": "Medium",
+    "companies": [
+      "Google",
+      "Flipkart"
+    ],
+    "title": "Longest Consecutive Sequence",
+    "description": "Given an unsorted array of n integers, find the length of the longest run of consecutive integers (e.g. [1,2,3,4]) that can be formed using elements from the array, in O(n) time using a hash set (not by sorting).",
+    "input_format": "Line 1: n\nLine 2: n space-separated integers",
+    "output_format": "A single integer \u2014 the length of the longest consecutive sequence.",
+    "starter_code": "n = int(input())\na = list(map(int, input().split()))\n\n# TODO: put everything in a set; only start counting a run from a value whose predecessor (value-1) is NOT in the set, then count forward\n",
+    "hints": [
+      "Only start counting a streak from a number x where x-1 is NOT in the set (so x is guaranteed to be the start of its run) -- this ensures each run is only ever counted once, keeping the whole algorithm O(n)."
+    ],
+    "test_cases": [
+      {
+        "input": "6\n100 4 200 1 3 2\n",
+        "expected": "4"
+      },
+      {
+        "input": "1\n1\n",
+        "expected": "1"
+      },
+      {
+        "input": "6\n0 -1 1 -2 2 3\n",
+        "expected": "6"
+      }
+    ]
+  },
+  {
+    "id": "hash-006",
+    "topic": "Hashing",
+    "difficulty": "Easy",
+    "companies": [
+      "TCS",
+      "Cognizant",
+      "Accenture"
+    ],
+    "title": "Isomorphic Strings",
+    "description": "Given two strings of equal length, determine whether they are isomorphic \u2014 every character in the first string can be consistently replaced by exactly one character in the second to obtain the second string (no two characters may map to the same character).",
+    "input_format": "Line 1: string s\nLine 2: string t",
+    "output_format": "\"Yes\" if s and t are isomorphic, \"No\" otherwise.",
+    "starter_code": "s = input()\nt = input()\n\n# TODO: two hash maps, s->t and t->s, must both stay consistent at every position\n",
+    "hints": [
+      "Maintain two hash maps -- one mapping s's characters to t's, one mapping t's back to s's -- and check both directions agree at every index; a clash in either direction breaks isomorphism."
+    ],
+    "test_cases": [
+      {
+        "input": "egg\nadd\n",
+        "expected": "Yes"
+      },
+      {
+        "input": "foo\nbar\n",
+        "expected": "No"
+      },
+      {
+        "input": "paper\ntitle\n",
+        "expected": "Yes"
+      }
+    ]
+  },
+  {
+    "id": "graph-004",
+    "topic": "Graphs",
+    "difficulty": "Medium",
+    "companies": [
+      "Google",
+      "Goldman Sachs"
+    ],
+    "title": "Bipartite Graph Check",
+    "description": "Given an undirected graph, determine whether it is bipartite \u2014 its nodes can be split into two groups such that every edge connects nodes from different groups \u2014 using BFS/DFS two-coloring.",
+    "input_format": "Line 1: n (nodes) and m (edges)\nNext m lines: u v \u2014 an edge",
+    "output_format": "\"Yes\" if the graph is bipartite, \"No\" otherwise.",
+    "starter_code": "n, m = map(int, input().split())\nedges = [tuple(map(int, input().split())) for _ in range(m)]\n\n# TODO: BFS/DFS coloring each node the opposite color of its parent; a graph is bipartite iff no edge ever connects two same-colored nodes\n",
+    "hints": [
+      "BFS from every unvisited node, alternating colors 0/1 as you go level by level; if you ever find an edge connecting two nodes already colored the same, the graph is not bipartite."
+    ],
+    "test_cases": [
+      {
+        "input": "4 4\n0 1\n1 2\n2 3\n3 0\n",
+        "expected": "Yes"
+      },
+      {
+        "input": "3 3\n0 1\n1 2\n2 0\n",
+        "expected": "No"
+      },
+      {
+        "input": "2 1\n0 1\n",
+        "expected": "Yes"
+      }
+    ]
+  },
+  {
+    "id": "graph-005",
+    "topic": "Graphs",
+    "difficulty": "Hard",
+    "companies": [
+      "Amazon",
+      "Microsoft",
+      "Google"
+    ],
+    "title": "Course Schedule Feasibility (Topological Sort)",
+    "description": "There are n courses (0 to n-1) and m prerequisite pairs [a, b] meaning course a requires course b to be completed first. Determine whether it's possible to finish all courses (i.e. the prerequisite graph has no cycle).",
+    "input_format": "Line 1: n and m\nNext m lines: a b \u2014 course a requires course b first",
+    "output_format": "\"Yes\" if all courses can be finished, \"No\" otherwise.",
+    "starter_code": "n, m = map(int, input().split())\nprereqs = [tuple(map(int, input().split())) for _ in range(m)]\n\n# TODO: Kahn's algorithm -- repeatedly remove nodes with in-degree 0; if you can't remove all n nodes, there's a cycle\n",
+    "hints": [
+      "Build the graph b -> a (b must come before a), compute in-degrees, and repeatedly pop nodes with in-degree 0 into a queue, decrementing their neighbors' in-degrees -- if fewer than n nodes get processed this way, a cycle exists."
+    ],
+    "test_cases": [
+      {
+        "input": "2 1\n1 0\n",
+        "expected": "Yes"
+      },
+      {
+        "input": "2 2\n1 0\n0 1\n",
+        "expected": "No"
+      },
+      {
+        "input": "4 3\n1 0\n2 0\n3 1\n",
+        "expected": "Yes"
+      }
+    ]
+  },
+  {
+    "id": "graph-006",
+    "topic": "Graphs",
+    "difficulty": "Medium",
+    "companies": [
+      "Amazon",
+      "Flipkart",
+      "Ola"
+    ],
+    "title": "Number of Islands",
+    "description": "Given an r x c grid of 0s (water) and 1s (land), count the number of islands \u2014 groups of adjacent (up/down/left/right, not diagonal) 1s.",
+    "input_format": "Line 1: r and c\nNext r lines: c space-separated integers each (0 or 1)",
+    "output_format": "A single integer \u2014 the number of islands.",
+    "starter_code": "r, c = map(int, input().split())\ngrid = [list(map(int, input().split())) for _ in range(r)]\n\n# TODO: for every unvisited land cell, flood-fill (BFS/DFS) the whole island and count once per flood-fill started\n",
+    "hints": [
+      "Scan every cell; whenever you find a '1' that hasn't been visited yet, that's a new island -- flood-fill (BFS/DFS) outward from it marking every connected '1' as visited, then continue scanning."
+    ],
+    "test_cases": [
+      {
+        "input": "4 5\n1 1 0 0 0\n1 1 0 0 0\n0 0 1 0 0\n0 0 0 1 1\n",
+        "expected": "3"
+      },
+      {
+        "input": "1 4\n0 0 0 0\n",
+        "expected": "0"
+      },
+      {
+        "input": "2 2\n1 1\n1 1\n",
+        "expected": "1"
+      }
+    ]
+  },
+  {
+    "id": "greedy-003",
+    "topic": "Greedy",
+    "difficulty": "Medium",
+    "companies": [
+      "Goldman Sachs",
+      "Amazon"
+    ],
+    "title": "Fractional Knapsack",
+    "description": "Given n items with a weight and value each, and a knapsack capacity, maximize the total value you can carry, where fractions of an item may be taken. Print the maximum value rounded to 2 decimal places.",
+    "input_format": "Line 1: n and capacity\nNext n lines: weight value (space-separated)",
+    "output_format": "The maximum achievable value, printed with exactly 2 decimal places.",
+    "starter_code": "n, capacity = map(int, input().split())\nitems = [tuple(map(int, input().split())) for _ in range(n)]\n\n# TODO: sort items by value/weight ratio descending, greedily take as much of the best-ratio item as fits, taking a fraction of the last one if needed\n",
+    "hints": [
+      "Sort items by value-per-unit-weight, descending. Take whole items greedily in that order until the next item wouldn't fit, then take exactly the fraction of it that fills the remaining capacity."
+    ],
+    "test_cases": [
+      {
+        "input": "3 50\n10 60\n20 100\n30 120\n",
+        "expected": "240.00"
+      },
+      {
+        "input": "1 10\n20 100\n",
+        "expected": "50.00"
+      },
+      {
+        "input": "2 10\n5 30\n5 30\n",
+        "expected": "60.00"
+      }
+    ]
+  },
+  {
+    "id": "greedy-004",
+    "topic": "Greedy",
+    "difficulty": "Medium",
+    "companies": [
+      "Infosys",
+      "TCS"
+    ],
+    "title": "Job Sequencing with Deadlines",
+    "description": "Given n jobs, each with a deadline and a profit, and each job takes exactly one unit of time on a single machine, schedule jobs to maximize total profit (a job must be completed by its deadline to earn its profit; not all jobs need to run). Print the maximum achievable profit.",
+    "input_format": "Line 1: n\nNext n lines: deadline profit (space-separated)",
+    "output_format": "A single integer \u2014 the maximum total profit.",
+    "starter_code": "n = int(input())\njobs = [tuple(map(int, input().split())) for _ in range(n)]\n\n# TODO: sort jobs by profit descending; for each, greedily place it in the latest free time slot at or before its deadline\n",
+    "hints": [
+      "Sort jobs by profit descending. For each job in that order, scan backward from its deadline to slot 1 looking for a free time slot -- taking the LATEST free slot (not the earliest) leaves more room for other jobs with earlier deadlines."
+    ],
+    "test_cases": [
+      {
+        "input": "4\n4 20\n1 10\n1 40\n1 30\n",
+        "expected": "60"
+      },
+      {
+        "input": "3\n2 100\n1 19\n2 27\n",
+        "expected": "127"
+      },
+      {
+        "input": "1\n1 5\n",
+        "expected": "5"
+      }
+    ]
+  },
+  {
+    "id": "greedy-005",
+    "topic": "Greedy",
+    "difficulty": "Easy",
+    "companies": [
+      "Wipro",
+      "Cognizant"
+    ],
+    "title": "Minimum Coins (Standard Denominations)",
+    "description": "Given a target amount and the standard Indian currency denominations [1, 2, 5, 10, 20, 50, 100, 500, 2000], find the minimum number of coins/notes needed using the greedy always-take-the-largest-that-fits approach.",
+    "input_format": "Line 1: the target amount (a non-negative integer)",
+    "output_format": "A single integer \u2014 the minimum number of coins/notes using the greedy approach.",
+    "starter_code": "amount = int(input())\ndenominations = [2000, 500, 100, 50, 20, 10, 5, 2, 1]\n\n# TODO: repeatedly take as many of the largest denomination <= remaining amount as possible\n",
+    "hints": [
+      "Sort denominations largest-first (already given that way); for each, take floor(remaining / denomination) of it, subtract, and move to the next smaller denomination."
+    ],
+    "test_cases": [
+      {
+        "input": "93\n",
+        "expected": "5"
+      },
+      {
+        "input": "0\n",
+        "expected": "0"
+      },
+      {
+        "input": "2468\n",
+        "expected": "10"
+      }
+    ]
+  },
+  {
+    "id": "greedy-006",
+    "topic": "Greedy",
+    "difficulty": "Hard",
+    "companies": [
+      "Amazon",
+      "Google"
+    ],
+    "title": "Candy Distribution",
+    "description": "There are n children standing in a line, each with a rating. You must give each child at least one candy, and any child with a higher rating than an immediate neighbor must get more candy than that neighbor. Find the minimum total candies needed.",
+    "input_format": "Line 1: n\nLine 2: n space-separated integers (ratings)",
+    "output_format": "A single integer \u2014 the minimum total number of candies.",
+    "starter_code": "n = int(input())\nratings = list(map(int, input().split()))\n\n# TODO: two passes -- left to right enforcing the right-neighbor rule, then right to left enforcing the left-neighbor rule, taking the max of both passes per child\n",
+    "hints": [
+      "Left-to-right pass: if ratings[i] > ratings[i-1], candies[i] = candies[i-1] + 1. Right-to-left pass: if ratings[i] > ratings[i+1], candies[i] = max(candies[i], candies[i+1] + 1). Sum the result."
+    ],
+    "test_cases": [
+      {
+        "input": "3\n1 0 2\n",
+        "expected": "5"
+      },
+      {
+        "input": "3\n1 2 2\n",
+        "expected": "4"
+      },
+      {
+        "input": "5\n1 2 3 4 5\n",
+        "expected": "15"
+      }
+    ]
+  },
+  {
+    "id": "mat-003",
+    "topic": "Matrix",
+    "difficulty": "Medium",
+    "companies": [
+      "Amazon",
+      "Microsoft"
+    ],
+    "title": "Rotate a Matrix by 90 Degrees",
+    "description": "Given an n x n matrix, rotate it 90 degrees clockwise in place, then print the rotated matrix.",
+    "input_format": "Line 1: n\nNext n lines: n space-separated integers each",
+    "output_format": "The rotated matrix, n lines of n space-separated integers.",
+    "starter_code": "n = int(input())\nmatrix = [list(map(int, input().split())) for _ in range(n)]\n\n# TODO: transpose the matrix, then reverse each row -- that's a 90-degree clockwise rotation\n",
+    "hints": [
+      "A 90-degree clockwise rotation is exactly a transpose (swap rows and columns) followed by reversing each row."
+    ],
+    "test_cases": [
+      {
+        "input": "3\n1 2 3\n4 5 6\n7 8 9\n",
+        "expected": "7 4 1\n8 5 2\n9 6 3"
+      },
+      {
+        "input": "1\n5\n",
+        "expected": "5"
+      },
+      {
+        "input": "2\n1 2\n3 4\n",
+        "expected": "3 1\n4 2"
+      }
+    ]
+  },
+  {
+    "id": "mat-004",
+    "topic": "Matrix",
+    "difficulty": "Medium",
+    "companies": [
+      "Google",
+      "Flipkart"
+    ],
+    "title": "Search a Row-Wise and Column-Wise Sorted Matrix",
+    "description": "Given an r x c matrix where each row is sorted left-to-right and each column is sorted top-to-bottom, determine whether a target value exists, in O(r + c) time (start from the top-right corner).",
+    "input_format": "Line 1: r and c\nNext r lines: c space-separated integers each\nLast line: target",
+    "output_format": "\"Yes\" if target exists in the matrix, \"No\" otherwise.",
+    "starter_code": "r, c = map(int, input().split())\nmatrix = [list(map(int, input().split())) for _ in range(r)]\ntarget = int(input())\n\n# TODO: start at the top-right corner; if current > target, move left; if current < target, move down\n",
+    "hints": [
+      "Starting at the top-right corner: if the current cell is bigger than the target, the whole column below can be discarded (move left); if it's smaller, the whole row to the left can be discarded (move down)."
+    ],
+    "test_cases": [
+      {
+        "input": "4 4\n1 4 7 11\n2 5 8 12\n3 6 9 16\n10 13 14 17\n5\n",
+        "expected": "Yes"
+      },
+      {
+        "input": "4 4\n1 4 7 11\n2 5 8 12\n3 6 9 16\n10 13 14 17\n20\n",
+        "expected": "No"
+      },
+      {
+        "input": "1 1\n5\n5\n",
+        "expected": "Yes"
+      }
+    ]
+  },
+  {
+    "id": "mat-005",
+    "topic": "Matrix",
+    "difficulty": "Medium",
+    "companies": [
+      "Amazon",
+      "Ola"
+    ],
+    "title": "Set Matrix Zeroes",
+    "description": "Given an r x c matrix, if an element is 0, set its entire row and column to 0. Print the resulting matrix.",
+    "input_format": "Line 1: r and c\nNext r lines: c space-separated integers each",
+    "output_format": "The modified matrix, r lines of c space-separated integers each.",
+    "starter_code": "r, c = map(int, input().split())\nmatrix = [list(map(int, input().split())) for _ in range(r)]\n\n# TODO: first record which rows/columns contain a 0, THEN zero them out in a second pass\n",
+    "hints": [
+      "Do this in two passes: first scan the whole matrix and record which rows and which columns contain at least one 0, then in a second pass zero out every cell whose row or column was marked -- zeroing in a single pass would incorrectly cascade."
+    ],
+    "test_cases": [
+      {
+        "input": "3 3\n1 1 1\n1 0 1\n1 1 1\n",
+        "expected": "1 0 1\n0 0 0\n1 0 1"
+      },
+      {
+        "input": "2 3\n0 1 2\n3 4 5\n",
+        "expected": "0 0 0\n0 4 5"
+      },
+      {
+        "input": "1 1\n1\n",
+        "expected": "1"
+      }
+    ]
+  },
+  {
+    "id": "mat-006",
+    "topic": "Matrix",
+    "difficulty": "Easy",
+    "companies": [
+      "TCS",
+      "Wipro",
+      "Infosys"
+    ],
+    "title": "Diagonal Sum of a Matrix",
+    "description": "Given an n x n matrix, print the sum of its primary diagonal and the sum of its secondary (anti) diagonal, space-separated. If a cell lies on both diagonals (n is odd, the center cell), it still contributes to both sums independently.",
+    "input_format": "Line 1: n\nNext n lines: n space-separated integers each",
+    "output_format": "Two space-separated integers \u2014 primary diagonal sum, then secondary diagonal sum.",
+    "starter_code": "n = int(input())\nmatrix = [list(map(int, input().split())) for _ in range(n)]\n\n# TODO: primary diagonal is matrix[i][i]; secondary diagonal is matrix[i][n-1-i]\n",
+    "hints": [
+      "The primary diagonal is every matrix[i][i]; the secondary (anti) diagonal is every matrix[i][n-1-i] -- sum each independently, even sharing the center cell for odd n."
+    ],
+    "test_cases": [
+      {
+        "input": "3\n1 2 3\n4 5 6\n7 8 9\n",
+        "expected": "15 15"
+      },
+      {
+        "input": "1\n5\n",
+        "expected": "5 5"
+      },
+      {
+        "input": "2\n1 2\n3 4\n",
+        "expected": "5 5"
+      }
+    ]
+  },
+  {
+    "id": "queue-002",
+    "topic": "Queues",
+    "difficulty": "Medium",
+    "companies": [
+      "Amazon",
+      "Microsoft"
+    ],
+    "title": "Implement a Queue Using Two Stacks",
+    "description": "You're given a sequence of operations to simulate on an initially-empty queue built from two stacks internally: \"enqueue x\" or \"dequeue\". Process them in order and print the result of every \"dequeue\" (or \"empty\" if the queue is empty).",
+    "input_format": "Line 1: q (number of operations)\nNext q lines: one operation each (\"enqueue x\" or \"dequeue\")",
+    "output_format": "One line per \"dequeue\" operation, printing the dequeued value (or \"empty\").",
+    "starter_code": "q = int(input())\nops = [input().split() for _ in range(q)]\n\n# TODO: use an 'in' stack for enqueue; on dequeue, if the 'out' stack is empty, pour everything from 'in' into 'out' (reversing order) before popping from 'out'\n",
+    "hints": [
+      "Push all enqueues onto stack 'in'. On dequeue, if stack 'out' is empty, pop everything off 'in' and push it onto 'out' (this reverses the order back to FIFO), then pop from 'out'."
+    ],
+    "test_cases": [
+      {
+        "input": "5\nenqueue 1\nenqueue 2\ndequeue\nenqueue 3\ndequeue\n",
+        "expected": "1\n2"
+      },
+      {
+        "input": "2\ndequeue\nenqueue 9\n",
+        "expected": "empty"
+      },
+      {
+        "input": "4\nenqueue 5\ndequeue\ndequeue\nenqueue 6\n",
+        "expected": "5\nempty"
+      }
+    ]
+  },
+  {
+    "id": "queue-003",
+    "topic": "Queues",
+    "difficulty": "Easy",
+    "companies": [
+      "TCS",
+      "Infosys"
+    ],
+    "title": "Generate Binary Representations from 1 to N",
+    "description": "Using a queue, generate the binary representations of every integer from 1 to n, in order, by building each new one from an earlier one (append '0' or '1' to the front of the queue and enqueue both children), rather than converting each number directly with bin().",
+    "input_format": "Line 1: a positive integer n",
+    "output_format": "n lines, the binary representation of 1, 2, ..., n in order.",
+    "starter_code": "n = int(input())\n\n# TODO: start a queue with '1'; repeatedly dequeue a string, print it, then enqueue (that string + '0') and (that string + '1')\n",
+    "hints": [
+      "Start a queue containing just '1'. Repeat n times: dequeue the front string and print it, then enqueue front+'0' and front+'1' as the next two candidates -- this generates binary numbers in increasing order, breadth-first."
+    ],
+    "test_cases": [
+      {
+        "input": "5\n",
+        "expected": "1\n10\n11\n100\n101"
+      },
+      {
+        "input": "1\n",
+        "expected": "1"
+      },
+      {
+        "input": "8\n",
+        "expected": "1\n10\n11\n100\n101\n110\n111\n1000"
+      }
+    ]
+  },
+  {
+    "id": "queue-004",
+    "topic": "Queues",
+    "difficulty": "Medium",
+    "companies": [
+      "Accenture",
+      "Cognizant"
+    ],
+    "title": "Reverse the First K Elements of a Queue",
+    "description": "Given a queue of n integers and an integer k (1 <= k <= n), reverse the order of the first k elements while leaving the rest of the queue's order unchanged, using only a stack as auxiliary storage (no random-access list operations on the queue itself besides enqueue/dequeue).",
+    "input_format": "Line 1: n and k, space-separated\nLine 2: n space-separated integers (the queue, front to back)",
+    "output_format": "The resulting queue, front to back, space-separated.",
+    "starter_code": "n, k = map(int, input().split())\nqueue = list(map(int, input().split()))\n\n# TODO: dequeue k elements onto a stack (reversing them), push them back into the queue, then cycle the remaining n-k front elements to the back once\n",
+    "hints": [
+      "Pop the first k elements into a stack (this reverses their order), push them back onto the queue's rear one by one (they come out of the stack in reversed order), then rotate the remaining n-k original front elements to the back one at a time to restore overall queue order."
+    ],
+    "test_cases": [
+      {
+        "input": "5 3\n1 2 3 4 5\n",
+        "expected": "3 2 1 4 5"
+      },
+      {
+        "input": "4 4\n10 20 30 40\n",
+        "expected": "40 30 20 10"
+      },
+      {
+        "input": "6 2\n1 2 3 4 5 6\n",
+        "expected": "2 1 3 4 5 6"
+      }
+    ]
+  },
+  {
+    "id": "queue-005",
+    "topic": "Queues",
+    "difficulty": "Hard",
+    "companies": [
+      "Google",
+      "Goldman Sachs",
+      "Amazon"
+    ],
+    "title": "Sliding Window Maximum",
+    "description": "Given an array and a window size k, for every contiguous window of size k print the maximum value in that window, using an O(n) monotonic deque (not an O(n*k) brute force).",
+    "input_format": "Line 1: n and k, space-separated\nLine 2: n space-separated integers",
+    "output_format": "n - k + 1 integers, space-separated, on one line \u2014 the maximum of each window.",
+    "starter_code": "n, k = map(int, input().split())\narr = list(map(int, input().split()))\n\n# TODO: keep a deque of indices with decreasing values; pop smaller values off the back before adding a new one, and drop indices that have slid out of the window from the front\n",
+    "hints": [
+      "Maintain a deque of indices whose values are in decreasing order. Before adding a new index, remove indices from the back whose values are smaller (they can never be the max again). Remove indices from the front once they've slid out of the current window. The front is always the current window's max."
+    ],
+    "test_cases": [
+      {
+        "input": "8 3\n1 3 -1 -3 5 3 6 7\n",
+        "expected": "3 3 5 5 6 7"
+      },
+      {
+        "input": "5 2\n1 2 3 4 5\n",
+        "expected": "2 3 4 5"
+      },
+      {
+        "input": "6 3\n-1 -2 -3 -4 -5 -6\n",
+        "expected": "-1 -2 -3 -4"
+      }
+    ]
+  },
+  {
+    "id": "dp-007",
+    "topic": "Dynamic Programming",
+    "difficulty": "Easy",
+    "companies": [
+      "TCS",
+      "Infosys",
+      "Wipro"
+    ],
+    "title": "Nth Fibonacci via Tabulation",
+    "description": "Compute the nth Fibonacci number (F(0)=0, F(1)=1) using bottom-up dynamic programming (an array/two variables built up from the base cases), not plain recursion.",
+    "input_format": "Line 1: a non-negative integer n",
+    "output_format": "A single integer \u2014 the nth Fibonacci number.",
+    "starter_code": "n = int(input())\n\n# TODO: build dp[0..n] bottom-up: dp[0]=0, dp[1]=1, dp[i]=dp[i-1]+dp[i-2]\n",
+    "hints": [
+      "Start from the base cases dp[0]=0 and dp[1]=1, and build every later value as the sum of the two before it -- no recursive calls needed."
+    ],
+    "test_cases": [
+      {
+        "input": "0\n",
+        "expected": "0"
+      },
+      {
+        "input": "1\n",
+        "expected": "1"
+      },
+      {
+        "input": "10\n",
+        "expected": "55"
+      }
+    ]
+  },
+  {
+    "id": "graph-007",
+    "topic": "Graphs",
+    "difficulty": "Easy",
+    "companies": [
+      "TCS",
+      "Accenture",
+      "Amazon"
+    ],
+    "title": "Print BFS Traversal of a Graph",
+    "description": "Given an undirected graph and a starting node, print the order in which its nodes are visited by a breadth-first search (BFS), always visiting a node's neighbors in increasing numeric order.",
+    "input_format": "Line 1: n (nodes) and m (edges)\nNext m lines: u v \u2014 an edge\nLast line: the starting node",
+    "output_format": "The BFS visit order, space-separated, on one line.",
+    "starter_code": "n, m = map(int, input().split())\nedges = [tuple(map(int, input().split())) for _ in range(m)]\nstart = int(input())\n\n# TODO: build a sorted adjacency list, then standard BFS with a queue and a visited set\n",
+    "hints": [
+      "Build the adjacency list with each node's neighbor list sorted ascending, then do a textbook queue-based BFS from the start node, marking nodes visited the moment they're enqueued."
+    ],
+    "test_cases": [
+      {
+        "input": "5 4\n0 1\n0 2\n1 3\n2 4\n0\n",
+        "expected": "0 1 2 3 4"
+      },
+      {
+        "input": "4 2\n0 1\n2 3\n0\n",
+        "expected": "0 1"
+      },
+      {
+        "input": "1 0\n0\n",
+        "expected": "0"
+      }
+    ]
+  },
+  {
+    "id": "stack-007",
+    "topic": "Stacks",
+    "difficulty": "Easy",
+    "companies": [
+      "TCS",
+      "Wipro",
+      "Infosys"
+    ],
+    "title": "Simulate a Stack (push/pop/peek/isEmpty)",
+    "description": "Simulate a stack of integers given a sequence of operations: \"push x\", \"pop\", \"peek\", or \"isEmpty\". For \"pop\" and \"peek\", print the resulting value (or \"empty\" if the stack has nothing to pop/peek). For \"isEmpty\", print \"true\" or \"false\".",
+    "input_format": "Line 1: q (number of operations)\nNext q lines: one operation each",
+    "output_format": "One line of output per pop/peek/isEmpty operation, in order.",
+    "starter_code": "q = int(input())\nops = [input().split() for _ in range(q)]\n\n# TODO: maintain a plain list as the stack, appending on push and popping from the end\n",
+    "hints": [
+      "A Python list already behaves like a stack: append() is push, pop() (no argument) pops the last element, and list[-1] peeks it without removing it."
+    ],
+    "test_cases": [
+      {
+        "input": "6\npush 1\npush 2\npeek\npop\npop\npop\n",
+        "expected": "2\n2\n1\nempty"
+      },
+      {
+        "input": "2\nisEmpty\npush 5\n",
+        "expected": "true"
+      },
+      {
+        "input": "3\npush 7\nisEmpty\npeek\n",
+        "expected": "false\n7"
+      }
+    ]
+  },
+  {
+    "id": "hash-007",
+    "topic": "Hashing",
+    "difficulty": "Hard",
+    "companies": [
+      "Google",
+      "Amazon"
+    ],
+    "title": "Longest Substring with At Most K Distinct Characters",
+    "description": "Given a string and an integer k, find the length of the longest contiguous substring that contains at most k distinct characters, using a sliding window with a hash map of character counts.",
+    "input_format": "Line 1: a string s\nLine 2: an integer k",
+    "output_format": "A single integer \u2014 the length of the longest valid substring.",
+    "starter_code": "s = input()\nk = int(input())\n\n# TODO: sliding window, expanding right and tracking character counts in a hash map; shrink from the left whenever the map has more than k distinct keys\n",
+    "hints": [
+      "Expand the window's right edge, incrementing a hash map of character -> count; whenever the map has more than k distinct keys, shrink from the left (decrementing/removing counts) until it's back to at most k."
+    ],
+    "test_cases": [
+      {
+        "input": "eceba\n2\n",
+        "expected": "3"
+      },
+      {
+        "input": "aa\n1\n",
+        "expected": "2"
+      },
+      {
+        "input": "abcadcacacaca\n3\n",
+        "expected": "11"
+      }
+    ]
+  },
+  {
+    "id": "twoptr-006",
+    "topic": "Two Pointers",
+    "difficulty": "Hard",
+    "companies": [
+      "Amazon",
+      "Google",
+      "Microsoft"
+    ],
+    "title": "Minimum Window Substring",
+    "description": "Given a string s and a string t, find the smallest contiguous substring of s that contains every character of t (including duplicates -- if t has two 'a's, the window must contain at least two 'a's). Print the empty string if no such window exists.",
+    "input_format": "Line 1: string s\nLine 2: string t",
+    "output_format": "The smallest valid window substring of s (or an empty line if none exists).",
+    "starter_code": "s = input()\nt = input()\n\n# TODO: two pointers (a growing/shrinking window) plus a hash map of t's required character counts; track how many required characters are currently satisfied\n",
+    "hints": [
+      "Build a hash map of required character counts from t. Expand the right pointer, decrementing the matching count and tracking how many distinct required characters are fully satisfied; once all are satisfied, shrink the left pointer as far as possible while still valid, recording the smallest window seen."
+    ],
+    "test_cases": [
+      {
+        "input": "ADOBECODEBANC\nABC\n",
+        "expected": "BANC"
+      },
+      {
+        "input": "a\na\n",
+        "expected": "a"
+      },
+      {
+        "input": "a\naa\n",
+        "expected": ""
+      }
+    ]
+  },
+  {
+    "id": "arr-007",
+    "topic": "Arrays",
+    "difficulty": "Easy",
+    "companies": [
+      "TCS",
+      "Amazon"
+    ],
+    "title": "Rotate Array to the Right by K",
+    "description": "Given an array of n integers, rotate it to the right by k positions (elements that fall off the end wrap around to the front).",
+    "input_format": "Line 1: n\nLine 2: n space-separated integers\nLine 3: k",
+    "output_format": "The rotated array, space-separated, on one line.",
+    "starter_code": "n = int(input())\narr = list(map(int, input().split()))\nk = int(input())\n\n# TODO: rotate arr right by k positions (k may be >= n, so use k % n)\n",
+    "hints": [
+      "Take k modulo n first (k can be larger than the array).",
+      "The last k elements, followed by the first n-k elements, is the rotated result."
+    ],
+    "test_cases": [
+      {
+        "input": "7\n1 2 3 4 5 6 7\n3\n",
+        "expected": "5 6 7 1 2 3 4"
+      },
+      {
+        "input": "4\n1 2 3 4\n0\n",
+        "expected": "1 2 3 4"
+      },
+      {
+        "input": "5\n1 2 3 4 5\n7\n",
+        "expected": "4 5 1 2 3"
+      }
+    ]
+  },
+  {
+    "id": "arr-008",
+    "topic": "Arrays",
+    "difficulty": "Easy",
+    "companies": [
+      "Infosys",
+      "Amazon",
+      "Flipkart"
+    ],
+    "title": "Majority Element (Boyer-Moore Voting)",
+    "description": "Given an array of n integers where one value appears more than n/2 times, find that majority element using the Boyer-Moore voting algorithm (O(n) time, O(1) space).",
+    "input_format": "Line 1: n\nLine 2: n space-separated integers",
+    "output_format": "A single integer: the majority element.",
+    "starter_code": "n = int(input())\narr = list(map(int, input().split()))\n\n# TODO: Boyer-Moore voting - track a candidate and a running count\n",
+    "hints": [
+      "Keep a candidate and a count; when count hits 0, switch the candidate to the current element.",
+      "Matching the candidate increments count, a mismatch decrements it."
+    ],
+    "test_cases": [
+      {
+        "input": "7\n2 2 1 1 1 2 2\n",
+        "expected": "2"
+      },
+      {
+        "input": "1\n5\n",
+        "expected": "5"
+      },
+      {
+        "input": "5\n3 3 4 2 3\n",
+        "expected": "3"
+      }
+    ]
+  },
+  {
+    "id": "arr-009",
+    "topic": "Arrays",
+    "difficulty": "Medium",
+    "companies": [
+      "Amazon",
+      "Microsoft",
+      "Google"
+    ],
+    "title": "Best Time to Buy and Sell Stock",
+    "description": "Given n daily stock prices, find the maximum profit achievable from a single buy followed by a single sell (buy must happen before sell). Print 0 if no profit is possible.",
+    "input_format": "Line 1: n\nLine 2: n space-separated integers (prices)",
+    "output_format": "A single integer: the maximum achievable profit (0 if none).",
+    "starter_code": "n = int(input())\nprices = list(map(int, input().split()))\n\n# TODO: track the minimum price seen so far and the best profit so far, in one pass\n",
+    "hints": [
+      "Track the lowest price seen so far as you scan left to right.",
+      "At each day, the best profit if selling today is price[i] - min_so_far."
+    ],
+    "test_cases": [
+      {
+        "input": "6\n7 1 5 3 6 4\n",
+        "expected": "5"
+      },
+      {
+        "input": "5\n7 6 4 3 1\n",
+        "expected": "0"
+      },
+      {
+        "input": "2\n1 2\n",
+        "expected": "1"
+      }
+    ]
+  },
+  {
+    "id": "arr-010",
+    "topic": "Arrays",
+    "difficulty": "Medium",
+    "companies": [
+      "Amazon",
+      "Google",
+      "Goldman Sachs"
+    ],
+    "title": "Find the Duplicate Number",
+    "description": "You're given n+1 integers, each in the range 1 to n, with exactly one value repeated (it may repeat more than twice). Find the repeated value.",
+    "input_format": "Line 1: n\nLine 2: n+1 space-separated integers, each between 1 and n",
+    "output_format": "A single integer: the repeated value.",
+    "starter_code": "n = int(input())\narr = list(map(int, input().split()))\n\n# TODO: find the one value that occurs more than once\n",
+    "hints": [
+      "A set that records values as you scan lets you spot the first repeat in one pass."
+    ],
+    "test_cases": [
+      {
+        "input": "4\n1 3 4 2 2\n",
+        "expected": "2"
+      },
+      {
+        "input": "3\n3 1 3 2\n",
+        "expected": "3"
+      },
+      {
+        "input": "2\n1 2 2\n",
+        "expected": "2"
+      }
+    ]
+  },
+  {
+    "id": "bit-007",
+    "topic": "Bit Manipulation",
+    "difficulty": "Easy",
+    "companies": [
+      "TCS",
+      "Wipro"
+    ],
+    "title": "Check if the ith Bit Is Set",
+    "description": "Given a non-negative integer n and an index i (0 = least significant bit), determine whether bit i of n is set (1).",
+    "input_format": "Line 1: n and i, space-separated",
+    "output_format": "\"Yes\" if bit i is set, \"No\" otherwise.",
+    "starter_code": "n, i = map(int, input().split())\n\n# TODO: check whether bit i of n is 1, e.g. (n >> i) & 1\n",
+    "hints": [
+      "Shifting n right by i puts the bit you care about in the lowest position; AND with 1 isolates it."
+    ],
+    "test_cases": [
+      {
+        "input": "5 0\n",
+        "expected": "Yes"
+      },
+      {
+        "input": "5 1\n",
+        "expected": "No"
+      },
+      {
+        "input": "8 3\n",
+        "expected": "Yes"
+      }
+    ]
+  },
+  {
+    "id": "bit-008",
+    "topic": "Bit Manipulation",
+    "difficulty": "Easy",
+    "companies": [
+      "Amazon",
+      "Cognizant"
+    ],
+    "title": "Number of Bits to Represent N",
+    "description": "Given a non-negative integer n, print the minimum number of bits needed to represent it in binary (0 needs 0 bits).",
+    "input_format": "Line 1: a non-negative integer n",
+    "output_format": "A single integer: the bit length of n.",
+    "starter_code": "n = int(input())\n\n# TODO: compute the number of bits needed to represent n (0 for n == 0)\n",
+    "hints": [
+      "Python's int.bit_length() does exactly this, or repeatedly right-shift until n becomes 0, counting shifts."
+    ],
+    "test_cases": [
+      {
+        "input": "10\n",
+        "expected": "4"
+      },
+      {
+        "input": "0\n",
+        "expected": "0"
+      },
+      {
+        "input": "1\n",
+        "expected": "1"
+      }
+    ]
+  },
+  {
+    "id": "bit-009",
+    "topic": "Bit Manipulation",
+    "difficulty": "Medium",
+    "companies": [
+      "Microsoft",
+      "Google"
+    ],
+    "title": "Two Non-Repeating Elements",
+    "description": "Given an array where every element appears exactly twice except for two elements which each appear exactly once, find those two unique elements using XOR (O(n) time, O(1) extra space). Print them in ascending order.",
+    "input_format": "Line 1: n\nLine 2: n space-separated integers",
+    "output_format": "The two unique elements, ascending, space-separated.",
+    "starter_code": "n = int(input())\narr = list(map(int, input().split()))\n\n# TODO: XOR everything together to get a^b, then use a set bit in that XOR to split the array into two groups\n",
+    "hints": [
+      "XOR-ing every element cancels the pairs, leaving a XOR b.",
+      "Any set bit in that result differs between a and b - use it to partition the array into two groups and XOR each group separately."
+    ],
+    "test_cases": [
+      {
+        "input": "6\n1 2 3 2 1 4\n",
+        "expected": "3 4"
+      },
+      {
+        "input": "4\n5 7 5 9\n",
+        "expected": "7 9"
+      },
+      {
+        "input": "2\n10 20\n",
+        "expected": "10 20"
+      }
+    ]
+  },
+  {
+    "id": "bit-010",
+    "topic": "Bit Manipulation",
+    "difficulty": "Medium",
+    "companies": [
+      "Amazon",
+      "Goldman Sachs"
+    ],
+    "title": "Reverse Bits of a 32-bit Integer",
+    "description": "Given an integer n (0 <= n < 2^32), treat it as a 32-bit unsigned integer, reverse its bits, and print the resulting integer value.",
+    "input_format": "Line 1: a non-negative integer n (fits in 32 bits)",
+    "output_format": "A single integer: n with its 32 bits reversed.",
+    "starter_code": "n = int(input())\n\n# TODO: build the result bit by bit - bit i of n becomes bit (31 - i) of the answer\n",
+    "hints": [
+      "Loop i from 0 to 31; if bit i of n is set, set bit (31 - i) of the result."
+    ],
+    "test_cases": [
+      {
+        "input": "1\n",
+        "expected": "2147483648"
+      },
+      {
+        "input": "43261596\n",
+        "expected": "964176192"
+      },
+      {
+        "input": "0\n",
+        "expected": "0"
+      }
+    ]
+  },
+  {
+    "id": "dp-008",
+    "topic": "Dynamic Programming",
+    "difficulty": "Easy",
+    "companies": [
+      "TCS",
+      "Amazon"
+    ],
+    "title": "Coin Change - Number of Combinations",
+    "description": "Given n coin denominations (unlimited supply of each) and a target amount, count the number of distinct combinations (order doesn't matter) that make up that amount.",
+    "input_format": "Line 1: n\nLine 2: n space-separated coin denominations\nLine 3: amount",
+    "output_format": "A single integer: the number of combinations that sum to amount.",
+    "starter_code": "n = int(input())\ncoins = list(map(int, input().split()))\namount = int(input())\n\n# TODO: dp[a] = number of ways to make amount a; process coins one at a time to avoid counting permutations\n",
+    "hints": [
+      "dp[0] = 1. For each coin, update dp[a] += dp[a - coin] for a from coin up to amount, in increasing order.",
+      "Looping coins in the OUTER loop (not amounts) is what avoids double-counting different orderings."
+    ],
+    "test_cases": [
+      {
+        "input": "3\n1 2 5\n5\n",
+        "expected": "4"
+      },
+      {
+        "input": "2\n2 4\n1\n",
+        "expected": "0"
+      },
+      {
+        "input": "1\n5\n0\n",
+        "expected": "1"
+      }
+    ]
+  },
+  {
+    "id": "dp-009",
+    "topic": "Dynamic Programming",
+    "difficulty": "Medium",
+    "companies": [
+      "Google",
+      "Microsoft"
+    ],
+    "title": "Partition Equal Subset Sum",
+    "description": "Given an array of n positive integers, determine whether it can be split into two subsets with equal sum.",
+    "input_format": "Line 1: n\nLine 2: n space-separated positive integers",
+    "output_format": "\"Yes\" if the array can be partitioned into two equal-sum subsets, \"No\" otherwise.",
+    "starter_code": "n = int(input())\narr = list(map(int, input().split()))\n\n# TODO: if total sum is odd, impossible; else it's a subset-sum problem for target = total // 2\n",
+    "hints": [
+      "If the total sum is odd, no equal partition can exist.",
+      "Otherwise it reduces to: can some subset sum to exactly total // 2? Classic 0/1 subset-sum DP."
+    ],
+    "test_cases": [
+      {
+        "input": "4\n1 5 11 5\n",
+        "expected": "Yes"
+      },
+      {
+        "input": "4\n1 2 3 5\n",
+        "expected": "No"
+      },
+      {
+        "input": "4\n1 1 1 1\n",
+        "expected": "Yes"
+      }
+    ]
+  },
+  {
+    "id": "dp-010",
+    "topic": "Dynamic Programming",
+    "difficulty": "Medium",
+    "companies": [
+      "Amazon",
+      "Flipkart"
+    ],
+    "title": "Minimum Path Sum in a Grid",
+    "description": "Given an r x c grid of non-negative integers, find the minimum sum path from the top-left to the bottom-right corner, moving only right or down at each step.",
+    "input_format": "Line 1: r and c, space-separated\nNext r lines: c space-separated integers each",
+    "output_format": "A single integer: the minimum path sum.",
+    "starter_code": "r, c = map(int, input().split())\ngrid = [list(map(int, input().split())) for _ in range(r)]\n\n# TODO: dp[i][j] = grid[i][j] + min(dp[i-1][j], dp[i][j-1]), with edge rows/columns only having one option\n",
+    "hints": [
+      "The first row can only be reached moving right, the first column only moving down.",
+      "Every other cell's best cost is its own value plus the cheaper of the cell above or the cell to its left."
+    ],
+    "test_cases": [
+      {
+        "input": "3 3\n1 3 1\n1 5 1\n4 2 1\n",
+        "expected": "7"
+      },
+      {
+        "input": "1 1\n5\n",
+        "expected": "5"
+      },
+      {
+        "input": "2 2\n1 2\n1 1\n",
+        "expected": "3"
+      }
+    ]
+  },
+  {
+    "id": "graph-008",
+    "topic": "Graphs",
+    "difficulty": "Easy",
+    "companies": [
+      "TCS",
+      "Amazon"
+    ],
+    "title": "Print DFS Traversal of a Graph",
+    "description": "Given an undirected graph and a starting node, print the order in which its nodes are visited by a depth-first search (DFS), always visiting a node's neighbors in increasing numeric order.",
+    "input_format": "Line 1: n (nodes) and m (edges)\nNext m lines: u v - an edge\nLast line: the starting node",
+    "output_format": "The DFS visit order, space-separated, on one line.",
+    "starter_code": "n, m = map(int, input().split())\nedges = [tuple(map(int, input().split())) for _ in range(m)]\nstart = int(input())\n\n# TODO: build a sorted adjacency list, then recursive/iterative DFS from start, recording visit order\n",
+    "hints": [
+      "Build the adjacency list with each node's neighbors sorted ascending, then recurse: visit the node, then DFS into each unvisited neighbor in order."
+    ],
+    "test_cases": [
+      {
+        "input": "5 4\n0 1\n0 2\n1 3\n2 4\n0\n",
+        "expected": "0 1 3 2 4"
+      },
+      {
+        "input": "4 2\n0 1\n2 3\n0\n",
+        "expected": "0 1"
+      },
+      {
+        "input": "1 0\n0\n",
+        "expected": "0"
+      }
+    ]
+  },
+  {
+    "id": "graph-009",
+    "topic": "Graphs",
+    "difficulty": "Medium",
+    "companies": [
+      "Amazon",
+      "Microsoft"
+    ],
+    "title": "Detect a Cycle in an Undirected Graph",
+    "description": "Given an undirected graph, determine whether it contains a cycle (using DFS, remembering not to treat the edge back to your immediate parent as a cycle).",
+    "input_format": "Line 1: n (nodes) and m (edges)\nNext m lines: u v - an edge",
+    "output_format": "\"Yes\" if the graph has a cycle, \"No\" otherwise.",
+    "starter_code": "n, m = map(int, input().split())\nedges = [tuple(map(int, input().split())) for _ in range(m)]\n\n# TODO: DFS from every unvisited node, tracking each node's parent; a visited non-parent neighbor means a cycle\n",
+    "hints": [
+      "During DFS, if you reach a node that's already visited and it isn't the node you just came from (its parent), you've found a cycle."
+    ],
+    "test_cases": [
+      {
+        "input": "4 4\n0 1\n1 2\n2 3\n3 0\n",
+        "expected": "Yes"
+      },
+      {
+        "input": "4 3\n0 1\n1 2\n2 3\n",
+        "expected": "No"
+      },
+      {
+        "input": "5 2\n0 1\n2 3\n",
+        "expected": "No"
+      }
+    ]
+  },
+  {
+    "id": "graph-010",
+    "topic": "Graphs",
+    "difficulty": "Hard",
+    "companies": [
+      "Google",
+      "Amazon",
+      "Microsoft"
+    ],
+    "title": "Dijkstra's Shortest Path",
+    "description": "Given a weighted, undirected graph with non-negative edge weights and a source node, find the shortest distance from the source to every node. Print -1 for nodes that are unreachable.",
+    "input_format": "Line 1: n (nodes) and m (edges)\nNext m lines: u v w - an edge between u and v with weight w\nLast line: source node",
+    "output_format": "n integers, space-separated, in node order - the shortest distance to each node (-1 if unreachable).",
+    "starter_code": "n, m = map(int, input().split())\nedges = [tuple(map(int, input().split())) for _ in range(m)]\nsrc = int(input())\n\n# TODO: Dijkstra's algorithm using a min-heap (heapq) of (distance, node)\n",
+    "hints": [
+      "Use a priority queue of (distance, node); pop the smallest, and relax every neighbor whose distance improves.",
+      "Skip a popped entry if its distance is already worse than the best known distance for that node."
+    ],
+    "test_cases": [
+      {
+        "input": "5 6\n0 1 4\n0 2 1\n2 1 2\n1 3 1\n2 3 5\n3 4 3\n0\n",
+        "expected": "0 3 1 4 7"
+      },
+      {
+        "input": "3 1\n0 1 5\n2\n",
+        "expected": "-1 -1 0"
+      },
+      {
+        "input": "2 1\n0 1 10\n0\n",
+        "expected": "0 10"
+      }
+    ]
+  },
+  {
+    "id": "greedy-007",
+    "topic": "Greedy",
+    "difficulty": "Easy",
+    "companies": [
+      "TCS",
+      "Wipro"
+    ],
+    "title": "Assign Cookies",
+    "description": "You have n children, each with a greed factor, and m cookies, each with a size. A child is content if given a cookie whose size is at least their greed factor (one cookie per child). Maximize the number of content children.",
+    "input_format": "Line 1: n\nLine 2: n space-separated integers (greed factors)\nLine 3: m\nLine 4: m space-separated integers (cookie sizes)",
+    "output_format": "A single integer: the maximum number of content children.",
+    "starter_code": "n = int(input())\ngreed = list(map(int, input().split()))\nm = int(input())\ncookies = list(map(int, input().split()))\n\n# TODO: sort both lists, then greedily match the smallest sufficient cookie to each child\n",
+    "hints": [
+      "Sort both the greed factors and the cookie sizes.",
+      "Walk both with two pointers: if the current cookie satisfies the current child, both advance; otherwise only the cookie pointer advances."
+    ],
+    "test_cases": [
+      {
+        "input": "3\n1 2 3\n3\n1 1 3\n",
+        "expected": "2"
+      },
+      {
+        "input": "2\n1 2\n3\n1 1 2\n",
+        "expected": "2"
+      },
+      {
+        "input": "1\n5\n1\n3\n",
+        "expected": "0"
+      }
+    ]
+  },
+  {
+    "id": "greedy-008",
+    "topic": "Greedy",
+    "difficulty": "Easy",
+    "companies": [
+      "Infosys",
+      "Amazon"
+    ],
+    "title": "Chocolate Distribution Problem",
+    "description": "Given n packets of chocolates and m students, distribute one packet to each of m students (choosing which m packets) such that the difference between the maximum and minimum packet sizes among the chosen students is minimized.",
+    "input_format": "Line 1: n\nLine 2: n space-separated integers (packet sizes)\nLine 3: m (number of students)",
+    "output_format": "A single integer: the minimum possible difference (0 if m is 0 or n is 0).",
+    "starter_code": "n = int(input())\narr = list(map(int, input().split()))\nm = int(input())\n\n# TODO: sort the packets, then slide a window of size m looking for the minimum (max - min) in that window\n",
+    "hints": [
+      "After sorting, the m packets that minimize the spread are always a contiguous window in the sorted array.",
+      "Slide a window of size m across the sorted array, tracking arr[i+m-1] - arr[i]."
+    ],
+    "test_cases": [
+      {
+        "input": "8\n3 4 1 9 56 7 9 12\n5\n",
+        "expected": "6"
+      },
+      {
+        "input": "5\n12 4 7 9 2\n2\n",
+        "expected": "2"
+      },
+      {
+        "input": "1\n10\n1\n",
+        "expected": "0"
+      }
+    ]
+  },
+  {
+    "id": "greedy-009",
+    "topic": "Greedy",
+    "difficulty": "Medium",
+    "companies": [
+      "Amazon",
+      "Ola"
+    ],
+    "title": "Gas Station Circuit",
+    "description": "There are n gas stations arranged in a circle, each with a given amount of gas and a given cost to travel to the next station. Starting with an empty tank, find the starting station index (0-indexed) from which you can complete the full circuit, or -1 if it's impossible. A solution is guaranteed unique if one exists.",
+    "input_format": "Line 1: n\nLine 2: n space-separated integers (gas at each station)\nLine 3: n space-separated integers (cost to the next station)",
+    "output_format": "A single integer: the starting index, or -1 if no valid start exists.",
+    "starter_code": "n = int(input())\ngas = list(map(int, input().split()))\ncost = list(map(int, input().split()))\n\n# TODO: if total gas < total cost, impossible; else track a running tank, resetting the candidate start whenever it goes negative\n",
+    "hints": [
+      "If total gas is less than total cost overall, no starting point works.",
+      "Otherwise, walk once tracking a running tank; whenever it drops below 0, the next station becomes the new candidate start and the tank resets to 0."
+    ],
+    "test_cases": [
+      {
+        "input": "5\n1 2 3 4 5\n3 4 5 1 2\n",
+        "expected": "3"
+      },
+      {
+        "input": "3\n2 3 4\n3 4 3\n",
+        "expected": "-1"
+      },
+      {
+        "input": "1\n5\n4\n",
+        "expected": "0"
+      }
+    ]
+  },
+  {
+    "id": "greedy-010",
+    "topic": "Greedy",
+    "difficulty": "Hard",
+    "companies": [
+      "Amazon",
+      "Google"
+    ],
+    "title": "Minimum Arrows to Burst Balloons",
+    "description": "Given n balloons, each represented by a horizontal [start, end] range, find the minimum number of arrows (shot straight up) needed to burst all of them. An arrow shot at x bursts every balloon whose range contains x; balloons that merely touch at an endpoint can share one arrow.",
+    "input_format": "Line 1: n\nNext n lines: start end (space-separated integers)",
+    "output_format": "A single integer: the minimum number of arrows needed.",
+    "starter_code": "n = int(input())\nballoons = [tuple(map(int, input().split())) for _ in range(n)]\n\n# TODO: sort by end coordinate, greedily shoot at the end of the earliest-finishing unburst balloon\n",
+    "hints": [
+      "Sort balloons by their end coordinate.",
+      "Shoot the first arrow at the end of the first balloon; any later balloon whose start is <= that arrow's position is already burst - otherwise shoot a new arrow at its end."
+    ],
+    "test_cases": [
+      {
+        "input": "4\n10 16\n2 8\n1 6\n7 12\n",
+        "expected": "2"
+      },
+      {
+        "input": "4\n1 2\n3 4\n5 6\n7 8\n",
+        "expected": "4"
+      },
+      {
+        "input": "2\n1 2\n2 3\n",
+        "expected": "1"
+      }
+    ]
+  },
+  {
+    "id": "hash-008",
+    "topic": "Hashing",
+    "difficulty": "Easy",
+    "companies": [
+      "TCS",
+      "Cognizant"
+    ],
+    "title": "Contains Duplicate Within K Distance",
+    "description": "Given an array of n integers and an integer k, determine whether there are two equal elements whose indices differ by at most k.",
+    "input_format": "Line 1: n\nLine 2: n space-separated integers\nLine 3: k",
+    "output_format": "\"Yes\" if such a pair exists, \"No\" otherwise.",
+    "starter_code": "n = int(input())\narr = list(map(int, input().split()))\nk = int(input())\n\n# TODO: hash map of value -> last index seen; check the index gap whenever a value repeats\n",
+    "hints": [
+      "Keep a hash map from value to the last index it was seen at.",
+      "Whenever you see a value again, check if the current index minus the stored index is <= k."
+    ],
+    "test_cases": [
+      {
+        "input": "4\n1 2 3 1\n3\n",
+        "expected": "Yes"
+      },
+      {
+        "input": "4\n1 2 3 1\n1\n",
+        "expected": "No"
+      },
+      {
+        "input": "4\n1 0 1 1\n1\n",
+        "expected": "Yes"
+      }
+    ]
+  },
+  {
+    "id": "hash-009",
+    "topic": "Hashing",
+    "difficulty": "Medium",
+    "companies": [
+      "Amazon",
+      "Google"
+    ],
+    "title": "Word Pattern",
+    "description": "Given a pattern string and a sentence of space-separated words, determine whether the sentence follows the same pattern - a bijection where each pattern character always maps to the same word, and each word always maps to the same pattern character.",
+    "input_format": "Line 1: a pattern string (letters, no spaces)\nLine 2: a sentence of space-separated words",
+    "output_format": "\"Yes\" if the sentence follows the pattern, \"No\" otherwise.",
+    "starter_code": "pattern = input().strip()\nwords = input().split()\n\n# TODO: two hash maps (char->word and word->char) that must both stay consistent at every position\n",
+    "hints": [
+      "If the pattern length and word count differ, it's an automatic No.",
+      "Maintain two hash maps going both directions and check every position agrees with both."
+    ],
+    "test_cases": [
+      {
+        "input": "abba\ndog cat cat dog\n",
+        "expected": "Yes"
+      },
+      {
+        "input": "abba\ndog cat cat fish\n",
+        "expected": "No"
+      },
+      {
+        "input": "aaaa\ndog cat cat dog\n",
+        "expected": "No"
+      }
+    ]
+  },
+  {
+    "id": "hash-010",
+    "topic": "Hashing",
+    "difficulty": "Hard",
+    "companies": [
+      "Google",
+      "Amazon"
+    ],
+    "title": "Top K Frequent Elements",
+    "description": "Given an array of n integers and an integer k, print the k most frequent elements in decreasing order of frequency. Break ties by which value first appeared in the array.",
+    "input_format": "Line 1: n\nLine 2: n space-separated integers\nLine 3: k",
+    "output_format": "The k most frequent elements, space-separated, on one line.",
+    "starter_code": "n = int(input())\narr = list(map(int, input().split()))\nk = int(input())\n\n# TODO: count frequencies with a hash map, then sort distinct values by frequency descending (stable on first appearance)\n",
+    "hints": [
+      "Build a frequency hash map, and separately track the order values first appear in.",
+      "A stable sort of the distinct values by -frequency keeps first-appearance order among ties."
+    ],
+    "test_cases": [
+      {
+        "input": "6\n1 1 1 2 2 3\n2\n",
+        "expected": "1 2"
+      },
+      {
+        "input": "4\n4 4 4 4\n1\n",
+        "expected": "4"
+      },
+      {
+        "input": "5\n5 3 3 1 1\n2\n",
+        "expected": "3 1"
+      }
+    ]
+  },
+  {
+    "id": "ll-007",
+    "topic": "Linked Lists",
+    "difficulty": "Easy",
+    "companies": [
+      "TCS",
+      "Infosys"
+    ],
+    "title": "Nth Node From the End",
+    "description": "Given a linked list as a sequence of n values, find the value of the kth node from the end (1-indexed, so k=1 means the last node).",
+    "input_format": "Line 1: n\nLine 2: n space-separated integers\nLine 3: k (1 <= k <= n)",
+    "output_format": "A single integer: the value of the kth node from the end.",
+    "starter_code": "n = int(input())\nvals = list(map(int, input().split()))\nk = int(input())\n\n# TODO: the kth node from the end is at index n - k (0-indexed) in a single pass sense\n",
+    "hints": [
+      "A two-pointer approach: advance one pointer k steps first, then move both together until the lead pointer hits the end."
+    ],
+    "test_cases": [
+      {
+        "input": "5\n1 2 3 4 5\n2\n",
+        "expected": "4"
+      },
+      {
+        "input": "3\n10 20 30\n1\n",
+        "expected": "30"
+      },
+      {
+        "input": "1\n7\n1\n",
+        "expected": "7"
+      }
+    ]
+  },
+  {
+    "id": "ll-008",
+    "topic": "Linked Lists",
+    "difficulty": "Medium",
+    "companies": [
+      "Amazon",
+      "Microsoft"
+    ],
+    "title": "Palindrome Linked List",
+    "description": "Given a linked list as a sequence of n values, determine whether it reads the same forwards and backwards.",
+    "input_format": "Line 1: n\nLine 2: n space-separated integers",
+    "output_format": "\"Yes\" if the list is a palindrome, \"No\" otherwise.",
+    "starter_code": "n = int(input())\nvals = list(map(int, input().split()))\n\n# TODO: use the slow/fast pointer technique to find the middle, reverse the second half, then compare\n",
+    "hints": [
+      "Find the middle with slow/fast pointers, reverse the second half in place, then walk both halves comparing values."
+    ],
+    "test_cases": [
+      {
+        "input": "5\n1 2 3 2 1\n",
+        "expected": "Yes"
+      },
+      {
+        "input": "4\n1 2 2 1\n",
+        "expected": "Yes"
+      },
+      {
+        "input": "3\n1 2 3\n",
+        "expected": "No"
+      }
+    ]
+  },
+  {
+    "id": "ll-009",
+    "topic": "Linked Lists",
+    "difficulty": "Medium",
+    "companies": [
+      "Amazon",
+      "Flipkart"
+    ],
+    "title": "Intersection Point of Two Linked Lists",
+    "description": "Two linked lists are given as value sequences. From some point onward they share an identical common tail (the same trailing values). Find the value at the start of that shared tail, or -1 if the lists share no common tail.",
+    "input_format": "Line 1: n1\nLine 2: n1 space-separated integers (list A)\nLine 3: n2\nLine 4: n2 space-separated integers (list B)",
+    "output_format": "A single integer: the value where the shared tail begins, or -1 if there is none.",
+    "starter_code": "n1 = int(input())\na = list(map(int, input().split()))\nn2 = int(input())\nb = list(map(int, input().split()))\n\n# TODO: walk both lists from the back while their values match, to find where the common tail begins\n",
+    "hints": [
+      "Compare both lists from the end backward as long as the values match - the last value where they still match is the start of the shared tail."
+    ],
+    "test_cases": [
+      {
+        "input": "5\n4 1 8 4 5\n6\n5 6 1 8 4 5\n",
+        "expected": "1"
+      },
+      {
+        "input": "3\n1 2 3\n3\n4 5 6\n",
+        "expected": "-1"
+      },
+      {
+        "input": "2\n1 2\n2\n1 2\n",
+        "expected": "1"
+      }
+    ]
+  },
+  {
+    "id": "ll-010",
+    "topic": "Linked Lists",
+    "difficulty": "Medium",
+    "companies": [
+      "Amazon",
+      "Microsoft",
+      "Google"
+    ],
+    "title": "Remove Nth Node From the End",
+    "description": "Given a linked list as a sequence of n values, remove the kth node from the end (1-indexed) and print the resulting list.",
+    "input_format": "Line 1: n\nLine 2: n space-separated integers\nLine 3: k (1 <= k <= n)",
+    "output_format": "The resulting list's values, space-separated (an empty line if the list becomes empty).",
+    "starter_code": "n = int(input())\nvals = list(map(int, input().split()))\nk = int(input())\n\n# TODO: the node to remove is at index n - k (0-indexed); build the list without it\n",
+    "hints": [
+      "A two-pointer approach with a gap of k+1 lets you find the node just before the one to remove in a single pass."
+    ],
+    "test_cases": [
+      {
+        "input": "5\n1 2 3 4 5\n2\n",
+        "expected": "1 2 3 5"
+      },
+      {
+        "input": "1\n1\n1\n",
+        "expected": ""
+      },
+      {
+        "input": "2\n1 2\n2\n",
+        "expected": "2"
+      }
+    ]
+  },
+  {
+    "id": "mat-007",
+    "topic": "Matrix",
+    "difficulty": "Easy",
+    "companies": [
+      "TCS",
+      "Wipro"
+    ],
+    "title": "Sum of Boundary Elements",
+    "description": "Given an r x c matrix, print the sum of all elements that lie on its boundary (first/last row or first/last column).",
+    "input_format": "Line 1: r and c, space-separated\nNext r lines: c space-separated integers each",
+    "output_format": "A single integer: the sum of the boundary elements.",
+    "starter_code": "r, c = map(int, input().split())\nmatrix = [list(map(int, input().split())) for _ in range(r)]\n\n# TODO: sum every cell where row is 0/r-1 or column is 0/c-1\n",
+    "hints": [
+      "A cell is on the boundary if its row index is 0 or r-1, OR its column index is 0 or c-1."
+    ],
+    "test_cases": [
+      {
+        "input": "3 3\n1 2 3\n4 5 6\n7 8 9\n",
+        "expected": "40"
+      },
+      {
+        "input": "1 4\n1 2 3 4\n",
+        "expected": "10"
+      },
+      {
+        "input": "2 2\n1 2\n3 4\n",
+        "expected": "10"
+      }
+    ]
+  },
+  {
+    "id": "mat-008",
+    "topic": "Matrix",
+    "difficulty": "Medium",
+    "companies": [
+      "Amazon",
+      "Microsoft"
+    ],
+    "title": "Rotate a Matrix 90 Degrees Counterclockwise",
+    "description": "Given an n x n matrix, rotate it 90 degrees counterclockwise and print the result.",
+    "input_format": "Line 1: n\nNext n lines: n space-separated integers each",
+    "output_format": "The rotated matrix, n lines of n space-separated integers.",
+    "starter_code": "n = int(input())\nmatrix = [list(map(int, input().split())) for _ in range(n)]\n\n# TODO: for a 90-degree counterclockwise rotation, result[i][j] = matrix[j][n-1-i]\n",
+    "hints": [
+      "A counterclockwise rotation takes column (n-1-i) of the original and lays it out as row i of the result."
+    ],
+    "test_cases": [
+      {
+        "input": "3\n1 2 3\n4 5 6\n7 8 9\n",
+        "expected": "3 6 9\n2 5 8\n1 4 7"
+      },
+      {
+        "input": "1\n5\n",
+        "expected": "5"
+      },
+      {
+        "input": "2\n1 2\n3 4\n",
+        "expected": "2 4\n1 3"
+      }
+    ]
+  },
+  {
+    "id": "mat-009",
+    "topic": "Matrix",
+    "difficulty": "Medium",
+    "companies": [
+      "Google",
+      "Flipkart"
+    ],
+    "title": "Toeplitz Matrix Check",
+    "description": "A matrix is Toeplitz if every diagonal running from top-left to bottom-right has the same value all the way along it. Given an r x c matrix, determine whether it is Toeplitz.",
+    "input_format": "Line 1: r and c, space-separated\nNext r lines: c space-separated integers each",
+    "output_format": "\"Yes\" if the matrix is Toeplitz, \"No\" otherwise.",
+    "starter_code": "r, c = map(int, input().split())\nmatrix = [list(map(int, input().split())) for _ in range(r)]\n\n# TODO: check that every cell equals the cell diagonally up-left of it (matrix[i][j] == matrix[i-1][j-1])\n",
+    "hints": [
+      "A matrix is Toeplitz exactly when matrix[i][j] == matrix[i-1][j-1] for every i, j where both indices are valid."
+    ],
+    "test_cases": [
+      {
+        "input": "3 4\n1 2 3 4\n5 1 2 3\n9 5 1 2\n",
+        "expected": "Yes"
+      },
+      {
+        "input": "2 2\n1 2\n2 3\n",
+        "expected": "No"
+      },
+      {
+        "input": "1 3\n1 2 3\n",
+        "expected": "Yes"
+      }
+    ]
+  },
+  {
+    "id": "mat-010",
+    "topic": "Matrix",
+    "difficulty": "Hard",
+    "companies": [
+      "Amazon",
+      "Google"
+    ],
+    "title": "Maximal Square",
+    "description": "Given an r x c binary matrix (only 0s and 1s), find the area of the largest square submatrix containing only 1s.",
+    "input_format": "Line 1: r and c, space-separated\nNext r lines: c space-separated integers each (0 or 1)",
+    "output_format": "A single integer: the area of the largest all-1s square.",
+    "starter_code": "r, c = map(int, input().split())\nmatrix = [list(map(int, input().split())) for _ in range(r)]\n\n# TODO: dp[i][j] = side length of the largest square ending at (i,j); dp[i][j] = 1 + min(dp[i-1][j], dp[i][j-1], dp[i-1][j-1]) when matrix[i][j] == 1\n",
+    "hints": [
+      "dp[i][j] tracks the side length of the largest all-1s square with its bottom-right corner at (i, j).",
+      "It's limited by the smallest of the square above, to the left, and diagonally up-left, plus one."
+    ],
+    "test_cases": [
+      {
+        "input": "4 5\n1 0 1 0 0\n1 0 1 1 1\n1 1 1 1 1\n1 0 0 1 0\n",
+        "expected": "4"
+      },
+      {
+        "input": "2 2\n0 0\n0 0\n",
+        "expected": "0"
+      },
+      {
+        "input": "1 1\n1\n",
+        "expected": "1"
+      }
+    ]
+  },
+  {
+    "id": "queue-006",
+    "topic": "Queues",
+    "difficulty": "Easy",
+    "companies": [
+      "TCS",
+      "Infosys"
+    ],
+    "title": "Simulate a Queue (enqueue/dequeue/front/isEmpty)",
+    "description": "Simulate a FIFO queue of integers given a sequence of operations: \"enqueue x\", \"dequeue\", \"front\", or \"isEmpty\". For \"dequeue\"/\"front\" print the value (or \"empty\" if the queue has nothing). For \"isEmpty\" print \"true\" or \"false\".",
+    "input_format": "Line 1: q (number of operations)\nNext q lines: one operation each",
+    "output_format": "One line of output per dequeue/front/isEmpty operation, in order.",
+    "starter_code": "q = int(input())\nops = [input().split() for _ in range(q)]\n\n# TODO: use collections.deque - append for enqueue, popleft for dequeue\n",
+    "hints": [
+      "collections.deque supports O(1) append (enqueue) and O(1) popleft (dequeue)."
+    ],
+    "test_cases": [
+      {
+        "input": "6\nenqueue 1\nenqueue 2\nfront\ndequeue\ndequeue\ndequeue\n",
+        "expected": "1\n1\n2\nempty"
+      },
+      {
+        "input": "2\nisEmpty\nenqueue 5\n",
+        "expected": "true"
+      },
+      {
+        "input": "3\nenqueue 7\nisEmpty\nfront\n",
+        "expected": "false\n7"
+      }
+    ]
+  },
+  {
+    "id": "queue-007",
+    "topic": "Queues",
+    "difficulty": "Easy",
+    "companies": [
+      "Accenture",
+      "Amazon"
+    ],
+    "title": "Circular Queue Simulation",
+    "description": "Simulate a fixed-capacity circular queue given a sequence of operations: \"enqueue x\" (print \"ok\" if it fit, \"full\" otherwise) or \"dequeue\" (print the dequeued value, or \"empty\" if there was nothing).",
+    "input_format": "Line 1: capacity\nLine 2: q (number of operations)\nNext q lines: one operation each",
+    "output_format": "One line of output per operation, in order.",
+    "starter_code": "cap = int(input())\nq = int(input())\nops = [input().split() for _ in range(q)]\n\n# TODO: maintain a list acting as the queue, respecting the capacity limit\n",
+    "hints": [
+      "Before enqueueing, check whether the current size has already reached capacity."
+    ],
+    "test_cases": [
+      {
+        "input": "2\n4\nenqueue 1\nenqueue 2\nenqueue 3\ndequeue\n",
+        "expected": "ok\nok\nfull\n1"
+      },
+      {
+        "input": "1\n3\nenqueue 5\ndequeue\ndequeue\n",
+        "expected": "ok\n5\nempty"
+      },
+      {
+        "input": "3\n2\ndequeue\nenqueue 9\n",
+        "expected": "empty\nok"
+      }
+    ]
+  },
+  {
+    "id": "queue-008",
+    "topic": "Queues",
+    "difficulty": "Medium",
+    "companies": [
+      "Google",
+      "Microsoft"
+    ],
+    "title": "Nth Ugly Number",
+    "description": "An ugly number is a positive integer whose only prime factors are 2, 3, and 5. Given n, find the nth ugly number (1 is the 1st ugly number) using a three-pointer merge approach.",
+    "input_format": "Line 1: a positive integer n",
+    "output_format": "A single integer: the nth ugly number.",
+    "starter_code": "n = int(input())\n\n# TODO: build ugly[0..n-1] bottom-up, tracking three pointers into the sequence for the *2, *3, *5 candidates\n",
+    "hints": [
+      "Keep three indices (into the ugly numbers built so far) representing the next candidate from multiplying by 2, 3, and 5.",
+      "The next ugly number is the minimum of the three candidates; advance whichever pointer(s) produced that minimum."
+    ],
+    "test_cases": [
+      {
+        "input": "10\n",
+        "expected": "12"
+      },
+      {
+        "input": "1\n",
+        "expected": "1"
+      },
+      {
+        "input": "15\n",
+        "expected": "24"
+      }
+    ]
+  },
+  {
+    "id": "queue-009",
+    "topic": "Queues",
+    "difficulty": "Medium",
+    "companies": [
+      "Amazon",
+      "Google"
+    ],
+    "title": "Rotting Oranges",
+    "description": "Given an r x c grid where 0 is an empty cell, 1 is a fresh orange, and 2 is a rotten orange, every minute any fresh orange adjacent (up/down/left/right) to a rotten one also rots. Find the minimum number of minutes until no fresh orange remains, or -1 if that's impossible.",
+    "input_format": "Line 1: r and c, space-separated\nNext r lines: c space-separated integers each (0, 1, or 2)",
+    "output_format": "A single integer: the minutes needed, or -1 if some fresh orange can never rot.",
+    "starter_code": "r, c = map(int, input().split())\ngrid = [list(map(int, input().split())) for _ in range(r)]\n\n# TODO: multi-source BFS starting from every initially-rotten orange, tracking elapsed minutes\n",
+    "hints": [
+      "Start a BFS queue with every rotten orange at time 0.",
+      "Each BFS step rots adjacent fresh oranges at time+1; the answer is the max time reached, unless fresh oranges remain (then -1)."
+    ],
+    "test_cases": [
+      {
+        "input": "3 3\n2 1 1\n1 1 0\n0 1 1\n",
+        "expected": "4"
+      },
+      {
+        "input": "3 3\n0 1 2\n0 1 1\n0 0 1\n",
+        "expected": "2"
+      },
+      {
+        "input": "1 1\n0\n",
+        "expected": "0"
+      }
+    ]
+  },
+  {
+    "id": "queue-010",
+    "topic": "Queues",
+    "difficulty": "Hard",
+    "companies": [
+      "Amazon",
+      "Microsoft"
+    ],
+    "title": "First Unique Number in a Stream",
+    "description": "Process a stream of n numbers one at a time. After each number is added, print the first number in the stream so far that has appeared exactly once, or -1 if no such number exists at that point.",
+    "input_format": "Line 1: n\nLine 2: n space-separated integers (the stream, in order)",
+    "output_format": "n lines: after each number is processed, the current first-unique number (or -1).",
+    "starter_code": "n = int(input())\nnums = list(map(int, input().split()))\n\n# TODO: keep a queue of candidate values plus a count per value; drop the front of the queue whenever its count exceeds 1\n",
+    "hints": [
+      "Maintain a running count per value and a deque of values that might still be unique, in the order they first appeared.",
+      "After updating a count, pop values off the front of the deque while their count is no longer exactly 1."
+    ],
+    "test_cases": [
+      {
+        "input": "4\n2 3 2 4\n",
+        "expected": "2\n2\n3\n3"
+      },
+      {
+        "input": "3\n1 1 1\n",
+        "expected": "1\n-1\n-1"
+      },
+      {
+        "input": "1\n5\n",
+        "expected": "5"
+      }
+    ]
+  },
+  {
+    "id": "rec-007",
+    "topic": "Recursion",
+    "difficulty": "Easy",
+    "companies": [
+      "TCS",
+      "Wipro"
+    ],
+    "title": "Sum of an Array (Recursive)",
+    "description": "Given an array of n integers, compute their sum using recursion (no loops, no sum()).",
+    "input_format": "Line 1: n\nLine 2: n space-separated integers",
+    "output_format": "A single integer: the sum of the array.",
+    "starter_code": "n = int(input())\narr = list(map(int, input().split()))\n\n# TODO: recursive rsum(i): base case i == n returns 0, else arr[i] + rsum(i+1)\n",
+    "hints": [
+      "rsum(i) = arr[i] + rsum(i+1), with rsum(n) = 0 as the base case."
+    ],
+    "test_cases": [
+      {
+        "input": "5\n1 2 3 4 5\n",
+        "expected": "15"
+      },
+      {
+        "input": "1\n7\n",
+        "expected": "7"
+      },
+      {
+        "input": "3\n-1 -2 3\n",
+        "expected": "0"
+      }
+    ]
+  },
+  {
+    "id": "rec-008",
+    "topic": "Recursion",
+    "difficulty": "Easy",
+    "companies": [
+      "Accenture",
+      "Infosys"
+    ],
+    "title": "Palindrome Check (Recursive)",
+    "description": "Given a string, determine whether it is a palindrome using recursion (compare the outer characters, then recurse on the inner substring).",
+    "input_format": "Line 1: a string s",
+    "output_format": "\"Yes\" if s is a palindrome, \"No\" otherwise.",
+    "starter_code": "s = input().strip()\n\n# TODO: recursive is_pal(s): base case len(s) <= 1, else check s[0] == s[-1] and recurse on s[1:-1]\n",
+    "hints": [
+      "is_pal(s) is trivially True when len(s) <= 1; otherwise it's (s[0] == s[-1]) AND is_pal(s[1:-1])."
+    ],
+    "test_cases": [
+      {
+        "input": "racecar\n",
+        "expected": "Yes"
+      },
+      {
+        "input": "hello\n",
+        "expected": "No"
+      },
+      {
+        "input": "a\n",
+        "expected": "Yes"
+      }
+    ]
+  },
+  {
+    "id": "rec-009",
+    "topic": "Recursion",
+    "difficulty": "Medium",
+    "companies": [
+      "Amazon",
+      "Microsoft"
+    ],
+    "title": "Generate All Permutations",
+    "description": "Given an array of n distinct integers, recursively generate all of its permutations and print each one on its own line, in the order produced by picking the next element (in the order it appears among what's remaining) at each recursive step.",
+    "input_format": "Line 1: n\nLine 2: n space-separated integers",
+    "output_format": "Each permutation on its own line, as space-separated integers.",
+    "starter_code": "n = int(input())\narr = list(map(int, input().split()))\n\n# TODO: recursively build a permutation by picking one remaining element at a time (in order) and recursing on what's left\n",
+    "hints": [
+      "At each step, try every element still 'remaining' as the next pick (in their current order), recurse with it removed, then backtrack."
+    ],
+    "test_cases": [
+      {
+        "input": "2\n1 2\n",
+        "expected": "1 2\n2 1"
+      },
+      {
+        "input": "1\n5\n",
+        "expected": "5"
+      },
+      {
+        "input": "3\n1 2 3\n",
+        "expected": "1 2 3\n1 3 2\n2 1 3\n2 3 1\n3 1 2\n3 2 1"
+      }
+    ]
+  },
+  {
+    "id": "rec-010",
+    "topic": "Recursion",
+    "difficulty": "Medium",
+    "companies": [
+      "Google",
+      "Amazon"
+    ],
+    "title": "Generate Valid Parentheses Combinations",
+    "description": "Given n, recursively generate all combinations of n pairs of well-formed parentheses, using backtracking that always tries adding '(' before ')' at each step. Print each combination on its own line.",
+    "input_format": "Line 1: a positive integer n",
+    "output_format": "Each valid combination on its own line, in the order the backtracking produces them.",
+    "starter_code": "n = int(input())\n\n# TODO: backtrack(s, open_count, close_count) - add '(' while open_count < n, add ')' while close_count < open_count\n",
+    "hints": [
+      "At each step, first try adding '(' (if you haven't used all n yet), then try adding ')' (if it wouldn't outnumber the opens so far)."
+    ],
+    "test_cases": [
+      {
+        "input": "3\n",
+        "expected": "((()))\n(()())\n(())()\n()(())\n()()()"
+      },
+      {
+        "input": "1\n",
+        "expected": "()"
+      },
+      {
+        "input": "2\n",
+        "expected": "(())\n()()"
+      }
+    ]
+  },
+  {
+    "id": "rec-011",
+    "topic": "Recursion",
+    "difficulty": "Easy",
+    "companies": [
+      "TCS",
+      "Cognizant"
+    ],
+    "title": "Reverse an Array (Recursive)",
+    "description": "Given an array of n integers, print it reversed, building the reversed array recursively (no slicing with [::-1]).",
+    "input_format": "Line 1: n\nLine 2: n space-separated integers",
+    "output_format": "The reversed array, space-separated, on one line.",
+    "starter_code": "n = int(input())\narr = list(map(int, input().split()))\n\n# TODO: recursive reverse_rec(a): base case len(a) <= 1, else [a[-1]] + reverse_rec(a[:-1])\n",
+    "hints": [
+      "reverse_rec(a) = a when len(a) <= 1; otherwise it's the last element followed by the reverse of everything before it."
+    ],
+    "test_cases": [
+      {
+        "input": "5\n1 2 3 4 5\n",
+        "expected": "5 4 3 2 1"
+      },
+      {
+        "input": "1\n9\n",
+        "expected": "9"
+      },
+      {
+        "input": "4\n10 20 30 40\n",
+        "expected": "40 30 20 10"
+      }
+    ]
+  },
+  {
+    "id": "recdp-004",
+    "topic": "Recursion / Dynamic Programming",
+    "difficulty": "Easy",
+    "companies": [
+      "TCS",
+      "Amazon"
+    ],
+    "title": "Fibonacci with Memoization",
+    "description": "Compute the nth Fibonacci number (F(0)=0, F(1)=1) using recursion with an explicit memo (cache) so each subproblem is only computed once.",
+    "input_format": "Line 1: a non-negative integer n",
+    "output_format": "A single integer: F(n).",
+    "starter_code": "n = int(input())\nmemo = {}\n\n# TODO: recursive fib(k) that stores/looks up results in memo before recursing\n",
+    "hints": [
+      "Before computing fib(k) recursively, check if it's already in memo; after computing it, store it before returning."
+    ],
+    "test_cases": [
+      {
+        "input": "10\n",
+        "expected": "55"
+      },
+      {
+        "input": "0\n",
+        "expected": "0"
+      },
+      {
+        "input": "20\n",
+        "expected": "6765"
+      }
+    ]
+  },
+  {
+    "id": "recdp-005",
+    "topic": "Recursion / Dynamic Programming",
+    "difficulty": "Medium",
+    "companies": [
+      "Infosys",
+      "Microsoft"
+    ],
+    "title": "Tiling a 2xN Board with Dominoes",
+    "description": "Count the number of ways to fully tile a 2xN board using 1x2 dominoes (each domino placed either horizontally or vertically).",
+    "input_format": "Line 1: a non-negative integer n",
+    "output_format": "A single integer: the number of ways to tile the board.",
+    "starter_code": "n = int(input())\n\n# TODO: ways(n) = ways(n-1) + ways(n-2), with ways(0) = ways(1) = 1\n",
+    "hints": [
+      "The last column is either filled by one vertical domino (leaving a 2x(n-1) board) or two horizontal dominoes (leaving a 2x(n-2) board) - same recurrence shape as Fibonacci."
+    ],
+    "test_cases": [
+      {
+        "input": "4\n",
+        "expected": "5"
+      },
+      {
+        "input": "1\n",
+        "expected": "1"
+      },
+      {
+        "input": "0\n",
+        "expected": "1"
+      }
+    ]
+  },
+  {
+    "id": "recdp-006",
+    "topic": "Recursion / Dynamic Programming",
+    "difficulty": "Medium",
+    "companies": [
+      "Amazon",
+      "Flipkart"
+    ],
+    "title": "Minimum Jumps to Reach the End",
+    "description": "Given an array of n non-negative integers where arr[i] is the maximum jump length from index i, find the minimum number of jumps needed to reach the last index from index 0. Print -1 if it's not reachable.",
+    "input_format": "Line 1: n\nLine 2: n space-separated non-negative integers",
+    "output_format": "A single integer: the minimum number of jumps, or -1 if the end is unreachable.",
+    "starter_code": "n = int(input())\narr = list(map(int, input().split()))\n\n# TODO: dp[i] = minimum jumps to reach index i; for each i, relax every index reachable from it\n",
+    "hints": [
+      "dp[0] = 0. For each index i you can reach, try updating dp[i+j] = min(dp[i+j], dp[i]+1) for every j from 1 to arr[i]."
+    ],
+    "test_cases": [
+      {
+        "input": "5\n2 3 1 1 4\n",
+        "expected": "2"
+      },
+      {
+        "input": "1\n0\n",
+        "expected": "0"
+      },
+      {
+        "input": "4\n1 1 1 1\n",
+        "expected": "3"
+      }
+    ]
+  },
+  {
+    "id": "recdp-007",
+    "topic": "Recursion / Dynamic Programming",
+    "difficulty": "Medium",
+    "companies": [
+      "Google",
+      "Amazon"
+    ],
+    "title": "Longest Palindromic Subsequence",
+    "description": "Given a string, find the length of its longest subsequence that is also a palindrome (characters need not be contiguous).",
+    "input_format": "Line 1: a string s",
+    "output_format": "A single integer: the length of the longest palindromic subsequence.",
+    "starter_code": "s = input().strip()\n\n# TODO: interval DP - dp[i][j] = LPS length of s[i..j]; if s[i]==s[j], dp[i][j] = dp[i+1][j-1] + 2, else max(dp[i+1][j], dp[i][j-1])\n",
+    "hints": [
+      "Equivalently: the longest palindromic subsequence of s is the longest common subsequence of s and its reverse."
+    ],
+    "test_cases": [
+      {
+        "input": "bbbab\n",
+        "expected": "4"
+      },
+      {
+        "input": "cbbd\n",
+        "expected": "2"
+      },
+      {
+        "input": "a\n",
+        "expected": "1"
+      }
+    ]
+  },
+  {
+    "id": "recdp-008",
+    "topic": "Recursion / Dynamic Programming",
+    "difficulty": "Medium",
+    "companies": [
+      "Amazon",
+      "Goldman Sachs"
+    ],
+    "title": "Rod Cutting for Maximum Profit",
+    "description": "Given a rod of length n and a price list where price[i] is the value of a piece of length i+1, determine the maximum total value obtainable by cutting the rod into pieces (any combination of lengths summing to n, including not cutting it at all).",
+    "input_format": "Line 1: n (rod length)\nLine 2: n space-separated integers - price[i] is the price of a piece of length i+1",
+    "output_format": "A single integer: the maximum obtainable value.",
+    "starter_code": "n = int(input())\nprice = list(map(int, input().split()))\n\n# TODO: dp[length] = best value obtainable from a rod of that length, trying every first-cut size\n",
+    "hints": [
+      "dp[L] = max over every possible first cut size c (1..L) of price[c-1] + dp[L-c]."
+    ],
+    "test_cases": [
+      {
+        "input": "8\n1 5 8 9 10 17 17 20\n",
+        "expected": "22"
+      },
+      {
+        "input": "4\n1 5 8 9\n",
+        "expected": "10"
+      },
+      {
+        "input": "1\n5\n",
+        "expected": "5"
+      }
+    ]
+  },
+  {
+    "id": "recdp-009",
+    "topic": "Recursion / Dynamic Programming",
+    "difficulty": "Easy",
+    "companies": [
+      "TCS",
+      "Wipro"
+    ],
+    "title": "Count Ways to Climb N Stairs (1, 2, or 3 Steps)",
+    "description": "You're climbing a staircase of n steps, and each move you can climb 1, 2, or 3 steps. Count the number of distinct ways to reach the top.",
+    "input_format": "Line 1: a non-negative integer n",
+    "output_format": "A single integer: the number of distinct ways to reach step n.",
+    "starter_code": "n = int(input())\n\n# TODO: dp[i] = dp[i-1] + dp[i-2] + dp[i-3] (skipping terms that would go below 0), dp[0] = 1\n",
+    "hints": [
+      "The last move to reach step i was a 1, 2, or 3 step move, so dp[i] = dp[i-1] + dp[i-2] + dp[i-3] (only counting valid, non-negative indices)."
+    ],
+    "test_cases": [
+      {
+        "input": "4\n",
+        "expected": "7"
+      },
+      {
+        "input": "1\n",
+        "expected": "1"
+      },
+      {
+        "input": "3\n",
+        "expected": "4"
+      }
+    ]
+  },
+  {
+    "id": "search-006",
+    "topic": "Searching",
+    "difficulty": "Easy",
+    "companies": [
+      "TCS",
+      "Wipro"
+    ],
+    "title": "Count Occurrences (Linear Scan)",
+    "description": "Given an array of n integers and a target value, count how many times target appears in the array.",
+    "input_format": "Line 1: n\nLine 2: n space-separated integers\nLine 3: target",
+    "output_format": "A single integer: the number of occurrences of target.",
+    "starter_code": "n = int(input())\narr = list(map(int, input().split()))\ntarget = int(input())\n\n# TODO: count how many elements equal target\n",
+    "hints": [
+      "A single linear scan with a counter is enough (arr.count(target) does this directly)."
+    ],
+    "test_cases": [
+      {
+        "input": "5\n1 2 2 3 2\n2\n",
+        "expected": "3"
+      },
+      {
+        "input": "3\n1 2 3\n5\n",
+        "expected": "0"
+      },
+      {
+        "input": "1\n9\n9\n",
+        "expected": "1"
+      }
+    ]
+  },
+  {
+    "id": "search-007",
+    "topic": "Searching",
+    "difficulty": "Medium",
+    "companies": [
+      "Amazon",
+      "Microsoft"
+    ],
+    "title": "Search a Row-Wise Sorted 2D Matrix",
+    "description": "Given an r x c matrix where each row is sorted ascending and the first element of each row is greater than the last element of the previous row (so the whole matrix is sorted if read row by row), determine whether a target value exists, using binary search treating it as one flat sorted array.",
+    "input_format": "Line 1: r and c, space-separated\nNext r lines: c space-separated integers each\nLast line: target",
+    "output_format": "\"Yes\" if target exists in the matrix, \"No\" otherwise.",
+    "starter_code": "r, c = map(int, input().split())\nmatrix = [list(map(int, input().split())) for _ in range(r)]\ntarget = int(input())\n\n# TODO: binary search over indices 0..r*c-1, mapping mid to matrix[mid // c][mid % c]\n",
+    "hints": [
+      "Treat the matrix as one long sorted array of length r*c; index mid maps to row mid//c, column mid%c."
+    ],
+    "test_cases": [
+      {
+        "input": "3 4\n1 3 5 7\n10 11 16 20\n23 30 34 60\n3\n",
+        "expected": "Yes"
+      },
+      {
+        "input": "3 4\n1 3 5 7\n10 11 16 20\n23 30 34 60\n13\n",
+        "expected": "No"
+      },
+      {
+        "input": "1 1\n5\n5\n",
+        "expected": "Yes"
+      }
+    ]
+  },
+  {
+    "id": "search-008",
+    "topic": "Searching",
+    "difficulty": "Medium",
+    "companies": [
+      "Google",
+      "Ola"
+    ],
+    "title": "Count Occurrences in a Sorted Array (Binary Search)",
+    "description": "Given a sorted array of n integers and a target value, count how many times target appears, using two binary searches (for the first and last occurrence) rather than a linear scan.",
+    "input_format": "Line 1: n\nLine 2: n space-separated sorted integers\nLine 3: target",
+    "output_format": "A single integer: the number of occurrences of target.",
+    "starter_code": "n = int(input())\na = list(map(int, input().split()))\ntarget = int(input())\n\n# TODO: binary search for the first occurrence and the last occurrence, then subtract\n",
+    "hints": [
+      "If the first-occurrence search returns 'not found', the count is 0.",
+      "Otherwise, the count is (last occurrence index - first occurrence index + 1)."
+    ],
+    "test_cases": [
+      {
+        "input": "6\n5 7 7 8 8 10\n8\n",
+        "expected": "2"
+      },
+      {
+        "input": "6\n5 7 7 8 8 10\n6\n",
+        "expected": "0"
+      },
+      {
+        "input": "3\n2 2 2\n2\n",
+        "expected": "3"
+      }
+    ]
+  },
+  {
+    "id": "search-009",
+    "topic": "Searching",
+    "difficulty": "Hard",
+    "companies": [
+      "Amazon",
+      "Google"
+    ],
+    "title": "Median of Two Sorted Arrays",
+    "description": "Given two sorted arrays, find the median of all the elements combined.",
+    "input_format": "Line 1: n\nLine 2: n space-separated sorted integers (array A)\nLine 3: m\nLine 4: m space-separated sorted integers (array B)",
+    "output_format": "The median value (an integer if the total count is odd, otherwise a value with a fractional .5 or .0 part).",
+    "starter_code": "n = int(input())\na = list(map(int, input().split()))\nm = int(input())\nb = list(map(int, input().split()))\n\n# TODO: merge both arrays and pick the middle value (or average the two middle values if the total count is even)\n",
+    "hints": [
+      "A simple merge of both sorted arrays followed by indexing the middle works correctly, even if it isn't the optimal O(log(m+n)) approach."
+    ],
+    "test_cases": [
+      {
+        "input": "2\n1 3\n1\n2\n",
+        "expected": "2"
+      },
+      {
+        "input": "2\n1 2\n2\n3 4\n",
+        "expected": "2.5"
+      },
+      {
+        "input": "1\n5\n1\n5\n",
+        "expected": "5.0"
+      }
+    ]
+  },
+  {
+    "id": "search-010",
+    "topic": "Searching",
+    "difficulty": "Medium",
+    "companies": [
+      "Microsoft",
+      "Flipkart"
+    ],
+    "title": "Find Minimum in a Rotated Sorted Array",
+    "description": "An array, originally sorted ascending with distinct values, has been rotated at some unknown pivot. Find the minimum element using O(log n) binary search.",
+    "input_format": "Line 1: n\nLine 2: n space-separated integers (rotated sorted, distinct values)",
+    "output_format": "A single integer: the minimum element.",
+    "starter_code": "n = int(input())\na = list(map(int, input().split()))\n\n# TODO: binary search - if a[mid] > a[hi], the minimum is to the right of mid; otherwise it's at mid or to the left\n",
+    "hints": [
+      "Compare a[mid] to a[hi] (not a[lo]): if a[mid] > a[hi], the rotation point (and minimum) is somewhere to the right; otherwise mid could be the minimum itself, so keep it in range."
+    ],
+    "test_cases": [
+      {
+        "input": "5\n3 4 5 1 2\n",
+        "expected": "1"
+      },
+      {
+        "input": "4\n4 5 6 7\n",
+        "expected": "4"
+      },
+      {
+        "input": "1\n1\n",
+        "expected": "1"
+      }
+    ]
+  },
+  {
+    "id": "sort-006",
+    "topic": "Sorting",
+    "difficulty": "Easy",
+    "companies": [
+      "TCS",
+      "Accenture"
+    ],
+    "title": "Sort Words by Length, Then Alphabetically",
+    "description": "Given n words, sort them primarily by length (shortest first) and, among words of the same length, alphabetically.",
+    "input_format": "Line 1: n\nLine 2: n space-separated words",
+    "output_format": "The sorted words, space-separated, on one line.",
+    "starter_code": "n = int(input())\nwords = input().split()\n\n# TODO: sort with a key of (len(word), word)\n",
+    "hints": [
+      "Python's sort accepts a tuple key: words.sort(key=lambda w: (len(w), w))."
+    ],
+    "test_cases": [
+      {
+        "input": "4\nbb a ccc dd\n",
+        "expected": "a bb dd ccc"
+      },
+      {
+        "input": "3\napple bat cat\n",
+        "expected": "bat cat apple"
+      },
+      {
+        "input": "1\nx\n",
+        "expected": "x"
+      }
+    ]
+  },
+  {
+    "id": "sort-007",
+    "topic": "Sorting",
+    "difficulty": "Medium",
+    "companies": [
+      "Flipkart",
+      "Amazon"
+    ],
+    "title": "Lomuto Partition (Quick Sort Step)",
+    "description": "Given an array of n integers, perform a single Lomuto partition step using the last element as the pivot: rearrange the array so all elements <= pivot come before it and all elements > pivot come after, then print the pivot's final index and the partitioned array.",
+    "input_format": "Line 1: n\nLine 2: n space-separated integers",
+    "output_format": "Line 1: the pivot's final index.\nLine 2: the partitioned array, space-separated.",
+    "starter_code": "n = int(input())\narr = list(map(int, input().split()))\n\n# TODO: Lomuto partition using arr[-1] as pivot; track a boundary index i for elements <= pivot\n",
+    "hints": [
+      "Walk the array (excluding the pivot at the end) with an index j; whenever arr[j] <= pivot, swap it into the next slot of the '<=pivot' region and advance that region's boundary.",
+      "Finally swap the pivot into place right after that boundary."
+    ],
+    "test_cases": [
+      {
+        "input": "7\n10 80 30 90 40 50 70\n",
+        "expected": "4\n10 30 40 50 70 90 80"
+      },
+      {
+        "input": "5\n5 3 8 4 2\n",
+        "expected": "0\n2 3 8 4 5"
+      },
+      {
+        "input": "1\n5\n",
+        "expected": "0\n5"
+      }
+    ]
+  },
+  {
+    "id": "sort-008",
+    "topic": "Sorting",
+    "difficulty": "Medium",
+    "companies": [
+      "Google",
+      "Microsoft"
+    ],
+    "title": "Merge K Sorted Arrays",
+    "description": "Given k arrays, each already sorted ascending, merge them all into a single sorted array.",
+    "input_format": "Line 1: k\nNext k lines: each starts with the array's size, followed by that many sorted integers",
+    "output_format": "The fully merged sorted array, space-separated, on one line.",
+    "starter_code": "k = int(input())\narrays = []\nfor _ in range(k):\n    parts = list(map(int, input().split()))\n    size = parts[0]\n    arrays.append(parts[1:1 + size])\n\n# TODO: combine all k arrays and sort the result (or merge them pairwise/with a heap for the efficient version)\n",
+    "hints": [
+      "Concatenating every array and sorting the combined list is a simple correct approach; a min-heap over the k current fronts is the more efficient O(N log k) version."
+    ],
+    "test_cases": [
+      {
+        "input": "3\n3 1 4 7\n2 2 6\n2 0 9\n",
+        "expected": "0 1 2 4 6 7 9"
+      },
+      {
+        "input": "1\n4 1 3 5 8\n",
+        "expected": "1 3 5 8"
+      },
+      {
+        "input": "2\n0\n3 1 2 3\n",
+        "expected": "1 2 3"
+      }
+    ]
+  },
+  {
+    "id": "sort-009",
+    "topic": "Sorting",
+    "difficulty": "Hard",
+    "companies": [
+      "Goldman Sachs",
+      "Amazon"
+    ],
+    "title": "Minimum Swaps to Sort an Array",
+    "description": "Given an array of n distinct integers, find the minimum number of swaps required to sort it in ascending order, using cycle detection.",
+    "input_format": "Line 1: n\nLine 2: n space-separated distinct integers",
+    "output_format": "A single integer: the minimum number of swaps needed.",
+    "starter_code": "n = int(input())\narr = list(map(int, input().split()))\n\n# TODO: figure out where each element needs to go (its sorted-position permutation), then sum (cycle_length - 1) over every cycle\n",
+    "hints": [
+      "Compute the permutation that maps each index to where its element belongs in the sorted order.",
+      "Each cycle of length L in that permutation needs exactly L-1 swaps to resolve; sum this over all cycles."
+    ],
+    "test_cases": [
+      {
+        "input": "4\n4 3 2 1\n",
+        "expected": "2"
+      },
+      {
+        "input": "5\n1 5 4 3 2\n",
+        "expected": "2"
+      },
+      {
+        "input": "3\n1 2 3\n",
+        "expected": "0"
+      }
+    ]
+  },
+  {
+    "id": "sort-010",
+    "topic": "Sorting",
+    "difficulty": "Medium",
+    "companies": [
+      "Amazon",
+      "Microsoft"
+    ],
+    "title": "Sort a Nearly Sorted (K-Sorted) Array",
+    "description": "Given an array of n integers where every element is at most k positions away from its position in the fully sorted array, sort it efficiently using a min-heap of size k+1.",
+    "input_format": "Line 1: n and k, space-separated\nLine 2: n space-separated integers",
+    "output_format": "The fully sorted array, space-separated, on one line.",
+    "starter_code": "n, k = map(int, input().split())\narr = list(map(int, input().split()))\n\n# TODO: heapify the first k+1 elements, then repeatedly pop the min and push the next element as you scan forward\n",
+    "hints": [
+      "Because no element is more than k away from its sorted position, the true minimum of everything from index i onward is always within the first k+1 unprocessed elements - a heap of that size is enough."
+    ],
+    "test_cases": [
+      {
+        "input": "8 3\n6 5 3 2 8 10 9 12\n",
+        "expected": "2 3 5 6 8 9 10 12"
+      },
+      {
+        "input": "4 1\n2 1 4 3\n",
+        "expected": "1 2 3 4"
+      },
+      {
+        "input": "1 0\n5\n",
+        "expected": "5"
+      }
+    ]
+  },
+  {
+    "id": "stack-008",
+    "topic": "Stacks",
+    "difficulty": "Easy",
+    "companies": [
+      "TCS",
+      "Infosys"
+    ],
+    "title": "Remove All Adjacent Duplicates in a String",
+    "description": "Given a string, repeatedly remove pairs of adjacent equal characters until no more such pairs remain, using a stack, and print the final string.",
+    "input_format": "Line 1: a string s (lowercase letters, no spaces)",
+    "output_format": "The resulting string after all adjacent duplicate removals.",
+    "starter_code": "s = input().strip()\n\n# TODO: push each character onto a stack; if it matches the top, pop instead of pushing\n",
+    "hints": [
+      "For each character: if the stack is non-empty and its top equals the current character, pop; otherwise push the current character."
+    ],
+    "test_cases": [
+      {
+        "input": "abbaca\n",
+        "expected": "ca"
+      },
+      {
+        "input": "azxxzy\n",
+        "expected": "ay"
+      },
+      {
+        "input": "aaaa\n",
+        "expected": ""
+      }
+    ]
+  },
+  {
+    "id": "stack-009",
+    "topic": "Stacks",
+    "difficulty": "Medium",
+    "companies": [
+      "Amazon",
+      "Google"
+    ],
+    "title": "Decode String",
+    "description": "Given an encoded string using the pattern k[substring] (meaning substring is repeated k times, and encodings can nest), decode it fully using a stack.",
+    "input_format": "Line 1: an encoded string s",
+    "output_format": "The fully decoded string.",
+    "starter_code": "s = input().strip()\n\n# TODO: on '[', push (current string, current number) and reset both; on ']', pop and repeat/append\n",
+    "hints": [
+      "Track a running number (for digits) and a running string; on '[' push both onto a stack and reset; on ']' pop the previous string and repeat the current one the popped number of times, appending it to the previous string."
+    ],
+    "test_cases": [
+      {
+        "input": "3[a]2[bc]\n",
+        "expected": "aaabcbc"
+      },
+      {
+        "input": "3[a2[c]]\n",
+        "expected": "accaccacc"
+      },
+      {
+        "input": "2[abc]3[cd]ef\n",
+        "expected": "abcabccdcdcdef"
+      }
+    ]
+  },
+  {
+    "id": "stack-010",
+    "topic": "Stacks",
+    "difficulty": "Hard",
+    "companies": [
+      "Google",
+      "Amazon"
+    ],
+    "title": "Basic Calculator (+, -, parentheses)",
+    "description": "Evaluate a mathematical expression string containing non-negative integers, '+', '-', parentheses, and spaces (no multiplication or division).",
+    "input_format": "Line 1: an expression string",
+    "output_format": "A single integer: the evaluated result.",
+    "starter_code": "s = input().strip()\n\n# TODO: use a stack to save (result, sign) when entering '(' and restore/apply them when hitting ')'\n",
+    "hints": [
+      "Track a running result and a running sign; on '(' push the result-so-far and current sign, then reset; on ')' fold the parenthesized result back in using the popped sign and result."
+    ],
+    "test_cases": [
+      {
+        "input": "1 + 1\n",
+        "expected": "2"
+      },
+      {
+        "input": "(1+(4+5+2)-3)+(6+8)\n",
+        "expected": "23"
+      },
+      {
+        "input": " 2-1 + 2 \n",
+        "expected": "3"
+      }
+    ]
+  },
+  {
+    "id": "str-007",
+    "topic": "Strings",
+    "difficulty": "Easy",
+    "companies": [
+      "TCS",
+      "Wipro"
+    ],
+    "title": "Count Vowels and Consonants",
+    "description": "Given a string of letters (and possibly spaces), count how many are vowels and how many are consonants.",
+    "input_format": "Line 1: a string s",
+    "output_format": "Two space-separated integers: the vowel count, then the consonant count.",
+    "starter_code": "s = input().strip()\n\n# TODO: for each alphabetic character, classify it as a vowel or consonant\n",
+    "hints": [
+      "Check membership in the set {'a','e','i','o','u'} (case-insensitively) for every letter; skip non-letters like spaces."
+    ],
+    "test_cases": [
+      {
+        "input": "hello world\n",
+        "expected": "3 7"
+      },
+      {
+        "input": "AEIOU\n",
+        "expected": "5 0"
+      },
+      {
+        "input": "xyz\n",
+        "expected": "0 3"
+      }
+    ]
+  },
+  {
+    "id": "str-008",
+    "topic": "Strings",
+    "difficulty": "Medium",
+    "companies": [
+      "Amazon",
+      "Microsoft"
+    ],
+    "title": "One Edit Distance Apart",
+    "description": "Given two strings, determine whether they are exactly one edit (a single insertion, deletion, or substitution) apart. Equal strings do NOT count.",
+    "input_format": "Line 1: string s1\nLine 2: string s2",
+    "output_format": "\"Yes\" if s1 and s2 are exactly one edit apart, \"No\" otherwise.",
+    "starter_code": "s1 = input()\ns2 = input()\n\n# TODO: if lengths differ by more than 1 (or are equal strings), it's No; otherwise compare after the first mismatch\n",
+    "hints": [
+      "If the strings are equal, or their lengths differ by more than 1, the answer is automatically No.",
+      "Find the first mismatching position; for equal-length strings the rest must match exactly after skipping one character on both sides, for different lengths the rest must match after skipping one character on only the longer string."
+    ],
+    "test_cases": [
+      {
+        "input": "ab\nacb\n",
+        "expected": "Yes"
+      },
+      {
+        "input": "cab\ncab\n",
+        "expected": "No"
+      },
+      {
+        "input": "1203\n1213\n",
+        "expected": "Yes"
+      }
+    ]
+  },
+  {
+    "id": "str-009",
+    "topic": "Strings",
+    "difficulty": "Medium",
+    "companies": [
+      "Google",
+      "Flipkart"
+    ],
+    "title": "Minimum Deletions to Make a String Palindrome",
+    "description": "Given a string, find the minimum number of character deletions needed to make it a palindrome.",
+    "input_format": "Line 1: a string s",
+    "output_format": "A single integer: the minimum number of deletions.",
+    "starter_code": "s = input().strip()\n\n# TODO: the answer is len(s) minus the length of the longest palindromic subsequence of s\n",
+    "hints": [
+      "The characters you keep must form the longest palindromic subsequence; every other character must be deleted."
+    ],
+    "test_cases": [
+      {
+        "input": "aebcbda\n",
+        "expected": "2"
+      },
+      {
+        "input": "abcda\n",
+        "expected": "2"
+      },
+      {
+        "input": "a\n",
+        "expected": "0"
+      }
+    ]
+  },
+  {
+    "id": "str-010",
+    "topic": "Strings",
+    "difficulty": "Easy",
+    "companies": [
+      "Infosys",
+      "Accenture"
+    ],
+    "title": "Title Case a Sentence",
+    "description": "Given a sentence, capitalize the first letter of every word and lowercase the rest, then print the result with single spaces between words.",
+    "input_format": "Line 1: a sentence",
+    "output_format": "The title-cased sentence.",
+    "starter_code": "s = input().strip()\n\n# TODO: split into words, capitalize each one, and join back with single spaces\n",
+    "hints": [
+      "str.split() with no arguments collapses repeated whitespace; str.capitalize() uppercases the first letter and lowercases the rest."
+    ],
+    "test_cases": [
+      {
+        "input": "hello WORLD from PYTHON\n",
+        "expected": "Hello World From Python"
+      },
+      {
+        "input": "a\n",
+        "expected": "A"
+      },
+      {
+        "input": "  multiple   spaces here\n",
+        "expected": "Multiple Spaces Here"
+      }
+    ]
+  },
+  {
+    "id": "twoptr-007",
+    "topic": "Two Pointers",
+    "difficulty": "Easy",
+    "companies": [
+      "Amazon",
+      "Google"
+    ],
+    "title": "Sorted Squares of a Sorted Array",
+    "description": "Given an array of n integers sorted in ascending order (which may include negatives), return the squares of every element, sorted in ascending order, using a two-pointer scan from both ends (not a plain sort of the squares).",
+    "input_format": "Line 1: n\nLine 2: n space-separated sorted integers",
+    "output_format": "The squares, sorted ascending, space-separated, on one line.",
+    "starter_code": "n = int(input())\na = list(map(int, input().split()))\n\n# TODO: two pointers from both ends - the larger of |a[left]| and |a[right]| produces the next-largest square, filled in from the back\n",
+    "hints": [
+      "Because the array can have negatives, the largest square could come from either end.",
+      "Compare abs(a[left]) and abs(a[right]); whichever is bigger contributes the next square, placed from the back of the result array forward."
+    ],
+    "test_cases": [
+      {
+        "input": "5\n-4 -1 0 3 10\n",
+        "expected": "0 1 9 16 100"
+      },
+      {
+        "input": "5\n-7 -3 2 3 11\n",
+        "expected": "4 9 9 49 121"
+      },
+      {
+        "input": "1\n0\n",
+        "expected": "0"
+      }
+    ]
+  },
+  {
+    "id": "twoptr-008",
+    "topic": "Two Pointers",
+    "difficulty": "Easy",
+    "companies": [
+      "Microsoft",
+      "Wipro"
+    ],
+    "title": "Move Negatives to One Side (Stable)",
+    "description": "Given an array of n integers, rearrange it so all negative numbers come before all non-negative numbers, preserving the relative order of the elements within each group (a stable partition).",
+    "input_format": "Line 1: n\nLine 2: n space-separated integers",
+    "output_format": "The rearranged array, space-separated, on one line.",
+    "starter_code": "n = int(input())\na = list(map(int, input().split()))\n\n# TODO: scan once, collecting negatives (in order) and non-negatives (in order) separately, then place negatives first\n",
+    "hints": [
+      "Collect the negative numbers into one list and the non-negative numbers into another, each keeping their original relative order, then concatenate negatives + non-negatives - the same 'move to one side while keeping order' pattern as the Move Zeroes problem."
+    ],
+    "test_cases": [
+      {
+        "input": "8\n-1 2 -3 4 5 6 -7 8\n",
+        "expected": "-1 -3 -7 2 4 5 6 8"
+      },
+      {
+        "input": "4\n1 2 3 4\n",
+        "expected": "1 2 3 4"
+      },
+      {
+        "input": "4\n-1 -2 -3 -4\n",
+        "expected": "-1 -2 -3 -4"
+      }
+    ]
+  },
+  {
+    "id": "twoptr-009",
+    "topic": "Two Pointers",
+    "difficulty": "Medium",
+    "companies": [
+      "Amazon",
+      "Microsoft"
+    ],
+    "title": "Longest Palindromic Substring (Expand Around Center)",
+    "description": "Given a string, find its longest contiguous palindromic substring by expanding outward from every possible center with two pointers. If there are ties, print the first one found scanning centers left to right.",
+    "input_format": "Line 1: a string s",
+    "output_format": "The longest palindromic substring.",
+    "starter_code": "s = input().strip()\n\n# TODO: for every index i, expand around center i (odd length) and around center (i, i+1) (even length), tracking the longest found\n",
+    "hints": [
+      "Two pointers l, r start at the same index (odd-length case) or adjacent indices (even-length case) and move outward while s[l] == s[r]."
+    ],
+    "test_cases": [
+      {
+        "input": "babad\n",
+        "expected": "bab"
+      },
+      {
+        "input": "cbbd\n",
+        "expected": "bb"
+      },
+      {
+        "input": "a\n",
+        "expected": "a"
+      }
+    ]
+  },
+  {
+    "id": "twoptr-010",
+    "topic": "Two Pointers",
+    "difficulty": "Medium",
+    "companies": [
+      "Google",
+      "Amazon"
+    ],
+    "title": "Count Pairs With a Given Difference",
+    "description": "Given an array of n integers (all distinct) and a positive integer k, count the number of pairs whose absolute difference is exactly k, using a two-pointer scan on the sorted array.",
+    "input_format": "Line 1: n and k, space-separated (k > 0)\nLine 2: n space-separated distinct integers",
+    "output_format": "A single integer: the number of pairs with difference exactly k.",
+    "starter_code": "n, k = map(int, input().split())\na = list(map(int, input().split()))\n\n# TODO: sort the array, then use two pointers i, j (j ahead of i) adjusting based on whether a[j]-a[i] is less than, greater than, or equal to k\n",
+    "hints": [
+      "After sorting, move the right pointer forward while the gap is too small, move the left pointer forward while the gap is too big, and count + advance both when the gap equals k."
+    ],
+    "test_cases": [
+      {
+        "input": "6 2\n1 5 3 4 2 8\n",
+        "expected": "3"
+      },
+      {
+        "input": "5 1\n1 2 3 4 5\n",
+        "expected": "4"
+      },
+      {
+        "input": "1 5\n10\n",
+        "expected": "0"
+      }
+    ]
+  }
+]

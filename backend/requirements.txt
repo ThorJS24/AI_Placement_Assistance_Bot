@@ -1,0 +1,38 @@
+# ============================================================
+# AI Placement Assistance Platform - backend dependencies
+# Tested with Python 3.10 - 3.12
+# Install with:  pip install -r requirements.txt
+# ============================================================
+
+# --- Web API framework ---
+fastapi>=0.115
+uvicorn[standard]>=0.30
+python-multipart>=0.0.9     # required by FastAPI for file uploads (resume, mock interview audio)
+python-dotenv>=1.0.1
+pydantic>=2.8
+truststore>=0.9              # makes all outbound HTTPS calls trust the OS's native CA store, not just
+                              # certifi's bundle -- fixes CERTIFICATE_VERIFY_FAILED on networks (e.g. a
+                              # campus network) that do TLS inspection with their own root CA
+
+# --- LLM connectivity (Ollama local + Groq cloud fallback, OpenAI-compatible) ---
+requests>=2.32
+openai>=1.40          # used only for the Groq OpenAI-compatible endpoint
+
+# --- Speech (Mock Interview module) ---
+faster-whisper>=1.0.3     # local, offline speech-to-text (no ffmpeg install needed)
+pyttsx3>=2.90              # local, offline text-to-speech
+edge-tts>=6.1.12           # optional higher-quality online text-to-speech
+pywin32>=306; platform_system=="Windows"   # required by pyttsx3 on Windows
+
+# --- Resume Builder ---
+pdfplumber>=0.11.4     # extract text from uploaded PDF resumes
+python-docx>=1.1.2     # generate downloadable .docx resumes
+reportlab>=4.2.5       # generate downloadable .pdf resumes/reports (no MS Word needed)
+
+# --- Roadmap Generator ---
+Pillow>=10.4            # render the roadmap as a downloadable PNG infographic (no AI image model, fully offline)
+
+# --- Technical Interview / lightweight RAG for chatbot ---
+scikit-learn>=1.5
+numpy>=1.26
+pandas>=2.2

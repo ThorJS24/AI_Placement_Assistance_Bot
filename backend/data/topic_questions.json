@@ -1,0 +1,974 @@
+[
+  {
+    "id": "oop-001",
+    "topic": "OOP",
+    "type": "mcq",
+    "difficulty": "Easy",
+    "question": "Which OOP concept allows a subclass to provide a specific implementation of a method already defined in its parent class?",
+    "options": [
+      "Encapsulation",
+      "Overriding",
+      "Overloading",
+      "Abstraction"
+    ],
+    "answer": "Overriding",
+    "explanation": "Method overriding lets a subclass redefine a method inherited from its superclass, enabling runtime (dynamic) polymorphism."
+  },
+  {
+    "id": "oop-002",
+    "topic": "OOP",
+    "type": "mcq",
+    "difficulty": "Easy",
+    "question": "What is the main purpose of encapsulation?",
+    "options": [
+      "To allow multiple inheritance",
+      "To bundle data and methods together and restrict direct access to internal state",
+      "To increase code execution speed",
+      "To enable operator overloading"
+    ],
+    "answer": "To bundle data and methods together and restrict direct access to internal state",
+    "explanation": "Encapsulation hides an object's internal representation and exposes only what's necessary through methods (getters/setters), improving maintainability and control."
+  },
+  {
+    "id": "oop-003",
+    "topic": "OOP",
+    "type": "short_answer",
+    "difficulty": "Medium",
+    "question": "Explain the difference between method overloading and method overriding, with an example of each.",
+    "answer": "Overloading: same method name, different parameter lists, resolved at compile time (compile-time/static polymorphism). Overriding: subclass redefines a parent method with the same signature, resolved at runtime (runtime/dynamic polymorphism).",
+    "explanation": "Key distinction: overloading happens within the same class (or a class and its subclass) and is about parameter signatures; overriding happens across an inheritance hierarchy and requires the same signature."
+  },
+  {
+    "id": "oop-004",
+    "topic": "OOP",
+    "type": "short_answer",
+    "difficulty": "Medium",
+    "question": "What is an abstract class, and how is it different from an interface?",
+    "answer": "An abstract class can have both implemented and unimplemented (abstract) methods, and can hold state (fields); it cannot be instantiated directly. An interface (in most languages) traditionally only declares method signatures with no state, and a class can implement multiple interfaces but typically extend only one abstract class.",
+    "explanation": "Abstract classes model an 'is-a' relationship with shared implementation; interfaces model a 'can-do' capability contract."
+  },
+  {
+    "id": "dbms-001",
+    "topic": "DBMS",
+    "type": "mcq",
+    "difficulty": "Easy",
+    "question": "Which normal form eliminates transitive dependency on the primary key?",
+    "options": [
+      "1NF",
+      "2NF",
+      "3NF",
+      "BCNF"
+    ],
+    "answer": "3NF",
+    "explanation": "Third Normal Form (3NF) requires that non-key attributes depend only on the primary key, not on other non-key attributes (no transitive dependency)."
+  },
+  {
+    "id": "dbms-002",
+    "topic": "DBMS",
+    "type": "mcq",
+    "difficulty": "Medium",
+    "question": "Which SQL clause is used to filter groups after a GROUP BY, as opposed to filtering rows before grouping?",
+    "options": [
+      "WHERE",
+      "HAVING",
+      "ORDER BY",
+      "FILTER"
+    ],
+    "answer": "HAVING",
+    "explanation": "WHERE filters individual rows before aggregation; HAVING filters aggregated groups after GROUP BY has been applied."
+  },
+  {
+    "id": "dbms-003",
+    "topic": "DBMS",
+    "type": "short_answer",
+    "difficulty": "Medium",
+    "question": "What does ACID stand for in the context of database transactions, and briefly explain each property.",
+    "answer": "Atomicity (all-or-nothing execution), Consistency (transaction moves the DB from one valid state to another), Isolation (concurrent transactions don't interfere with each other), Durability (once committed, changes survive crashes/failures).",
+    "explanation": "ACID properties are what make relational database transactions reliable and safe under concurrency and failures."
+  },
+  {
+    "id": "dbms-004",
+    "topic": "DBMS",
+    "type": "short_answer",
+    "difficulty": "Hard",
+    "question": "What is the difference between a clustered index and a non-clustered index?",
+    "answer": "A clustered index determines the physical storage order of table rows (only one per table, since data can only be sorted one way). A non-clustered index is a separate structure that stores pointers back to the actual rows, and a table can have many of them.",
+    "explanation": "Clustered indexes are typically faster for range queries on the indexed column since data is physically ordered; non-clustered indexes add flexibility for multiple lookup patterns."
+  },
+  {
+    "id": "os-001",
+    "topic": "Operating Systems",
+    "type": "mcq",
+    "difficulty": "Easy",
+    "question": "Which scheduling algorithm can cause starvation of longer processes?",
+    "options": [
+      "First Come First Served",
+      "Shortest Job First (non-preemptive, greedy)",
+      "Round Robin",
+      "FCFS with aging"
+    ],
+    "answer": "Shortest Job First (non-preemptive, greedy)",
+    "explanation": "SJF always favors shorter jobs, so a continuous stream of short jobs can indefinitely delay (starve) a long job unless aging is introduced."
+  },
+  {
+    "id": "os-002",
+    "topic": "Operating Systems",
+    "type": "mcq",
+    "difficulty": "Medium",
+    "question": "What is a deadlock's 'circular wait' condition?",
+    "options": [
+      "A process holds a resource and waits indefinitely",
+      "A set of processes each hold a resource and wait for a resource held by the next process in the cycle",
+      "A process is denied all resources",
+      "Two processes access the same memory simultaneously"
+    ],
+    "answer": "A set of processes each hold a resource and wait for a resource held by the next process in the cycle",
+    "explanation": "Circular wait is one of the four necessary (Coffman) conditions for deadlock, alongside mutual exclusion, hold-and-wait, and no preemption."
+  },
+  {
+    "id": "os-003",
+    "topic": "Operating Systems",
+    "type": "short_answer",
+    "difficulty": "Medium",
+    "question": "Explain the difference between a process and a thread.",
+    "answer": "A process is an independent program in execution with its own memory space; threads are lightweight units of execution within a process that share the same memory/address space but have their own stack and registers.",
+    "explanation": "Because threads share memory, inter-thread communication is cheaper than inter-process communication, but it also introduces synchronization risks (race conditions)."
+  },
+  {
+    "id": "os-004",
+    "topic": "Operating Systems",
+    "type": "short_answer",
+    "difficulty": "Hard",
+    "question": "What is thrashing in the context of virtual memory, and what causes it?",
+    "answer": "Thrashing is when a system spends more time swapping pages in/out of memory than executing actual instructions, because too many processes are competing for too little physical memory (high page-fault rate).",
+    "explanation": "It's typically fixed by reducing the degree of multiprogramming or increasing physical RAM, and is analyzed using the working-set model."
+  },
+  {
+    "id": "cn-001",
+    "topic": "Computer Networks",
+    "type": "mcq",
+    "difficulty": "Easy",
+    "question": "Which OSI layer is responsible for routing packets between different networks?",
+    "options": [
+      "Data Link Layer",
+      "Network Layer",
+      "Transport Layer",
+      "Session Layer"
+    ],
+    "answer": "Network Layer",
+    "explanation": "The Network layer (Layer 3) handles logical addressing (IP) and routing across networks; the Data Link layer only handles addressing within a single local network segment."
+  },
+  {
+    "id": "cn-002",
+    "topic": "Computer Networks",
+    "type": "mcq",
+    "difficulty": "Medium",
+    "question": "What is the main difference between TCP and UDP?",
+    "options": [
+      "TCP is connectionless, UDP is connection-oriented",
+      "TCP guarantees ordered, reliable delivery; UDP does not",
+      "UDP is always slower than TCP",
+      "TCP cannot be used for streaming"
+    ],
+    "answer": "TCP guarantees ordered, reliable delivery; UDP does not",
+    "explanation": "TCP uses handshakes, acknowledgements, and retransmission for reliability; UDP is a lightweight, connectionless protocol favored when speed matters more than guaranteed delivery (e.g. video calls, DNS)."
+  },
+  {
+    "id": "cn-003",
+    "topic": "Computer Networks",
+    "type": "short_answer",
+    "difficulty": "Medium",
+    "question": "Describe the TCP three-way handshake used to establish a connection.",
+    "answer": "SYN: client sends a synchronize request with an initial sequence number. SYN-ACK: server acknowledges and sends its own sequence number. ACK: client acknowledges the server's sequence number - after this, the connection is established.",
+    "explanation": "This handshake lets both sides agree on initial sequence numbers before any application data flows, which is what enables TCP's reliability guarantees."
+  },
+  {
+    "id": "cn-004",
+    "topic": "Computer Networks",
+    "type": "short_answer",
+    "difficulty": "Hard",
+    "question": "What problem does DNS solve, and briefly describe how a DNS lookup resolves a domain name to an IP address.",
+    "answer": "DNS translates human-readable domain names into IP addresses. A lookup typically goes: browser cache -> OS cache -> recursive resolver (ISP) -> root nameserver -> TLD nameserver (e.g. .com) -> authoritative nameserver for the domain, which returns the IP.",
+    "explanation": "This hierarchical, cached lookup is what allows the internet to scale without every machine needing a master list of every domain's IP address."
+  },
+  {
+    "id": "apt-001",
+    "topic": "Aptitude",
+    "type": "mcq",
+    "difficulty": "Easy",
+    "question": "A train 120m long is running at 60 km/h. How long does it take to cross a platform 180m long?",
+    "options": [
+      "10 seconds",
+      "18 seconds",
+      "20 seconds",
+      "24 seconds"
+    ],
+    "answer": "18 seconds",
+    "explanation": "Total distance = 120+180 = 300m. Speed = 60 km/h = 16.67 m/s. Time = 300 / 16.67 ≈ 18 seconds."
+  },
+  {
+    "id": "apt-002",
+    "topic": "Aptitude",
+    "type": "mcq",
+    "difficulty": "Medium",
+    "question": "If the ratio of two numbers is 3:5 and their sum is 96, what is the larger number?",
+    "options": [
+      "36",
+      "48",
+      "60",
+      "72"
+    ],
+    "answer": "60",
+    "explanation": "3x + 5x = 96 -> 8x = 96 -> x = 12. Larger number = 5x = 60."
+  },
+  {
+    "id": "apt-003",
+    "topic": "Aptitude",
+    "type": "mcq",
+    "difficulty": "Medium",
+    "question": "A sum of money doubles itself in 8 years at simple interest. What is the rate of interest per annum?",
+    "options": [
+      "10%",
+      "12.5%",
+      "15%",
+      "20%"
+    ],
+    "answer": "12.5%",
+    "explanation": "SI doubling means interest earned = principal over 8 years. Rate = (100 * P) / (P * 8) = 12.5% per annum."
+  },
+  {
+    "id": "apt-004",
+    "topic": "Aptitude",
+    "type": "short_answer",
+    "difficulty": "Medium",
+    "question": "Explain your approach to solving a 'work and time' problem: A can do a job in 10 days, B can do it in 15 days. How long will they take working together?",
+    "answer": "A's rate = 1/10 job/day, B's rate = 1/15 job/day. Combined rate = 1/10 + 1/15 = 5/30 = 1/6. So together they take 6 days.",
+    "explanation": "The general technique: convert 'time to finish' into 'rate of work per day', add rates when working together, then invert the combined rate to get total time."
+  },
+  {
+    "id": "hr-001",
+    "topic": "HR / Behavioral",
+    "type": "short_answer",
+    "difficulty": "Easy",
+    "question": "Tell me about a time you faced a conflict while working in a team. How did you handle it?",
+    "answer": "A strong answer uses the STAR method: briefly set the Situation and Task, describe the specific Action you personally took to resolve the disagreement (e.g. listened to the other perspective, proposed a compromise, escalated appropriately), and end with a concrete Result or lesson learned.",
+    "explanation": "Interviewers are checking for self-awareness, communication skills, and whether you take ownership rather than just blaming others."
+  },
+  {
+    "id": "hr-002",
+    "topic": "HR / Behavioral",
+    "type": "short_answer",
+    "difficulty": "Easy",
+    "question": "Why do you want to work at this company?",
+    "answer": "A good answer connects 1-2 specific, genuine things about the company (its products, engineering culture, mission, or growth stage) to your own skills/interests/career goals - avoid generic answers like 'great company' with no specifics.",
+    "explanation": "This question tests whether you've actually researched the company and can articulate a specific, credible motivation."
+  },
+  {
+    "id": "hr-003",
+    "topic": "HR / Behavioral",
+    "type": "short_answer",
+    "difficulty": "Medium",
+    "question": "Describe a time you failed at something. What did you learn?",
+    "answer": "Pick a real, moderate failure (not something trivial or something that makes you look bad in a disqualifying way), briefly explain what happened, take ownership without excessive self-blame, and focus most of the answer on the specific lesson/change in behavior that followed.",
+    "explanation": "Interviewers want to see genuine self-reflection and growth, not a rehearsed 'weakness that's secretly a strength' answer."
+  },
+  {
+    "id": "hr-004",
+    "topic": "HR / Behavioral",
+    "type": "short_answer",
+    "difficulty": "Medium",
+    "question": "Where do you see yourself in 5 years?",
+    "answer": "A good answer shows realistic ambition aligned with growth at (or adjacent to) this company/role - e.g. deepening technical expertise, taking on more ownership/mentorship - without sounding like you'll leave immediately or have no direction.",
+    "explanation": "This checks for career direction and whether your goals are roughly compatible with what the role/company can offer."
+  },
+  {
+    "id": "oop-005",
+    "topic": "OOP",
+    "type": "mcq",
+    "difficulty": "Easy",
+    "question": "What is polymorphism in OOP?",
+    "options": [
+      "The ability of an object to take many forms depending on context",
+      "Hiding internal implementation details from the outside",
+      "Bundling data and methods into a single unit",
+      "Creating multiple instances of the same class"
+    ],
+    "answer": "The ability of an object to take many forms depending on context",
+    "explanation": "Polymorphism lets the same interface (e.g. a method call) behave differently depending on the actual object's type — via overriding (runtime) or overloading (compile-time)."
+  },
+  {
+    "id": "oop-006",
+    "topic": "OOP",
+    "type": "mcq",
+    "difficulty": "Medium",
+    "question": "Which of the following best describes 'composition' in OOP, as opposed to inheritance?",
+    "options": [
+      "A class holds references to other objects to reuse their functionality (a 'has-a' relationship)",
+      "A class inherits behavior directly from a parent class (an 'is-a' relationship)",
+      "A method has multiple definitions with different parameter lists",
+      "A class that cannot be instantiated directly"
+    ],
+    "answer": "A class holds references to other objects to reuse their functionality (a 'has-a' relationship)",
+    "explanation": "Composition builds functionality by combining objects ('a Car has an Engine') rather than extending a base class ('a Car is a Vehicle'), and is often preferred over deep inheritance hierarchies for flexibility."
+  },
+  {
+    "id": "oop-007",
+    "topic": "OOP",
+    "type": "short_answer",
+    "difficulty": "Medium",
+    "question": "What is the difference between a constructor and a destructor? Why doesn't a language like Python usually need explicit destructors?",
+    "answer": "A constructor initializes a new object's state when it's created; a destructor releases resources when an object is destroyed. Python has automatic garbage collection (reference counting plus a cycle collector), so memory is reclaimed automatically — explicit destructors (__del__) are rarely needed except for non-memory resources like open files or network sockets.",
+    "explanation": "Languages without automatic memory management (like C++) rely on destructors to free memory deterministically; garbage-collected languages mostly don't need that discipline for memory itself."
+  },
+  {
+    "id": "dbms-005",
+    "topic": "DBMS",
+    "type": "mcq",
+    "difficulty": "Easy",
+    "question": "Which SQL command removes all rows from a table quickly, without logging individual row deletions, and generally cannot be rolled back?",
+    "options": [
+      "DELETE",
+      "TRUNCATE",
+      "DROP",
+      "REMOVE"
+    ],
+    "answer": "TRUNCATE",
+    "explanation": "TRUNCATE deallocates the data pages directly rather than deleting row-by-row, making it much faster than DELETE, but at the cost of fine-grained rollback and row-level triggers. DROP removes the table structure itself, not just its data."
+  },
+  {
+    "id": "dbms-006",
+    "topic": "DBMS",
+    "type": "mcq",
+    "difficulty": "Medium",
+    "question": "In SQL, which JOIN returns all rows from the left table, and matching rows from the right table (NULLs where there's no match)?",
+    "options": [
+      "INNER JOIN",
+      "LEFT JOIN",
+      "RIGHT JOIN",
+      "CROSS JOIN"
+    ],
+    "answer": "LEFT JOIN",
+    "explanation": "LEFT JOIN keeps every row from the left table regardless of whether a match exists on the right; RIGHT JOIN is the mirror image, and INNER JOIN only keeps rows that match on both sides."
+  },
+  {
+    "id": "dbms-007",
+    "topic": "DBMS",
+    "type": "short_answer",
+    "difficulty": "Medium",
+    "question": "What is a foreign key, and what problem does it solve?",
+    "answer": "A foreign key is a column (or set of columns) in one table that references the primary key of another table. It enforces referential integrity — the database rejects inserting a value that doesn't correspond to an existing row in the referenced table, and defines what happens (cascade, restrict, set null) when the referenced row is updated or deleted.",
+    "explanation": "Without foreign keys, nothing stops orphaned references (e.g. an order pointing at a customer_id that doesn't exist) from silently corrupting data integrity."
+  },
+  {
+    "id": "os-005",
+    "topic": "Operating Systems",
+    "type": "mcq",
+    "difficulty": "Easy",
+    "question": "Which of these is NOT one of the four Coffman conditions necessary for deadlock?",
+    "options": [
+      "Mutual exclusion",
+      "Hold and wait",
+      "Preemption",
+      "Circular wait"
+    ],
+    "answer": "Preemption",
+    "explanation": "The four conditions are mutual exclusion, hold and wait, NO preemption (resources can't be forcibly taken away), and circular wait. 'Preemption' itself (the ability to take a resource away) is the opposite of the actual condition."
+  },
+  {
+    "id": "os-006",
+    "topic": "Operating Systems",
+    "type": "mcq",
+    "difficulty": "Medium",
+    "question": "What is the main advantage of paging over segmentation in memory management?",
+    "options": [
+      "It avoids external fragmentation by dividing memory into fixed-size blocks",
+      "It naturally matches a program's logical structure (functions, data)",
+      "It eliminates internal fragmentation entirely",
+      "It removes the need for a page table"
+    ],
+    "answer": "It avoids external fragmentation by dividing memory into fixed-size blocks",
+    "explanation": "Because every page is the same fixed size, free memory never gets chopped into unusable small gaps the way variable-sized segments can — though paging can still waste some space via internal fragmentation within the last page of a process."
+  },
+  {
+    "id": "os-007",
+    "topic": "Operating Systems",
+    "type": "short_answer",
+    "difficulty": "Medium",
+    "question": "What is a race condition, and name one common way to prevent it?",
+    "answer": "A race condition occurs when multiple threads or processes access shared data concurrently and the final outcome depends on the unpredictable timing/order of execution, potentially producing incorrect results. It's commonly prevented with synchronization primitives — mutexes/locks, semaphores, or atomic operations — that ensure only one thread enters the critical section at a time.",
+    "explanation": "The core issue is a 'check-then-act' or 'read-modify-write' sequence on shared state that isn't atomic; synchronization makes that sequence effectively atomic from other threads' point of view."
+  },
+  {
+    "id": "cn-005",
+    "topic": "Computer Networks",
+    "type": "mcq",
+    "difficulty": "Easy",
+    "question": "Which protocol translates a domain name like example.com into an IP address?",
+    "options": [
+      "DHCP",
+      "DNS",
+      "ARP",
+      "FTP"
+    ],
+    "answer": "DNS",
+    "explanation": "DNS (Domain Name System) is the distributed lookup service that resolves human-readable domain names to IP addresses. DHCP assigns IP addresses to devices; ARP resolves IP addresses to MAC addresses on a local network."
+  },
+  {
+    "id": "cn-006",
+    "topic": "Computer Networks",
+    "type": "mcq",
+    "difficulty": "Medium",
+    "question": "What is the primary purpose of a subnet mask in IPv4 networking?",
+    "options": [
+      "To encrypt network traffic",
+      "To separate the network portion of an IP address from the host portion",
+      "To assign IP addresses dynamically",
+      "To translate MAC addresses to IP addresses"
+    ],
+    "answer": "To separate the network portion of an IP address from the host portion",
+    "explanation": "The subnet mask tells a device which bits of an IP address identify the network and which identify the specific host on that network — essential for routing decisions."
+  },
+  {
+    "id": "cn-007",
+    "topic": "Computer Networks",
+    "type": "short_answer",
+    "difficulty": "Medium",
+    "question": "What is the difference between a hub, a switch, and a router?",
+    "answer": "A hub is a simple physical-layer device that broadcasts every incoming signal to all connected ports with no intelligence. A switch operates at the data link layer, using MAC addresses to forward frames only to the intended destination port, reducing collisions and unnecessary traffic. A router operates at the network layer, forwarding packets between different networks based on IP addresses — typically what connects a home or office LAN to the internet.",
+    "explanation": "Each sits at a different OSI layer, which is exactly why their capabilities differ: hub (physical), switch (data link), router (network)."
+  },
+  {
+    "id": "apt-005",
+    "topic": "Aptitude",
+    "type": "mcq",
+    "difficulty": "Easy",
+    "question": "What is 15% of 240?",
+    "options": [
+      "30",
+      "32",
+      "36",
+      "40"
+    ],
+    "answer": "36",
+    "explanation": "15% of 240 = 0.15 x 240 = 36."
+  },
+  {
+    "id": "apt-006",
+    "topic": "Aptitude",
+    "type": "mcq",
+    "difficulty": "Medium",
+    "question": "A shopkeeper buys an item for ₹800 and sells it for ₹960. What is his profit percentage?",
+    "options": [
+      "15%",
+      "18%",
+      "20%",
+      "25%"
+    ],
+    "answer": "20%",
+    "explanation": "Profit = 960 - 800 = 160. Profit% = (160 / 800) x 100 = 20%."
+  },
+  {
+    "id": "apt-007",
+    "topic": "Aptitude",
+    "type": "short_answer",
+    "difficulty": "Medium",
+    "question": "Two pipes A and B can fill a tank in 12 hours and 18 hours respectively. If both are opened together, how long will they take to fill the tank? Explain your approach.",
+    "answer": "Combined rate = 1/12 + 1/18 = 3/36 + 2/36 = 5/36 of the tank per hour. Time = 1 / (5/36) = 36/5 = 7.2 hours, i.e. 7 hours 12 minutes.",
+    "explanation": "The general technique: convert each pipe's time into a rate (tank/hour), add the rates when working together, then invert the combined rate to get the combined time."
+  },
+  {
+    "id": "hr-005",
+    "topic": "HR / Behavioral",
+    "type": "short_answer",
+    "difficulty": "Easy",
+    "question": "What are your greatest strengths, and how have you applied them in a real situation?",
+    "answer": "A strong answer names one or two genuine strengths relevant to the role, then backs each with a specific, brief example of it actually being applied — not just a list of adjectives with no evidence.",
+    "explanation": "Interviewers are grading for self-awareness and evidence, not the strength itself — 'I'm a good communicator' unsupported by an example is far weaker than the same claim with one concrete instance."
+  },
+  {
+    "id": "hr-006",
+    "topic": "HR / Behavioral",
+    "type": "short_answer",
+    "difficulty": "Easy",
+    "question": "How do you handle working under pressure or tight deadlines?",
+    "answer": "A good answer describes a concrete method — prioritizing tasks, breaking work into smaller steps, communicating early about blockers or scope trade-offs — ideally illustrated with one specific example of a deadline that was actually met this way.",
+    "explanation": "Vague reassurance ('I stay calm') is weaker than a specific, repeatable process the candidate can point to."
+  },
+  {
+    "id": "hr-007",
+    "topic": "HR / Behavioral",
+    "type": "short_answer",
+    "difficulty": "Medium",
+    "question": "Tell me about a time you had to learn a new technology or skill quickly. How did you approach it?",
+    "answer": "A strong answer follows a structure: what the situation demanded, how the candidate broke the learning down (docs, small experiments, asking someone experienced), and the concrete outcome of applying it — showing resourcefulness rather than claiming general 'fast learner' status.",
+    "explanation": "This question is really testing for a repeatable learning process, since almost every real job requires picking up something new quickly at some point."
+  },
+  {
+    "id": "ds-001",
+    "topic": "Data Structures",
+    "type": "mcq",
+    "difficulty": "Easy",
+    "question": "What is the time complexity of searching for an element in a balanced binary search tree?",
+    "options": [
+      "O(1)",
+      "O(log n)",
+      "O(n)",
+      "O(n log n)"
+    ],
+    "answer": "O(log n)",
+    "explanation": "A balanced BST halves the search space at each step, giving logarithmic height and therefore logarithmic search time — the same reasoning as binary search on a sorted array."
+  },
+  {
+    "id": "ds-002",
+    "topic": "Data Structures",
+    "type": "mcq",
+    "difficulty": "Easy",
+    "question": "Which data structure follows the LIFO (Last In, First Out) principle?",
+    "options": [
+      "Queue",
+      "Stack",
+      "Linked List",
+      "Heap"
+    ],
+    "answer": "Stack",
+    "explanation": "A stack only allows insertion and removal at one end (the 'top'), so the most recently added element is always the first one removed — used for things like undo history and function call frames."
+  },
+  {
+    "id": "ds-003",
+    "topic": "Data Structures",
+    "type": "mcq",
+    "difficulty": "Medium",
+    "question": "What is the worst-case time complexity of inserting an element into a hash table?",
+    "options": [
+      "O(1) always",
+      "O(log n)",
+      "O(n), due to collisions/rehashing in the worst case",
+      "O(n^2) always"
+    ],
+    "answer": "O(n), due to collisions/rehashing in the worst case",
+    "explanation": "Average-case insertion is O(1) with a good hash function and load factor, but a poor hash function, many collisions, or a resize/rehash operation can degrade a single insertion to O(n) in the worst case."
+  },
+  {
+    "id": "ds-004",
+    "topic": "Data Structures",
+    "type": "short_answer",
+    "difficulty": "Medium",
+    "question": "What is the difference between a min-heap and a max-heap, and where are heaps commonly used?",
+    "answer": "In a min-heap, every parent node's value is less than or equal to its children's, so the smallest element is always at the root. In a max-heap, every parent is greater than or equal to its children, so the largest is at the root. Heaps are commonly used to implement priority queues, and in algorithms like heap sort and Dijkstra's shortest-path algorithm.",
+    "explanation": "The heap property only constrains parent-child relationships (not full sorted order), which is exactly what lets insert/extract-min operations run in O(log n)."
+  },
+  {
+    "id": "sysd-001",
+    "topic": "System Design Basics",
+    "type": "mcq",
+    "difficulty": "Easy",
+    "question": "What is the main purpose of a load balancer in a web application's architecture?",
+    "options": [
+      "To store data persistently",
+      "To distribute incoming traffic across multiple servers so no single one gets overloaded",
+      "To encrypt data in transit",
+      "To cache database query results"
+    ],
+    "answer": "To distribute incoming traffic across multiple servers so no single one gets overloaded",
+    "explanation": "A load balancer sits in front of a pool of servers and spreads requests across them (by round robin, least connections, etc.), improving both throughput and resilience — if one server goes down, traffic just routes around it."
+  },
+  {
+    "id": "sysd-002",
+    "topic": "System Design Basics",
+    "type": "mcq",
+    "difficulty": "Medium",
+    "question": "What is a key benefit of caching frequently accessed data (e.g. with Redis) in front of a database?",
+    "options": [
+      "It permanently replaces the need for a database",
+      "It reduces read latency and database load for repeated requests",
+      "It guarantees data is always perfectly consistent",
+      "It removes the need for indexes"
+    ],
+    "answer": "It reduces read latency and database load for repeated requests",
+    "explanation": "A cache serves hot, frequently-requested data from fast in-memory storage instead of hitting the database every time — at the cost of having to manage cache invalidation/staleness, since the cached copy can drift from the source of truth."
+  },
+  {
+    "id": "sysd-003",
+    "topic": "System Design Basics",
+    "type": "mcq",
+    "difficulty": "Medium",
+    "question": "What does 'horizontal scaling' mean, as opposed to 'vertical scaling'?",
+    "options": [
+      "Adding more RAM/CPU to a single server",
+      "Adding more servers/machines to handle increased load",
+      "Reducing the number of servers to save cost",
+      "Splitting a database into multiple schemas"
+    ],
+    "answer": "Adding more servers/machines to handle increased load",
+    "explanation": "Vertical scaling ('scale up') means making one machine more powerful; horizontal scaling ('scale out') means adding more machines and distributing load across them — generally more resilient and less limited by a single machine's ceiling."
+  },
+  {
+    "id": "sysd-004",
+    "topic": "System Design Basics",
+    "type": "short_answer",
+    "difficulty": "Medium",
+    "question": "What is the CAP theorem, and why can't a distributed system guarantee all three of Consistency, Availability, and Partition tolerance at once?",
+    "answer": "The CAP theorem states a distributed data store can only guarantee two of three properties simultaneously during a network partition: Consistency (every read returns the latest write), Availability (every request gets a non-error response), and Partition tolerance (the system keeps working despite network partitions). Because network partitions can always happen in a real distributed system, partition tolerance is effectively mandatory, which forces a practical trade-off between consistency and availability whenever a partition occurs.",
+    "explanation": "In practice this is why systems are described as 'CP' (e.g. many relational/consensus-based systems, which may reject requests during a partition to stay consistent) or 'AP' (e.g. many NoSQL stores, which stay available but may serve stale data during a partition)."
+  },
+  {
+    "id": "ds-005",
+    "topic": "Data Structures",
+    "type": "mcq",
+    "difficulty": "Easy",
+    "question": "Which data structure follows the First-In-First-Out (FIFO) principle?",
+    "options": [
+      "Stack",
+      "Queue",
+      "Binary Tree",
+      "Hash Map"
+    ],
+    "answer": "Queue",
+    "explanation": "A queue processes elements in the order they arrived -- the first element added is the first one removed. A stack, by contrast, is Last-In-First-Out (LIFO)."
+  },
+  {
+    "id": "ds-006",
+    "topic": "Data Structures",
+    "type": "mcq",
+    "difficulty": "Medium",
+    "question": "What is the average-case time complexity of searching for a key in a well-implemented hash table?",
+    "options": [
+      "O(1)",
+      "O(log n)",
+      "O(n)",
+      "O(n log n)"
+    ],
+    "answer": "O(1)",
+    "explanation": "With a good hash function and load factor, lookups are amortized O(1) since a key maps directly to a bucket. Worst case degrades to O(n) if many keys collide into the same bucket."
+  },
+  {
+    "id": "ds-007",
+    "topic": "Data Structures",
+    "type": "mcq",
+    "difficulty": "Medium",
+    "question": "In a min-heap stored as an array, where is the minimum element always located?",
+    "options": [
+      "At the last index",
+      "At the root (index 0)",
+      "At the middle index",
+      "It can be anywhere"
+    ],
+    "answer": "At the root (index 0)",
+    "explanation": "A min-heap maintains the invariant that every parent is <= its children, so the smallest element is always at the root. Extracting it and re-heapifying is O(log n)."
+  },
+  {
+    "id": "ds-008",
+    "topic": "Data Structures",
+    "type": "short_answer",
+    "difficulty": "Medium",
+    "question": "What is the difference between a binary search tree (BST) and a balanced BST like an AVL tree or red-black tree? Why does it matter for time complexity?",
+    "answer": "A plain BST only guarantees left-child < parent < right-child, so if elements are inserted in sorted order it can degenerate into a linked-list shape, making search/insert/delete O(n). A balanced BST (AVL, red-black) additionally enforces a height invariant after every insertion/deletion via rotations, keeping the tree height O(log n) and guaranteeing O(log n) operations regardless of insertion order.",
+    "explanation": "The core idea in every self-balancing tree is: allow some local restructuring (rotations) on every insert/delete so the whole structure never drifts far from balanced."
+  },
+  {
+    "id": "ds-009",
+    "topic": "Data Structures",
+    "type": "short_answer",
+    "difficulty": "Hard",
+    "question": "Explain the difference between an adjacency matrix and an adjacency list for representing a graph, and when you'd prefer each.",
+    "answer": "An adjacency matrix is an n x n grid where cell [i][j] indicates whether an edge exists between node i and j -- O(1) edge lookup but O(n^2) space, wasteful for sparse graphs. An adjacency list stores, per node, only its actual neighbors -- O(n + m) space (m = edges), better for sparse graphs and faster to iterate a node's neighbors, but O(degree) rather than O(1) to check if a specific edge exists. Dense graphs or when edge existence checks dominate favor a matrix; sparse graphs (most real-world graphs) favor a list.",
+    "explanation": "The space trade-off (O(n^2) vs O(n+m)) is usually the deciding factor -- most real graphs (social networks, road maps) are sparse, so adjacency lists are the more common default."
+  },
+  {
+    "id": "sysd-005",
+    "topic": "System Design Basics",
+    "type": "mcq",
+    "difficulty": "Easy",
+    "question": "What is the main purpose of a load balancer in a web application's architecture?",
+    "options": [
+      "To distribute incoming requests across multiple server instances",
+      "To compress images before sending them to the client",
+      "To store frequently accessed data in memory",
+      "To encrypt data before writing it to disk"
+    ],
+    "answer": "To distribute incoming requests across multiple server instances",
+    "explanation": "A load balancer spreads traffic across a pool of backend servers so no single server becomes a bottleneck, and can also route around servers that are down (health checks)."
+  },
+  {
+    "id": "sysd-006",
+    "topic": "System Design Basics",
+    "type": "mcq",
+    "difficulty": "Medium",
+    "question": "What does the 'CAP theorem' say about distributed systems?",
+    "options": [
+      "A distributed system can guarantee at most two of Consistency, Availability, and Partition tolerance at the same time",
+      "A distributed system must always choose Availability over Consistency",
+      "A distributed system's Capacity, Availability, and Performance are always equal",
+      "A distributed system can never be partitioned"
+    ],
+    "answer": "A distributed system can guarantee at most two of Consistency, Availability, and Partition tolerance at the same time",
+    "explanation": "Since network partitions are unavoidable in practice, real systems are usually framed as choosing between Consistency and Availability during a partition (CP vs AP) -- the theorem doesn't say 'pick any two' as freely as it's sometimes simplified to."
+  },
+  {
+    "id": "sysd-007",
+    "topic": "System Design Basics",
+    "type": "mcq",
+    "difficulty": "Medium",
+    "question": "Why would a system introduce a message queue (like Kafka or RabbitMQ) between two services instead of having them call each other directly?",
+    "options": [
+      "To decouple producers and consumers so they can scale, fail, and deploy independently, and to smooth out traffic spikes",
+      "To make the two services share the same database",
+      "To guarantee zero network latency between services",
+      "To eliminate the need for any error handling"
+    ],
+    "answer": "To decouple producers and consumers so they can scale, fail, and deploy independently, and to smooth out traffic spikes",
+    "explanation": "A queue buffers work so a slow or temporarily-down consumer doesn't block the producer, and lets each side scale independently -- at the cost of added complexity and (for most queues) eventual rather than immediate delivery."
+  },
+  {
+    "id": "sysd-008",
+    "topic": "System Design Basics",
+    "type": "short_answer",
+    "difficulty": "Medium",
+    "question": "What is horizontal scaling versus vertical scaling, and what's a downside of each?",
+    "answer": "Vertical scaling means adding more resources (CPU, RAM) to a single machine -- simple, but has a hard ceiling (the biggest machine available) and that machine is a single point of failure. Horizontal scaling means adding more machines and distributing load across them (usually via a load balancer) -- it scales further and improves fault tolerance, but adds complexity: state has to be shared or replicated across machines, and the application has to be designed to run as multiple stateless (or carefully-synchronized) instances.",
+    "explanation": "Most large-scale systems eventually have to scale horizontally since a single machine's capacity is fundamentally bounded, but it forces harder design decisions around shared state, session handling, and data consistency."
+  },
+  {
+    "id": "sysd-009",
+    "topic": "System Design Basics",
+    "type": "short_answer",
+    "difficulty": "Hard",
+    "question": "What is a cache-aside (lazy-loading) caching strategy, and what problem can occur if the cache and the database fall out of sync?",
+    "answer": "In cache-aside, the application checks the cache first on a read; on a miss, it reads from the database and populates the cache for next time. Writes typically update the database and either invalidate or update the corresponding cache entry. The risk is a race condition or a missed invalidation leaving stale data in the cache after the underlying database has changed -- clients then read outdated values until the cache entry expires (TTL) or is explicitly invalidated again.",
+    "explanation": "This staleness risk is why cache invalidation is famously called one of the two hard problems in computer science -- strategies like short TTLs, write-through caching, or event-driven invalidation each trade off complexity against staleness window."
+  },
+  {
+    "id": "oop-008",
+    "topic": "OOP",
+    "type": "mcq",
+    "difficulty": "Easy",
+    "question": "What does 'encapsulation' mean in object-oriented programming?",
+    "options": [
+      "Bundling data and the methods that operate on it into a single unit, restricting direct access to some of it",
+      "Allowing a class to inherit from multiple parent classes",
+      "Giving a method the same name in multiple classes with different behavior",
+      "Converting an object to a string representation"
+    ],
+    "answer": "Bundling data and the methods that operate on it into a single unit, restricting direct access to some of it",
+    "explanation": "Encapsulation hides an object's internal state behind a controlled interface (e.g. private fields with public getters/setters), so the internal representation can change without breaking code that depends on the object."
+  },
+  {
+    "id": "oop-009",
+    "topic": "OOP",
+    "type": "mcq",
+    "difficulty": "Medium",
+    "question": "What's the key difference between an abstract class and an interface (in languages that distinguish the two, like Java)?",
+    "options": [
+      "An abstract class can have constructors and some implemented methods; a traditional interface historically could not",
+      "An interface can have instance fields with state; an abstract class cannot",
+      "A class can extend multiple abstract classes but only implement one interface",
+      "There is no meaningful difference in any language"
+    ],
+    "answer": "An abstract class can have constructors and some implemented methods; a traditional interface historically could not",
+    "explanation": "An abstract class supports partial implementation and constructors and is single-inherited; a classic interface is a pure contract (all method signatures, no state) and a class can implement several of them -- though modern Java's default methods have blurred this line somewhat."
+  },
+  {
+    "id": "oop-010",
+    "topic": "OOP",
+    "type": "short_answer",
+    "difficulty": "Medium",
+    "question": "What is the Liskov Substitution Principle, and give a simple example of violating it?",
+    "answer": "The Liskov Substitution Principle states that objects of a subclass should be replaceable wherever the superclass is expected, without breaking the program's correctness -- a subclass shouldn't strengthen preconditions or weaken postconditions the caller relies on. A classic violation: making Square extend Rectangle and overriding setWidth/setHeight to keep both sides equal -- code that expects a Rectangle to let width and height vary independently would silently misbehave when handed a Square.",
+    "explanation": "This is the 'L' in SOLID; violations often surface as surprising bugs when code written against a base type gets an unexpected subtype at runtime."
+  },
+  {
+    "id": "dbms-008",
+    "topic": "DBMS",
+    "type": "mcq",
+    "difficulty": "Easy",
+    "question": "Which SQL clause is used to filter groups after a GROUP BY, as opposed to filtering individual rows?",
+    "options": [
+      "WHERE",
+      "HAVING",
+      "FILTER",
+      "ORDER BY"
+    ],
+    "answer": "HAVING",
+    "explanation": "WHERE filters rows before grouping happens; HAVING filters the resulting groups (e.g. \"HAVING COUNT(*) > 5\"), since aggregate values like COUNT don't exist yet at the WHERE stage."
+  },
+  {
+    "id": "dbms-009",
+    "topic": "DBMS",
+    "type": "mcq",
+    "difficulty": "Medium",
+    "question": "What does the 'Isolation' in ACID guarantee for database transactions?",
+    "options": [
+      "Concurrently executing transactions produce the same result as if they ran one after another",
+      "A transaction either fully completes or has no effect at all",
+      "Committed data survives a crash",
+      "All constraints and data types are always valid"
+    ],
+    "answer": "Concurrently executing transactions produce the same result as if they ran one after another",
+    "explanation": "Isolation prevents transactions from seeing each other's partial, uncommitted changes. Different isolation levels (Read Committed, Repeatable Read, Serializable) trade off strictness against concurrency performance."
+  },
+  {
+    "id": "dbms-010",
+    "topic": "DBMS",
+    "type": "short_answer",
+    "difficulty": "Medium",
+    "question": "What is database normalization, and what's a practical downside of over-normalizing a schema?",
+    "answer": "Normalization organizes a schema to reduce data redundancy and avoid update anomalies, typically by splitting data into related tables via normal forms (1NF, 2NF, 3NF, etc.), each linked by foreign keys. The downside is that heavily normalized schemas require more JOINs to reconstruct a full picture of an entity, which can hurt read performance on large tables -- this is why many real systems deliberately denormalize (duplicate some data) in specific places to speed up common read-heavy queries.",
+    "explanation": "It's a classic space/redundancy vs. query-performance trade-off; the right amount of normalization depends heavily on the read/write pattern of the application."
+  },
+  {
+    "id": "os-008",
+    "topic": "Operating Systems",
+    "type": "mcq",
+    "difficulty": "Easy",
+    "question": "What is a 'context switch' in an operating system?",
+    "options": [
+      "Saving the state of a currently running process/thread and loading the state of another so it can run",
+      "Switching a program from user mode to kernel mode only",
+      "Moving a process's data from RAM to disk",
+      "Restarting the operating system"
+    ],
+    "answer": "Saving the state of a currently running process/thread and loading the state of another so it can run",
+    "explanation": "Context switches are how a single CPU core gives the illusion of running many processes 'simultaneously' -- but they aren't free; the save/restore work and cache effects are pure overhead, which is one reason excessive switching hurts throughput."
+  },
+  {
+    "id": "os-009",
+    "topic": "Operating Systems",
+    "type": "mcq",
+    "difficulty": "Medium",
+    "question": "What distinguishes a mutex from a semaphore?",
+    "options": [
+      "A mutex is a binary lock owned by the thread that locked it; a semaphore is a counter that can permit multiple holders and isn't tied to a specific owner",
+      "A semaphore can only ever have a value of 0 or 1",
+      "A mutex allows multiple threads to hold it simultaneously",
+      "There is no real difference -- the terms are interchangeable in every context"
+    ],
+    "answer": "A mutex is a binary lock owned by the thread that locked it; a semaphore is a counter that can permit multiple holders and isn't tied to a specific owner",
+    "explanation": "A mutex protects a single critical section from concurrent access by exactly one thread (and typically only the owner can unlock it); a counting semaphore generalizes this to allow up to N concurrent holders, useful for limiting access to a pool of N identical resources."
+  },
+  {
+    "id": "os-010",
+    "topic": "Operating Systems",
+    "type": "short_answer",
+    "difficulty": "Medium",
+    "question": "What is thrashing, and what typically causes it?",
+    "answer": "Thrashing is when a system spends most of its time swapping pages in and out of memory rather than doing useful work, because the total working set of active processes exceeds available physical RAM. Each process keeps causing page faults, the OS keeps evicting pages other processes still need, and overall throughput collapses even though the CPU and disk both look busy.",
+    "explanation": "The usual fixes are reducing the degree of multiprogramming (running fewer processes at once), adding more RAM, or using a working-set-aware scheduling/replacement policy."
+  },
+  {
+    "id": "cn-008",
+    "topic": "Computer Networks",
+    "type": "mcq",
+    "difficulty": "Easy",
+    "question": "Which layer of the OSI model is responsible for routing packets between different networks?",
+    "options": [
+      "Data Link Layer",
+      "Network Layer",
+      "Transport Layer",
+      "Session Layer"
+    ],
+    "answer": "Network Layer",
+    "explanation": "The Network Layer (Layer 3) handles logical addressing (IP addresses) and routing packets across multiple networks; the Data Link Layer only handles delivery within a single local network segment."
+  },
+  {
+    "id": "cn-009",
+    "topic": "Computer Networks",
+    "type": "mcq",
+    "difficulty": "Medium",
+    "question": "What is the main purpose of the three-way handshake in TCP?",
+    "options": [
+      "To reliably establish a connection and synchronize initial sequence numbers between client and server",
+      "To encrypt all data sent over the connection",
+      "To compress data before transmission",
+      "To discover the shortest network route between hosts"
+    ],
+    "answer": "To reliably establish a connection and synchronize initial sequence numbers between client and server",
+    "explanation": "The SYN, SYN-ACK, ACK exchange lets both sides confirm they can send and receive, and agree on starting sequence numbers used to detect lost/out-of-order/duplicate segments for the rest of the connection."
+  },
+  {
+    "id": "cn-010",
+    "topic": "Computer Networks",
+    "type": "short_answer",
+    "difficulty": "Medium",
+    "question": "What is the difference between TCP and UDP, and give one scenario where UDP's trade-offs are actually preferable?",
+    "answer": "TCP is connection-oriented, reliable, and ordered -- it retransmits lost packets and guarantees in-order delivery, at the cost of extra overhead and latency (handshakes, acknowledgments, retransmission delays). UDP is connectionless and makes no delivery or ordering guarantees, but has much lower overhead and latency. UDP is preferable for real-time applications like video calls, live streaming, or online multiplayer games, where a dropped or late packet is better skipped than retransmitted (retransmitting an old video frame after the moment has passed is worse than just showing a glitch and moving on).",
+    "explanation": "This trade-off -- guaranteed correctness vs. minimum latency -- shows up constantly in networked system design, not just at the transport layer."
+  },
+  {
+    "id": "apt-008",
+    "topic": "Aptitude",
+    "type": "short_answer",
+    "difficulty": "Easy",
+    "question": "A train 150 meters long crosses a platform 100 meters long in 25 seconds. What is the train's speed in km/h?",
+    "answer": "36 km/h. The train covers its own length plus the platform's length: 150 + 100 = 250 meters in 25 seconds, giving a speed of 250/25 = 10 m/s. Converting: 10 m/s x (18/5) = 36 km/h.",
+    "explanation": "The key insight is that 'crossing a platform' means the train travels its own length plus the platform's length, not just the platform's length alone."
+  },
+  {
+    "id": "apt-009",
+    "topic": "Aptitude",
+    "type": "mcq",
+    "difficulty": "Medium",
+    "question": "If the ratio of two numbers is 3:5 and their sum is 96, what is the larger number?",
+    "options": [
+      "36",
+      "48",
+      "60",
+      "72"
+    ],
+    "answer": "60",
+    "explanation": "Let the numbers be 3x and 5x; 3x + 5x = 96 gives 8x = 96, so x = 12. The larger number is 5x = 60."
+  },
+  {
+    "id": "apt-010",
+    "topic": "Aptitude",
+    "type": "short_answer",
+    "difficulty": "Medium",
+    "question": "A sum of money doubles itself in 8 years at simple interest. In how many years will it become 4 times itself, at the same rate?",
+    "answer": "24 years. If the principal is P, doubling to 2P means the interest earned in 8 years equals P itself, so the annual simple interest rate produces P/8 per year. To reach 4P, the money needs to earn an additional 2P in interest (going from P to 3P in interest total), which takes 2P / (P/8) = 16 more years, i.e. 8 + 16 = 24 years total.",
+    "explanation": "With simple interest, interest accrues linearly, so the interest needed to triple the principal (from P to 4P total, i.e. 3P in interest) simply takes 3x as long as the interest needed to double it (P in interest) -- 3 x 8 = 24 years."
+  },
+  {
+    "id": "hr-008",
+    "topic": "HR / Behavioral",
+    "type": "short_answer",
+    "difficulty": "Easy",
+    "question": "\"Tell me about a time you disagreed with a team member. How did you handle it?\" -- what should a strong answer focus on?",
+    "answer": "A strong answer uses a concrete, specific example (not a hypothetical), briefly sets the context, explains the disagreement objectively without disparaging the other person, focuses on how you communicated your perspective and genuinely listened to theirs, and ends with the resolution and what you learned -- ideally showing the outcome was better because of the discussion, not just that you 'won' the disagreement.",
+    "explanation": "Interviewers use this question to gauge communication style and emotional maturity under disagreement, not to find out who's 'right' more often -- badmouthing a former colleague is a common way candidates unintentionally fail this question."
+  },
+  {
+    "id": "hr-009",
+    "topic": "HR / Behavioral",
+    "type": "short_answer",
+    "difficulty": "Medium",
+    "question": "\"Where do you see yourself in five years?\" -- what's a common mistake candidates make when answering this, and what should they do instead?",
+    "answer": "A common mistake is giving an overly rigid, specific answer (\"I want your exact job title by year 3\") that sounds presumptuous, or an overly vague one (\"I don't know, wherever life takes me\") that signals no direction. A better approach connects genuine personal growth goals (deepening a skill area, taking on more ownership/scope, growing into a specific type of role) to how this position and company could realistically help get there, showing both ambition and that the candidate has actually thought about the role's trajectory.",
+    "explanation": "This question is really probing for direction and self-awareness, and secondarily whether the candidate's goals are plausibly compatible with sticking around and growing at the company."
+  },
+  {
+    "id": "hr-010",
+    "topic": "HR / Behavioral",
+    "type": "short_answer",
+    "difficulty": "Medium",
+    "question": "Tell me about a time you took initiative on something outside your assigned responsibilities. What happened?",
+    "answer": "A strong answer picks a real, moderately-scoped example (not something trivial or something that overstepped a teammate's ownership), explains what gap or opportunity the candidate noticed, the concrete action they took without being asked, and the measurable outcome or impact -- while acknowledging any risk or downside they considered before acting.",
+    "explanation": "Interviewers use this to gauge proactivity and ownership beyond a narrow job description, which is a strong predictor of how someone will perform once ramped up on a real team."
+  },
+  {
+    "id": "ds-010",
+    "topic": "Data Structures",
+    "type": "short_answer",
+    "difficulty": "Medium",
+    "question": "What is a trie (prefix tree), and what problem does it solve better than a hash set of strings?",
+    "answer": "A trie is a tree where each edge represents one character, and any path from the root spells out a stored string (or prefix). It's better than a hash set for prefix-based operations -- e.g. 'list all words starting with \"pre\"' or autocomplete -- because a hash set can only answer exact-membership queries in O(1) but has no way to efficiently enumerate by prefix, whereas a trie walks directly to the prefix's node in O(length of prefix) and then explores just that subtree.",
+    "explanation": "Tries trade extra memory (one node per character, potentially with up to 26+ child pointers each) for fast prefix operations, which is why they show up in autocomplete, spell-checkers, and IP routing tables (as a bitwise trie)."
+  },
+  {
+    "id": "sysd-010",
+    "topic": "System Design Basics",
+    "type": "short_answer",
+    "difficulty": "Medium",
+    "question": "What is database sharding, and what's a common challenge it introduces?",
+    "answer": "Sharding splits a single logical database into multiple physical partitions (shards), each holding a subset of the data (e.g. by hashing or ranging on a shard key like user_id), so no single database instance has to hold or serve the entire dataset -- enabling horizontal scaling of storage and write throughput beyond what one machine can handle. A common challenge is that queries spanning multiple shards (e.g. joins or aggregations across shard keys) become much more expensive or require application-level fan-out, and re-sharding (rebalancing data when a shard grows too large) is operationally complex.",
+    "explanation": "Choosing a good shard key up front matters enormously -- a poor choice (e.g. one that creates a 'hot' shard receiving disproportionate traffic) can undermine most of sharding's benefit."
+  }
+]

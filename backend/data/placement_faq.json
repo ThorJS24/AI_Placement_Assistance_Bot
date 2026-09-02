@@ -1,0 +1,62 @@
+[
+  {
+    "question": "How does campus placement usually work?",
+    "answer": "A typical process has these stages in order: (1) pre-placement talk by the company, (2) an online assessment (aptitude + coding), (3) technical interview round(s), (4) an HR / behavioral round, and (5) an offer. Some companies skip or reorder stages, and product-based companies often add a system design or take-home assignment round for senior roles."
+  },
+  {
+    "question": "What should be on a fresher's resume?",
+    "answer": "One page, reverse-chronological, with: contact info, a 2-line summary, education (with CGPA), technical skills grouped by category, 2-4 projects with measurable impact, internships (if any), and certifications. Avoid an 'Objective' paragraph, a photo, or font sizes below 10pt — most companies scan resumes with ATS software first."
+  },
+  {
+    "question": "What is an ATS and why does it matter?",
+    "answer": "An Applicant Tracking System (ATS) is software recruiters use to automatically scan and rank resumes before a human ever sees them. To pass it: use standard section headings (Experience, Education, Skills), avoid tables/images/text boxes for critical info, use a standard font, and mirror keywords from the job description."
+  },
+  {
+    "question": "How should I prepare for a technical (DSA) interview round?",
+    "answer": "Focus on patterns, not memorizing solutions: arrays/strings/two-pointers, hashing, recursion, sorting/searching, trees & graphs (BFS/DFS), and dynamic programming. Practice explaining your approach out loud, state time/space complexity, and always test your solution on an example before saying you're done."
+  },
+  {
+    "question": "What is the STAR method for behavioral/HR interview answers?",
+    "answer": "STAR = Situation, Task, Action, Result. Describe the context briefly, the specific task you owned, the concrete actions YOU took, and a measurable result or lesson learned. It keeps behavioral answers structured instead of rambling, and interviewers are explicitly trained to listen for these four parts."
+  },
+  {
+    "question": "How do I answer 'Tell me about yourself'?",
+    "answer": "Keep it under 90 seconds, in 3 parts: (1) who you are academically/professionally in one line, (2) 2-3 relevant experiences/projects tied to the role you're applying for, (3) why you're excited about this specific role/company. Do not just re-read your resume line by line."
+  },
+  {
+    "question": "What's a good way to handle a coding question I don't immediately know?",
+    "answer": "Think out loud: restate the problem, ask clarifying questions about constraints/edge cases, propose a brute-force approach first, analyze its complexity, then discuss how to optimize. Interviewers weight communication and approach heavily — a working brute force beats silence."
+  },
+  {
+    "question": "How important are projects for a fresher with no work experience?",
+    "answer": "Very important — projects are often the main technical talking point for freshers. 2-3 solid projects (ideally with a live demo/GitHub link) that show you can build something end-to-end matter more than a long list of tutorials you followed."
+  },
+  {
+    "question": "What should I ask the interviewer at the end?",
+    "answer": "Ask genuine questions: about the team's tech stack, what a typical first 90 days looks like, how performance is evaluated, or what they enjoy about working there. Avoid asking about salary/leave policy in a technical round — save that for HR."
+  },
+  {
+    "question": "How do I calm down before an interview?",
+    "answer": "Do a 5-10 minute warm-up: review your resume bullet points out loud, do 2-3 easy practice questions to get in the flow, and use slow breathing (4 seconds in, 6 seconds out) for a couple of minutes beforehand. Arriving/logging in 10 minutes early also reduces last-minute panic."
+  },
+  {
+    "question": "What is the difference between a technical round and a managerial round?",
+    "answer": "A technical round evaluates coding/CS fundamentals/problem-solving with an engineer. A managerial round (common at product companies) evaluates ownership, teamwork, conflict handling, and how you prioritize — usually with a team lead or manager, using behavioral questions."
+  },
+  {
+    "question": "Should I list every programming language I've ever touched on my resume?",
+    "answer": "No — list languages/tools you can confidently discuss and code in during an interview. A shorter, honest skills list you can defend beats a long list that invites a question you can't answer."
+  },
+  {
+    "question": "How many DSA problems should I practice before placements?",
+    "answer": "There's no magic number, but a common, well-tested benchmark is roughly 150-250 well-chosen problems covering all major patterns (not just quantity) — quality of understanding per pattern matters far more than raw count."
+  },
+  {
+    "question": "What is a good structure for explaining a project in an interview?",
+    "answer": "Problem → your specific role/contribution → key technical decisions and why → challenges faced and how you solved them → measurable outcome/impact. Be ready to go 2-3 levels deep into any technology you list for that project."
+  },
+  {
+    "question": "What's the difference between a resume and a CV?",
+    "answer": "A resume is a concise (usually 1-page for freshers) summary tailored to a specific job. A CV (Curriculum Vitae) is longer and more comprehensive, typically used for academic/research positions, listing publications, coursework, and every experience in detail."
+  }
+]
