@@ -38,7 +38,7 @@ Message = dict  # {"role": "system"|"user"|"assistant", "content": str}
 # Shared anti-cliché guardrail, referenced by every prompt-writing module
 # (resume builder, roadmap generator, mock interview, technical interview).
 # Small/local models in particular default to generic corporate-brochure
-# voice unless explicitly told not to — this is the single biggest lever for
+# voice unless explicitly told not to - this is the single biggest lever for
 # making generated content read as specific and earned rather than
 # templated AI filler, so it's worth spelling out concretely rather than a
 # vague "sound natural" instruction.
@@ -48,10 +48,10 @@ ANTI_SLOP_INSTRUCTION = (
     "'dynamic team player', 'leverage' (say 'use'), 'utilize' (say 'use'), 'synergy', 'cutting-edge', "
     "'game-changer', 'unlock your potential', 'seamless', 'robust solution', 'delve into', "
     "'furthermore'/'moreover' as sentence openers, 'holistic', or any vague corporate buzzword. "
-    "Do NOT use em dashes (—) anywhere. Use a period, comma, or parentheses instead. "
+    "Do NOT use em dashes (-) anywhere. Use a period, comma, or parentheses instead. "
     "Every sentence should say something specific and checkable, not a platitude that could apply to anyone. "
     "Never invent or assume facts, examples, or details that were not actually provided in the input "
-    "(a name, a project, a specific claim, an answer content) — if there is not enough real information to "
+    "(a name, a project, a specific claim, an answer content) - if there is not enough real information to "
     "say something specific, say less rather than filling the gap with a plausible-sounding but made-up detail."
 )
 
@@ -76,12 +76,12 @@ class EngineStatus:
 # Health checks (used by the Settings page and by the auto-fallback logic)
 # ---------------------------------------------------------------------------
 #
-# These are UI-facing pings, not the real generation call — they use a short,
+# These are UI-facing pings, not the real generation call - they use a short,
 # dedicated timeout (STATUS_CHECK_TIMEOUT_SECS) so a down/unreachable engine
 # fails fast instead of stalling page loads for the full generation timeout.
 # The two checks also run concurrently (not one-after-the-other), and the
 # combined result is cached briefly, since the Settings page and the app
-# shell both ping this on load — no reason to redo two network round trips
+# shell both ping this on load - no reason to redo two network round trips
 # every single time within the same few seconds.
 
 STATUS_CHECK_TIMEOUT_SECS = 2.5
@@ -134,7 +134,7 @@ def _pick_engine(backend: str, ollama: EngineStatus, groq: EngineStatus) -> str:
 def engine_status(force: bool = False) -> dict:
     """Run both health checks concurrently and return a cached, combined
     result: {"ollama": EngineStatus, "groq": EngineStatus, "active": str}.
-    This is the one function the /settings/status endpoint should call —
+    This is the one function the /settings/status endpoint should call -
     it replaces 3 sequential network round trips (check_ollama, check_groq,
     then check_groq again inside the old active_engine) with at most 2
     concurrent ones, reused for a few seconds across repeated calls."""
@@ -265,7 +265,7 @@ def stream_chat(
 
 
 def chat(messages: list[Message], temperature: float = 0.7, max_tokens: int = 1024) -> str:
-    """Non-streaming convenience wrapper — collects the full response as one string."""
+    """Non-streaming convenience wrapper - collects the full response as one string."""
     return "".join(stream_chat(messages, temperature=temperature, max_tokens=max_tokens))
 
 
@@ -318,7 +318,7 @@ def chat_json(messages: list[Message], temperature: float = 0.3, max_tokens: int
     Ask the model for strict JSON and parse it defensively.
 
     Small/local models routinely wrap JSON in markdown fences, add stray
-    text, use smart quotes, or leave a trailing comma — this cleans up and
+    text, use smart quotes, or leave a trailing comma - this cleans up and
     repairs those cases. If it still won't parse, the model gets one chance
     to fix its own broken output before we give up with a clear error.
     """
@@ -334,7 +334,7 @@ def chat_json(messages: list[Message], temperature: float = 0.3, max_tokens: int
             "role": "user",
             "content": (
                 "That was not valid JSON and could not be parsed. Return ONLY the corrected "
-                "JSON object — no markdown fences, no extra commentary, and make sure every "
+                "JSON object - no markdown fences, no extra commentary, and make sure every "
                 "quote inside a string value is properly escaped."
             ),
         },
@@ -346,6 +346,6 @@ def chat_json(messages: list[Message], temperature: float = 0.3, max_tokens: int
 
     raise LLMJsonError(
         "The AI engine's reply couldn't be understood (invalid JSON), even after asking it to "
-        "correct itself. This is more common with smaller local models — try again, or switch "
+        "correct itself. This is more common with smaller local models - try again, or switch "
         "to Groq in Settings for more reliable structured output."
     )

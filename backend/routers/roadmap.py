@@ -95,7 +95,7 @@ def download_roadmap_image(filename: str):
 @router.get("/image/ai-available")
 def ai_image_available():
     """Whether the optional AI-illustrated image extra is configured on
-    this deployment (see .env.example's IMAGE_GEN_API_KEY) — the frontend
+    this deployment (see .env.example's IMAGE_GEN_API_KEY) - the frontend
     uses this to decide whether to even show that option."""
     return {"available": roadmap_ai_image.is_configured()}
 

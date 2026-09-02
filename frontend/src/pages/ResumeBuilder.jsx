@@ -106,7 +106,7 @@ function BuildTab() {
   const [savedListVersion, setSavedListVersion] = useState(0);
 
   // Warn before an accidental tab close / reload while there's meaningful
-  // unsaved form content — this form can get long (multiple experience/
+  // unsaved form content - this form can get long (multiple experience/
   // project entries), and closing the tab used to lose it silently.
   const isDirty = !result && (
     form.full_name.trim() || form.target_role.trim() || form.skillsText.trim() ||
@@ -170,7 +170,7 @@ function BuildTab() {
 
       {loadedFrom && (
         <div className="flex items-center justify-between rounded-xl bg-brand-50 px-4 py-3 text-sm text-brand-900">
-          <span>✏️ Editing a saved draft — generating again will save it as a new version.</span>
+          <span>✏️ Editing a saved draft - generating again will save it as a new version.</span>
           <button className="btn-ghost text-brand-700" onClick={startNew}>Start a blank resume instead</button>
         </div>
       )}
@@ -311,7 +311,7 @@ function SavedResumes({ refreshKey, onLoad, onDeleted }) {
   };
 
   const handleDelete = async (row) => {
-    if (!window.confirm(`Delete "${row.full_name || "Untitled"} — ${row.target_role || "no target role set"}"? This can't be undone.`)) {
+    if (!window.confirm(`Delete "${row.full_name || "Untitled"} - ${row.target_role || "no target role set"}"? This can't be undone.`)) {
       return;
     }
     try {
@@ -349,7 +349,7 @@ function SavedResumes({ refreshKey, onLoad, onDeleted }) {
           {resumes.map((r) => (
             <div key={r.id} className="flex flex-wrap items-center justify-between gap-2 rounded-xl border border-slate-200 dark:border-slate-700 px-3.5 py-2.5">
               <div className="min-w-0">
-                <p className="truncate text-sm font-semibold text-slate-800 dark:text-slate-200">{r.full_name || "Untitled"} — {r.target_role || "no target role set"}</p>
+                <p className="truncate text-sm font-semibold text-slate-800 dark:text-slate-200">{r.full_name || "Untitled"} - {r.target_role || "no target role set"}</p>
                 <p className="text-xs text-slate-400 dark:text-slate-500">{new Date(r.created_at * 1000).toLocaleString()}</p>
               </div>
               <div className="flex shrink-0 gap-2">
@@ -392,7 +392,7 @@ function ListSection({ title, items, setItems, makeEmpty, renderItem }) {
             {renderItem(item, idx)}
           </div>
         ))}
-        {items.length === 0 && <p className="text-sm text-slate-400 dark:text-slate-500">No entries yet — click "Add entry" to add one.</p>}
+        {items.length === 0 && <p className="text-sm text-slate-400 dark:text-slate-500">No entries yet - click "Add entry" to add one.</p>}
       </div>
     </div>
   );

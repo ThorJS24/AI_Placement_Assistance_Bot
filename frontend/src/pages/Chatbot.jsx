@@ -87,7 +87,7 @@ export default function Chatbot() {
   const setFeedback = (messageId, feedback) => {
     setMessages((prev) => prev.map((m) => (m.id === messageId ? { ...m, feedback } : m)));
     apiPatch(`/chat/message/${messageId}/feedback`, { feedback }).catch(() => {
-      // best-effort — feedback isn't critical path, don't interrupt the chat over it
+      // best-effort - feedback isn't critical path, don't interrupt the chat over it
     });
   };
 
@@ -130,7 +130,7 @@ export default function Chatbot() {
       );
     } catch (err) {
       if (err?.name === "AbortError") {
-        // user pressed "stop generating" — keep whatever streamed so far
+        // user pressed "stop generating" - keep whatever streamed so far
       } else {
         const msg = err instanceof ApiError ? err.message : "Something went wrong reaching the AI engine.";
         setMessages((prev) => {
@@ -326,7 +326,7 @@ export default function Chatbot() {
             )}
           </form>
           <p className="mt-1.5 text-center text-[11px] text-slate-400 dark:text-slate-500">
-            AI-generated guidance can be imperfect — verify important placement details independently.
+            AI-generated guidance can be imperfect - verify important placement details independently.
           </p>
         </div>
       </div>

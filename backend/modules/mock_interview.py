@@ -6,7 +6,7 @@ from core.llm import ANTI_SLOP_INSTRUCTION
 
 SYSTEM_PROMPT = """You are an experienced, professional technical interviewer conducting a mock \
 placement interview. Ask realistic questions (mix of behavioral and role-relevant technical/conceptual \
-questions — no live coding, this is a spoken round), one at a time, and adapt your next question based \
+questions - no live coding, this is a spoken round), one at a time, and adapt your next question based \
 on the candidate's previous answer, the way a real interviewer would (ask a natural follow-up sometimes, \
 move to a new topic other times). Stay encouraging but professional; do not just say 'good job' to everything."""
 
@@ -30,7 +30,7 @@ def _profile_line(profile: dict | None) -> str:
 def generate_first_question(role: str, level: str, profile: dict | None = None) -> str:
     prompt = (
         f"Start a mock interview for the role '{role}' with a candidate whose experience level is: "
-        f"{level or 'fresher / entry-level'}. Ask ONE opening question — something like a warm-up "
+        f"{level or 'fresher / entry-level'}. Ask ONE opening question - something like a warm-up "
         "('Tell me about yourself' style) or a role-relevant opener. "
         f"{_profile_line(profile)}"
         "Return ONLY the question text, nothing else, no numbering, no quotes."
@@ -40,11 +40,11 @@ def generate_first_question(role: str, level: str, profile: dict | None = None) 
 
 def stream_first_question(role: str, level: str, profile: dict | None = None):
     """Token generator variant of generate_first_question, for the live-mode
-    streaming start endpoint — lets TTS begin on the opening question's first
+    streaming start endpoint - lets TTS begin on the opening question's first
     sentence before the rest of it has finished generating."""
     prompt = (
         f"Start a mock interview for the role '{role}' with a candidate whose experience level is: "
-        f"{level or 'fresher / entry-level'}. Ask ONE opening question — something like a warm-up "
+        f"{level or 'fresher / entry-level'}. Ask ONE opening question - something like a warm-up "
         "('Tell me about yourself' style) or a role-relevant opener. "
         f"{_profile_line(profile)}"
         "Return ONLY the question text, nothing else, no numbering, no quotes."
@@ -53,7 +53,7 @@ def stream_first_question(role: str, level: str, profile: dict | None = None):
 
 
 def generate_next_turn(role: str, level: str, qna_so_far: list[dict], last_answer: str, profile: dict | None = None) -> dict:
-    """Return {"feedback": str, "next_question": str} — brief feedback on the last answer
+    """Return {"feedback": str, "next_question": str} - brief feedback on the last answer
     plus the next interview question, generated together for context efficiency."""
     history_text = "\n".join(
         f"Q{i+1}: {turn['question']}\nA{i+1}: {turn['answer']}" for i, turn in enumerate(qna_so_far)
@@ -68,8 +68,8 @@ The candidate's latest answer was: "{last_answer}"
 
 Return ONLY a JSON object:
 {{
-  "feedback": "<1-2 sentence constructive, specific feedback on the LATEST answer only — mention something concrete they said, not generic praise. If the answer was thin, vague, or dodged the question, say so plainly instead of softening it.>",
-  "next_question": "<the next interview question — either a natural follow-up on their last answer, or a fresh question covering a new relevant topic/behavioral angle>"
+  "feedback": "<1-2 sentence constructive, specific feedback on the LATEST answer only - mention something concrete they said, not generic praise. If the answer was thin, vague, or dodged the question, say so plainly instead of softening it.>",
+  "next_question": "<the next interview question - either a natural follow-up on their last answer, or a fresh question covering a new relevant topic/behavioral angle>"
 }}
 {ANTI_SLOP_INSTRUCTION}"""
     return llm.chat_json(llm.system_user(SYSTEM_PROMPT, prompt), temperature=0.7, max_tokens=400)
@@ -83,7 +83,7 @@ def stream_next_turn(role: str, level: str, qna_so_far: list[dict], last_answer:
     """Token generator for the live-mode streaming endpoint (routers/mock_interview.py's
     /next/stream). Same content as generate_next_turn, but asks for a plain
     two-section format instead of one JSON blob, since a JSON object can't be
-    usefully parsed until the whole thing has arrived — this format lets the
+    usefully parsed until the whole thing has arrived - this format lets the
     caller start acting on the feedback section, then the question section,
     as soon as each one's text (and, for the question, each full sentence)
     is available, instead of waiting for the entire response."""
@@ -99,8 +99,8 @@ Interview so far:
 The candidate's latest answer was: "{last_answer}"
 
 Respond in EXACTLY this plain-text format, nothing else before or after (no JSON, no markdown, no headers):
-{NEXT_TURN_STREAM_MARKER_FEEDBACK} <1-2 sentence constructive, specific feedback on the LATEST answer only — mention something concrete they said, not generic praise. If the answer was thin, vague, or dodged the question, say so plainly instead of softening it.>
-{NEXT_TURN_STREAM_MARKER_QUESTION} <the next interview question — either a natural follow-up on their last answer, or a fresh question covering a new relevant topic/behavioral angle>
+{NEXT_TURN_STREAM_MARKER_FEEDBACK} <1-2 sentence constructive, specific feedback on the LATEST answer only - mention something concrete they said, not generic praise. If the answer was thin, vague, or dodged the question, say so plainly instead of softening it.>
+{NEXT_TURN_STREAM_MARKER_QUESTION} <the next interview question - either a natural follow-up on their last answer, or a fresh question covering a new relevant topic/behavioral angle>
 {ANTI_SLOP_INSTRUCTION}"""
     yield from llm.stream_chat(llm.system_user(SYSTEM_PROMPT, prompt), temperature=0.7, max_tokens=400)
 
@@ -113,29 +113,29 @@ Transcript:
 
 Filler-word usage detected across all answers (rough automatic count): {filler_summary}
 
-Score honestly across the FULL 0-100 range — do not default every candidate into a comfortable 60-80 band. \
+Score honestly across the FULL 0-100 range - do not default every candidate into a comfortable 60-80 band. \
 A candidate who gave short, vague, or off-topic answers should score below 40 on the relevant dimension. \
 A candidate who was consistently specific, structured, and technically sound should score above 85. \
-Most real candidates are uneven — it's normal and expected for different dimensions to land far apart \
+Most real candidates are uneven - it's normal and expected for different dimensions to land far apart \
 (e.g. strong content_depth but weak structure), so score each dimension independently on its own merits.
 
 Return ONLY a JSON object with exactly this shape:
 {{
   "overall_score": <integer 0-100>,
-  "communication_score": <integer 0-100, clarity/conciseness/verbal habits — this will be blended with a real measured filler-word ratio afterward, so judge it primarily on clarity and structure of speech, not just filler words>,
+  "communication_score": <integer 0-100, clarity/conciseness/verbal habits - this will be blended with a real measured filler-word ratio afterward, so judge it primarily on clarity and structure of speech, not just filler words>,
   "content_depth_score": <integer 0-100>,
   "structure_score": <integer 0-100, e.g. STAR-method usage for behavioral answers>,
-  "strengths": [<3-5 short strings, specific to what they actually said — quote or paraphrase a specific moment, not a vague trait>],
-  "areas_to_improve": [<3-5 short strings, specific and actionable — say what to do differently, not just what was wrong>],
+  "strengths": [<3-5 short strings, specific to what they actually said - quote or paraphrase a specific moment, not a vague trait>],
+  "areas_to_improve": [<3-5 short strings, specific and actionable - say what to do differently, not just what was wrong>],
   "filler_word_note": "<1 sentence commenting on filler-word usage using the count provided, or noting it was minimal>",
-  "summary": "<3-4 sentence overall summary of the performance, encouraging but honest — do not soften a genuinely weak performance into false positivity>"
+  "summary": "<3-4 sentence overall summary of the performance, encouraging but honest - do not soften a genuinely weak performance into false positivity>"
 }}
 {anti_slop}"""
 
 
 def _insufficient_data_report(reason: str) -> dict:
     """Returned instead of calling the LLM when there's no real transcript to
-    grade — e.g. the session ended (proctoring violation, early exit) before
+    grade - e.g. the session ended (proctoring violation, early exit) before
     the candidate answered anything. Scoring or writing "strengths" off an
     empty or near-empty transcript would just be the model inventing plausible-
     sounding content that was never actually said, which is worse than no
@@ -169,7 +169,7 @@ def generate_final_report(
         f"Q{i+1}: {t['question']}\nA{i+1}: {t['answer']}" for i, t in enumerate(qna)
     )
     partial_note = (
-        f"\nNote: this session ended early after only {len(real_answers)} question(s) were answered — "
+        f"\nNote: this session ended early after only {len(real_answers)} question(s) were answered - "
         "score and comment ONLY on what was actually said above. Do not invent additional strengths, "
         "topics, or examples the candidate never mentioned; if there's too little to judge a dimension "
         "fairly, score it conservatively low rather than guessing generously.\n"

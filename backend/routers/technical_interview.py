@@ -26,7 +26,7 @@ def dsa_topics():
 
 @router.get("/dsa/companies")
 def dsa_companies():
-    """Distinct companies tagged in the DSA bank (e.g. TCS, Amazon) — powers
+    """Distinct companies tagged in the DSA bank (e.g. TCS, Amazon) - powers
     the company filter, mirroring how real campus placement prep tools let
     students target a specific recruiter's question style."""
     return ti.dsa_companies()
@@ -54,7 +54,7 @@ def dsa_question(
 def dsa_question_by_id(
     question_id: str, x_student_name: str = Header(default="Guest"), x_student_pin: str = Header(default="")
 ):
-    """Reopen one specific question directly — used by the "Bookmarked
+    """Reopen one specific question directly - used by the "Bookmarked
     questions" panel to jump back into a question a student starred
     earlier, instead of the filtered-random flow /dsa/question uses."""
     q = ti.get_dsa_question_by_id(question_id)
@@ -65,7 +65,7 @@ def dsa_question_by_id(
 
 
 # ---------------------------------------------------------------------------
-# Bookmarks — "come back to this one later"
+# Bookmarks - "come back to this one later"
 # ---------------------------------------------------------------------------
 
 @router.get("/bookmarks")
@@ -102,7 +102,7 @@ class DsaRunRequest(BaseModel):
 
 @router.post("/dsa/run")
 def dsa_run(req: DsaRunRequest, request: Request, x_student_name: str = Header(default="Guest")):
-    # Rate limit + size guardrails — this endpoint executes arbitrary student
+    # Rate limit + size guardrails - this endpoint executes arbitrary student
     # code in a subprocess (see code_judge.py's scope note), so it's worth
     # protecting against a runaway loop hammering it or an accidental
     # giant paste, even on a trusted local department deployment.
@@ -110,7 +110,7 @@ def dsa_run(req: DsaRunRequest, request: Request, x_student_name: str = Header(d
     if not rate_limit.allow(limiter_key, config.DSA_RUN_RATE_LIMIT, config.DSA_RUN_RATE_WINDOW_SECS):
         raise HTTPException(
             status_code=429,
-            detail=f"Too many runs — please wait a moment. Limit is {config.DSA_RUN_RATE_LIMIT} runs per {config.DSA_RUN_RATE_WINDOW_SECS}s.",
+            detail=f"Too many runs - please wait a moment. Limit is {config.DSA_RUN_RATE_LIMIT} runs per {config.DSA_RUN_RATE_WINDOW_SECS}s.",
         )
     try:
         code_judge.validate_code_size(req.code)
@@ -169,7 +169,7 @@ def dsa_review(req: DsaReviewRequest, request: Request, x_student_name: str = He
 
 
 # ---------------------------------------------------------------------------
-# DSA contest mode — a small, time-boxed set of questions, scored on solves
+# DSA contest mode - a small, time-boxed set of questions, scored on solves
 # + a time bonus, the way an online-assessment round works.
 # ---------------------------------------------------------------------------
 
@@ -244,7 +244,7 @@ def contest_finish(req: ContestFinishRequest):
 
 @router.get("/leaderboard")
 def leaderboard():
-    """Department-wide DSA leaderboard — a batch-level motivator, deliberately
+    """Department-wide DSA leaderboard - a batch-level motivator, deliberately
     not scoped to one student (see storage.leaderboard's docstring)."""
     return storage.leaderboard(limit=10)
 
@@ -338,7 +338,7 @@ def stats(x_student_name: str = Header(default="Guest"), x_student_pin: str = He
 
 @router.post("/stats/pdf")
 def stats_pdf(x_student_name: str = Header(default="Guest"), x_student_pin: str = Header(default="")):
-    """Export this student's own solve-rate breakdown as a PDF — a printable
+    """Export this student's own solve-rate breakdown as a PDF - a printable
     record to bring to a placement drive, mirroring the resume/roadmap/
     interview-report export pattern (this was previously the only module
     with saved history and no export option)."""

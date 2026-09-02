@@ -1,7 +1,7 @@
 """
 Minimal in-memory rate limiter.
 
-This is a single-process, in-memory sliding window — sufficient for a local
+This is a single-process, in-memory sliding window - sufficient for a local
 department app run as one uvicorn process (see run.bat). It is intentionally
 simple: no external dependency, no persistence. If this app is ever deployed
 behind multiple worker processes, swap this for a shared store (e.g. Redis)
@@ -38,7 +38,7 @@ def allow(key: str, max_calls: int, window_secs: float) -> bool:
 def client_key(request: Request, student_name: str | None = None) -> str:
     """Best available identity for rate-limiting purposes: the student name
     tag if one was sent, otherwise the connecting IP. Not a security
-    boundary (a name is trivially spoofable) — just enough to stop one
+    boundary (a name is trivially spoofable) - just enough to stop one
     runaway client from being counted against a shared "unknown" bucket."""
     if student_name and student_name.strip():
         return student_name.strip()
@@ -54,5 +54,5 @@ def enforce(scope: str, request: Request, max_calls: int, window_secs: float, st
     if not allow(key, max_calls, window_secs):
         raise HTTPException(
             status_code=429,
-            detail=f"Too many requests — please wait a moment and try again (limit: {max_calls} per {int(window_secs)}s).",
+            detail=f"Too many requests - please wait a moment and try again (limit: {max_calls} per {int(window_secs)}s).",
         )

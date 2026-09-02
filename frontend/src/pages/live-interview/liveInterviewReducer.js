@@ -1,9 +1,9 @@
-// Explicit state machine for the Live AI Interview screen — a useReducer
+// Explicit state machine for the Live AI Interview screen - a useReducer
 // instead of scattered `isX` booleans (multiple flags like `connecting`,
 // `aiSpeaking`, `listening` can't represent invalid combinations away from
 // each other; a single named state can). Kept as a plain, framework-free
 // module (no React imports) so it's directly unit-testable without
-// rendering anything — see liveInterviewReducer.test.js.
+// rendering anything - see liveInterviewReducer.test.js.
 
 export const STATES = Object.freeze({
   IDLE: "IDLE",
@@ -60,7 +60,7 @@ export function liveInterviewReducer(state, action) {
 
     case "AI_SENTENCE": {
       // Append to (or create) the in-progress AI transcript entry for this
-      // response_id — sentences for the same response accumulate into one
+      // response_id - sentences for the same response accumulate into one
       // bubble instead of one bubble per sentence.
       const transcript = [...state.transcript];
       const last = transcript[transcript.length - 1];
@@ -87,7 +87,7 @@ export function liveInterviewReducer(state, action) {
     }
 
     case "BARGE_IN":
-      // Candidate started talking while the AI was still speaking — client
+      // Candidate started talking while the AI was still speaking - client
       // must already have stopped local audio playback BEFORE this action
       // is dispatched (see useLiveInterviewSession); this just updates the
       // state machine to reflect it and mark the interrupted AI bubble final.
@@ -157,7 +157,7 @@ export function canBargeIn(status) {
 
 /** Pure helper: is it currently valid to accept a new candidate utterance
  * (voice or text)? Guards against sending input while the AI response is
- * still being generated for a previous turn — the "never two AI responses
+ * still being generated for a previous turn - the "never two AI responses
  * in flight" rule has a client-side mirror here. */
 export function canAcceptInput(status) {
   return status === STATES.READY || status === STATES.LISTENING;

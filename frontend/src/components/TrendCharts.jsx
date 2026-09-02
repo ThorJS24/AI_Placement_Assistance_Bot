@@ -1,5 +1,5 @@
 // Hand-rolled, dependency-free SVG charts for the admin "Trends" tab. No new
-// npm package is added on purpose — the frontend's registry access is
+// npm package is added on purpose - the frontend's registry access is
 // unreliable in some environments, so these charts are plain SVG driven by
 // plain arithmetic, fully verifiable with esbuild alone (no chart library to
 // trust). Colors use `stroke="currentColor"`/`fill="currentColor"` paired
@@ -150,7 +150,7 @@ function ActivityTrendChart({ data }) {
                 fill="currentColor"
               >
                 <title>
-                  {formatShortDate(d.date)} — {s.label}: {d[s.key]}
+                  {formatShortDate(d.date)} - {s.label}: {d[s.key]}
                 </title>
               </circle>
             ) : null
@@ -176,7 +176,7 @@ function SolveRateChart({ data }) {
   return (
     <div className="grid gap-4 sm:grid-cols-2">
       <div>
-        <p className="mb-1 text-xs font-medium text-slate-500 dark:text-slate-400">Solve rate (%) — gap means no attempts that day</p>
+        <p className="mb-1 text-xs font-medium text-slate-500 dark:text-slate-400">Solve rate (%) - gap means no attempts that day</p>
         <svg viewBox={`0 0 ${CHART_W} ${CHART_H}`} className="w-full" role="img" aria-label="Solve rate trend">
           <AxisFrame dates={dates} max={100} />
           <path d={linePath(rates, 100)} fill="none" className="text-brand-600" stroke="currentColor" strokeWidth="1.75" strokeLinejoin="round" strokeLinecap="round" />
@@ -184,7 +184,7 @@ function SolveRateChart({ data }) {
             d.solve_rate != null ? (
               <circle key={d.date} cx={scaleX(i, data.length)} cy={scaleY(d.solve_rate, 100)} r="2.2" className="text-brand-600" fill="currentColor">
                 <title>
-                  {formatShortDate(d.date)} — {d.solve_rate}% ({d.correct}/{d.total})
+                  {formatShortDate(d.date)} - {d.solve_rate}% ({d.correct}/{d.total})
                 </title>
               </circle>
             ) : null
@@ -202,7 +202,7 @@ function SolveRateChart({ data }) {
             return (
               <rect key={d.date} x={x} y={y} width={barW} height={CHART_H - PAD_B - y} className="text-brand-300 dark:text-brand-700" fill="currentColor" rx="1">
                 <title>
-                  {formatShortDate(d.date)} — {d.total} attempted
+                  {formatShortDate(d.date)} - {d.total} attempted
                 </title>
               </rect>
             );

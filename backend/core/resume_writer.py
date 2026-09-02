@@ -86,7 +86,7 @@ def build_docx(data: dict) -> str:
         _add_heading(doc, "Experience")
         for exp in data["experience"]:
             p = doc.add_paragraph()
-            p.add_run(f"{_safe(exp.get('role'))} — {_safe(exp.get('company'))}").bold = True
+            p.add_run(f"{_safe(exp.get('role'))} - {_safe(exp.get('company'))}").bold = True
             p.add_run(f"   ({_safe(exp.get('duration'))})")
             for bullet in exp.get("bullets", []):
                 if bullet.strip():
@@ -107,7 +107,7 @@ def build_docx(data: dict) -> str:
         _add_heading(doc, "Education")
         for edu in data["education"]:
             p = doc.add_paragraph()
-            p.add_run(f"{_safe(edu.get('degree'))} — {_safe(edu.get('institution'))}").bold = True
+            p.add_run(f"{_safe(edu.get('degree'))} - {_safe(edu.get('institution'))}").bold = True
             p.add_run(f"   ({_safe(edu.get('duration'))})")
             if edu.get("score"):
                 doc.add_paragraph(f"Score: {_safe(edu.get('score'))}")
@@ -170,7 +170,7 @@ def build_pdf(data: dict) -> str:
     if data.get("experience"):
         story.append(Paragraph("EXPERIENCE", heading_style))
         for exp in data["experience"]:
-            story.append(Paragraph(f"<b>{_safe(exp.get('role'))} — {_safe(exp.get('company'))}</b> ({_safe(exp.get('duration'))})", body))
+            story.append(Paragraph(f"<b>{_safe(exp.get('role'))} - {_safe(exp.get('company'))}</b> ({_safe(exp.get('duration'))})", body))
             for bullet in exp.get("bullets", []):
                 if bullet.strip():
                     story.append(Paragraph(f"• {bullet.strip()}", body))
@@ -188,8 +188,8 @@ def build_pdf(data: dict) -> str:
     if data.get("education"):
         story.append(Paragraph("EDUCATION", heading_style))
         for edu in data["education"]:
-            score = f" — Score: {_safe(edu.get('score'))}" if edu.get("score") else ""
-            story.append(Paragraph(f"<b>{_safe(edu.get('degree'))} — {_safe(edu.get('institution'))}</b> ({_safe(edu.get('duration'))}){score}", body))
+            score = f" - Score: {_safe(edu.get('score'))}" if edu.get("score") else ""
+            story.append(Paragraph(f"<b>{_safe(edu.get('degree'))} - {_safe(edu.get('institution'))}</b> ({_safe(edu.get('duration'))}){score}", body))
 
     if data.get("certifications"):
         story.append(Paragraph("CERTIFICATIONS", heading_style))

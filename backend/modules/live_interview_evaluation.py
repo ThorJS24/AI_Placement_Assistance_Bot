@@ -1,4 +1,4 @@
-"""Post-session evaluation pass for the Live AI Interview — deliberately a
+"""Post-session evaluation pass for the Live AI Interview - deliberately a
 SEPARATE LLM call from the live conversational turns in modules/
 live_interview.py, run once after the session ends (routers/
 live_interview.py's /end endpoint), not interleaved with the live
@@ -8,7 +8,7 @@ honest-full-range-scoring instruction) but scores across more dimensions
 and uses a rubric whose weights vary by interview type.
 
 The server is the sole source of truth for the report: nothing client-sent
-(score, duration, "completed" status) ever feeds into this — only the
+(score, duration, "completed" status) ever feeds into this - only the
 transcript this module itself is given, which the router builds from
 storage.list_turns() (the server-persisted log), never from anything the
 client claims happened.
@@ -21,7 +21,7 @@ from core.llm import ANTI_SLOP_INSTRUCTION
 DIMENSIONS = ["technical", "communication", "confidence", "problem_solving", "role_fit"]
 
 # Simple per-interview-type weighting used to compute `overall_score` from
-# the per-dimension scores below, instead of a flat average — a technical
+# the per-dimension scores below, instead of a flat average - a technical
 # round should weight `technical`/`problem_solving` more heavily, an HR
 # round should weight `communication`/`confidence`/`role_fit` more heavily,
 # a behavioral round sits in between. Kept as one small dict rather than a
@@ -85,7 +85,7 @@ Full transcript (Interviewer/Candidate turns in order):
 Interruption count (candidate interrupted the AI while it was speaking, a real-time signal of \
 engagement/confidence, not necessarily negative): {interrupt_count}
 
-Score honestly across the FULL 0-100 range for each dimension below — do not default every candidate into a \
+Score honestly across the FULL 0-100 range for each dimension below - do not default every candidate into a \
 comfortable 60-80 band. Different dimensions can land far apart for the same candidate; score each on its \
 own merits, based ONLY on what the candidate actually said in the transcript above.
 

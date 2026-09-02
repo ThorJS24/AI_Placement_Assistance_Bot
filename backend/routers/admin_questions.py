@@ -1,15 +1,15 @@
 """Admin-only CRUD for the two curated question banks (DSA coding problems
-and the CS-fundamentals quiz bank) — lets the TPO/placement cell add,
+and the CS-fundamentals quiz bank) - lets the TPO/placement cell add,
 edit, and remove questions from the dashboard instead of hand-editing
 backend/data/dsa_questions.json / topic_questions.json directly.
 
 Same passcode gate and rate-limit bucket as routers/admin.py and
-routers/settings.py (see each module's own `_check_passcode` — duplicated
+routers/settings.py (see each module's own `_check_passcode` - duplicated
 by convention in this codebase rather than shared, so each router stays
 self-contained). Writes go through modules/technical_interview.py's
 atomic-write helpers, and take effect immediately since
 load_dsa_questions()/load_topic_questions() re-read the file fresh on
-every request — no cache to invalidate, no restart needed.
+every request - no cache to invalidate, no restart needed.
 """
 from __future__ import annotations
 

@@ -1,9 +1,9 @@
-"""Per-student UI appearance preferences — color theme, dark/light, font
+"""Per-student UI appearance preferences - color theme, dark/light, font
 size, density, and sidebar layout. Applied instantly client-side via
 localStorage (see frontend/src/lib/preferences.js) and persisted here so a
 student's chosen look follows them across devices/browsers, not just one
 machine's local storage. See core/storage.py's preferences section for the
-persistence model — same lightweight name+PIN identity as routers/profile.py,
+persistence model - same lightweight name+PIN identity as routers/profile.py,
 not real authentication."""
 from __future__ import annotations
 

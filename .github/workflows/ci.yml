@@ -1,7 +1,7 @@
 name: CI
 
 # Runs on every push/PR: backend import + pytest, frontend build + unit
-# tests. Deliberately minimal (no deploy step, no Docker build) — this is a
+# tests. Deliberately minimal (no deploy step, no Docker build) - this is a
 # local-first department tool, not a hosted service; the goal here is just
 # to catch a broken `main`/PR before someone pulls it onto a lab PC.
 

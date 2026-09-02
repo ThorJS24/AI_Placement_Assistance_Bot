@@ -1,4 +1,4 @@
-"""Optional AI-illustrated roadmap image — a togglable extra layered on top
+"""Optional AI-illustrated roadmap image - a togglable extra layered on top
 of the always-available, fully offline infographic (see core/roadmap_image.py).
 
 Only active when config.IMAGE_GEN_API_KEY is set (see .env.example); the
@@ -6,7 +6,7 @@ default roadmap image experience never depends on this, and this module is
 never imported unless a student explicitly asks for the AI-illustrated
 option (see routers/roadmap.py). Uses an OpenAI-compatible images endpoint
 via the `openai` package, already a dependency for the Groq chat backend
-(core/llm.py) — no new dependency for this feature.
+(core/llm.py) - no new dependency for this feature.
 """
 from __future__ import annotations
 
@@ -31,13 +31,13 @@ def _client():
 
 
 def build_ai_illustration(target_role: str, overview: str) -> str:
-    """Generates a single decorative illustration (not a data infographic —
+    """Generates a single decorative illustration (not a data infographic -
     that's what the offline Pillow image is for) themed around the
     student's target role, and saves it to config.GENERATED_DIR. Returns the
     file path."""
     if not is_configured():
         raise ImageGenUnavailableError(
-            "AI-illustrated roadmap images aren't configured on this deployment — set IMAGE_GEN_API_KEY in .env "
+            "AI-illustrated roadmap images aren't configured on this deployment - set IMAGE_GEN_API_KEY in .env "
             "to enable this optional extra. The regular downloadable roadmap image works without it."
         )
 
@@ -64,7 +64,7 @@ def build_ai_illustration(target_role: str, overview: str) -> str:
             raise ImageGenUnavailableError("The image-gen API returned no image data.")
     except ImageGenUnavailableError:
         raise
-    except Exception as exc:  # noqa: BLE001 — surface any provider/network failure uniformly
+    except Exception as exc:  # noqa: BLE001 - surface any provider/network failure uniformly
         raise ImageGenUnavailableError(f"AI image generation failed: {exc}") from exc
 
     out_path = config.GENERATED_DIR / f"roadmap_ai_{uuid.uuid4().hex}.png"

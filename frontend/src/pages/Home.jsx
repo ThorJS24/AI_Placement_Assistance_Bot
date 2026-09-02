@@ -9,7 +9,7 @@ import { apiGet } from "../api/client.js";
 const MODULES = [
   {
     to: "/chat", icon: MessageSquare, title: "AI Placement Chatbot",
-    desc: "Ask anything about placements, resumes, interview strategy, or specific companies — grounded in your department's own FAQ.",
+    desc: "Ask anything about placements, resumes, interview strategy, or specific companies - grounded in your department's own FAQ.",
   },
   {
     to: "/resume", icon: FileText, title: "Resume Builder & Analyzer",
@@ -21,7 +21,7 @@ const MODULES = [
   },
   {
     to: "/mock-interview", icon: Mic, title: "Mock Interview (Speech-to-Speech)",
-    desc: "A fully spoken interview simulation — the AI asks out loud, you answer by voice, and it adapts in real time.",
+    desc: "A fully spoken interview simulation - the AI asks out loud, you answer by voice, and it adapts in real time.",
   },
   {
     to: "/technical-interview", icon: Code2, title: "Technical Interview",
@@ -58,7 +58,7 @@ function ProfileCard({ onEditProfile }) {
         </div>
         <div className="min-w-0 flex-1">
           <p className="text-sm font-semibold text-slate-800 dark:text-slate-200">Add your stream, semester, and subjects</p>
-          <p className="text-xs text-slate-500 dark:text-slate-400">Optional — helps the chatbot and roadmap tailor advice to where you actually are.</p>
+          <p className="text-xs text-slate-500 dark:text-slate-400">Optional - helps the chatbot and roadmap tailor advice to where you actually are.</p>
         </div>
         <ArrowRight size={16} className="shrink-0 text-slate-400 dark:text-slate-500" />
       </button>
@@ -105,7 +105,7 @@ export default function Home({ onEditProfile }) {
           AI Placement Assistance Platform
         </h1>
         <p className="relative mt-3 max-w-2xl text-white/80">
-          An all-in-one placement preparation suite — chat with a career assistant, build an
+          An all-in-one placement preparation suite - chat with a career assistant, build an
           ATS-friendly resume, get a personalized roadmap, and rehearse both spoken and
           technical interviews. No cost, no vendor lock-in, your data stays on this machine.
         </p>

@@ -1,4 +1,4 @@
-"""Tests for core/auth.py — real account signup/login with hashed
+"""Tests for core/auth.py - real account signup/login with hashed
 passwords and server-side session tokens. Uses the `tmp_db` fixture (see
 conftest.py) so nothing here ever touches the real storage/app.db."""
 from __future__ import annotations

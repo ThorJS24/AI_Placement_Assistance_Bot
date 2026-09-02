@@ -1,4 +1,4 @@
-"""Tests for core/storage.py — preferences, academic profile, PIN-lock
+"""Tests for core/storage.py - preferences, academic profile, PIN-lock
 identity isolation, and bookmarks. Each uses the `tmp_db` fixture (see
 conftest.py) so nothing here ever touches the real storage/app.db."""
 from __future__ import annotations

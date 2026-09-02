@@ -30,7 +30,7 @@ export default function MockInterview() {
   const [audioUrl, setAudioUrl] = useState(null);
   // Live mode: the question text builds up sentence by sentence as it
   // streams in, each with its own already-synthesized audio clip queued for
-  // gapless playback — see LiveRunningPanel. `questionStreaming` is true
+  // gapless playback - see LiveRunningPanel. `questionStreaming` is true
   // while more sentences may still arrive for the CURRENT question.
   const [audioQueue, setAudioQueue] = useState([]);
   const [questionStreaming, setQuestionStreaming] = useState(false);
@@ -39,7 +39,7 @@ export default function MockInterview() {
   // THIS instead of a derived `questionText === ""` boolean: on a fast
   // connection, every chunk for a short question can arrive within the same
   // JS tick, and React batches them into one commit that jumps straight
-  // from "previous question" to "next question fully loaded" — the
+  // from "previous question" to "next question fully loaded" - the
   // transient "" state never gets its own render, so a derived boolean
   // dependency never observes a change and the reset silently never fires.
   // A monotonically-incrementing counter has no such transient value to
@@ -52,7 +52,7 @@ export default function MockInterview() {
   const [report, setReport] = useState(null);
   // If advancing the interview fails after an answer was already recorded
   // (network hiccup, LLM timeout), this holds what's needed to retry just
-  // that step — the student's answer isn't lost, they just need one click
+  // that step - the student's answer isn't lost, they just need one click
   // instead of being stuck with a submit button that requires a transcript
   // they already cleared.
   const [retryState, setRetryState] = useState(null);
@@ -69,7 +69,7 @@ export default function MockInterview() {
     notifications.push({
       tone: "danger",
       title: "Assessment ended",
-      message: "Too many proctoring violations were detected — your interview was submitted automatically.",
+      message: "Too many proctoring violations were detected - your interview was submitted automatically.",
       durationMs: 8000,
     });
     try {
@@ -234,7 +234,7 @@ export default function MockInterview() {
       <NotificationStack notifications={notifications.notifications} onDismiss={notifications.dismiss} />
       <PageHeader
         icon={Mic}
-        title="Mock Interview — Speech to Speech"
+        title="Mock Interview - Speech to Speech"
         subtitle="The interviewer asks out loud, you answer by voice, it adapts in real time. Ends with a full performance report."
       />
 
@@ -330,7 +330,7 @@ function HistoryPanel() {
     return <div className="card p-8 text-center"><Spinner label="Loading your history..." /></div>;
   }
   if (sessions.length === 0) {
-    return <div className="card p-8 text-center text-sm text-slate-400 dark:text-slate-500">No past attempts yet — start your first mock interview above.</div>;
+    return <div className="card p-8 text-center text-sm text-slate-400 dark:text-slate-500">No past attempts yet - start your first mock interview above.</div>;
   }
 
   return (
@@ -347,7 +347,7 @@ function HistoryPanel() {
                 <p className="truncate text-sm font-semibold text-slate-800 dark:text-slate-200">{s.topic || "Mock interview"}</p>
                 <p className="text-xs text-slate-400 dark:text-slate-500">{new Date(s.created_at * 1000).toLocaleString()}</p>
               </div>
-              <span className="shrink-0 text-lg font-bold text-brand-700">{s.score != null ? Math.round(s.score) : "—"}</span>
+              <span className="shrink-0 text-lg font-bold text-brand-700">{s.score != null ? Math.round(s.score) : "-"}</span>
             </button>
             {expanded === s.id && s.summary && (
               <div className="mt-3 space-y-2 border-t border-slate-100 dark:border-slate-800 pt-3 text-sm text-slate-600 dark:text-slate-400">
@@ -425,7 +425,7 @@ function SetupPanel({
         />
         Auto-detect when you stop talking (turns off if you'd rather stop recording manually)
       </label>
-      <p className="text-xs text-slate-400 dark:text-slate-500">Tip: use headphones/a quiet room. Every answer is still transcribed to text you can review — nothing submits without you seeing it first.</p>
+      <p className="text-xs text-slate-400 dark:text-slate-500">Tip: use headphones/a quiet room. Every answer is still transcribed to text you can review - nothing submits without you seeing it first.</p>
       <label className="flex items-center gap-2 text-sm font-medium text-slate-700 dark:text-slate-300">
         <input
           type="checkbox"
@@ -433,7 +433,7 @@ function SetupPanel({
           onChange={(e) => setLockdownEnabled(e.target.checked)}
           className="h-4 w-4 rounded border-slate-300 dark:border-slate-600 text-brand-600"
         />
-        <Lock size={15} className="text-brand-600" /> Enable proctoring — blocks copy/paste, right-click &amp;
+        <Lock size={15} className="text-brand-600" /> Enable proctoring - blocks copy/paste, right-click &amp;
         dev-tools shortcuts; flags tab switches &amp; leaving fullscreen (browsers don't let a page fully prevent
         those two). Auto-submits after 2 violations.
       </label>
@@ -445,7 +445,7 @@ function SetupPanel({
   );
 }
 
-// Voice-activity-detection tuning for auto-stop recording — see startRecording
+// Voice-activity-detection tuning for auto-stop recording - see startRecording
 // below. Deliberately conservative (a long silence window, a minimum speech
 // requirement before it can trigger) so a normal thoughtful pause mid-answer
 // never gets mistaken for "done talking".
@@ -461,11 +461,11 @@ const AUTO_SUBMIT_COUNTDOWN_SECS = 3; // editable grace window before a transcri
  * one always-running voice-activity monitor whose behavior depends on the
  * current phase:
  *   - "playing"/"waiting_more" (question audio queued/playing): speech
- *     detected -> barge in, stop the audio, start recording immediately —
+ *     detected -> barge in, stop the audio, start recording immediately -
  *     the student can interrupt mid-question exactly like a real
  *     conversation, instead of having to wait the AI out.
  *   - "listening" (question finished, mic idle): speech detected -> start
- *     recording — no "Start recording" click needed.
+ *     recording - no "Start recording" click needed.
  *   - "recording": existing silence-based auto-stop (when autoStopEnabled).
  * Sentences (each with its own audio clip) arrive incrementally in
  * `audioQueue` and play back to back with no gap, so the student starts
@@ -733,7 +733,7 @@ function LiveRunningPanel({
 
   const statusLabel = {
     connecting: "Connecting your microphone...",
-    playing: "Speaking — start talking any time to jump in",
+    playing: "Speaking - start talking any time to jump in",
     waiting_more: "Thinking...",
     listening: "Listening for your answer...",
     recording: "Recording your answer...",
@@ -771,7 +771,7 @@ function LiveRunningPanel({
         )}
         {micError && <p className="mb-3 text-sm text-amber-600 dark:text-amber-400">{micError}</p>}
 
-        <label className="label" htmlFor="mock-transcript-live">Your answer (fills in as you speak — edit any time)</label>
+        <label className="label" htmlFor="mock-transcript-live">Your answer (fills in as you speak - edit any time)</label>
         <textarea id="mock-transcript-live" className="input" rows={5} value={transcript} onChange={(e) => editTranscript(e.target.value)} />
 
         {autoSubmitIn !== null && (
@@ -789,7 +789,7 @@ function LiveRunningPanel({
         {error && (
           <div role="alert" className="mt-3 rounded-xl bg-red-50 dark:bg-red-950/40 p-4 text-sm text-red-700 dark:text-red-400 whitespace-pre-wrap">
             {error}
-            {onRetry && <p className="mt-1 font-medium">Your answer was saved — just retry to get the next question.</p>}
+            {onRetry && <p className="mt-1 font-medium">Your answer was saved - just retry to get the next question.</p>}
           </div>
         )}
 
@@ -852,7 +852,7 @@ function RunningPanel({
 
   // Live mode's hands-free loop: once an answer is transcribed, submit it
   // automatically after a short, visibly-counting-down grace window rather
-  // than waiting for a manual click — but editing the transcript during that
+  // than waiting for a manual click - but editing the transcript during that
   // window (see the textarea's onChange below) cancels the countdown and
   // hands control back, so nothing is ever sent without the student seeing
   // it first.
@@ -878,7 +878,7 @@ function RunningPanel({
     setMicError("");
     cancelAutoSubmit();
     // Live mode with no audio to wait for (TTS off, or unavailable for this
-    // question) — nothing will fire the <audio onEnded> handler below, so
+    // question) - nothing will fire the <audio onEnded> handler below, so
     // start listening for the answer right away instead of leaving the
     // student to click "Start recording" themselves.
     if (liveMode && (!voiceMode || !audioUrl)) {
@@ -899,7 +899,7 @@ function RunningPanel({
   };
 
   // Monitors mic volume via the Web Audio API so recording can stop itself
-  // the moment the student finishes talking — a real interviewer doesn't
+  // the moment the student finishes talking - a real interviewer doesn't
   // need to be told "stop recording", they just notice you've finished.
   // Manual "Stop recording" stays available as an override for anyone who
   // prefers it (or in a noisy room where auto-detection isn't reliable).
@@ -910,7 +910,7 @@ function RunningPanel({
     const source = audioCtx.createMediaStreamSource(stream);
     const analyser = audioCtx.createAnalyser();
     analyser.fftSize = 512;
-    source.connect(analyser); // intentionally NOT connected to audioCtx.destination — no echo/feedback
+    source.connect(analyser); // intentionally NOT connected to audioCtx.destination - no echo/feedback
     const data = new Uint8Array(analyser.frequencyBinCount);
 
     const vad = { audioCtx, analyser, raf: null, hasSpoken: false, silenceStartedAt: null };
@@ -941,7 +941,7 @@ function RunningPanel({
         if (!vad.silenceStartedAt) vad.silenceStartedAt = now;
         else if (now - vad.silenceStartedAt >= VAD_SILENCE_MS) {
           onSilenceDetected();
-          return; // stop the loop — recorder.onstop will tear VAD down
+          return; // stop the loop - recorder.onstop will tear VAD down
         }
       }
       vad.raf = requestAnimationFrame(tick);
@@ -1068,7 +1068,7 @@ function RunningPanel({
         {error && (
           <div role="alert" className="mt-3 rounded-xl bg-red-50 dark:bg-red-950/40 p-4 text-sm text-red-700 dark:text-red-400 whitespace-pre-wrap">
             {error}
-            {onRetry && <p className="mt-1 font-medium">Your answer was saved — just retry to get the next question.</p>}
+            {onRetry && <p className="mt-1 font-medium">Your answer was saved - just retry to get the next question.</p>}
           </div>
         )}
 
@@ -1137,10 +1137,10 @@ function ReportPanel({ report, qna, role, onRestart, endedEarly }) {
   return (
     <div className="animate-slide-up space-y-5">
       <div className="card p-5">
-        <h2 className="mb-4 text-lg font-bold text-slate-900 dark:text-slate-100">📊 Performance Report — {role}</h2>
+        <h2 className="mb-4 text-lg font-bold text-slate-900 dark:text-slate-100">📊 Performance Report - {role}</h2>
         {endedEarly && (
           <div className="mb-4 rounded-xl bg-amber-50 dark:bg-amber-950/40 p-3 text-sm text-amber-800 dark:text-amber-300">
-            🔒 Ended early — too many proctoring violations were detected.
+            🔒 Ended early - too many proctoring violations were detected.
           </div>
         )}
         {!report.insufficient_data && (

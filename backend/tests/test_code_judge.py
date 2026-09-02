@@ -3,7 +3,7 @@
 Every case here was also independently verified by running the exact same
 assertions as a standalone script (no pytest) against the real subprocess-
 based judge before this file was written, so these aren't just
-aspirational — they're confirmed to pass against the current
+aspirational - they're confirmed to pass against the current
 code_judge.py.
 """
 from __future__ import annotations
@@ -54,7 +54,7 @@ def test_blocked_imports_and_calls_rejected(bad_code):
 
 def test_sys_and_input_are_deliberately_not_blocked():
     # sys (fast stdin reads) and input/print are the judge's whole reason
-    # for existing — explicitly excluded from the blocklist, see
+    # for existing - explicitly excluded from the blocklist, see
     # code_judge.py's module docstring.
     code = "import sys\nline = sys.stdin.readline().strip()\nprint(line.upper())\n"
     result = code_judge.run_against_tests(code, [{"input": "hello\n", "expected": "HELLO"}])
@@ -78,4 +78,4 @@ def test_infinite_loop_times_out_rather_than_hanging():
     elapsed = time.time() - t0
     assert not result.all_passed
     assert "Timed out" in result.results[0].error
-    assert elapsed < 15  # generous ceiling — should be ~config.CODE_EXEC_TIMEOUT_SECS
+    assert elapsed < 15  # generous ceiling - should be ~config.CODE_EXEC_TIMEOUT_SECS

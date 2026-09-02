@@ -117,7 +117,7 @@ def build_resume(
 
 @router.get("/download/{filename}")
 def download_resume(filename: str):
-    # Guard against path traversal — only allow serving exactly what's in GENERATED_DIR.
+    # Guard against path traversal - only allow serving exactly what's in GENERATED_DIR.
     safe_name = os.path.basename(filename)
     path = config.GENERATED_DIR / safe_name
     if not path.is_file() or path.parent != config.GENERATED_DIR:
@@ -127,7 +127,7 @@ def download_resume(filename: str):
 
 @router.get("/list")
 def list_saved_resumes(x_student_name: str = Header(default="Guest"), x_student_pin: str = Header(default="")):
-    """This student's previously built resume drafts — powers the "My saved
+    """This student's previously built resume drafts - powers the "My saved
     resumes" panel so a student can come back and re-edit one later."""
     return storage.list_resumes(student_name=x_student_name, pin=x_student_pin)
 
@@ -158,7 +158,7 @@ async def analyze_resume(
         if not text.strip():
             raise HTTPException(
                 status_code=422,
-                detail="Couldn't extract any text from this file — it may be a scanned image. "
+                detail="Couldn't extract any text from this file - it may be a scanned image. "
                 "Try a text-based PDF or DOCX.",
             )
         return rb.analyze_resume(text, validation.cap_text(job_description, config.MAX_LONG_TEXT_CHARS))

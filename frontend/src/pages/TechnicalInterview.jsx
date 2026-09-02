@@ -104,7 +104,7 @@ function StatsTab() {
     try {
       const { download_pdf } = await apiPost("/technical/stats/pdf", {});
       // window.open returns null (no throw) when a popup blocker intercepts
-      // it — fall back to a visible link the student can click themselves.
+      // it - fall back to a visible link the student can click themselves.
       const win = window.open(download_pdf, "_blank");
       if (!win) {
         setPdfFallbackUrl(download_pdf);
@@ -123,7 +123,7 @@ function StatsTab() {
     return (
       <div className="space-y-5">
         <div className="card p-8 text-center text-sm text-slate-400 dark:text-slate-500">
-          No graded attempts yet — solve a DSA question or answer a quiz question, and your solve-rate breakdown will show up here.
+          No graded attempts yet - solve a DSA question or answer a quiz question, and your solve-rate breakdown will show up here.
         </div>
         <Leaderboard />
       </div>
@@ -140,7 +140,7 @@ function StatsTab() {
             </div>
             <div>
               <p className="text-2xl font-bold text-slate-900 dark:text-slate-100">{stats.overall.solve_rate}%</p>
-              <p className="text-sm text-slate-500 dark:text-slate-400">Overall solve rate — {stats.overall.correct}/{stats.overall.total} graded attempts</p>
+              <p className="text-sm text-slate-500 dark:text-slate-400">Overall solve rate - {stats.overall.correct}/{stats.overall.total} graded attempts</p>
             </div>
           </div>
           <button className="btn-secondary shrink-0" onClick={downloadPdf} disabled={pdfLoading}>
@@ -166,7 +166,7 @@ function StatsTab() {
       </div>
 
       <div className="card space-y-4 p-5">
-        <h3 className="font-semibold text-slate-900 dark:text-slate-100">By topic — spot your weak areas</h3>
+        <h3 className="font-semibold text-slate-900 dark:text-slate-100">By topic - spot your weak areas</h3>
         {stats.by_topic.map((t) => (
           <RateBar key={t.name} label={t.name} total={t.total} correct={t.correct} solveRate={t.solve_rate} />
         ))}
@@ -221,7 +221,7 @@ function DsaTab() {
         setBookmarks((prev) => [question, ...prev]);
       }
     } catch {
-      // Best-effort — bookmarking isn't the critical path, so fail quietly
+      // Best-effort - bookmarking isn't the critical path, so fail quietly
       // rather than interrupting the student with an error banner.
     }
   };
@@ -256,7 +256,7 @@ function DsaTab() {
       setQuestion(q);
       setCode(q.starter_code);
     } catch (err) {
-      setError(err instanceof ApiError ? err.message : "Couldn't reopen that question — it may no longer be available.");
+      setError(err instanceof ApiError ? err.message : "Couldn't reopen that question - it may no longer be available.");
     } finally {
       setLoadingQuestion(false);
     }
@@ -490,7 +490,7 @@ function ContestTab() {
       notifications.push({
         tone: "danger",
         title: "Assessment ended",
-        message: "Too many proctoring violations were detected — your contest was submitted automatically.",
+        message: "Too many proctoring violations were detected - your contest was submitted automatically.",
         durationMs: 8000,
       });
       finish(resultsRef.current, violations);
@@ -504,7 +504,7 @@ function ContestTab() {
   useEffect(() => {
     if (stage !== "running") return;
     // Derive the countdown from actual elapsed wall-clock time each tick,
-    // rather than decrementing a counter — a plain decrementing interval
+    // rather than decrementing a counter - a plain decrementing interval
     // drifts against the real elapsed time browsers use for scoring
     // (elapsed_secs, computed the same way in finish() below) whenever the
     // tab is backgrounded/throttled, so the on-screen clock and the actual
@@ -594,7 +594,7 @@ function ContestTab() {
       <div className="card space-y-4 p-5">
         <NotificationStack notifications={notifications.notifications} onDismiss={notifications.dismiss} />
         <p className="text-sm text-slate-500 dark:text-slate-400">
-          A small, time-boxed set of DSA questions — like an online assessment round. Score is based on how many you
+          A small, time-boxed set of DSA questions - like an online assessment round. Score is based on how many you
           solve, with a small bonus for finishing early.
         </p>
         <div className="grid gap-4 sm:grid-cols-3">
@@ -621,7 +621,7 @@ function ContestTab() {
             onChange={(e) => setLockdownEnabled(e.target.checked)}
             className="h-4 w-4 rounded border-slate-300 dark:border-slate-600 text-brand-600"
           />
-          <Lock size={15} className="text-brand-600" /> Enable proctoring — blocks copy/paste, right-click &amp;
+          <Lock size={15} className="text-brand-600" /> Enable proctoring - blocks copy/paste, right-click &amp;
           dev-tools shortcuts; flags tab switches &amp; leaving fullscreen (browsers don't let a page fully prevent
           those two). Auto-submits after 2 violations.
         </label>
@@ -700,7 +700,7 @@ function ContestTab() {
         <p className="text-xs text-slate-400 dark:text-slate-500">score (out of 100)</p>
         {endedEarly && (
           <p className="mt-3 rounded-xl bg-amber-50 dark:bg-amber-950/40 p-3 text-sm text-amber-800 dark:text-amber-300">
-            🔒 Ended early — too many proctoring violations were detected.
+            🔒 Ended early - too many proctoring violations were detected.
           </p>
         )}
       </div>
@@ -761,7 +761,7 @@ function QuizTab() {
       notifications.push({
         tone: "danger",
         title: "Assessment ended",
-        message: "Too many proctoring violations were detected — your quiz was submitted automatically.",
+        message: "Too many proctoring violations were detected - your quiz was submitted automatically.",
         durationMs: 8000,
       });
       finishQuiz(violations);
@@ -876,7 +876,7 @@ function QuizTab() {
             onChange={(e) => setLockdownEnabled(e.target.checked)}
             className="h-4 w-4 rounded border-slate-300 dark:border-slate-600 text-brand-600"
           />
-          <Lock size={15} className="text-brand-600" /> Enable proctoring — blocks copy/paste, right-click &amp;
+          <Lock size={15} className="text-brand-600" /> Enable proctoring - blocks copy/paste, right-click &amp;
           dev-tools shortcuts; flags tab switches &amp; leaving fullscreen (browsers don't let a page fully prevent
           those two). Auto-submits after 2 violations.
         </label>
@@ -965,7 +965,7 @@ function QuizTab() {
         <h2 className="mb-3 text-lg font-bold text-slate-900 dark:text-slate-100">📊 Quiz complete!</h2>
         {endedEarly && (
           <p className="mb-3 rounded-xl bg-amber-50 dark:bg-amber-950/40 p-3 text-sm text-amber-800 dark:text-amber-300">
-            🔒 Ended early — too many proctoring violations were detected.
+            🔒 Ended early - too many proctoring violations were detected.
           </p>
         )}
         <p className="mb-1 text-sm font-semibold text-slate-700 dark:text-slate-300">Score: {score} / {questions.length} ({pct}%)</p>
@@ -980,7 +980,7 @@ function QuizTab() {
             </ul>
           </div>
         ) : (
-          <p className="mt-4 text-sm font-medium text-emerald-700 dark:text-emerald-400">No weak topics detected this round — great job!</p>
+          <p className="mt-4 text-sm font-medium text-emerald-700 dark:text-emerald-400">No weak topics detected this round - great job!</p>
         )}
       </div>
       <button className="btn-primary" onClick={() => setStage("setup")}>

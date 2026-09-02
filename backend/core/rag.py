@@ -5,7 +5,7 @@ Rather than pulling in a heavy vector database, this uses a plain
 TF-IDF + cosine-similarity search (scikit-learn) over the department's
 curated placement FAQ (data/placement_faq.json). It's a handful of KB
 of pure Python/NumPy, has zero external services, and is more than
-accurate enough for a few dozen-to-hundred short FAQ entries — while
+accurate enough for a few dozen-to-hundred short FAQ entries - while
 still giving the chatbot grounded, department-specific answers instead
 of relying on the LLM's general knowledge alone.
 """

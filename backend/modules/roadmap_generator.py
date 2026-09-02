@@ -74,7 +74,7 @@ def _weak_topics_block(weak_topics: list[str] | None) -> str:
         return ""
     return (
         f"\nThis student's own Technical Interview practice history shows a below-50% solve rate on: "
-        f"{', '.join(weak_topics)}. Prioritize these — devote extra explicit topics/resources to shoring "
+        f"{', '.join(weak_topics)}. Prioritize these - devote extra explicit topics/resources to shoring "
         f"them up early in the plan rather than treating every topic as equally weighted.\n"
     )
 
@@ -109,7 +109,7 @@ Return ONLY a JSON object with exactly this shape:
       "name": "<phase name with a week range, e.g. 'Foundations (Weeks 1-3)'>",
       "goal": "<1 sentence phase goal>",
       "topics": [<4-6 short topic strings>],
-      "resources": [<2-4 short strings naming REAL, well-known free/open resources — official docs, freeCodeCamp, GeeksforGeeks, NeetCode, Coursera audit mode, Kaggle Learn, MDN, etc. Do not invent fake course names.>],
+      "resources": [<2-4 short strings naming REAL, well-known free/open resources - official docs, freeCodeCamp, GeeksforGeeks, NeetCode, Coursera audit mode, Kaggle Learn, MDN, etc. Do not invent fake course names.>],
       "milestone": "<1 concrete, checkable deliverable for this phase, e.g. 'Solve 30 array/string problems' or 'Deploy 1 working project'>"
     }}
   ],

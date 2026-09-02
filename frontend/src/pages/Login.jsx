@@ -18,7 +18,7 @@ export default function Login({ onAuthenticated, appTitle, departmentName, colle
       const data = mode === "login" ? await authLogin(username, password) : await authSignup(username, password);
       onAuthenticated(data.username);
     } catch (err) {
-      setError(err instanceof ApiError ? err.message : "Something went wrong — please try again.");
+      setError(err instanceof ApiError ? err.message : "Something went wrong - please try again.");
     } finally {
       setBusy(false);
     }
@@ -107,7 +107,7 @@ export default function Login({ onAuthenticated, appTitle, departmentName, colle
         </form>
 
         <p className="mt-5 text-center text-xs text-slate-400 dark:text-slate-500">
-          Runs locally on this PC — your account and history never leave this machine.
+          Runs locally on this PC - your account and history never leave this machine.
         </p>
       </div>
     </div>

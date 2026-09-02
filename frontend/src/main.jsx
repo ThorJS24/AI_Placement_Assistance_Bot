@@ -9,7 +9,7 @@ import { applyPreferences, getLocalPreferences } from "./lib/preferences.js";
 // size, density) before the first paint, so switching pages/reloading never
 // flashes the defaults first. Falls back to the OS-level preference for
 // dark/light when the student hasn't picked one yet. This is the
-// localStorage-only, instant path — App.jsx additionally reconciles against
+// localStorage-only, instant path - App.jsx additionally reconciles against
 // the student's server-saved preferences once identity is known (see
 // lib/preferences.js's module docstring).
 applyPreferences(getLocalPreferences());

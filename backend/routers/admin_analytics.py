@@ -1,4 +1,4 @@
-"""Admin-only trend/analytics endpoints — daily activity, solve-rate trend,
+"""Admin-only trend/analytics endpoints - daily activity, solve-rate trend,
 and readiness distribution over time, layered on top of the existing
 snapshot-only /api/admin/overview. Same passcode gate and rate-limit bucket
 as routers/admin.py (see that module's docstring for the rationale behind

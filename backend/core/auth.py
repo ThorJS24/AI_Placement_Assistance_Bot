@@ -2,14 +2,14 @@
 
 Replaces the old "type any name, optionally a PIN" courtesy-separation
 (core/storage.py's _resolve_student docstring has the history) with actual
-authentication — a username is now a real, password-protected identity, and
+authentication - a username is now a real, password-protected identity, and
 every request's identity is verified server-side from a session cookie
 (see main.py's session-enforcing middleware) rather than trusted from a
 client-supplied header.
 
 Deliberately stdlib-only (hashlib PBKDF2-HMAC-SHA256 + secrets), matching
 this project's "no new dependency for something the standard library
-already does well" pattern elsewhere (see core/code_judge.py, etc.) —
+already does well" pattern elsewhere (see core/code_judge.py, etc.) -
 PBKDF2 with a high iteration count is a perfectly reasonable password hash
 for this app's threat model (a local department tool, not a
 internet-facing service handling millions of accounts where argon2/bcrypt's
@@ -26,7 +26,7 @@ import time
 from core import storage
 
 SESSION_COOKIE = "session_token"
-SESSION_TTL_SECS = 30 * 24 * 60 * 60  # 30 days — a shared department PC session shouldn't need re-login daily
+SESSION_TTL_SECS = 30 * 24 * 60 * 60  # 30 days - a shared department PC session shouldn't need re-login daily
 
 _PBKDF2_ITERATIONS = 200_000
 _USERNAME_RE = re.compile(r"^[a-zA-Z0-9._-]{3,30}$")
@@ -34,7 +34,7 @@ _USERNAME_RE = re.compile(r"^[a-zA-Z0-9._-]{3,30}$")
 
 class AuthError(ValueError):
     """Raised for any user-facing auth failure (bad credentials, taken
-    username, invalid format) — routers/auth.py turns these into 400/401s
+    username, invalid format) - routers/auth.py turns these into 400/401s
     with the message as-is, since every message here is already written to
     be shown directly to the student."""
 
@@ -71,7 +71,7 @@ def signup(username: str, password: str) -> str:
     validate_password(password)
     password_hash, salt = hash_password(password)
     if not storage.create_account(clean_username, password_hash, salt):
-        raise AuthError("That username is already taken — try logging in instead, or pick another one.")
+        raise AuthError("That username is already taken - try logging in instead, or pick another one.")
     return create_session_for(clean_username)
 
 

@@ -5,16 +5,16 @@ session survives across app restarts with zero external database to
 install or maintain. The file lives at storage/app.db.
 
 Multi-student note: this app runs without login (see core/llm.py-style
-docstrings elsewhere for the same philosophy — zero setup friction for a
+docstrings elsewhere for the same philosophy - zero setup friction for a
 department PC). To keep multiple students' histories from mixing together
 on a shared machine, every write is tagged with a lightweight `student_name`
 (a free-text display name the student picks once in the frontend, sent as
-the `X-Student-Name` header — see api/client.js). Students can *optionally*
+the `X-Student-Name` header - see api/client.js). Students can *optionally*
 also set a short PIN (X-Student-Pin) the first time they use a name; if they
 do, later requests using that exact name must present the matching PIN or
 they get isolated into a separate bucket instead of silently landing on the
 real owner's data (see `_resolve_student`). There is still no real identity
-guarantee and no password — this is a courtesy separation for a shared lab
+guarantee and no password - this is a courtesy separation for a shared lab
 PC, not security in the enterprise sense.
 """
 from __future__ import annotations
@@ -147,13 +147,13 @@ _NEW_COLUMNS = [
     ("interview_qna", "difficulty", "difficulty TEXT"),
     ("interview_qna", "round_type", "round_type TEXT"),  # 'dsa' | 'quiz' | 'contest'
     ("students", "stream", "stream TEXT"),                  # e.g. "Computer Science and Engineering"
-    ("students", "specialization", "specialization TEXT"),  # e.g. "AI & ML", "Data Science" — optional honours track
-    ("students", "semester", "semester TEXT"),               # free text/number — programs vary in length
+    ("students", "specialization", "specialization TEXT"),  # e.g. "AI & ML", "Data Science" - optional honours track
+    ("students", "semester", "semester TEXT"),               # free text/number - programs vary in length
     ("students", "subjects", "subjects TEXT"),                # JSON list of this semester's subjects
     ("students", "updated_at", "updated_at REAL"),
-    ("students", "preferences", "preferences TEXT"),          # JSON blob — see the preferences section below
+    ("students", "preferences", "preferences TEXT"),          # JSON blob - see the preferences section below
     # Live AI Interview additive columns on the existing interview_sessions
-    # table (kind='live') — session config, server-enforced timing, and
+    # table (kind='live') - session config, server-enforced timing, and
     # which evaluation rubric was used. No parallel/duplicate session table:
     # this reuses the exact same table + finish_interview_session()
     # summary_json/score mechanism the existing mock interview report
@@ -163,7 +163,7 @@ _NEW_COLUMNS = [
     ("interview_sessions", "last_activity_at", "last_activity_at REAL"),  # bumped on every WS message; drives idle timeout
     ("interview_sessions", "ended_at", "ended_at REAL"),
     ("interview_sessions", "rubric", "rubric TEXT"),                 # which evaluation rubric was applied (technical|hr|behavioral)
-    ("interview_qna", "speaker", "speaker TEXT"),          # 'ai' | 'candidate' — live sessions log every turn, not just Q+A pairs
+    ("interview_qna", "speaker", "speaker TEXT"),          # 'ai' | 'candidate' - live sessions log every turn, not just Q+A pairs
     ("interview_qna", "seq", "seq INTEGER"),               # ordering within a session, independent of the autoincrement id
 ]
 
@@ -202,7 +202,7 @@ def init_db() -> None:
     with _conn() as conn:
         # WAL mode lets reads proceed concurrently with a write (instead of
         # the default rollback-journal mode's exclusive write lock) and is
-        # more crash-resilient — standard hardening for a local single-file
+        # more crash-resilient - standard hardening for a local single-file
         # SQLite app with multiple students' requests landing concurrently.
         # synchronous=NORMAL is the recommended pairing with WAL: still
         # durable against app/OS crashes, just not against a full power-loss
@@ -226,7 +226,7 @@ def _resolve_student(student_name: str | None, pin: str | None = None) -> str:
     """Normalizes the display name and, if that name has an optional PIN
     registered, enforces it.
 
-    This is a lightweight convenience lock, not real authentication — no
+    This is a lightweight convenience lock, not real authentication - no
     login, a short plaintext PIN, one shared department PC. Its only job is
     to stop one student silently landing on another student's saved history
     just because they typed the same common first name.
@@ -235,7 +235,7 @@ def _resolve_student(student_name: str | None, pin: str | None = None) -> str:
     the original zero-friction behaviour). The FIRST request that supplies a
     PIN for a given name registers it. A later request with the right name
     but the wrong (or missing) PIN is never merged into the real owner's
-    data — it's isolated into its own deterministic bucket instead, so a
+    data - it's isolated into its own deterministic bucket instead, so a
     name collision fails safe rather than leaking history.
     """
     name = _norm_student(student_name)
@@ -259,7 +259,7 @@ def _resolve_student(student_name: str | None, pin: str | None = None) -> str:
 
 
 # ---------------------------------------------------------------------------
-# Student academic profile — department/college identity is a single
+# Student academic profile - department/college identity is a single
 # app-wide setting (config.COLLEGE_NAME / DEPARTMENT_NAME, set once in
 # .env), but stream, specialization, semester and current subjects vary per
 # student and change over time, so they live here per name/PIN identity.
@@ -320,13 +320,13 @@ def get_student_profile(student_name: str | None, pin: str | None = None) -> dic
 
 
 # ---------------------------------------------------------------------------
-# Per-student UI preferences — color theme, dark/light, font size, density,
+# Per-student UI preferences - color theme, dark/light, font size, density,
 # sidebar layout. Applied instantly client-side via localStorage (see
 # frontend/src/lib/preferences.js) so there's never a wait for a network
 # round-trip; persisted here as well so the same look follows a student to
 # another device/browser once they've set a name (and optionally a PIN),
 # mirroring the academic profile above. Stored as one JSON blob rather than
-# dedicated columns since it's purely cosmetic, client-owned state — no
+# dedicated columns since it's purely cosmetic, client-owned state - no
 # server-side logic ever reads individual fields.
 # ---------------------------------------------------------------------------
 
@@ -357,10 +357,10 @@ def get_student_preferences(student_name: str | None, pin: str | None = None) ->
 
 
 def save_student_preferences(student_name: str | None, pin: str | None, updates: dict[str, Any]) -> dict[str, Any]:
-    """Partial update — only keys present (and non-None) in `updates` are
+    """Partial update - only keys present (and non-None) in `updates` are
     changed; everything else the student previously saved is left as-is.
     Guests (no name set yet) aren't persisted server-side, same as the
-    academic profile above — the frontend still applies the choice
+    academic profile above - the frontend still applies the choice
     instantly via localStorage regardless."""
     name = _resolve_student(student_name, pin)
     clean_updates = {k: v for k, v in updates.items() if v is not None and k in DEFAULT_PREFERENCES}
@@ -611,7 +611,7 @@ def log_qna(
 
 
 def resolve_student_name(student_name: str | None, pin: str | None = None) -> str:
-    """Public wrapper around _resolve_student — used where a caller needs
+    """Public wrapper around _resolve_student - used where a caller needs
     the resolved identity string itself (e.g. a pre-flight concurrency
     check) rather than performing a write scoped to it."""
     return _resolve_student(student_name, pin)
@@ -623,7 +623,7 @@ def create_live_interview_session(
 ) -> int:
     """Like create_interview_session, but kind='live' and additionally
     records the requested config (role/type/difficulty/style/duration) and a
-    server-enforced expiry timestamp — the WS endpoint is the sole enforcer
+    server-enforced expiry timestamp - the WS endpoint is the sole enforcer
     of both; nothing client-sent about duration/config is ever trusted for
     the final evaluation."""
     student = _resolve_student(student_name, pin)
@@ -638,7 +638,7 @@ def create_live_interview_session(
 
 
 def get_interview_session(session_id: int) -> dict | None:
-    """Raw fetch by id, no student scoping — callers (the WS endpoint, the
+    """Raw fetch by id, no student scoping - callers (the WS endpoint, the
     owner-only GET endpoint) are responsible for checking student_name
     themselves against the authenticated identity."""
     with _conn() as conn:
@@ -669,7 +669,7 @@ def end_live_interview_session(session_id: int) -> None:
 
 def count_active_live_sessions(student_name: str) -> int:
     """A live session counts as 'active' until it has an ended_at OR its
-    server-enforced expiry has passed — used to enforce
+    server-enforced expiry has passed - used to enforce
     config.LIVE_INTERVIEW_MAX_CONCURRENT_PER_STUDENT at session-creation
     time."""
     now = time.time()
@@ -710,7 +710,7 @@ def list_events(session_id: int) -> list[dict]:
 
 def log_turn(session_id: int, speaker: str, text: str, seq: int) -> None:
     """Per-message speaker+content+seq log for the live interview transcript
-    — reuses the existing interview_qna table (question column holds the
+    - reuses the existing interview_qna table (question column holds the
     text, speaker/seq are the additive columns above) rather than a
     duplicate parallel table, since the shape (one row per utterance, tied
     to a session) already fits."""
@@ -831,7 +831,7 @@ def technical_stats(student_name: str | None = None, pin: str | None = None) -> 
 
 def leaderboard(limit: int = 10) -> list[dict[str, Any]]:
     """Department-wide DSA leaderboard (solved count + accuracy), ranked by
-    solves then accuracy. Intentionally unscoped, like dashboard_counts — a
+    solves then accuracy. Intentionally unscoped, like dashboard_counts - a
     whole-department motivator, not a personal record. Excludes Guest, since
     that bucket usually mixes many different people on a shared PC."""
     with _conn() as conn:
@@ -857,7 +857,7 @@ def leaderboard(limit: int = 10) -> list[dict[str, Any]]:
 
 def dashboard_counts() -> dict[str, int]:
     """Department-wide totals across all students (intentionally NOT scoped
-    to one student_name) — this is the "whole department" vanity metric
+    to one student_name) - this is the "whole department" vanity metric
     shown on the Home page. Personal history lives inside each module."""
     with _conn() as conn:
         chats = conn.execute("SELECT COUNT(*) c FROM chat_sessions").fetchone()["c"]
@@ -896,7 +896,7 @@ def admin_overview() -> list[dict[str, Any]]:
       amber  - some real activity on the platform, but short of the green bar
       red    - no meaningful activity recorded yet
     This intentionally queries the raw student_name values in storage
-    (bypassing the PIN lock) — the admin view is already gated by a separate
+    (bypassing the PIN lock) - the admin view is already gated by a separate
     admin passcode and needs to see everyone, including PIN-mismatched
     buckets, to get an accurate department picture.
     """
@@ -975,7 +975,7 @@ def admin_overview() -> list[dict[str, Any]]:
 
 def _trailing_day_list(days: int) -> list[str]:
     """ISO date strings for the last `days` days including today, oldest
-    first — the shared x-axis for every trend endpoint below. Days with no
+    first - the shared x-axis for every trend endpoint below. Days with no
     recorded activity still appear (with zero counts), so a chart never
     silently skips a quiet day."""
     import datetime as _dt
@@ -986,7 +986,7 @@ def _trailing_day_list(days: int) -> list[str]:
 
 def activity_trend(days: int = 14) -> list[dict[str, Any]]:
     """Daily counts of new activity per module for the admin dashboard's
-    trend chart — same five counters as dashboard_counts(), but bucketed by
+    trend chart - same five counters as dashboard_counts(), but bucketed by
     day instead of all-time totals."""
     days = max(1, min(days, 90))
     day_list = _trailing_day_list(days)
@@ -1022,7 +1022,7 @@ def activity_trend(days: int = 14) -> list[dict[str, Any]]:
 
 def solve_rate_trend(days: int = 14) -> list[dict[str, Any]]:
     """Daily technical-interview solve rate (DSA + quiz + contest combined)
-    over the last `days` days — lets the TPO see whether the cohort is
+    over the last `days` days - lets the TPO see whether the cohort is
     trending up or down, not just where it stands today. `solve_rate` is
     None (not 0) on a day with zero graded attempts, so the frontend chart
     can distinguish "no data" from "0% solved"."""
@@ -1050,7 +1050,7 @@ def solve_rate_trend(days: int = 14) -> list[dict[str, Any]]:
 
 
 def readiness_distribution() -> dict[str, int]:
-    """Counts of students in each readiness bucket (green/amber/red) — a
+    """Counts of students in each readiness bucket (green/amber/red) - a
     quick department-wide summary, derived from the same heuristic
     admin_overview() already computes per student."""
     counts = {"green": 0, "amber": 0, "red": 0}
@@ -1061,7 +1061,7 @@ def readiness_distribution() -> dict[str, int]:
 
 # ---------------------------------------------------------------------------
 # App-wide runtime settings (branding, admin passcode, AI engine preference,
-# TTS voice) — a simple key/value override store so these can be changed
+# TTS voice) - a simple key/value override store so these can be changed
 # from the Settings UI and take effect immediately, without hand-editing
 # .env and restarting the process. Anything NOT overridden here still falls
 # back to its .env/config.py default (see core/runtime_settings.py), so a
@@ -1075,7 +1075,7 @@ def get_app_setting(key: str) -> str | None:
 
 
 def get_app_settings(keys: list[str]) -> dict[str, str]:
-    """Bulk read — one query instead of N, used by the Settings status endpoint."""
+    """Bulk read - one query instead of N, used by the Settings status endpoint."""
     if not keys:
         return {}
     placeholders = ",".join("?" for _ in keys)
@@ -1096,7 +1096,7 @@ def set_app_setting(key: str, value: str) -> None:
 
 
 # ---------------------------------------------------------------------------
-# DSA question bookmarks — "come back to this one later", scoped per student
+# DSA question bookmarks - "come back to this one later", scoped per student
 # like everything else in this file (resolved through the same PIN-aware
 # identity as resumes/roadmaps/interviews).
 # ---------------------------------------------------------------------------
@@ -1128,10 +1128,10 @@ def list_bookmark_ids(student_name: str | None, pin: str | None) -> list[str]:
 
 
 # ---------------------------------------------------------------------------
-# Accounts + sessions — real login (see core/auth.py for password hashing
+# Accounts + sessions - real login (see core/auth.py for password hashing
 # and token generation; this file only owns persistence, matching every
 # other section here). A logged-in account's `username` IS the
-# `student_name` used everywhere else in this file — no migration needed,
+# `student_name` used everywhere else in this file - no migration needed,
 # every existing history table keeps working completely unchanged, and the
 # old PIN "courtesy lock" (_resolve_student above) simply stops mattering
 # once a real password gates who can claim that name in the first place.

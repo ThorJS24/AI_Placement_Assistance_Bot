@@ -1,7 +1,7 @@
 """Tests for core/rate_limit.py's in-memory sliding-window limiter.
 
 The limiter's `_hits` store is process-global and persists across tests
-(there's no reset hook, by design — it's meant to live for the app's whole
+(there's no reset hook, by design - it's meant to live for the app's whole
 process lifetime), so every test uses a unique key/scope via uuid4 rather
 than relying on any shared state being clean.
 """
@@ -22,7 +22,7 @@ class _FakeClient:
 
 
 class _FakeRequest:
-    """rate_limit only ever reads request.client.host — a tiny stand-in
+    """rate_limit only ever reads request.client.host - a tiny stand-in
     avoids constructing a real ASGI scope for a plain unit test."""
 
     def __init__(self, host="1.2.3.4"):

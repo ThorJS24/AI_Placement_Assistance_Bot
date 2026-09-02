@@ -87,7 +87,7 @@ def build_interview_report_pdf(report: dict, role: str, qna: list[dict]) -> str:
     ]
 
     story = [
-        Paragraph(f"Mock Interview Report — {_safe(role)}", title_style),
+        Paragraph(f"Mock Interview Report - {_safe(role)}", title_style),
         Paragraph(" | ".join(f"{label}: {val if val is not None else '-'}" for label, val in metrics), body),
         Spacer(1, 6),
     ]
@@ -121,7 +121,7 @@ def build_interview_report_pdf(report: dict, role: str, qna: list[dict]) -> str:
 
 
 def build_technical_stats_pdf(student_name: str, stats: dict) -> str:
-    """A student's own DSA/quiz solve-rate breakdown as a printable PDF —
+    """A student's own DSA/quiz solve-rate breakdown as a printable PDF -
     something to bring to a placement drive or keep as a personal record,
     mirroring the resume/roadmap/interview-report export pattern."""
     import time as _time
@@ -135,8 +135,8 @@ def build_technical_stats_pdf(student_name: str, stats: dict) -> str:
 
     overall = stats.get("overall", {})
     story = [
-        Paragraph("Technical Interview — Solve Rate Report", title_style),
-        Paragraph(f"{_safe(student_name)} — generated {_time.strftime('%d %b %Y')}", body),
+        Paragraph("Technical Interview - Solve Rate Report", title_style),
+        Paragraph(f"{_safe(student_name)} - generated {_time.strftime('%d %b %Y')}", body),
         Spacer(1, 8),
         Paragraph(
             f"Overall solve rate: <b>{overall.get('solve_rate', 0)}%</b> "
@@ -195,7 +195,7 @@ def build_cohort_report_pdf(department_name: str, counts: dict, students: list[d
 
     story = [
         Paragraph("Placement Readiness Report", title_style),
-        Paragraph(f"{_safe(department_name)} — generated {_time.strftime('%d %b %Y')}", body),
+        Paragraph(f"{_safe(department_name)} - generated {_time.strftime('%d %b %Y')}", body),
         Spacer(1, 8),
         Paragraph(
             f"Chat sessions: {counts.get('chat_sessions', 0)}  |  "

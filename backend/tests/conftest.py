@@ -1,7 +1,7 @@
 """Shared pytest fixtures for the backend test suite.
 
 `tmp_db` points storage at a fresh, throwaway SQLite file for the duration
-of a test — tests never touch the real storage/app.db and never leak state
+of a test - tests never touch the real storage/app.db and never leak state
 between each other. `client` builds a FastAPI TestClient on top of that; the
 lifespan handler (see main.py) calls storage.init_db() on startup, which
 creates the schema in the temp file rather than the real one, and the
@@ -85,7 +85,7 @@ def login_as(client, username: str, password: str = "testpass123") -> str:
     tmp_db) as `username` on the given TestClient and returns the verified
     username. The session cookie set by /api/auth/signup or /api/auth/login
     is stored on the TestClient's cookie jar, so every subsequent request
-    made with the same `client` is authenticated as this user — every
+    made with the same `client` is authenticated as this user - every
     non-exempt route now requires this (see main.py's
     enforce_session_identity middleware), replacing the old "just send an
     X-Student-Name header" model."""
@@ -99,7 +99,7 @@ def login_as(client, username: str, password: str = "testpass123") -> str:
 @pytest.fixture
 def admin_headers():
     """The admin passcode is whatever's effective at request time (DB
-    override, falling back to config.ADMIN_PASSCODE from .env) — see
+    override, falling back to config.ADMIN_PASSCODE from .env) - see
     core/runtime_settings.py. Tests never change it, so config.ADMIN_PASSCODE
     (the .env-driven fallback) is always the effective one against a fresh
     tmp_db with no app_settings override row."""

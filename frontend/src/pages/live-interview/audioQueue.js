@@ -1,5 +1,5 @@
 // Pure sequencing logic for the AI's sentence-by-sentence audio playback
-// queue — extracted out of the player component so it's directly
+// queue - extracted out of the player component so it's directly
 // unit-testable (see audioQueue.test.js) without a real <audio> element or
 // browser. Mirrors the conceptual model MockInterview.jsx's LiveRunningPanel
 // already uses (a growing array of {text, url} clips consumed in order),
@@ -8,7 +8,7 @@
 // "interrupt" can invalidate every clip for the CURRENTLY active response
 // at any point, including ones not yet enqueued.
 
-/** Creates a fresh queue state. One instance per session (not per turn) —
+/** Creates a fresh queue state. One instance per session (not per turn) -
  * `responseId` scoping happens per-call, so stale clips from a
  * already-interrupted response are naturally ignored once a newer
  * response_id becomes current. */
@@ -21,7 +21,7 @@ export function createAudioQueueState() {
   };
 }
 
-/** A new AI turn started — clips for any OTHER response_id already in the
+/** A new AI turn started - clips for any OTHER response_id already in the
  * queue are dropped (they can only be stale leftovers). */
 export function startResponse(state, responseId) {
   return { ...state, items: [], cursor: 0, currentResponseId: responseId };
@@ -46,14 +46,14 @@ export function peekNext(state) {
 }
 
 /** Advances the cursor past the clip just finished playing (or skipped
- * because it had no audio_url — TTS unavailable for that sentence). */
+ * because it had no audio_url - TTS unavailable for that sentence). */
 export function advance(state) {
   return { ...state, cursor: state.cursor + 1 };
 }
 
 /** Barge-in: marks the given response_id as interrupted so any of its
  * clips still in flight (already enqueued but not yet played, or not yet
- * arrived) are never played — this is the queue-side half of "stop
+ * arrived) are never played - this is the queue-side half of "stop
  * playback first, before waiting for any server ack" the interrupt handler
  * performs; the caller is responsible for actually stopping the live
  * <audio>/AudioBufferSourceNode BEFORE calling this. */
@@ -66,7 +66,7 @@ export function interrupt(state, responseId) {
 }
 
 /** Whether the queue for the current response is fully drained (nothing
- * left to play right now) — used to decide whether to move to LISTENING
+ * left to play right now) - used to decide whether to move to LISTENING
  * or wait for more sentences of a still-streaming response. */
 export function isDrained(state) {
   return state.cursor >= state.items.length;

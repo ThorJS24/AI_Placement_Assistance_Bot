@@ -1,12 +1,12 @@
 """
-AI Placement Assistance Platform — FastAPI backend.
+AI Placement Assistance Platform - FastAPI backend.
 
 Run with (from the backend/ folder, inside the venv):
     uvicorn main:app --host 127.0.0.1 --port 8000
 
 In production this single process serves BOTH the JSON API (under /api/*)
 AND the pre-built React frontend (frontend/dist), so the whole platform is
-one process to start and one port to open — see run.bat / run.sh at the
+one process to start and one port to open - see run.bat / run.sh at the
 project root, which do exactly this.
 """
 from __future__ import annotations
@@ -64,17 +64,17 @@ app.add_middleware(
 )
 
 # ---------------------------------------------------------------------------
-# Session-identity enforcement — real accounts (core/auth.py) replaced the
+# Session-identity enforcement - real accounts (core/auth.py) replaced the
 # old "trust whatever X-Student-Name header the client sends" model. Rather
 # than threading a new `Depends(...)` through every single router function
 # (dozens of endpoints across ~10 files, all of which already correctly key
 # everything off an `x_student_name` header param), this single middleware
 # verifies the session cookie once per request and REWRITES the
 # X-Student-Name header to the verified username before it reaches any
-# route handler — every existing `Header(default="Guest")` param downstream
+# route handler - every existing `Header(default="Guest")` param downstream
 # keeps working completely unchanged, but the value it receives is now
 # authenticated, not client-controlled. X-Student-Pin becomes moot (a real
-# password now gates who can claim a username at all) but is left alone —
+# password now gates who can claim a username at all) but is left alone -
 # harmless, and storage._resolve_student's PIN check just never triggers
 # for accounts created through /api/auth/signup.
 _AUTH_EXEMPT_PREFIXES = ("/api/auth", "/api/admin")
@@ -90,7 +90,7 @@ async def enforce_session_identity(request: Request, call_next):
     token = request.cookies.get(auth.SESSION_COOKIE)
     username = auth.resolve_session(token)
     if not username:
-        return JSONResponse(status_code=401, content={"detail": "Not authenticated — please log in."})
+        return JSONResponse(status_code=401, content={"detail": "Not authenticated - please log in."})
 
     raw_headers = [
         (k, v) for k, v in request.scope["headers"]
@@ -150,6 +150,6 @@ else:
                 "error": "Frontend is not built yet.",
                 "fix": "Run setup.bat (Windows) or ./setup.sh (Mac/Linux) from the project root, "
                 "which runs 'npm install && npm run build' inside frontend/. "
-                "The API itself is working — try GET /api/health.",
+                "The API itself is working - try GET /api/health.",
             },
         )

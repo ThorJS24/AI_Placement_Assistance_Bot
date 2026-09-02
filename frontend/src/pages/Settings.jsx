@@ -36,7 +36,7 @@ export default function Settings() {
 
   return (
     <div>
-      <PageHeader icon={SettingsIcon} title="Settings" subtitle="Configure this deployment's branding, AI engine, admin passcode, and interview voice — plus diagnose the AI/speech engines." />
+      <PageHeader icon={SettingsIcon} title="Settings" subtitle="Configure this deployment's branding, AI engine, admin passcode, and interview voice - plus diagnose the AI/speech engines." />
 
       {loadError && (
         <div role="alert" className="mb-5 flex items-center gap-2 rounded-xl bg-red-50 dark:bg-red-950/40 p-4 text-sm text-red-700 dark:text-red-400">
@@ -58,7 +58,7 @@ export default function Settings() {
                 "Download Ollama for free: https://ollama.com/download",
                 "Install it and make sure it's running (starts automatically in the background).",
                 `Open a terminal and run: ollama pull ${status.ollama.model}`,
-                "Refresh this page — the status above should turn green.",
+                "Refresh this page - the status above should turn green.",
               ]}
             />
             <EngineCard
@@ -99,7 +99,7 @@ export default function Settings() {
             <div>
               <p className="text-sm font-semibold text-slate-700 dark:text-slate-300">🔊 Text-to-speech</p>
               <p className="mt-1 text-sm text-slate-500 dark:text-slate-400">Backend: <code>{status.tts_backend}</code></p>
-              <p className="text-sm text-slate-500 dark:text-slate-400">Edge voice: <code>{status.edge_tts_voice}</code> — change it in Department Settings above.</p>
+              <p className="text-sm text-slate-500 dark:text-slate-400">Edge voice: <code>{status.edge_tts_voice}</code> - change it in Department Settings above.</p>
             </div>
           </div>
           <p className="text-xs text-slate-400 dark:text-slate-500">STT backend / Whisper model size are deployment-level and only change via the .env file + restart.</p>
@@ -129,7 +129,7 @@ function EngineCard({ title, reachable, detail, meta, instructions }) {
 }
 
 // ---------------------------------------------------------------------------
-// Department Settings — real, persisted, live-effective configuration.
+// Department Settings - real, persisted, live-effective configuration.
 // Gated behind the same admin passcode as the TPO dashboard (shared
 // sessionStorage token), since these affect every student on this shared
 // deployment, not just whoever's sitting at the PC right now.
@@ -180,14 +180,14 @@ function DepartmentSettings({ status, onSaved }) {
           <button
             className="btn-ghost text-xs"
             onClick={() => { setAdminPasscode(""); setUnlocked(false); }}
-            title="Lock — clears the passcode from this browser"
+            title="Lock - clears the passcode from this browser"
           >
             <Lock size={13} /> Lock
           </button>
         )}
       </div>
       <p className="mb-4 text-sm text-slate-500 dark:text-slate-400">
-        Branding, AI engine, and the placement-cell passcode — changes here apply immediately for every student, no restart needed.
+        Branding, AI engine, and the placement-cell passcode - changes here apply immediately for every student, no restart needed.
       </p>
 
       {checking ? (

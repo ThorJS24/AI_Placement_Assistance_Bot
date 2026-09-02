@@ -1,4 +1,4 @@
-"""Live AI Interview — a persistent WebSocket per session (real-time,
+"""Live AI Interview - a persistent WebSocket per session (real-time,
 voice-first) sitting alongside the turn-based Mock Interview module
 (routers/mock_interview.py, left completely untouched). See modules/
 live_interview.py for the interviewer prompt/state machine and modules/
@@ -26,7 +26,7 @@ Server -> client:
 Cancellation: every AI response gets a fresh integer `response_id` and a
 `threading.Event`. Only an interrupt naming the CURRENTLY active
 response_id is honored (stale/duplicate interrupts for an already-finished
-or already-cancelled response are silently ignored) — this is the same
+or already-cancelled response are silently ignored) - this is the same
 guard the frontend's `useLiveInterviewSession` state machine relies on to
 never show overlapping AI+candidate audio. Exactly one AI response is ever
 in flight per session at a time.
@@ -121,7 +121,7 @@ def create_session(
 
 def _owner_name(x_student_name: str, x_student_pin: str) -> str:
     """Resolves the same identity string storage.py's other functions
-    derive internally (name + optional PIN bucket) — needed here only for
+    derive internally (name + optional PIN bucket) - needed here only for
     the pre-flight concurrent-session count, which must match exactly what
     create_live_interview_session/count_active_live_sessions will resolve
     to for the actual row."""
@@ -217,7 +217,7 @@ def get_audio(filename: str):
 # ---------------------------------------------------------------------------
 
 class _SessionRuntime:
-    """Per-connection mutable state — one instance per open WS, never shared
+    """Per-connection mutable state - one instance per open WS, never shared
     across connections or persisted (the durable record is storage.py's
     interview_sessions/interview_qna/interview_events rows, written to
     incrementally as the conversation happens)."""
@@ -250,7 +250,7 @@ async def _run_ai_turn(
     """Consumes a cancellable sentence generator in a worker thread (LLM
     streaming + per-sentence TTS synthesis are both blocking calls) and
     forwards each sentence to the client as soon as it's ready, via an
-    asyncio.Queue bridged with call_soon_threadsafe — the same
+    asyncio.Queue bridged with call_soon_threadsafe - the same
     "don't block the event loop on sync work, but still stream results
     incrementally" shape as routers/mock_interview.py's StreamingResponse
     generators, adapted for a push-over-WS transport instead of an HTTP
@@ -365,7 +365,7 @@ async def _graceful_close(websocket: WebSocket, rt: _SessionRuntime, reason: str
 async def _watch_timeouts(websocket: WebSocket, rt: _SessionRuntime, profile: dict | None) -> None:
     """Background task: closes the session with a natural spoken closing
     line once the server-enforced max duration or idle timeout is hit,
-    exactly as required — the AI is allowed to say a short goodbye before
+    exactly as required - the AI is allowed to say a short goodbye before
     the socket actually closes, rather than being cut off mid-sentence."""
     while not rt.closed:
         await asyncio.sleep(5)
@@ -400,7 +400,7 @@ async def _watch_timeouts(websocket: WebSocket, rt: _SessionRuntime, profile: di
 
 @router.websocket("/sessions/{session_id}/ws")
 async def live_interview_ws(websocket: WebSocket, session_id: int):
-    # Auth/ownership/state are all checked BEFORE accept() — rejecting the
+    # Auth/ownership/state are all checked BEFORE accept() - rejecting the
     # handshake outright (server sends "websocket.close" instead of
     # "websocket.accept" in response to the connection attempt, which the
     # ASGI spec allows) rather than accepting and then immediately closing,
@@ -457,7 +457,7 @@ async def live_interview_ws(websocket: WebSocket, session_id: int):
             except WebSocketDisconnect:
                 break
             except Exception:  # noqa: BLE001
-                # Not JSON, or the socket hiccuped — ignore this one frame
+                # Not JSON, or the socket hiccuped - ignore this one frame
                 # rather than tearing down the whole session over it.
                 continue
 
@@ -491,7 +491,7 @@ async def live_interview_ws(websocket: WebSocket, session_id: int):
                     # Whisper is known to hallucinate plausible-sounding text
                     # ("thank you", "bye", a stray sentence) on clips this
                     # short or near-silent, which would otherwise silently
-                    # advance the interview on nothing the candidate said —
+                    # advance the interview on nothing the candidate said -
                     # drop it before it ever reaches STT.
                     continue
                 try:

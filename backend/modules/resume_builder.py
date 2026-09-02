@@ -34,7 +34,7 @@ def enhance_bullets(context_label: str, bullets: list[str]) -> list[str]:
         f"Rewrite the following resume bullet points for a '{context_label}' entry so each one:\n"
         "- starts with a strong action verb\n"
         "- is specific and concise (one line, no more than ~20 words)\n"
-        "- quantifies impact/scale wherever plausible (%, time saved, users, size) — but NEVER invent "
+        "- quantifies impact/scale wherever plausible (%, time saved, users, size) - but NEVER invent "
         "numbers that weren't implied by the original text\n"
         "- avoids first-person pronouns and generic filler ('worked on', 'helped with', 'responsible for')\n\n"
         f"{ANTI_SLOP_INSTRUCTION}\n\n"
@@ -59,7 +59,7 @@ def generate_summary(
         f"{_profile_context(profile)}"
         f"Key skills to weave in naturally: {', '.join(skills[:8]) if skills else 'general technical skills'}. "
         "Write in third-person-omitted resume style (no 'I'), confident but not exaggerated. "
-        "Ground it in the actual skills/background given — do not pad with generic claims that could describe any candidate. "
+        "Ground it in the actual skills/background given - do not pad with generic claims that could describe any candidate. "
         f"{ANTI_SLOP_INSTRUCTION}\n"
         "Return ONLY the summary text, no preamble, no quotes."
     )
@@ -73,12 +73,12 @@ Return ONLY a JSON object with exactly these keys:
   "ats_score": <integer 0-100, how well-structured and keyword-optimized this resume is for ATS systems>,
   "strengths": [<3-5 short strings>],
   "weaknesses": [<3-5 short strings>],
-  "missing_keywords": [<up to 8 short strings — skills/terms likely expected but absent; empty list if no job description was given>],
+  "missing_keywords": [<up to 8 short strings - skills/terms likely expected but absent; empty list if no job description was given>],
   "section_feedback": {{"summary": "<1 sentence>", "skills": "<1 sentence>", "experience_or_projects": "<1 sentence>", "education": "<1 sentence>"}},
-  "top_action_items": [<3-5 short, concrete, actionable strings — what to fix first>]
+  "top_action_items": [<3-5 short, concrete, actionable strings - what to fix first>]
 }}
 
-Use the FULL 0-100 range for ats_score — a genuinely weak, generic, unquantified resume should score below 40, an average one 50-70, only a genuinely strong, well-structured, quantified one should score above 85. Do not default to a comfortable 70-80 band regardless of quality.
+Use the FULL 0-100 range for ats_score - a genuinely weak, generic, unquantified resume should score below 40, an average one 50-70, only a genuinely strong, well-structured, quantified one should score above 85. Do not default to a comfortable 70-80 band regardless of quality.
 {anti_slop}
 
 Resume text:
@@ -97,7 +97,7 @@ def analyze_resume(resume_text: str, job_description: str = "") -> dict:
     )
     return llm.chat_json(
         llm.system_user(
-            "You are a strict, expert technical recruiter and ATS specialist. Be honest and specific, not generic — "
+            "You are a strict, expert technical recruiter and ATS specialist. Be honest and specific, not generic - "
             "vague praise or vague criticism is worse than useless to the candidate.",
             prompt,
         ),

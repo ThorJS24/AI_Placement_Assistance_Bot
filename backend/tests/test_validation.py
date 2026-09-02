@@ -25,7 +25,7 @@ def test_cap_list_drops_empties_and_truncates():
 
 
 class _FakeUpload:
-    """Duck-types just the `.read(n)` coroutine enforce_upload_size uses —
+    """Duck-types just the `.read(n)` coroutine enforce_upload_size uses -
     no need to construct a real fastapi.UploadFile for a unit test."""
 
     def __init__(self, chunks):

@@ -6,7 +6,7 @@ export default defineConfig({
   plugins: [react()],
   server: {
     // Only used when running `npm run dev` directly against the Vite dev
-    // server during frontend development — forwards API calls to the
+    // server during frontend development - forwards API calls to the
     // FastAPI backend so the two can run side by side on different ports.
     // In production the backend serves the built frontend itself, so this
     // proxy is never involved.

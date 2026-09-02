@@ -2,7 +2,7 @@
 // index.css, swapped per data-theme attribute on <html>) instead of
 // hard-coded hex values, so every existing bg-brand-*/text-brand-*/
 // border-brand-* class across the app responds live to the student's chosen
-// color theme — no per-file changes and no rebuild needed to switch themes.
+// color theme - no per-file changes and no rebuild needed to switch themes.
 function withOpacity(varName) {
   return ({ opacityValue }) => {
     if (opacityValue !== undefined) return `rgb(var(${varName}) / ${opacityValue})`;
@@ -21,7 +21,7 @@ export default {
         // be University)'s actual navy institutional colour, extracted from
         // their stylesheet: $themeColorBlue: #0b1f3a). Alternate presets
         // (Ocean/Forest/Crimson) override the same variables under
-        // html[data-theme="..."] selectors — see index.css.
+        // html[data-theme="..."] selectors - see index.css.
         brand: {
           50: withOpacity("--brand-50"),
           100: withOpacity("--brand-100"),
@@ -35,7 +35,7 @@ export default {
           900: withOpacity("--brand-900"),
           950: withOpacity("--brand-950"),
         },
-        // Kept constant across color themes (not swappable) — it's the
+        // Kept constant across color themes (not swappable) - it's the
         // institution's secondary accent, and varying two independent hues
         // per theme roughly quadruples palette-authoring/contrast risk for
         // little visible benefit, since gold is only used as a sparing highlight.

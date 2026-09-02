@@ -24,7 +24,7 @@ class ChatTurn(BaseModel):
 class ChatRequest(BaseModel):
     session_id: str
     message: str = Field(max_length=config.MAX_CHAT_MESSAGE_CHARS)
-    # Generous — the frontend sends the whole conversation each turn and
+    # Generous - the frontend sends the whole conversation each turn and
     # modules/chatbot.py already trims to the last MAX_CHAT_HISTORY_TURNS*2
     # turns before building the prompt. This cap only guards against a
     # clearly-abusive payload, not real usage (even a very long single
@@ -46,14 +46,14 @@ async def stream_chat(
     x_student_name: str = Header(default="Guest"), x_student_pin: str = Header(default=""),
 ):
     """Streams the assistant's reply as plain text chunks (fetch-based streaming,
-    not a strict SSE parser — the frontend just reads and appends each chunk).
+    not a strict SSE parser - the frontend just reads and appends each chunk).
 
     The actual token loop stays a *synchronous* generator on purpose: Starlette
     runs sync generators in a thread pool automatically, so one slow LLM call
     never blocks the event loop for other students' requests. Disconnect
     detection (stopping early if the student hits "stop generating" or closes
     the tab) instead runs as a small concurrent asyncio task that flips a
-    threading.Event the generator checks between chunks — this way we get real
+    threading.Event the generator checks between chunks - this way we get real
     early-exit without giving up the thread-pooled streaming.
     """
     rate_limit.enforce("chat", request, config.CHAT_RATE_LIMIT, config.CHAT_RATE_WINDOW_SECS, x_student_name)
@@ -111,7 +111,7 @@ def get_suggestions():
 
 @router.get("/sessions")
 def list_sessions(x_student_name: str = Header(default="Guest"), x_student_pin: str = Header(default="")):
-    """This student's chat conversations, most recently active first — powers
+    """This student's chat conversations, most recently active first - powers
     the ChatGPT-style history list in the sidebar."""
     return storage.list_chat_sessions(student_name=x_student_name, pin=x_student_pin)
 

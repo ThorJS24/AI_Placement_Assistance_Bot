@@ -8,7 +8,7 @@ import Login from "./pages/Login.jsx";
 import { apiGet, authMe, authLogout, setStudentName } from "./api/client.js";
 import { applyPreferences, saveLocalPreferences } from "./lib/preferences.js";
 
-// Home/Chatbot stay eager — Home is the near-universal landing page and
+// Home/Chatbot stay eager - Home is the near-universal landing page and
 // Chatbot is the next most common destination, so there's no benefit to
 // splitting them out. The heavier, less-universally-visited pages are
 // route-level code-split instead, so a student's first paint only has to
@@ -29,7 +29,7 @@ export default function App() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [identity, setIdentity] = useState({ app_title: "AI Placement Assistance Platform", department_name: "", college_name: "" });
   const [showOnboarding, setShowOnboarding] = useState(false);
-  // "checking" | "in" | "out" — real accounts now gate the whole app (see
+  // "checking" | "in" | "out" - real accounts now gate the whole app (see
   // backend/core/auth.py + main.py's session-enforcing middleware); every
   // page below this point assumes a verified session exists.
   const [authStatus, setAuthStatus] = useState("checking");
@@ -56,7 +56,7 @@ export default function App() {
   }, []);
 
   // Reconcile appearance preferences against the student's server-saved
-  // copy once authenticated — main.jsx already applied the localStorage
+  // copy once authenticated - main.jsx already applied the localStorage
   // copy before first paint (instant, offline-safe), this just catches a
   // fresh browser up if the student set preferences on another device
   // under the same account. No-op on a network error.

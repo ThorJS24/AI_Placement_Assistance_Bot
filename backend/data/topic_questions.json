@@ -294,7 +294,7 @@
       "Creating multiple instances of the same class"
     ],
     "answer": "The ability of an object to take many forms depending on context",
-    "explanation": "Polymorphism lets the same interface (e.g. a method call) behave differently depending on the actual object's type — via overriding (runtime) or overloading (compile-time)."
+    "explanation": "Polymorphism lets the same interface (e.g. a method call) behave differently depending on the actual object's type - via overriding (runtime) or overloading (compile-time)."
   },
   {
     "id": "oop-006",
@@ -317,7 +317,7 @@
     "type": "short_answer",
     "difficulty": "Medium",
     "question": "What is the difference between a constructor and a destructor? Why doesn't a language like Python usually need explicit destructors?",
-    "answer": "A constructor initializes a new object's state when it's created; a destructor releases resources when an object is destroyed. Python has automatic garbage collection (reference counting plus a cycle collector), so memory is reclaimed automatically — explicit destructors (__del__) are rarely needed except for non-memory resources like open files or network sockets.",
+    "answer": "A constructor initializes a new object's state when it's created; a destructor releases resources when an object is destroyed. Python has automatic garbage collection (reference counting plus a cycle collector), so memory is reclaimed automatically - explicit destructors (__del__) are rarely needed except for non-memory resources like open files or network sockets.",
     "explanation": "Languages without automatic memory management (like C++) rely on destructors to free memory deterministically; garbage-collected languages mostly don't need that discipline for memory itself."
   },
   {
@@ -356,7 +356,7 @@
     "type": "short_answer",
     "difficulty": "Medium",
     "question": "What is a foreign key, and what problem does it solve?",
-    "answer": "A foreign key is a column (or set of columns) in one table that references the primary key of another table. It enforces referential integrity — the database rejects inserting a value that doesn't correspond to an existing row in the referenced table, and defines what happens (cascade, restrict, set null) when the referenced row is updated or deleted.",
+    "answer": "A foreign key is a column (or set of columns) in one table that references the primary key of another table. It enforces referential integrity - the database rejects inserting a value that doesn't correspond to an existing row in the referenced table, and defines what happens (cascade, restrict, set null) when the referenced row is updated or deleted.",
     "explanation": "Without foreign keys, nothing stops orphaned references (e.g. an order pointing at a customer_id that doesn't exist) from silently corrupting data integrity."
   },
   {
@@ -387,7 +387,7 @@
       "It removes the need for a page table"
     ],
     "answer": "It avoids external fragmentation by dividing memory into fixed-size blocks",
-    "explanation": "Because every page is the same fixed size, free memory never gets chopped into unusable small gaps the way variable-sized segments can — though paging can still waste some space via internal fragmentation within the last page of a process."
+    "explanation": "Because every page is the same fixed size, free memory never gets chopped into unusable small gaps the way variable-sized segments can - though paging can still waste some space via internal fragmentation within the last page of a process."
   },
   {
     "id": "os-007",
@@ -395,7 +395,7 @@
     "type": "short_answer",
     "difficulty": "Medium",
     "question": "What is a race condition, and name one common way to prevent it?",
-    "answer": "A race condition occurs when multiple threads or processes access shared data concurrently and the final outcome depends on the unpredictable timing/order of execution, potentially producing incorrect results. It's commonly prevented with synchronization primitives — mutexes/locks, semaphores, or atomic operations — that ensure only one thread enters the critical section at a time.",
+    "answer": "A race condition occurs when multiple threads or processes access shared data concurrently and the final outcome depends on the unpredictable timing/order of execution, potentially producing incorrect results. It's commonly prevented with synchronization primitives - mutexes/locks, semaphores, or atomic operations - that ensure only one thread enters the critical section at a time.",
     "explanation": "The core issue is a 'check-then-act' or 'read-modify-write' sequence on shared state that isn't atomic; synchronization makes that sequence effectively atomic from other threads' point of view."
   },
   {
@@ -426,7 +426,7 @@
       "To translate MAC addresses to IP addresses"
     ],
     "answer": "To separate the network portion of an IP address from the host portion",
-    "explanation": "The subnet mask tells a device which bits of an IP address identify the network and which identify the specific host on that network — essential for routing decisions."
+    "explanation": "The subnet mask tells a device which bits of an IP address identify the network and which identify the specific host on that network - essential for routing decisions."
   },
   {
     "id": "cn-007",
@@ -434,7 +434,7 @@
     "type": "short_answer",
     "difficulty": "Medium",
     "question": "What is the difference between a hub, a switch, and a router?",
-    "answer": "A hub is a simple physical-layer device that broadcasts every incoming signal to all connected ports with no intelligence. A switch operates at the data link layer, using MAC addresses to forward frames only to the intended destination port, reducing collisions and unnecessary traffic. A router operates at the network layer, forwarding packets between different networks based on IP addresses — typically what connects a home or office LAN to the internet.",
+    "answer": "A hub is a simple physical-layer device that broadcasts every incoming signal to all connected ports with no intelligence. A switch operates at the data link layer, using MAC addresses to forward frames only to the intended destination port, reducing collisions and unnecessary traffic. A router operates at the network layer, forwarding packets between different networks based on IP addresses - typically what connects a home or office LAN to the internet.",
     "explanation": "Each sits at a different OSI layer, which is exactly why their capabilities differ: hub (physical), switch (data link), router (network)."
   },
   {
@@ -482,8 +482,8 @@
     "type": "short_answer",
     "difficulty": "Easy",
     "question": "What are your greatest strengths, and how have you applied them in a real situation?",
-    "answer": "A strong answer names one or two genuine strengths relevant to the role, then backs each with a specific, brief example of it actually being applied — not just a list of adjectives with no evidence.",
-    "explanation": "Interviewers are grading for self-awareness and evidence, not the strength itself — 'I'm a good communicator' unsupported by an example is far weaker than the same claim with one concrete instance."
+    "answer": "A strong answer names one or two genuine strengths relevant to the role, then backs each with a specific, brief example of it actually being applied - not just a list of adjectives with no evidence.",
+    "explanation": "Interviewers are grading for self-awareness and evidence, not the strength itself - 'I'm a good communicator' unsupported by an example is far weaker than the same claim with one concrete instance."
   },
   {
     "id": "hr-006",
@@ -491,7 +491,7 @@
     "type": "short_answer",
     "difficulty": "Easy",
     "question": "How do you handle working under pressure or tight deadlines?",
-    "answer": "A good answer describes a concrete method — prioritizing tasks, breaking work into smaller steps, communicating early about blockers or scope trade-offs — ideally illustrated with one specific example of a deadline that was actually met this way.",
+    "answer": "A good answer describes a concrete method - prioritizing tasks, breaking work into smaller steps, communicating early about blockers or scope trade-offs - ideally illustrated with one specific example of a deadline that was actually met this way.",
     "explanation": "Vague reassurance ('I stay calm') is weaker than a specific, repeatable process the candidate can point to."
   },
   {
@@ -500,7 +500,7 @@
     "type": "short_answer",
     "difficulty": "Medium",
     "question": "Tell me about a time you had to learn a new technology or skill quickly. How did you approach it?",
-    "answer": "A strong answer follows a structure: what the situation demanded, how the candidate broke the learning down (docs, small experiments, asking someone experienced), and the concrete outcome of applying it — showing resourcefulness rather than claiming general 'fast learner' status.",
+    "answer": "A strong answer follows a structure: what the situation demanded, how the candidate broke the learning down (docs, small experiments, asking someone experienced), and the concrete outcome of applying it - showing resourcefulness rather than claiming general 'fast learner' status.",
     "explanation": "This question is really testing for a repeatable learning process, since almost every real job requires picking up something new quickly at some point."
   },
   {
@@ -516,7 +516,7 @@
       "O(n log n)"
     ],
     "answer": "O(log n)",
-    "explanation": "A balanced BST halves the search space at each step, giving logarithmic height and therefore logarithmic search time — the same reasoning as binary search on a sorted array."
+    "explanation": "A balanced BST halves the search space at each step, giving logarithmic height and therefore logarithmic search time - the same reasoning as binary search on a sorted array."
   },
   {
     "id": "ds-002",
@@ -531,7 +531,7 @@
       "Heap"
     ],
     "answer": "Stack",
-    "explanation": "A stack only allows insertion and removal at one end (the 'top'), so the most recently added element is always the first one removed — used for things like undo history and function call frames."
+    "explanation": "A stack only allows insertion and removal at one end (the 'top'), so the most recently added element is always the first one removed - used for things like undo history and function call frames."
   },
   {
     "id": "ds-003",
@@ -570,7 +570,7 @@
       "To cache database query results"
     ],
     "answer": "To distribute incoming traffic across multiple servers so no single one gets overloaded",
-    "explanation": "A load balancer sits in front of a pool of servers and spreads requests across them (by round robin, least connections, etc.), improving both throughput and resilience — if one server goes down, traffic just routes around it."
+    "explanation": "A load balancer sits in front of a pool of servers and spreads requests across them (by round robin, least connections, etc.), improving both throughput and resilience - if one server goes down, traffic just routes around it."
   },
   {
     "id": "sysd-002",
@@ -585,7 +585,7 @@
       "It removes the need for indexes"
     ],
     "answer": "It reduces read latency and database load for repeated requests",
-    "explanation": "A cache serves hot, frequently-requested data from fast in-memory storage instead of hitting the database every time — at the cost of having to manage cache invalidation/staleness, since the cached copy can drift from the source of truth."
+    "explanation": "A cache serves hot, frequently-requested data from fast in-memory storage instead of hitting the database every time - at the cost of having to manage cache invalidation/staleness, since the cached copy can drift from the source of truth."
   },
   {
     "id": "sysd-003",
@@ -600,7 +600,7 @@
       "Splitting a database into multiple schemas"
     ],
     "answer": "Adding more servers/machines to handle increased load",
-    "explanation": "Vertical scaling ('scale up') means making one machine more powerful; horizontal scaling ('scale out') means adding more machines and distributing load across them — generally more resilient and less limited by a single machine's ceiling."
+    "explanation": "Vertical scaling ('scale up') means making one machine more powerful; horizontal scaling ('scale out') means adding more machines and distributing load across them - generally more resilient and less limited by a single machine's ceiling."
   },
   {
     "id": "sysd-004",

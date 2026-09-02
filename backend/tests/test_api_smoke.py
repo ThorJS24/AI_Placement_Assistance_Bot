@@ -1,11 +1,11 @@
-"""Router-level smoke tests via FastAPI's TestClient — a handful of key
+"""Router-level smoke tests via FastAPI's TestClient - a handful of key
 endpoints exercised end-to-end (routing, auth, persistence) rather than
 every endpoint exhaustively. Uses the `client`/`admin_headers` fixtures
 from conftest.py, which point the whole app at a throwaway DB and a
 throwaway copy of the question-bank JSON files.
 
 Note: this file needs the real `fastapi` package installed (already in
-requirements.txt) — it could not be executed in the sandbox that produced
+requirements.txt) - it could not be executed in the sandbox that produced
 it, since that environment's package index blocks fastapi/pytest installs.
 The rest of this suite (test_code_judge.py, test_storage.py,
 test_validation.py, test_rate_limit.py) doesn't have that dependency and

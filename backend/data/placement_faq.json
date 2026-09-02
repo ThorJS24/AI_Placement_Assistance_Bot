@@ -5,7 +5,7 @@
   },
   {
     "question": "What should be on a fresher's resume?",
-    "answer": "One page, reverse-chronological, with: contact info, a 2-line summary, education (with CGPA), technical skills grouped by category, 2-4 projects with measurable impact, internships (if any), and certifications. Avoid an 'Objective' paragraph, a photo, or font sizes below 10pt — most companies scan resumes with ATS software first."
+    "answer": "One page, reverse-chronological, with: contact info, a 2-line summary, education (with CGPA), technical skills grouped by category, 2-4 projects with measurable impact, internships (if any), and certifications. Avoid an 'Objective' paragraph, a photo, or font sizes below 10pt - most companies scan resumes with ATS software first."
   },
   {
     "question": "What is an ATS and why does it matter?",
@@ -25,15 +25,15 @@
   },
   {
     "question": "What's a good way to handle a coding question I don't immediately know?",
-    "answer": "Think out loud: restate the problem, ask clarifying questions about constraints/edge cases, propose a brute-force approach first, analyze its complexity, then discuss how to optimize. Interviewers weight communication and approach heavily — a working brute force beats silence."
+    "answer": "Think out loud: restate the problem, ask clarifying questions about constraints/edge cases, propose a brute-force approach first, analyze its complexity, then discuss how to optimize. Interviewers weight communication and approach heavily - a working brute force beats silence."
   },
   {
     "question": "How important are projects for a fresher with no work experience?",
-    "answer": "Very important — projects are often the main technical talking point for freshers. 2-3 solid projects (ideally with a live demo/GitHub link) that show you can build something end-to-end matter more than a long list of tutorials you followed."
+    "answer": "Very important - projects are often the main technical talking point for freshers. 2-3 solid projects (ideally with a live demo/GitHub link) that show you can build something end-to-end matter more than a long list of tutorials you followed."
   },
   {
     "question": "What should I ask the interviewer at the end?",
-    "answer": "Ask genuine questions: about the team's tech stack, what a typical first 90 days looks like, how performance is evaluated, or what they enjoy about working there. Avoid asking about salary/leave policy in a technical round — save that for HR."
+    "answer": "Ask genuine questions: about the team's tech stack, what a typical first 90 days looks like, how performance is evaluated, or what they enjoy about working there. Avoid asking about salary/leave policy in a technical round - save that for HR."
   },
   {
     "question": "How do I calm down before an interview?",
@@ -41,15 +41,15 @@
   },
   {
     "question": "What is the difference between a technical round and a managerial round?",
-    "answer": "A technical round evaluates coding/CS fundamentals/problem-solving with an engineer. A managerial round (common at product companies) evaluates ownership, teamwork, conflict handling, and how you prioritize — usually with a team lead or manager, using behavioral questions."
+    "answer": "A technical round evaluates coding/CS fundamentals/problem-solving with an engineer. A managerial round (common at product companies) evaluates ownership, teamwork, conflict handling, and how you prioritize - usually with a team lead or manager, using behavioral questions."
   },
   {
     "question": "Should I list every programming language I've ever touched on my resume?",
-    "answer": "No — list languages/tools you can confidently discuss and code in during an interview. A shorter, honest skills list you can defend beats a long list that invites a question you can't answer."
+    "answer": "No - list languages/tools you can confidently discuss and code in during an interview. A shorter, honest skills list you can defend beats a long list that invites a question you can't answer."
   },
   {
     "question": "How many DSA problems should I practice before placements?",
-    "answer": "There's no magic number, but a common, well-tested benchmark is roughly 150-250 well-chosen problems covering all major patterns (not just quantity) — quality of understanding per pattern matters far more than raw count."
+    "answer": "There's no magic number, but a common, well-tested benchmark is roughly 150-250 well-chosen problems covering all major patterns (not just quantity) - quality of understanding per pattern matters far more than raw count."
   },
   {
     "question": "What is a good structure for explaining a project in an interview?",

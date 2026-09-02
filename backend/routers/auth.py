@@ -1,4 +1,4 @@
-"""Account signup/login/logout + "who am I" — real, password-protected
+"""Account signup/login/logout + "who am I" - real, password-protected
 identity (see core/auth.py). Every other /api/* endpoint's student identity
 is now verified server-side from the session cookie set here (see main.py's
 session-enforcing middleware), not trusted from a client header."""

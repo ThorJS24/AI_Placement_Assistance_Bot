@@ -1,4 +1,4 @@
-// Thin wrapper around @ricky0123/vad-web's MicVAD — real, browser-side
+// Thin wrapper around @ricky0123/vad-web's MicVAD - real, browser-side
 // Voice Activity Detection (ONNX Silero VAD running via WASM, entirely
 // client-side, zero server cost) used for both turn detection ("the
 // candidate started answering") and barge-in ("the candidate started
@@ -6,7 +6,7 @@
 //
 // Asset wiring: MicVAD needs three kinds of runtime assets that Vite's
 // bundler never sees (they're fetched by absolute URL at runtime, not
-// imported as JS) — the Silero ONNX model, the onnxruntime-web WASM
+// imported as JS) - the Silero ONNX model, the onnxruntime-web WASM
 // binary, and its AudioWorklet processor script. These are checked into
 // frontend/public/vad/ (see that folder + vite.config.js's comment) so
 // both `npm run dev` (served straight from public/) and the production
@@ -32,7 +32,7 @@ function loadVadModule() {
  *
  * onSpeechStart fires the moment VAD detects the candidate began talking
  * (used for both "start listening" and "barge in" depending on the
- * current interview state — see the hook). onSpeechEnd fires with the
+ * current interview state - see the hook). onSpeechEnd fires with the
  * captured Float32Array audio for that utterance once VAD detects the
  * candidate stopped.
  */
@@ -44,7 +44,7 @@ export async function startVad(stream, { onSpeechStart, onSpeechEnd, onVadError 
     onnxWASMBasePath: ASSET_BASE_PATH,
     onSpeechStart: () => onSpeechStart?.(),
     onSpeechEnd: (audio) => onSpeechEnd?.(audio),
-    onVADMisfire: () => {}, // a speech segment that turned out too short to count — not an error, just ignored
+    onVADMisfire: () => {}, // a speech segment that turned out too short to count - not an error, just ignored
   });
   try {
     vad.start();
@@ -60,7 +60,7 @@ export function stopVad(vad) {
     vad?.pause();
     vad?.destroy();
   } catch {
-    // best-effort cleanup — nothing useful to do if teardown itself throws
+    // best-effort cleanup - nothing useful to do if teardown itself throws
   }
 }
 
@@ -105,7 +105,7 @@ export function float32ToWavBlob(float32Audio, sampleRate = 16000) {
 /**
  * Chrome/Safari/Firefox all restrict the FIRST programmatic `.play()` call
  * on a page to ones that happen synchronously inside a user-gesture event
- * handler (a click) — anything that only fires later, after an `await`
+ * handler (a click) - anything that only fires later, after an `await`
  * (session creation, WS connect, mic permission, LLM+TTS generation), is
  * "user activation" that has already expired by the time it runs, so the
  * very first AI response's audio silently fails to play (`.play()` rejects)
@@ -113,7 +113,7 @@ export function float32ToWavBlob(float32Audio, sampleRate = 16000) {
  * successful play() on the element. Playing (and immediately pausing) one
  * silent sample synchronously inside the "Start live interview" click
  * handler "unlocks" that same <audio> element for every subsequent
- * programmatic play() for the rest of the session — call this directly
+ * programmatic play() for the rest of the session - call this directly
  * from the click handler, before any `await`.
  */
 export function primeAudioPlayback(audioEl) {
@@ -127,7 +127,7 @@ export function primeAudioPlayback(audioEl) {
   }).catch(done);
 }
 
-/** base64-encodes a Blob for embedding in a WS JSON text frame — the
+/** base64-encodes a Blob for embedding in a WS JSON text frame - the
  * simplest reliable transport for a FastAPI `WebSocket` endpoint reading
  * JSON messages (see routers/live_interview.py's protocol docstring);
  * binary WS frames would be marginally more efficient but would require a

@@ -40,7 +40,7 @@ def truncate(text: str, max_chars: int = 4000) -> str:
 
 # Stage-direction asides ("(pausing for a moment)", "(smiles)", "(clears
 # throat)") that small/local LLMs sometimes emit despite being told to
-# return only what they'd say out loud — harmless in written chat, but
+# return only what they'd say out loud - harmless in written chat, but
 # actively wrong once spoken by TTS and shown in a live transcript (see
 # modules/live_interview.py's stream_turn/stream_opening, the only callers
 # that need this). Deliberately narrow: only strips parentheticals whose
@@ -61,7 +61,7 @@ def strip_stage_directions(text: str) -> str:
 
 # Small/local models sometimes slip back into a written-dialogue-script
 # format ("Interviewer: ...", "Candidate: ...", "AI: ...") despite being
-# told to return only the spoken words — strip a leaking role label
+# told to return only the spoken words - strip a leaking role label
 # wherever it starts a sentence/line, not just at the very front of the
 # whole response (see modules/live_interview.py's stream_turn).
 _ROLE_LABEL_PREFIX = re.compile(
@@ -76,13 +76,13 @@ _SENTENCE_END_RE = re.compile(r"[.!?](?:\s+|$)")
 class IncrementalSentenceSplitter:
     """Feed it text pieces as they stream in from an LLM; it yields each
     completed sentence as soon as the piece that finishes it arrives, rather
-    than waiting for the whole response — used by the mock interview's
+    than waiting for the whole response - used by the mock interview's
     live-mode streaming endpoint so TTS can start synthesizing (and the
     student can start hearing) the first sentence of a question while the
     rest of it is still being generated.
 
     Not linguistically perfect (a decimal like "3.5" or an abbreviation like
-    "e.g." will split early) — acceptable here since the only consequence is
+    "e.g." will split early) - acceptable here since the only consequence is
     an extra short TTS clip boundary, not a correctness issue, and interview
     question text rarely contains either.
     """
@@ -106,7 +106,7 @@ class IncrementalSentenceSplitter:
         return sentences
 
     def flush(self) -> str | None:
-        """Call once the source stream is exhausted — returns any trailing
+        """Call once the source stream is exhausted - returns any trailing
         partial sentence that never got a closing punctuation mark, or None."""
         remainder = self._buffer.strip()
         self._buffer = ""

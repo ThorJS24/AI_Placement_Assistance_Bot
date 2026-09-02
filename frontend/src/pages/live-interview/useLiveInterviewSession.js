@@ -82,7 +82,7 @@ export default function useLiveInterviewSession() {
     if (!canBargeIn(stateRef.current.status)) return;
     const responseId = stateRef.current.activeResponseId;
     // Stop local playback FIRST, before sending anything over the wire or
-    // updating any state — never a moment of overlapping AI+candidate audio.
+    // updating any state - never a moment of overlapping AI+candidate audio.
     const el = playerElRef.current;
     if (el) {
       el.pause();
@@ -104,7 +104,7 @@ export default function useLiveInterviewSession() {
       const audio_base64 = await blobToBase64(blob);
       sendRaw({ type: "audio_answer", audio_base64, mime: "audio/wav" });
     } catch {
-      dispatch({ type: "ERROR", message: "Could not process your recording — try again or switch to typing." });
+      dispatch({ type: "ERROR", message: "Could not process your recording - try again or switch to typing." });
     }
   }, [sendRaw]);
 
@@ -112,7 +112,7 @@ export default function useLiveInterviewSession() {
     if (canBargeIn(stateRef.current.status)) {
       bargeIn();
     }
-    // canAcceptInput case: nothing to do here — MicVAD itself buffers the
+    // canAcceptInput case: nothing to do here - MicVAD itself buffers the
     // utterance and only calls onSpeechEnd once, no manual "start recording"
     // step is needed the way the older MediaRecorder-based flow required.
   }, [bargeIn]);
@@ -131,7 +131,7 @@ export default function useLiveInterviewSession() {
         const source = ctx.createMediaStreamSource(stream);
         const analyser = ctx.createAnalyser();
         analyser.fftSize = 512;
-        source.connect(analyser); // not connected to destination — no echo
+        source.connect(analyser); // not connected to destination - no echo
         audioCtxRef.current = ctx;
         analyserRef.current = analyser;
       }
@@ -139,7 +139,7 @@ export default function useLiveInterviewSession() {
       const vad = await startVad(stream, {
         onSpeechStart: handleSpeechStart,
         onSpeechEnd: handleSpeechEnd,
-        onVadError: () => dispatch({ type: "MICROPHONE_ERROR", message: "Voice detection failed to start — you can still type your answers." }),
+        onVadError: () => dispatch({ type: "MICROPHONE_ERROR", message: "Voice detection failed to start - you can still type your answers." }),
       });
       vadRef.current = vad;
       sendClientEvent("MIC_PERMISSION_GRANTED", {});
@@ -225,7 +225,7 @@ export default function useLiveInterviewSession() {
       reconnectTimerRef.current = setTimeout(() => connectWs(sessionId, wsUrl), delay);
     };
     ws.onerror = () => {
-      // onclose fires right after in browsers — reconnect logic lives there.
+      // onclose fires right after in browsers - reconnect logic lives there.
     };
   }, [handleServerMessage]);
 
@@ -264,13 +264,13 @@ export default function useLiveInterviewSession() {
   }, []);
 
   // Without headphones, the AI's own speech comes back out of the
-  // speakers and straight into the same open mic — browser echo
+  // speakers and straight into the same open mic - browser echo
   // cancellation (see the getUserMedia constraints above) helps but can't
   // fully cancel real acoustic (speaker-to-mic-through-air) echo, which VAD
   // then mistakes for the candidate talking, transcribes, and feeds back
   // into the interview as if it were a real answer (a feedback loop). The
   // reliable fix is to stop *capturing* mic audio while the AI is the one
-  // making sound — this trades automatic mid-sentence barge-in for a
+  // making sound - this trades automatic mid-sentence barge-in for a
   // manual "tap to interrupt" affordance (see bargeIn/LiveInterview.jsx)
   // that re-opens the mic the instant the candidate wants to jump in,
   // which is both more reliable without dedicated audio hardware and still
@@ -325,7 +325,7 @@ export default function useLiveInterviewSession() {
     dispatch({ type: "RESET" });
   }, []);
 
-  // Full cleanup on unmount — no leaks, no zombie playback after navigating away.
+  // Full cleanup on unmount - no leaks, no zombie playback after navigating away.
   useEffect(() => () => {
     manualEndRef.current = true;
     if (reconnectTimerRef.current) clearTimeout(reconnectTimerRef.current);

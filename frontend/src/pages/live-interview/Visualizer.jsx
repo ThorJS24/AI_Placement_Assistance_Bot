@@ -3,7 +3,7 @@ import { useEffect, useRef } from "react";
 /**
  * Canvas-based audio-reactive visualizer driven by a REAL Web Audio
  * AnalyserNode (`analyserRef`, shared with the mic capture pipeline in
- * useLiveInterviewSession) — never a CSS animation looping regardless of
+ * useLiveInterviewSession) - never a CSS animation looping regardless of
  * actual sound. Deliberately restrained: a single horizontal bar-meter in
  * the app's existing brand color, not a glowing orb or glassmorphism
  * effect, matching this project's plain Tailwind aesthetic elsewhere.

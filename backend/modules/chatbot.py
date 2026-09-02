@@ -37,7 +37,7 @@ def _profile_block(profile: dict | None) -> str:
         parts.append(f"Subjects this semester: {', '.join(profile['subjects'])}")
     if not parts:
         return ""
-    return "This student's profile (use to tailor advice — don't just repeat it back verbatim):\n" + "\n".join(
+    return "This student's profile (use to tailor advice - don't just repeat it back verbatim):\n" + "\n".join(
         f"- {p}" for p in parts
     )
 
@@ -63,7 +63,7 @@ def answer_stream(history: list[dict], user_message: str, profile: dict | None =
 
 SUGGESTED_PROMPTS = [
     "How do I answer 'Tell me about yourself' in an interview?",
-    "Review the structure of my resume — what sections should I include?",
+    "Review the structure of my resume - what sections should I include?",
     "What DSA topics should I prioritize with 2 months left before placements?",
     "Explain the STAR method for behavioral interview questions.",
 ]

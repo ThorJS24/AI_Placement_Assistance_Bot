@@ -1,10 +1,10 @@
-"""Renders a Roadmap Generator result as a downloadable PNG infographic —
+"""Renders a Roadmap Generator result as a downloadable PNG infographic -
 a vertical timeline with each phase as a card, connected by a spine line.
 
 Fully offline, dependency-light (Pillow only, already vendored for other
-modules' image needs) — deliberately NOT an AI-generated illustration, to
+modules' image needs) - deliberately NOT an AI-generated illustration, to
 keep the app's zero-cost/offline design (see README's "Why this design").
-Uses the institution's static brand colors (navy/gold — the same defaults
+Uses the institution's static brand colors (navy/gold - the same defaults
 documented in frontend/tailwind.config.js) rather than the live per-student
 theme, since a downloaded image is a fixed artifact, not part of the
 themed UI.

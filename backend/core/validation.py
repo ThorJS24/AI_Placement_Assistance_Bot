@@ -3,7 +3,7 @@ Shared input-size guardrails for free-form fields across the API.
 
 Philosophy: silently truncate rather than hard-reject wherever the field is
 just "too enthusiastic" (a student pasting an extra-long job description or
-a few too many skills shouldn't get a scary 422) — but always cap it, since
+a few too many skills shouldn't get a scary 422) - but always cap it, since
 every one of these fields either flows into an LLM prompt (cost/latency) or
 gets stored in SQLite forever (core/storage.py). File uploads are the
 exception: those get a hard reject, since reading an oversized file into
@@ -45,7 +45,7 @@ async def enforce_upload_size(file: UploadFile, max_bytes: int = config.MAX_UPLO
         if total > max_bytes:
             raise HTTPException(
                 status_code=413,
-                detail=f"File is too large — the limit is {max_bytes // (1024 * 1024)}MB.",
+                detail=f"File is too large - the limit is {max_bytes // (1024 * 1024)}MB.",
             )
         chunks.append(chunk)
     return b"".join(chunks)

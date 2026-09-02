@@ -1,4 +1,4 @@
-"""Student academic profile — stream/branch, specialization/honours,
+"""Student academic profile - stream/branch, specialization/honours,
 semester, and this semester's subjects. Feeds into the chatbot's system
 prompt and pre-fills the Roadmap Generator; also read by the admin
 dashboard. See core/storage.py's profile section for the persistence

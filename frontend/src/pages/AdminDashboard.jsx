@@ -201,10 +201,10 @@ function Dashboard() {
                       )}
                     </td>
                     <td className="py-2 pr-3 text-slate-500 dark:text-slate-400">
-                      {s.stream || <span className="text-slate-300">—</span>}
+                      {s.stream || <span className="text-slate-300">-</span>}
                       {s.specialization && <span className="text-slate-400 dark:text-slate-500"> · {s.specialization}</span>}
                     </td>
-                    <td className="py-2 pr-3 text-slate-500 dark:text-slate-400">{s.semester || <span className="text-slate-300">—</span>}</td>
+                    <td className="py-2 pr-3 text-slate-500 dark:text-slate-400">{s.semester || <span className="text-slate-300">-</span>}</td>
                     <td className="py-2 pr-3 text-slate-500 dark:text-slate-400">{formatWhen(s.last_active)}</td>
                     <td className="py-2 pr-3 text-slate-600 dark:text-slate-400">{s.resumes_count}</td>
                     <td className="py-2 pr-3 text-slate-600 dark:text-slate-400">
@@ -275,7 +275,7 @@ function TabNav({ active, onChange, onLock }) {
           );
         })}
       </div>
-      <button className="btn-secondary mb-1.5" onClick={onLock} title="Lock — clears the passcode from this browser">
+      <button className="btn-secondary mb-1.5" onClick={onLock} title="Lock - clears the passcode from this browser">
         <Lock size={15} /> Lock
       </button>
     </div>
@@ -303,7 +303,7 @@ export default function AdminDashboard() {
       <PageHeader
         icon={ShieldCheck}
         title="Placement Cell Admin"
-        subtitle="Department-wide readiness view for the TPO team — passcode-protected, linked from the sidebar on every page."
+        subtitle="Department-wide readiness view for the TPO team - passcode-protected, linked from the sidebar on every page."
       />
       {checking ? (
         <div className="py-16 text-center text-sm text-slate-400 dark:text-slate-500">Loading...</div>

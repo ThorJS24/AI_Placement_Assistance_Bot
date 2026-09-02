@@ -15,7 +15,7 @@ const TONE_STYLES = {
 
 /**
  * Fixed top-right stack of popup notifications, newest on top, each
- * independently dismissible — pairs with useNotifications.js. Renders
+ * independently dismissible - pairs with useNotifications.js. Renders
  * nothing when the list is empty.
  */
 export default function NotificationStack({ notifications, onDismiss }) {

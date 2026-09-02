@@ -2,7 +2,7 @@
 isolation, the modules/live_interview.py state-machine helpers, the
 evaluation scoring module, WS auth rejection, and the cancellation-token
 interrupt logic. Uses the `client` fixture from conftest.py (throwaway DB)
-and FastAPI TestClient's WS support for the auth-rejection cases — no real
+and FastAPI TestClient's WS support for the auth-rejection cases - no real
 browser/microphone needed for any of this."""
 from __future__ import annotations
 
@@ -134,7 +134,7 @@ def test_ws_rejects_nonexistent_session(client):
 
 
 # ---------------------------------------------------------------------------
-# modules/live_interview.py — state machine helpers
+# modules/live_interview.py - state machine helpers
 # ---------------------------------------------------------------------------
 
 def test_next_stage_progresses_with_elapsed_time():
@@ -175,7 +175,7 @@ def test_iter_cancellable_sentences_stops_when_interrupted():
 
     sentences = list(li.iter_cancellable_sentences(token_gen(), stop_event))
     # Only sentences completed strictly before the interrupt was set should
-    # have been yielded — nothing after the barge-in.
+    # have been yielded - nothing after the barge-in.
     assert sentences == ["First sentence.", "Second sentence."]
 
 
@@ -201,7 +201,7 @@ def test_iter_cancellable_sentences_already_set_yields_nothing():
 
 
 # ---------------------------------------------------------------------------
-# modules/live_interview_evaluation.py — rubric + scoring
+# modules/live_interview_evaluation.py - rubric + scoring
 # ---------------------------------------------------------------------------
 
 def test_resolve_rubric_by_interview_type():

@@ -1,10 +1,10 @@
 """TPO / placement-cell admin dashboard endpoints.
 
-Gated by a single shared passcode sent as the X-Admin-Passcode header —
+Gated by a single shared passcode sent as the X-Admin-Passcode header -
 proportionate to a local single-machine deployment, not a real multi-user
 auth system. The effective passcode is whatever's been set from the
 Settings page, falling back to config.ADMIN_PASSCODE (.env) if it was
-never changed — see core/runtime_settings.py. Every endpoint here reads
+never changed - see core/runtime_settings.py. Every endpoint here reads
 department-wide data across all students; nothing here is scoped to one
 student_name the way the rest of the API is.
 """
@@ -24,7 +24,7 @@ router = APIRouter()
 
 
 def _check_passcode(x_admin_passcode: str, request: Request) -> None:
-    # Rate-limited by IP (not by the passcode itself — a wrong guess has no
+    # Rate-limited by IP (not by the passcode itself - a wrong guess has no
     # student name attached) so a brute-force script can't iterate passcodes
     # quickly against an endpoint that's directly linked from every page's
     # sidebar.

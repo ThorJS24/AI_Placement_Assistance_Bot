@@ -2,7 +2,7 @@
 Effective app-wide settings: DB override (set from the Settings UI) if one
 exists, otherwise the .env/config.py default. This is what lets branding,
 the AI engine preference, the admin passcode, and the interview voice be
-changed live from the Settings page — no file editing, no restart.
+changed live from the Settings page - no file editing, no restart.
 
 Every other module should read settings through here (not straight from
 `config`) if that setting is one a department admin might reasonably want
@@ -56,7 +56,7 @@ def _get(key: str) -> str:
 
 
 def effective_settings() -> dict[str, str]:
-    """One query for every overridable setting — used by /settings/status
+    """One query for every overridable setting - used by /settings/status
     so the page doesn't do N separate round trips."""
     try:
         overrides = storage.get_app_settings(list(_KEYS.keys()))

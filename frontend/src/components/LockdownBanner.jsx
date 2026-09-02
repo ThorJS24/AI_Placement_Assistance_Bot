@@ -3,7 +3,7 @@ import { Lock } from "lucide-react";
 /**
  * Persistent "Proctoring active" status pill. The actual violation alerts
  * are popup notifications rendered by NotificationStack (see
- * useNotifications.js) — this component is just the small always-visible
+ * useNotifications.js) - this component is just the small always-visible
  * strike counter, reused by the DSA Contest, Concept Q&A quiz, and Mock
  * Interview running screens.
  */
@@ -19,7 +19,7 @@ export default function LockdownBanner({ strikes, maxStrikes }) {
           : "bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400"
       }`}
     >
-      <Lock size={13} /> Proctoring active — {strikes}/{maxStrikes} strikes
+      <Lock size={13} /> Proctoring active - {strikes}/{maxStrikes} strikes
     </div>
   );
 }

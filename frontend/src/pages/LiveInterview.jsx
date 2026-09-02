@@ -28,15 +28,15 @@ const DURATIONS = [
 const STATUS_LABEL = {
   [STATES.IDLE]: "",
   [STATES.CONNECTING]: "Connecting...",
-  [STATES.READY]: "Ready — waiting for the interviewer",
-  [STATES.AI_SPEAKING]: "Interviewer is speaking — tap \"Interrupt\" if you want to jump in",
+  [STATES.READY]: "Ready - waiting for the interviewer",
+  [STATES.AI_SPEAKING]: "Interviewer is speaking - tap \"Interrupt\" if you want to jump in",
   [STATES.LISTENING]: "Listening for your answer...",
   [STATES.PROCESSING]: "Thinking about your answer...",
   [STATES.ENDING]: "Wrapping up the interview...",
   [STATES.EVALUATING]: "Scoring your performance...",
   [STATES.COMPLETED]: "Interview complete",
   [STATES.ERROR]: "Something went wrong",
-  [STATES.RECONNECTING]: "Live connection lost — reconnecting...",
+  [STATES.RECONNECTING]: "Live connection lost - reconnecting...",
   [STATES.MIC_PERMISSION_REQUIRED]: "Microphone permission needed",
   [STATES.MICROPHONE_ERROR]: "Microphone unavailable",
   [STATES.CONNECTION_ERROR]: "Live audio couldn't be restored. Continue with text mode.",
@@ -72,7 +72,7 @@ export default function LiveInterview() {
 
   const handleStart = () => {
     // Must happen synchronously inside this click handler, before any
-    // await in session.start — see primeAudioPlayback's docstring.
+    // await in session.start - see primeAudioPlayback's docstring.
     primeAudioPlayback(audioElRef.current);
     session.start({ role, interviewType, difficulty, style, durationSecs, voiceMode });
   };
@@ -97,10 +97,10 @@ export default function LiveInterview() {
       <PageHeader
         icon={Radio}
         title="Live AI Interview"
-        subtitle="A real-time, voice-first mock interview — the interviewer speaks, you can jump in any time, just like a real conversation."
+        subtitle="A real-time, voice-first mock interview - the interviewer speaks, you can jump in any time, just like a real conversation."
       />
 
-      {/* Shared audio element for AI speech playback — hidden, controlled by the hook */}
+      {/* Shared audio element for AI speech playback - hidden, controlled by the hook */}
       <audio ref={audioElRef} onEnded={session.onClipEnded} className="hidden" />
 
       {phase === "lobby" && (
@@ -140,7 +140,7 @@ export default function LiveInterview() {
 
           {state.status === STATES.RECONNECTING && (
             <div className="rounded-xl bg-amber-50 dark:bg-amber-950/40 p-3 text-sm text-amber-800 dark:text-amber-300">
-              Live connection lost — reconnecting...
+              Live connection lost - reconnecting...
             </div>
           )}
 
@@ -281,13 +281,13 @@ function Lobby({
       <label className="flex items-center gap-2 text-sm font-medium text-slate-700 dark:text-slate-300">
         <input type="checkbox" checked={voiceMode} onChange={(e) => setVoiceMode(e.target.checked)} className="h-4 w-4 rounded border-slate-300 dark:border-slate-600 text-brand-600" />
         <Mic size={15} className="text-brand-600" /> Voice mode. The interviewer speaks out loud and your mic stays open the
-        whole time — start talking any time, even mid-question, to jump in. Turn this off to use typed answers only.
+        whole time - start talking any time, even mid-question, to jump in. Turn this off to use typed answers only.
       </label>
 
       <div className="rounded-xl bg-slate-50 dark:bg-slate-900 p-4 text-sm text-slate-600 dark:text-slate-400">
         <p className="font-semibold text-slate-700 dark:text-slate-300">Before you start</p>
         <ul className="mt-1 list-disc space-y-1 pl-5">
-          <li>Use headphones in a quiet room for the most natural back-and-forth. Your mic is only listened to while it's your turn to speak — tap "Interrupt" any time to jump in while the interviewer is talking.</li>
+          <li>Use headphones in a quiet room for the most natural back-and-forth. Your mic is only listened to while it's your turn to speak - tap "Interrupt" any time to jump in while the interviewer is talking.</li>
           <li>If your mic isn't available, you can always type your answers instead.</li>
           <li>The interview ends automatically after your chosen duration, or you can end it any time.</li>
         </ul>

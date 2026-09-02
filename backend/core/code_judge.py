@@ -8,9 +8,9 @@ core/docker_judge.py):
   - If Docker is installed AND its daemon is reachable, each test case
     runs inside a real Docker sandbox: an ephemeral python:3.11-slim
     container with the network disabled, memory/CPU/pid limits, and a
-    read-only filesystem — genuine process/filesystem/network isolation.
+    read-only filesystem - genuine process/filesystem/network isolation.
   - Otherwise (no Docker installed, daemon not running, or a container
-    couldn't be started for any reason — e.g. no internet to pull the
+    couldn't be started for any reason - e.g. no internet to pull the
     image on first use) this transparently falls back to the original
     subprocess-only sandbox below.
 
@@ -24,16 +24,16 @@ department too, see README): this isolates *crashes and infinite loops*
 via a subprocess + timeout, plus a memory cap and an import/call
 blocklist (below), which together cover the realistic accident/abuse
 cases for an academic self-practice tool used by trusted students on
-their own machines — a runaway loop, an accidental memory bomb, or a
+their own machines - a runaway loop, an accidental memory bomb, or a
 copy-pasted "let me just check" `os.system` call. Without Docker, it is
 still NOT a hardened multi-tenant sandbox (no seccomp/network
-jail/filesystem jail) — do not expose this over the public internet to
+jail/filesystem jail) - do not expose this over the public internet to
 untrusted users unless Docker (or another real sandbox like gVisor/nsjail)
 is actually installed and available on the host.
 
 Every safety layer below (code size limits, the AST import/call
 blocklist, the compile check) applies identically regardless of which
-execution backend runs — Docker is an *additional* isolation layer, not
+execution backend runs - Docker is an *additional* isolation layer, not
 a replacement for them.
 """
 from __future__ import annotations
@@ -51,12 +51,12 @@ from core import docker_judge
 logger = logging.getLogger(__name__)
 
 try:
-    import resource  # POSIX only — absent on Windows, which run.bat targets
+    import resource  # POSIX only - absent on Windows, which run.bat targets
 except ImportError:  # pragma: no cover - Windows
     resource = None
 
 # A DSA solution never legitimately needs filesystem, process, network, or
-# subprocess/threading access — blocking these closes the cheapest,
+# subprocess/threading access - blocking these closes the cheapest,
 # highest-value hole in an otherwise timeout-only sandbox (see docstring)
 # without touching the 99% of normal solutions that only need stdlib data
 # structures/algorithms. Deliberately NOT blocked: `sys` (very common for
@@ -88,7 +88,7 @@ def validate_code_size(code: str) -> None:
     if byte_len > config.MAX_CODE_BYTES:
         raise CodeTooLargeError(
             f"Submitted code is {byte_len:,} bytes, which is over the {config.MAX_CODE_BYTES:,}-byte limit. "
-            "Trim it down — this is meant for a single solution, not a whole project."
+            "Trim it down - this is meant for a single solution, not a whole project."
         )
     line_count = code.count("\n") + 1
     if line_count > config.MAX_CODE_LINES:
@@ -100,7 +100,7 @@ def validate_code_size(code: str) -> None:
 def validate_code_safety(code: str) -> None:
     """Reject obvious attempts to reach outside the sandbox (filesystem,
     process, network, interpreter internals) before ever executing the
-    code. A syntax error here is NOT this function's job to report — if
+    code. A syntax error here is NOT this function's job to report - if
     the code doesn't parse, run_against_tests' own compile step reports
     that cleanly; we just skip the safety walk in that case."""
     try:
@@ -113,7 +113,7 @@ def validate_code_safety(code: str) -> None:
                 root = alias.name.split(".")[0]
                 if root in _BLOCKED_MODULES:
                     raise UnsafeCodeError(
-                        f"'import {alias.name}' isn't allowed here — this judge runs solutions in a "
+                        f"'import {alias.name}' isn't allowed here - this judge runs solutions in a "
                         "restricted sandbox with no filesystem/process/network access. Solve it with "
                         "plain data structures and algorithms."
                     )
@@ -121,7 +121,7 @@ def validate_code_safety(code: str) -> None:
             root = (node.module or "").split(".")[0]
             if root in _BLOCKED_MODULES:
                 raise UnsafeCodeError(
-                    f"'from {node.module} import ...' isn't allowed here — this judge runs solutions in "
+                    f"'from {node.module} import ...' isn't allowed here - this judge runs solutions in "
                     "a restricted sandbox with no filesystem/process/network access."
                 )
         elif isinstance(node, ast.Call):
@@ -129,22 +129,22 @@ def validate_code_safety(code: str) -> None:
             name = fn.id if isinstance(fn, ast.Name) else (fn.attr if isinstance(fn, ast.Attribute) else None)
             if name in _BLOCKED_CALLS:
                 raise UnsafeCodeError(
-                    f"'{name}(...)' isn't allowed here — read from stdin and print your answer instead."
+                    f"'{name}(...)' isn't allowed here - read from stdin and print your answer instead."
                 )
 
 
 def _limit_child_resources() -> None:
     """Best-effort memory cap for the subprocess, applied via `preexec_fn`
     on POSIX only (the `resource` module doesn't exist on Windows, which
-    run.bat targets — this silently becomes a no-op there, same as before;
+    run.bat targets - this silently becomes a no-op there, same as before;
     the timeout is still the primary guard on every platform)."""
     if resource is None:
         return
     try:
-        mem_bytes = 256 * 1024 * 1024  # 256MB — generous for any real DSA solution
+        mem_bytes = 256 * 1024 * 1024  # 256MB - generous for any real DSA solution
         resource.setrlimit(resource.RLIMIT_AS, (mem_bytes, mem_bytes))
     except (ValueError, OSError):
-        pass  # some platforms/containers don't allow setrlimit — fail open, timeout still applies
+        pass  # some platforms/containers don't allow setrlimit - fail open, timeout still applies
 
 
 @dataclass
@@ -200,7 +200,7 @@ def run_against_tests(student_code: str, test_cases: list[dict], driver_template
         result.compile_error = f"Line {exc.lineno}: {exc.msg}"
         return result
 
-    # Import/call safety check — separate from the compile step above so a
+    # Import/call safety check - separate from the compile step above so a
     # blocked import surfaces as its own clear error rather than looking
     # like a syntax problem. Only the student's own code is checked (not
     # driver_template, which is our own trusted code).
@@ -212,11 +212,11 @@ def run_against_tests(student_code: str, test_cases: list[dict], driver_template
         return result
 
     # preexec_fn (used for the memory rlimit) isn't supported on Windows at
-    # all — subprocess.Popen raises ValueError just for passing it, so it
+    # all - subprocess.Popen raises ValueError just for passing it, so it
     # has to be omitted entirely there, not just made a no-op.
     extra_kwargs = {} if sys.platform == "win32" else {"preexec_fn": _limit_child_resources}
 
-    # Detected once per process and cached inside docker_judge — cheap to
+    # Detected once per process and cached inside docker_judge - cheap to
     # check on every call to run_against_tests.
     use_docker = docker_judge.docker_available()
 
@@ -231,7 +231,7 @@ def run_against_tests(student_code: str, test_cases: list[dict], driver_template
                     )
                 except docker_judge.DockerUnavailableError as exc:
                     # Docker exists but couldn't actually run this container
-                    # (e.g. no internet to pull the image on first use) —
+                    # (e.g. no internet to pull the image on first use) -
                     # fall back to the subprocess sandbox for this run
                     # rather than hard-failing the submission.
                     logger.warning("Docker execution unavailable, falling back to subprocess sandbox: %s", exc)

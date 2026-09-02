@@ -3,10 +3,10 @@
 @tailwind utilities;
 
 /* ---------------------------------------------------------------------------
- * Color themes — the "brand" Tailwind color ramp (see tailwind.config.js) is
+ * Color themes - the "brand" Tailwind color ramp (see tailwind.config.js) is
  * read from these variables at runtime, so switching html[data-theme] swaps
  * every bg-brand-*, text-brand-*, and border-brand-* class across the whole app
- * instantly, with no rebuild. Values are "r g b" triplets (no commas) —
+ * instantly, with no rebuild. Values are "r g b" triplets (no commas) -
  * required by Tailwind's rgb(var(...) / <alpha-value>) opacity technique.
  * Default (no data-theme attribute, or data-theme="default") is CHRIST
  * (Deemed to be University)'s actual navy institutional colour.
@@ -68,7 +68,7 @@ html[data-theme="crimson"] {
   --brand-950: 76 5 25;
 }
 
-/* Font-size preference — scales the root font size, which cascades through
+/* Font-size preference - scales the root font size, which cascades through
  * every rem-based Tailwind utility (text-sm, p-4, gap-3, ...) automatically
  * since they're all defined relative to it. "md" (100%) matches the
  * original, unscaled look. */
@@ -159,13 +159,13 @@ html[data-font-size="lg"] {
 }
 
 /* ---------------------------------------------------------------------------
- * Density preference ("compact") — tightens the most common spacing
+ * Density preference ("compact") - tightens the most common spacing
  * utilities app-wide plus the shared button/input components. Written
  * outside any @layer so it reliably overrides both Tailwind's utility layer
  * and the .btn-* and .input custom classes above, regardless of selector
  * specificity (unlayered CSS always wins over layered CSS in the cascade).
  * Scoped to the spacing scale used most often across the app rather than
- * every possible utility — broad, visible coverage without a risky rewrite
+ * every possible utility - broad, visible coverage without a risky rewrite
  * of every page's padding classes; some page-specific spacing may still
  * look unchanged in compact mode.
  * --------------------------------------------------------------------------- */

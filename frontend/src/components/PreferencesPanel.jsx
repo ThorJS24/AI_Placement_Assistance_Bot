@@ -24,7 +24,7 @@ export default function PreferencesPanel({ onClose, collapsed, onCollapsedChange
   const [prefs, setPrefs] = useState(getLocalPreferences());
 
   useEffect(() => {
-    // Reconcile against the student's server-saved preferences, if any —
+    // Reconcile against the student's server-saved preferences, if any -
     // localStorage/main.jsx already applied a local copy instantly, this
     // just catches this browser up if the student changed something on a
     // different device. Silently ignored if it fails (offline, Guest, etc).

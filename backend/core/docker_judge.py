@@ -3,18 +3,18 @@ Optional Docker-based execution backend for core/code_judge.py.
 
 When Docker is installed *and* its daemon is reachable, each test case is
 run inside a throwaway `python:3.11-slim` container with the network
-disabled, memory/CPU/pid limits, and a read-only root filesystem — real
+disabled, memory/CPU/pid limits, and a read-only root filesystem - real
 process/filesystem/network isolation on top of (not instead of) the
 existing AST import/call blocklist and compile check in code_judge.py.
 
 Availability is detected once per process and cached (see
 `docker_available()`) so we never shell out to `docker` on every single
-test-case run — a submission with 10 test cases does 1 detection check,
+test-case run - a submission with 10 test cases does 1 detection check,
 not 10.
 
-Every failure mode here — Docker not installed, daemon not running,
+Every failure mode here - Docker not installed, daemon not running,
 permission denied, no internet to pull `python:3.11-slim` on first use,
-container runtime error — is caught and treated as "Docker isn't usable
+container runtime error - is caught and treated as "Docker isn't usable
 right now," which the caller (code_judge.run_against_tests) turns into a
 transparent fallback to the plain subprocess path. This module must NEVER
 raise out to the caller and NEVER block app startup: a bare department PC
@@ -67,18 +67,18 @@ class DockerUnavailableError(Exception):
     """Raised internally when a specific `docker run` invocation fails in a
     way that means this run couldn't use Docker (image pull failure, daemon
     hiccup mid-run, etc). Callers should catch this and fall back to the
-    subprocess judge for that test case — it is NOT the same as a student's
+    subprocess judge for that test case - it is NOT the same as a student's
     code failing/timing out inside a container that started fine."""
 
 
 def run_in_container(full_source: str, stdin_data: str, timeout_secs: float) -> subprocess.CompletedProcess:
     """Run `full_source` inside a locked-down, ephemeral python:3.11-slim
-    container, piping `stdin_data` in via stdin — mirrors the shape of the
+    container, piping `stdin_data` in via stdin - mirrors the shape of the
     plain `subprocess.run([sys.executable, "-c", full_source], ...)` call
     in code_judge.py so the caller can treat the result the same way.
 
     Raises DockerUnavailableError if the *container itself* couldn't be
-    started/run (e.g. first-time image pull failed for lack of internet) —
+    started/run (e.g. first-time image pull failed for lack of internet) -
     this is distinct from the student's code timing out or crashing inside
     a container that started fine, which comes back as a normal
     CompletedProcess/TimeoutExpired like the subprocess path.
@@ -105,11 +105,11 @@ def run_in_container(full_source: str, stdin_data: str, timeout_secs: float) -> 
         )
     except subprocess.TimeoutExpired:
         # A genuine timeout of the student's code (or, rarely, a hung
-        # container) — let the caller handle this exactly like the
+        # container) - let the caller handle this exactly like the
         # subprocess path's TimeoutExpired.
         raise
     except FileNotFoundError as exc:
-        # docker binary vanished between detection and use — treat as
+        # docker binary vanished between detection and use - treat as
         # "Docker isn't usable right now."
         raise DockerUnavailableError(str(exc)) from exc
     except OSError as exc:
@@ -117,8 +117,8 @@ def run_in_container(full_source: str, stdin_data: str, timeout_secs: float) -> 
         raise DockerUnavailableError(str(exc)) from exc
 
     # Exit code 125 is Docker's own convention for "the container never
-    # actually ran" (e.g. couldn't pull the image — no internet on first
-    # use, registry unreachable, daemon hiccup) — as opposed to any other
+    # actually ran" (e.g. couldn't pull the image - no internet on first
+    # use, registry unreachable, daemon hiccup) - as opposed to any other
     # exit code, which came from the student's python3 process actually
     # running inside the container (a real pass/fail/crash for that test
     # case, not a Docker-availability problem). Only 125 should trigger a

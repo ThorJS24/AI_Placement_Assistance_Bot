@@ -1,7 +1,7 @@
 """Tests for the admin trend/analytics functions in core/storage.py
 (activity_trend, solve_rate_trend, readiness_distribution) and their
 routes. Rows are seeded with explicit past timestamps (not time.time())
-so day-bucketing can be checked precisely — this exact scenario was run
+so day-bucketing can be checked precisely - this exact scenario was run
 standalone against the real storage.py before this file was written."""
 from __future__ import annotations
 

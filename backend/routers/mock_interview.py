@@ -20,7 +20,7 @@ router = APIRouter()
 
 def _event(data: dict) -> str:
     """One line-delimited JSON event for the live-mode streaming endpoints
-    below — the frontend reads the plain-text stream and JSON.parses each
+    below - the frontend reads the plain-text stream and JSON.parses each
     line (see api/client.js's apiPostStream + MockInterview.jsx's live-mode
     consumer)."""
     return json.dumps(data) + "\n"
@@ -76,7 +76,7 @@ async def start_stream(
     """Live-mode variant of /start: streams the opening question sentence by
     sentence (each with its own already-synthesized audio clip, when
     voice_mode is on) instead of waiting for the whole question and a single
-    audio file — see MockInterview.jsx's live-mode audio queue player."""
+    audio file - see MockInterview.jsx's live-mode audio queue player."""
     rate_limit.enforce("mock-start", request, config.LLM_ACTION_RATE_LIMIT, config.LLM_ACTION_RATE_WINDOW_SECS, x_student_name)
     profile = storage.get_student_profile(x_student_name, x_student_pin)
     session_id = storage.create_interview_session("mock", req.role, student_name=x_student_name, pin=x_student_pin)
@@ -88,7 +88,7 @@ async def start_stream(
         # Sent first, before any sentence/audio events: the session already
         # exists (created above) and the frontend needs this id to submit an
         # answer, which can happen very fast if the student barges in on the
-        # very first sentence — sending it last (bundled into the final
+        # very first sentence - sending it last (bundled into the final
         # "done" event, as an earlier version of this endpoint did) created a
         # real race where a fast barge-in + answer could fire /next/stream
         # with session_id still null, since React hadn't yet applied the
@@ -181,7 +181,7 @@ async def next_turn_stream(
 ):
     """Live-mode variant of /next: streams feedback text as soon as it's
     generated, then the next question sentence by sentence with each
-    sentence's audio synthesized as it completes — the biggest single
+    sentence's audio synthesized as it completes - the biggest single
     contributor to feeling "live" rather than turn-based, since the student
     starts hearing the next question well before the model has finished
     writing all of it."""
@@ -199,7 +199,7 @@ async def next_turn_stream(
 
     def _safe_split(buf: str, marker: str) -> tuple[str | None, str]:
         """If `marker` appears in `buf`, returns (text_before_marker, text_after_marker).
-        Otherwise returns (None, buf) but — critically — never with more of
+        Otherwise returns (None, buf) but - critically - never with more of
         `buf` "confirmed safe" than `len(buf) - (len(marker) - 1)` characters,
         so a marker split across two streamed token pieces (e.g. one piece
         ends in "QUEST", the next starts with "ION:") still gets held back
@@ -313,7 +313,7 @@ def finish(
 
 @router.get("/history")
 def history(x_student_name: str = Header(default="Guest"), x_student_pin: str = Header(default="")):
-    """This student's past mock interview attempts, most recent first — each
+    """This student's past mock interview attempts, most recent first - each
     entry includes the score and stored report so the frontend can render a
     trend view without re-running the interview."""
     return storage.list_interview_sessions(kind="mock", student_name=x_student_name, pin=x_student_pin, limit=30)

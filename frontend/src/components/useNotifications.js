@@ -3,7 +3,7 @@ import { useCallback, useRef, useState } from "react";
 let idCounter = 0;
 
 /**
- * Generic stacked-popup notification manager — multiple notifications queue
+ * Generic stacked-popup notification manager - multiple notifications queue
  * and stack instead of one overwriting the last (the earlier lockdown toast
  * only ever showed the single most recent violation). Each entry
  * auto-dismisses after its own timer (or stays until manually dismissed if

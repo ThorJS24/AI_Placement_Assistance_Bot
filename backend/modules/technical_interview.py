@@ -16,11 +16,11 @@ from core.llm import ANTI_SLOP_INSTRUCTION
 
 # mtime-keyed cache: {path: (mtime, parsed_data)}. These banks are re-read
 # on every call by design (so the admin question-bank editor's edits apply
-# live, no restart — see _atomic_write_json's docstring), but under normal
+# live, no restart - see _atomic_write_json's docstring), but under normal
 # traffic the file doesn't change between requests, so re-parsing tens/
 # hundreds of KB of JSON on every single question pick is pure waste. This
-# keeps the "live edit" guarantee (an mtime bump — from the atomic
-# temp-file-then-replace write — is always a cache miss) while skipping the
+# keeps the "live edit" guarantee (an mtime bump - from the atomic
+# temp-file-then-replace write - is always a cache miss) while skipping the
 # reparse for the common case of no change.
 _json_cache: dict[str, tuple[float, list[dict]]] = {}
 
@@ -30,7 +30,7 @@ def _load_json_cached(path) -> list[dict]:
     mtime = os.path.getmtime(path)
     cached = _json_cache.get(key)
     if cached is not None and cached[0] == mtime:
-        return list(cached[1])  # shallow copy — callers shuffle/filter their own list in place
+        return list(cached[1])  # shallow copy - callers shuffle/filter their own list in place
     with open(path, encoding="utf-8") as f:
         data = json.load(f)
     _json_cache[key] = (mtime, data)
@@ -44,7 +44,7 @@ def load_dsa_questions() -> list[dict]:
 def _atomic_write_json(path, data) -> None:
     """Writes JSON via a temp file + os.replace so a crash or a concurrent
     read (load_dsa_questions()/load_topic_questions() re-read the file fresh
-    on every single request — no caching) never observes a partially-written
+    on every single request - no caching) never observes a partially-written
     question bank. Used by the admin question-bank editor (see
     routers/admin_questions.py) so edits take effect immediately, with no
     server restart, the same live-effective philosophy as
@@ -78,7 +78,7 @@ def dsa_topics() -> list[str]:
 
 
 def dsa_companies() -> list[str]:
-    """Distinct companies tagged across the DSA bank — powers the company
+    """Distinct companies tagged across the DSA bank - powers the company
     filter, the campus-placement-tool feature students expect most."""
     companies: set[str] = set()
     for q in load_dsa_questions():
@@ -143,13 +143,13 @@ def pick_dsa_question(
             missed.append(f"the {topic} topic")
         if missed:
             picked["match_note"] = (
-                f"No exact match for {', '.join(missed)} yet — showing the closest available question instead."
+                f"No exact match for {', '.join(missed)} yet - showing the closest available question instead."
             )
     return picked
 
 
 def get_dsa_question_by_id(question_id: str) -> dict | None:
-    """Fetch one specific question by id — used to reopen a bookmarked
+    """Fetch one specific question by id - used to reopen a bookmarked
     question directly, rather than the random-pick-with-filters flow
     pick_dsa_question uses for a fresh practice round."""
     for q in load_dsa_questions():
@@ -160,7 +160,7 @@ def get_dsa_question_by_id(question_id: str) -> dict | None:
 
 def get_dsa_questions_by_ids(question_ids: list[str]) -> list[dict]:
     """Bulk lookup, order-preserving vs. `question_ids` (most-recently-
-    bookmarked first, since callers pass ids in that order) — powers the
+    bookmarked first, since callers pass ids in that order) - powers the
     "Bookmarked questions" panel without one request per question."""
     by_id = {q["id"]: q for q in load_dsa_questions()}
     return [by_id[qid] for qid in question_ids if qid in by_id]
@@ -210,11 +210,11 @@ Candidate's answer: {user_answer}
 
 Grade the candidate's answer for correctness and completeness compared to the reference answer. \
 Minor wording differences are fine; focus on whether the core concept is understood. Use the full 0-100 \
-range — an answer that's mostly wrong or off-topic should score below 30, a partially correct answer \
+range - an answer that's mostly wrong or off-topic should score below 30, a partially correct answer \
 40-70 depending on how much is missing, only a genuinely complete and accurate answer above 85.
 
 Return ONLY a JSON object:
-{{"correct": <true if substantially correct, false otherwise>, "score": <0-100 integer>, "feedback": "<1-2 sentence specific feedback — name what was right or wrong, not a generic verdict>"}}
+{{"correct": <true if substantially correct, false otherwise>, "score": <0-100 integer>, "feedback": "<1-2 sentence specific feedback - name what was right or wrong, not a generic verdict>"}}
 {ANTI_SLOP_INSTRUCTION}"""
     return llm.chat_json(
         llm.system_user("You are a fair, precise technical interviewer grading conceptual answers.", prompt),

@@ -50,7 +50,7 @@ export default function Sidebar({ open, onClose, appTitle, departmentName, colle
     syncPreferences({ sidebar_collapsed: next });
   };
 
-  // Collapse (icon-only) is a desktop-only affordance — the mobile sidebar
+  // Collapse (icon-only) is a desktop-only affordance - the mobile sidebar
   // is a full-width overlay that only appears when explicitly opened, where
   // an icon-only mode would just make it harder to use with no space saved.
   const navItemClass = ({ isActive }) =>

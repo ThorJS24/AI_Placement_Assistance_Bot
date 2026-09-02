@@ -2,16 +2,16 @@ import { useCallback, useEffect, useRef, useState } from "react";
 
 /**
  * Proctored "assessment lockdown" behavior shared by the DSA Contest, the
- * Concept Q&A quiz round, and the Mock Interview — fullscreen + violation
+ * Concept Q&A quiz round, and the Mock Interview - fullscreen + violation
  * detection (tab switch, window blur, copy/paste, right-click, common
  * devtools shortcuts, and tampering with the Page Visibility API itself),
  * with a warn + strike-counter model: each violation is logged and shown
  * to the student, and `onLimitExceeded` fires once (and only once) after
- * `maxStrikes` violations — or immediately for a `severe` violation — so
+ * `maxStrikes` violations - or immediately for a `severe` violation - so
  * the caller can auto-submit exactly like a timer running out.
  *
  * Not every violation can actually be *prevented* by JS (fullscreen-exit,
- * tab switch, alt-tab window blur are all browser-level, not scriptable) —
+ * tab switch, alt-tab window blur are all browser-level, not scriptable) -
  * those are detected and logged after the fact rather than blocked. Ones
  * that *can* be intercepted (copy/paste/cut, right-click, devtools
  * shortcuts) are prevented as well as logged.
@@ -20,7 +20,7 @@ import { useCallback, useEffect, useRef, useState } from "react";
  * deliberately hide that from page JS). What IS detectable, and what
  * `checkVisibilityApiIntegrity` below does: whether the actual browser APIs
  * this hook depends on (`document.hidden` / `document.visibilityState`)
- * have been monkey-patched away from their native implementation — which is
+ * have been monkey-patched away from their native implementation - which is
  * exactly the mechanism most "hide my tab switch" cheat extensions and
  * bookmarklets use. That's treated as a `severe` violation (ends the
  * session immediately, no warning strikes) since tampering with the
@@ -54,7 +54,7 @@ function isDevtoolsShortcut(e) {
 }
 
 // A genuine browser implementation of these accessor properties always
-// stringifies to "function get hidden() { [native code] }" — any extension
+// stringifies to "function get hidden() { [native code] }" - any extension
 // or injected script that overrides them to spoof "always visible" replaces
 // that with real (non-native) JS source, which this reliably catches.
 function isNativeAccessor(proto, prop) {
@@ -116,7 +116,7 @@ export default function useLockdown({ active, maxStrikes = 3, onLimitExceeded, o
       if (el.requestFullscreen) await el.requestFullscreen();
     } catch {
       // Fullscreen can be denied/unsupported (e.g. some embedded/mobile
-      // browsers) — the rest of lockdown (blur/copy/paste/devtools
+      // browsers) - the rest of lockdown (blur/copy/paste/devtools
       // detection) still works without it, so this is non-fatal.
     }
   }, []);

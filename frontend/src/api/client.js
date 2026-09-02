@@ -1,16 +1,16 @@
 // Thin fetch wrappers for the FastAPI backend. All calls are relative to
-// "/api" — in production the backend serves the frontend from the same
+// "/api" - in production the backend serves the frontend from the same
 // origin, and in dev the Vite proxy (see vite.config.js) forwards them.
 
 const BASE = "/api";
 const STUDENT_NAME_KEY = "student_name";
-const ADMIN_PASSCODE_KEY = "admin_passcode"; // sessionStorage — clears when the browser closes
+const ADMIN_PASSCODE_KEY = "admin_passcode"; // sessionStorage - clears when the browser closes
 
 // --- Identity ----------------------------------------------------------
 // Real accounts (see core/auth.py + routers/auth.py): every request's
 // student identity is verified server-side from an httpOnly session
 // cookie (set by /auth/login or /auth/signup and sent automatically by the
-// browser via `credentials: "include"` below) — nothing here can spoof it.
+// browser via `credentials: "include"` below) - nothing here can spoof it.
 // getStudentName/setStudentName just cache the logged-in username locally
 // for instant display (e.g. the sidebar) without an extra round trip; it is
 // NOT read for authentication anywhere.
@@ -34,7 +34,7 @@ async function parseErrorDetail(res) {
     const data = await res.json();
     const detail = data.detail || data.error;
     // FastAPI's own 422 validation errors send `detail` as an ARRAY of
-    // {loc, msg, type} objects, not a string — rendering that directly (or
+    // {loc, msg, type} objects, not a string - rendering that directly (or
     // JSON.stringifying a plain object) produced a useless "[object Object]"
     // for the student. Fall back to each error's `msg` field, or a generic
     // message, rather than ever handing a non-string to an ApiError.
@@ -127,9 +127,9 @@ export async function authMe() {
 /**
  * Streams a POST response as plain text, invoking onChunk(text) as pieces
  * arrive. Used for the chatbot's token-by-token streaming reply. Falls back
- * gracefully — if the browser can't stream, it just resolves once with the
+ * gracefully - if the browser can't stream, it just resolves once with the
  * full body via onChunk. Pass { signal } to allow aborting mid-stream (used
- * by the chatbot's "stop generating" button) — the backend also detects the
+ * by the chatbot's "stop generating" button) - the backend also detects the
  * dropped connection and stops pulling further tokens from the LLM.
  */
 export async function apiPostStream(path, body, onChunk, options = {}) {
@@ -157,7 +157,7 @@ export async function apiPostStream(path, body, onChunk, options = {}) {
 
 /**
  * Like apiPostStream, but for endpoints that stream newline-delimited JSON
- * events (one JSON object per line) instead of raw text — see the mock
+ * events (one JSON object per line) instead of raw text - see the mock
  * interview's live-mode endpoints (/mock/start/stream, /mock/next/stream).
  * Buffers partial lines across chunk boundaries (a network chunk has no
  * reason to align with a "\n") and calls onEvent(parsedObject) for each
@@ -172,7 +172,7 @@ export async function apiPostStreamLines(path, body, onEvent, options = {}) {
       onEvent(JSON.parse(trimmed));
     } catch {
       // A malformed/partial line slipping through is a protocol bug, not
-      // something the student should see — drop it rather than crash the turn.
+      // something the student should see - drop it rather than crash the turn.
     }
   };
   await apiPostStream(path, body, (chunk) => {
@@ -192,7 +192,7 @@ export function downloadUrl(path) {
 
 // --- Admin / TPO dashboard ---------------------------------------------------
 // A single shared passcode (config.ADMIN_PASSCODE on the backend), kept in
-// sessionStorage only — so it clears when the browser closes, unlike the
+// sessionStorage only - so it clears when the browser closes, unlike the
 // student name tag which is meant to persist.
 
 export function getAdminPasscode() {

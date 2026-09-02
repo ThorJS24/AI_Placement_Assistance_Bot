@@ -5,7 +5,7 @@ import { Copy, Check } from "lucide-react";
 // Lightweight, dependency-free "syntax highlighting". Real syntax
 // highlighters (react-syntax-highlighter, rehype-highlight + highlight.js)
 // pull in a sizeable new npm dependency, which is risky on a department PC
-// with an unreliable internet connection — this is a deliberate trade-off:
+// with an unreliable internet connection - this is a deliberate trade-off:
 // a small regex tokenizer that covers comments/strings/numbers/keywords
 // well enough to read at a glance, with zero new installs.
 const KEYWORDS = new Set([

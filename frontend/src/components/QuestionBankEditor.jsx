@@ -149,7 +149,7 @@ function DsaForm({ initial, onSave, onCancel, saving, error }) {
           ))}
         </div>
         <p className="mt-1.5 text-xs text-slate-400 dark:text-slate-500">
-          Tip: this isn't auto-verified here — run the exact test inputs through a correct reference solution before saving, the
+          Tip: this isn't auto-verified here - run the exact test inputs through a correct reference solution before saving, the
           same way the DSA bank added in this app was verified.
         </p>
       </div>
@@ -335,7 +335,7 @@ export default function QuestionBankEditor() {
       setEditing(null);
       load();
     } catch (err) {
-      setFormError(err instanceof ApiError ? err.message : "Couldn't save this question — check the required fields.");
+      setFormError(err instanceof ApiError ? err.message : "Couldn't save this question - check the required fields.");
     } finally {
       setSaving(false);
     }
@@ -385,7 +385,7 @@ export default function QuestionBankEditor() {
       {!list ? (
         <div className="card p-8 text-center"><Spinner label="Loading questions..." /></div>
       ) : list.length === 0 ? (
-        <div className="card p-8 text-center text-sm text-slate-400 dark:text-slate-500">No questions yet — add the first one.</div>
+        <div className="card p-8 text-center text-sm text-slate-400 dark:text-slate-500">No questions yet - add the first one.</div>
       ) : (
         <div className="card overflow-x-auto">
           <table className="w-full text-left text-sm">

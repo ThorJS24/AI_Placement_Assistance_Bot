@@ -33,7 +33,7 @@ export default function RoadmapGenerator() {
     }).catch(() => {});
   }, []);
 
-  // The AI-illustrated image is an optional extra — only shown if this
+  // The AI-illustrated image is an optional extra - only shown if this
   // deployment has configured an image-gen API key (see .env.example's
   // IMAGE_GEN_API_KEY). Stays hidden entirely otherwise, so a fully offline
   // deployment never sees a button for a feature it can't use.
@@ -42,7 +42,7 @@ export default function RoadmapGenerator() {
   }, []);
 
   // Pre-fill "current level" from the student's saved academic profile, if
-  // they've set one — one less thing to type, and a more grounded starting
+  // they've set one - one less thing to type, and a more grounded starting
   // point for the AI than a blank box. Only touches the field while it's
   // still empty, so it never overwrites something the student already typed.
   useEffect(() => {
@@ -106,7 +106,7 @@ export default function RoadmapGenerator() {
     try {
       const { download_pdf } = await apiPost("/roadmap/pdf", { roadmap });
       // window.open returns null (no throw) when a popup blocker intercepts
-      // it — that used to fail completely silently. Fall back to a visible
+      // it - that used to fail completely silently. Fall back to a visible
       // link the student can click themselves.
       const win = window.open(download_pdf, "_blank");
       if (!win) {
@@ -158,7 +158,7 @@ export default function RoadmapGenerator() {
       <PageHeader
         icon={Map}
         title="Personalized Roadmap Generator"
-        subtitle="Tell us your target role and timeframe — get a week-by-week study plan grounded in real, free resources."
+        subtitle="Tell us your target role and timeframe - get a week-by-week study plan grounded in real, free resources."
       />
 
       <div className="card space-y-4 p-5">
@@ -181,7 +181,7 @@ export default function RoadmapGenerator() {
           </div>
         </div>
         <div>
-          <label className="label" htmlFor="roadmap-current-level">Your current level (be specific — helps personalize the plan)</label>
+          <label className="label" htmlFor="roadmap-current-level">Your current level (be specific - helps personalize the plan)</label>
           <textarea id="roadmap-current-level" className="input" rows={3} value={currentLevel} onChange={(e) => setCurrentLevel(e.target.value)}
             placeholder="e.g. Comfortable with Python basics, know arrays/strings, never done DP or system design." />
         </div>
@@ -200,7 +200,7 @@ export default function RoadmapGenerator() {
         <div className="mt-6 animate-slide-up space-y-4">
           <div className="card p-5">
             <h2 className="text-lg font-bold text-slate-900 dark:text-slate-100">
-              📍 {roadmap.target_role} — {roadmap.timeframe}
+              📍 {roadmap.target_role} - {roadmap.timeframe}
             </h2>
             {roadmap.overview && <p className="mt-2 rounded-xl bg-brand-50 p-3 text-sm text-brand-900">{roadmap.overview}</p>}
           </div>

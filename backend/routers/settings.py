@@ -1,11 +1,11 @@
 """Settings & diagnostics endpoints.
 
 Two kinds of settings live here:
-  * Deployment-level (ports, DB path, timeouts) — .env / config.py only,
+  * Deployment-level (ports, DB path, timeouts) - .env / config.py only,
     never exposed for live editing, since changing them genuinely does
     require a restart.
   * Department-level (branding, admin passcode, AI engine preference,
-    interview voice) — editable right from the Settings page via the
+    interview voice) - editable right from the Settings page via the
     endpoints below, stored as overrides (core/runtime_settings.py) and
     effective immediately, no restart needed. Changing these is gated
     behind the admin passcode since they affect every student on this
@@ -23,7 +23,7 @@ router = APIRouter()
 
 
 def _check_passcode(x_admin_passcode: str, request: Request) -> None:
-    # Same "admin-auth" rate-limit bucket as routers/admin.py — both are the
+    # Same "admin-auth" rate-limit bucket as routers/admin.py - both are the
     # same passcode, so a brute-force attempt against either endpoint should
     # count against the same per-IP budget.
     rate_limit.enforce("admin-auth", request, config.ADMIN_AUTH_RATE_LIMIT, config.ADMIN_AUTH_RATE_WINDOW_SECS)
@@ -77,7 +77,7 @@ def test_message():
 
 
 # ---------------------------------------------------------------------------
-# Live-editable settings — all gated behind the admin passcode, since they're
+# Live-editable settings - all gated behind the admin passcode, since they're
 # department-wide, not per-student.
 # ---------------------------------------------------------------------------
 

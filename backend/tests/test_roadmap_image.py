@@ -1,4 +1,4 @@
-"""Tests for core/roadmap_image.py's build_roadmap_image — renders a
+"""Tests for core/roadmap_image.py's build_roadmap_image - renders a
 Roadmap Generator result into a downloadable PNG infographic. Doesn't need
 any fixtures from conftest.py (pure function, no DB/app involved); just
 checks the PNG it writes to config.GENERATED_DIR is a real, openable image

@@ -13,7 +13,7 @@ from pathlib import Path
 
 from dotenv import load_dotenv
 
-# Make every HTTPS call in the process (Groq, edge-tts, optional image-gen —
+# Make every HTTPS call in the process (Groq, edge-tts, optional image-gen -
 # anything using `requests`/`httpx`/`openai`, all built on the stdlib `ssl`
 # module) verify certificates against the OS's native trust store instead of
 # the `certifi` bundle those libraries ship by default. This matters a lot
@@ -22,7 +22,7 @@ from dotenv import load_dotenv
 # machine works fine) but was never in certifi's bundle, so Python-only
 # tools fail with CERTIFICATE_VERIFY_FAILED even though the network is
 # otherwise fine. `truststore` (stdlib-adjacent, no config needed) fixes
-# this globally by patching `ssl.SSLContext` — must run before anything else
+# this globally by patching `ssl.SSLContext` - must run before anything else
 # in the app opens an HTTPS connection, so this file (imported first by
 # every other module) is the right place. Safe no-op if truststore isn't
 # installed for some reason (falls back to the previous certifi behavior).
@@ -63,10 +63,10 @@ def _env_bool(key: str, default: bool = False) -> bool:
 # App identity
 # ---------------------------------------------------------------------------
 APP_TITLE = _env("APP_TITLE", "AI Placement Assistance Platform")
-COLLEGE_NAME = _env("COLLEGE_NAME", "")  # e.g. "CHRIST (Deemed to be University)" — shown alongside the department
+COLLEGE_NAME = _env("COLLEGE_NAME", "")  # e.g. "CHRIST (Deemed to be University)" - shown alongside the department
 DEPARTMENT_NAME = _env("DEPARTMENT_NAME", "Department of Computer Science and Engineering")
 
-# Passcode for the /admin (TPO/placement-cell) dashboard — a single shared
+# Passcode for the /admin (TPO/placement-cell) dashboard - a single shared
 # passcode, not per-user login, proportionate to a local single-machine
 # deployment. Change this in .env before handing the app to the department.
 ADMIN_PASSCODE = _env("ADMIN_PASSCODE", "changeme123")
@@ -84,7 +84,7 @@ GROQ_BASE_URL = "https://api.groq.com/openai/v1"
 # ---------------------------------------------------------------------------
 # Optional AI-illustrated roadmap image (Roadmap Generator "extra"). The
 # default roadmap image (core/roadmap_image.py) is always available and
-# fully offline — this is a togglable add-on layered on top, only active
+# fully offline - this is a togglable add-on layered on top, only active
 # when a key is configured. See .env.example for the full explanation.
 # ---------------------------------------------------------------------------
 IMAGE_GEN_API_KEY = _env("IMAGE_GEN_API_KEY")
@@ -123,7 +123,7 @@ CODE_EXEC_TIMEOUT_SECS = 5        # sandboxed student code execution
 MAX_CHAT_HISTORY_TURNS = 20       # trimmed context window sent to the LLM
 
 # Guardrails for the DSA code runner (core/code_judge.py). It executes
-# arbitrary student Python in a subprocess — this isn't a hardened sandbox
+# arbitrary student Python in a subprocess - this isn't a hardened sandbox
 # (see code_judge.py's docstring), so these caps exist to stop obviously
 # abusive input (huge pastes, runaway automated submissions) rather than to
 # fully secure the endpoint.
@@ -138,7 +138,7 @@ CONTEST_DEFAULT_MINUTES = 20
 CONTEST_MAX_QUESTIONS = 8
 
 # ---------------------------------------------------------------------------
-# Rate limits & input caps — every endpoint that calls out to the LLM (cost,
+# Rate limits & input caps - every endpoint that calls out to the LLM (cost,
 # latency) or accepts free-form/file input (memory, storage) gets a guardrail
 # here, mirroring the DSA runner's existing pattern (DSA_RUN_RATE_LIMIT
 # above). Proportionate to a trusted shared-PC deployment: generous enough
@@ -151,12 +151,12 @@ CHAT_RATE_WINDOW_SECS = 60         # ...per this many seconds, per student
 LLM_ACTION_RATE_LIMIT = 15         # resume build/analyze, roadmap generate, mock
 LLM_ACTION_RATE_WINDOW_SECS = 60   # interview turns, dsa review, quiz build/grade...
 
-ADMIN_AUTH_RATE_LIMIT = 20         # admin/settings passcode checks — generous enough that normal
+ADMIN_AUTH_RATE_LIMIT = 20         # admin/settings passcode checks - generous enough that normal
 ADMIN_AUTH_RATE_WINDOW_SECS = 60   # dashboard/settings usage never trips it, tight enough to make
                                     # rapid online passcode-guessing scripts impractical (per client IP)
 
 ACCOUNT_AUTH_RATE_LIMIT = 10       # signup/login attempts...
-ACCOUNT_AUTH_RATE_WINDOW_SECS = 60 # ...per this many seconds, per connecting IP — slows down
+ACCOUNT_AUTH_RATE_WINDOW_SECS = 60 # ...per this many seconds, per connecting IP - slows down
                                     # password-guessing scripts without affecting normal use
 
 MAX_UPLOAD_BYTES = 10 * 1024 * 1024   # resume files / interview audio uploads
@@ -167,7 +167,7 @@ MAX_LIST_ITEMS = 40                # skills / bullets / certifications list leng
 MAX_BULLET_CHARS = 400             # one bullet point / skill / certification entry
 
 # ---------------------------------------------------------------------------
-# Live AI Interview (WebSocket, voice-first) — routers/live_interview.py.
+# Live AI Interview (WebSocket, voice-first) - routers/live_interview.py.
 # No new external realtime provider: this reuses the same LLM/STT/TTS
 # backends as the turn-based Mock Interview, just over a persistent
 # WebSocket instead of request/response, with client-side VAD for barge-in
