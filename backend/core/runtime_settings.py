@@ -23,6 +23,14 @@ _KEYS = {
     "admin_passcode": "ADMIN_PASSCODE",
     "llm_backend": "LLM_BACKEND",
     "edge_tts_voice": "EDGE_TTS_VOICE",
+    "temperature": "LLM_TEMPERATURE",
+    "max_tokens": "LLM_MAX_TOKENS",
+    "interviewer_persona": "INTERVIEWER_PERSONA",
+    "speech_rate": "SPEECH_RATE",
+    "lockdown_strictness": "LOCKDOWN_STRICTNESS",
+    "tab_switch_limit": "TAB_SWITCH_LIMIT",
+    "editor_font_size": "EDITOR_FONT_SIZE",
+    "editor_theme": "EDITOR_THEME",
 }
 
 ALLOWED_LLM_BACKENDS = ("auto", "ollama", "groq")
@@ -41,18 +49,34 @@ AVAILABLE_TTS_VOICES = [
 ]
 
 
+_DEFAULTS = {
+    "app_title": "CHRIST (Deemed to be University) AI Placement Assistant",
+    "college_name": "CHRIST (Deemed to be University)",
+    "department_name": "Department of Computer Science and Engineering",
+    "admin_passcode": "admin",
+    "llm_backend": "auto",
+    "edge_tts_voice": "en-IN-PrabhatNeural",
+    "temperature": "0.7",
+    "max_tokens": "1024",
+    "interviewer_persona": "mentor",
+    "speech_rate": "1.0",
+    "lockdown_strictness": "medium",
+    "tab_switch_limit": "3",
+    "editor_font_size": "14",
+    "editor_theme": "vscode-dark",
+}
+
 def _get(key: str) -> str:
     try:
         override = storage.get_app_setting(key)
     except Exception:
-        # Defensive: this can be called before storage.init_db() has created
-        # the app_settings table (e.g. FastAPI's app title is resolved at
-        # import time, before the lifespan startup hook runs). Falling back
-        # to the .env default here is always safe.
         override = None
     if override is not None and override != "":
         return override
-    return getattr(config, _KEYS[key])
+    attr = _KEYS.get(key)
+    if attr and hasattr(config, attr):
+        return getattr(config, attr)
+    return _DEFAULTS.get(key, "")
 
 
 def effective_settings() -> dict[str, str]:
@@ -62,10 +86,15 @@ def effective_settings() -> dict[str, str]:
         overrides = storage.get_app_settings(list(_KEYS.keys()))
     except Exception:
         overrides = {}
-    return {
-        key: (overrides.get(key) or getattr(config, attr))
-        for key, attr in _KEYS.items()
-    }
+    result = {}
+    for key, attr in _KEYS.items():
+        if key in overrides and overrides[key] != "":
+            result[key] = overrides[key]
+        elif hasattr(config, attr):
+            result[key] = getattr(config, attr)
+        else:
+            result[key] = _DEFAULTS.get(key, "")
+    return result
 
 
 def effective_app_title() -> str:
@@ -112,3 +141,27 @@ def set_llm_backend(backend: str) -> None:
 
 def set_tts_voice(voice_id: str) -> None:
     storage.set_app_setting("edge_tts_voice", voice_id.strip())
+
+
+def set_ai_tuning(temperature: str | None = None, max_tokens: str | None = None, persona: str | None = None) -> None:
+    if temperature is not None:
+        storage.set_app_setting("temperature", str(temperature).strip())
+    if max_tokens is not None:
+        storage.set_app_setting("max_tokens", str(max_tokens).strip())
+    if persona is not None:
+        storage.set_app_setting("interviewer_persona", str(persona).strip())
+
+
+def set_lockdown_settings(strictness: str | None = None, tab_limit: str | None = None) -> None:
+    if strictness is not None:
+        storage.set_app_setting("lockdown_strictness", str(strictness).strip())
+    if tab_limit is not None:
+        storage.set_app_setting("tab_switch_limit", str(tab_limit).strip())
+
+
+def set_editor_settings(font_size: str | None = None, theme: str | None = None) -> None:
+    if font_size is not None:
+        storage.set_app_setting("editor_font_size", str(font_size).strip())
+    if theme is not None:
+        storage.set_app_setting("editor_theme", str(theme).strip())
+

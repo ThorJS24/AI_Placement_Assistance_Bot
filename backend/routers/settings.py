@@ -52,6 +52,14 @@ def status():
         "whisper_model_size": config.WHISPER_MODEL_SIZE,
         "tts_backend": config.TTS_BACKEND,
         "edge_tts_voice": settings_["edge_tts_voice"],
+        "temperature": settings_.get("temperature", "0.7"),
+        "max_tokens": settings_.get("max_tokens", "1024"),
+        "interviewer_persona": settings_.get("interviewer_persona", "mentor"),
+        "speech_rate": settings_.get("speech_rate", "1.0"),
+        "lockdown_strictness": settings_.get("lockdown_strictness", "medium"),
+        "tab_switch_limit": settings_.get("tab_switch_limit", "3"),
+        "editor_font_size": settings_.get("editor_font_size", "14"),
+        "editor_theme": settings_.get("editor_theme", "vscode-dark"),
     }
 
 
@@ -142,3 +150,41 @@ def update_voice(req: VoiceRequest, request: Request, x_admin_passcode: str = He
         raise HTTPException(status_code=422, detail="Unknown voice id.")
     runtime_settings.set_tts_voice(req.edge_tts_voice)
     return {"ok": True}
+
+
+class TuningRequest(BaseModel):
+    temperature: str = Field("0.7", max_length=10)
+    max_tokens: str = Field("1024", max_length=10)
+    interviewer_persona: str = Field("mentor", max_length=50)
+
+
+@router.patch("/tuning")
+def update_tuning(req: TuningRequest, request: Request, x_admin_passcode: str = Header(default="")):
+    _check_passcode(x_admin_passcode, request)
+    runtime_settings.set_ai_tuning(req.temperature, req.max_tokens, req.interviewer_persona)
+    return {"ok": True}
+
+
+class LockdownRequest(BaseModel):
+    strictness: str = Field("medium", max_length=20)
+    tab_switch_limit: str = Field("3", max_length=5)
+
+
+@router.patch("/lockdown")
+def update_lockdown(req: LockdownRequest, request: Request, x_admin_passcode: str = Header(default="")):
+    _check_passcode(x_admin_passcode, request)
+    runtime_settings.set_lockdown_settings(req.strictness, req.tab_switch_limit)
+    return {"ok": True}
+
+
+class EditorRequest(BaseModel):
+    font_size: str = Field("14", max_length=5)
+    theme: str = Field("vscode-dark", max_length=30)
+
+
+@router.patch("/editor")
+def update_editor(req: EditorRequest, request: Request, x_admin_passcode: str = Header(default="")):
+    _check_passcode(x_admin_passcode, request)
+    runtime_settings.set_editor_settings(req.font_size, req.theme)
+    return {"ok": True}
+
