@@ -1,25 +1,33 @@
-# 🎓 AI Placement Assistance Platform
+# 🎓 CHRIST (Deemed to be University) - AI Placement Assistance Platform
 
-An all-in-one, **free and open-source** AI placement preparation suite, built for department use.
-A modern React web interface backed by a FastAPI service - runs entirely on your own machine, no
-mandatory cloud accounts, no per-use cost, and your students' data never has to leave the campus
-network unless you explicitly turn on the optional cloud engine.
+[![Security Policy](https://img.shields.io/badge/Security-Policy-blue.svg)](SECURITY.md)
+[![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
+[![Department](https://img.shields.io/badge/Department-CSE-gold.svg)](https://christuniversity.in/)
 
-## Modules
+An all-in-one, **privacy-first, open-source** AI placement preparation suite, built for **CHRIST (Deemed to be University) Department of Computer Science and Engineering (CSE)**.
+A modern React web interface backed by a FastAPI service - runs entirely on your own campus machine, no mandatory cloud accounts, no per-use cost, and student data never leaves the campus network unless explicitly enabled.
 
-1. **💬 AI Chatbot** - placement/career guidance, grounded with your department's own FAQ knowledge base.
-2. **📄 Resume Builder & Analyzer** - build an ATS-friendly resume (DOCX + PDF export), or upload an
-   existing resume for an AI-generated ATS score and section-by-section feedback.
-3. **🗺️ Roadmap Generator** - personalized, week-by-week learning roadmap for a target role, blending
-   curated department templates with AI personalization.
-4. **🎤 Mock Interview (Speech-to-Speech)** - the AI asks interview questions out loud, the student
-   answers by voice, it adapts follow-ups in real time, and ends with a detailed performance report.
-5. **💻 Technical Interview** - a DSA coding round (Python, real test cases, instant grading, with a
-   built-in code editor) and a CS-fundamentals concept quiz (OOP / DBMS / OS / Computer Networks /
-   Aptitude / HR), both with AI-graded feedback.
+---
 
-Every module keeps a durable history in a local SQLite database (`storage/app.db`), so nothing is lost
-between restarts.
+## 📌 Repository Overview & About
+
+- **Website**: [https://christuniversity.in/](https://christuniversity.in/)
+- **Documentation & Wiki**: [Repository Wiki](https://github.com/ThorJS24/AI_Placement_Assistance_Bot/wiki)
+- **Security Policy**: [SECURITY.md](SECURITY.md)
+- **Topics & Tags**: `ai-placement-assistant`, `christ-university`, `fastapi`, `react-vite`, `ats-resume-builder`, `dsa-judge`, `sqlite-runner`, `zoom-clone-interview`, `tailwind-css`, `ollama-llama3`, `groq-cloud`
+
+---
+
+## 🚀 Key Modules & Feature Highlights
+
+1. **💬 AI Chatbot** - 24/7 placement/career guidance grounded in department FAQ knowledge base (`placement_faq.json`) with Text-to-Speech voice output.
+2. **📄 ATS Resume Builder & Analyzer** - Single-page A4 print-isolated live canvas preview, granular sub-score analysis (Formatting, Keywords, Impact, Structure), ATS compliance checklist, and DOCX / 1-page A4 PDF export.
+3. **🗺️ Career Roadmap Generator** - Week-by-week personalized learning roadmap for target roles (Backend, Full Stack, AI/ML, DevOps, Data Science) blending department templates with AI personalization.
+4. **📹 Real-Time Zoom Video Call AI Interview** - 2-tile video call grid (Host AI Interviewer & Candidate Webcam Feed), live audio visualizer, real-time floating closed-captions, hands-free VAD speech-to-speech with barge-in support.
+5. **💻 Fused LeetCode + HackerRank Multi-Domain IDE** - VS Code IDE clone (Title bar tabs, line highlighting, VS Code Dark+ status bar), 226+ interview questions across 5 domain tracks (`🧮 DSA`, `🛢️ SQL`, `🏗️ System Design`, `🌐 Web Dev`, `🧠 CS Fundamentals`), in-memory SQLite query judge, and automated test cases.
+6. **⚙️ Multi-Tab Control Center & Settings** - Unlocked Student Preferences (Academic Profile, Theme Customizer, IDE defaults, Voice Studio) and Admin Passcode Protected Department Controls (Branding, Model Tuning, Proctoring Lockdown).
+
+Every module maintains durable persistent history in a local SQLite database (`storage/app.db`), preserving records between application restarts.
 
 ---
 
