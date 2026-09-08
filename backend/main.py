@@ -77,14 +77,14 @@ app.add_middleware(
 # password now gates who can claim a username at all) but is left alone -
 # harmless, and storage._resolve_student's PIN check just never triggers
 # for accounts created through /api/auth/signup.
-_AUTH_EXEMPT_PREFIXES = ("/api/auth", "/api/admin")
+_AUTH_EXEMPT_PREFIXES = ("/api/auth", "/api/admin", "/api/settings")
 _AUTH_EXEMPT_EXACT = {"/api/health", "/api/settings/status"}
 
 
 @app.middleware("http")
 async def enforce_session_identity(request: Request, call_next):
     path = request.url.path
-    if not path.startswith("/api/") or path.startswith(_AUTH_EXEMPT_PREFIXES) or path in _AUTH_EXEMPT_EXACT:
+    if request.method == "OPTIONS" or not path.startswith("/api/") or path.startswith(_AUTH_EXEMPT_PREFIXES) or path in _AUTH_EXEMPT_EXACT:
         return await call_next(request)
 
     token = request.cookies.get(auth.SESSION_COOKIE)

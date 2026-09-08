@@ -96,6 +96,7 @@ class BrandingRequest(BaseModel):
 
 
 @router.patch("/branding")
+@router.post("/branding")
 def update_branding(req: BrandingRequest, request: Request, x_admin_passcode: str = Header(default="")):
     _check_passcode(x_admin_passcode, request)
     if not req.app_title.strip() or not req.department_name.strip():
@@ -110,10 +111,8 @@ class PasscodeRequest(BaseModel):
 
 
 @router.patch("/passcode")
+@router.post("/passcode")
 def update_passcode(req: PasscodeRequest, request: Request, x_admin_passcode: str = Header(default="")):
-    # Require BOTH the header (so only someone already in the admin dashboard
-    # can even reach this) and current_passcode in the body (so a change
-    # can't be made from a stale/incorrect passcode typed elsewhere).
     _check_passcode(x_admin_passcode, request)
     if req.current_passcode != runtime_settings.effective_admin_passcode():
         raise HTTPException(status_code=401, detail="Current passcode is incorrect.")
@@ -129,6 +128,7 @@ class EngineRequest(BaseModel):
 
 
 @router.patch("/engine")
+@router.post("/engine")
 def update_engine(req: EngineRequest, request: Request, x_admin_passcode: str = Header(default="")):
     _check_passcode(x_admin_passcode, request)
     backend = req.llm_backend.strip().lower()
@@ -143,6 +143,7 @@ class VoiceRequest(BaseModel):
 
 
 @router.patch("/voice")
+@router.post("/voice")
 def update_voice(req: VoiceRequest, request: Request, x_admin_passcode: str = Header(default="")):
     _check_passcode(x_admin_passcode, request)
     valid_ids = {v["id"] for v in runtime_settings.AVAILABLE_TTS_VOICES}
@@ -159,6 +160,7 @@ class TuningRequest(BaseModel):
 
 
 @router.patch("/tuning")
+@router.post("/tuning")
 def update_tuning(req: TuningRequest, request: Request, x_admin_passcode: str = Header(default="")):
     _check_passcode(x_admin_passcode, request)
     runtime_settings.set_ai_tuning(req.temperature, req.max_tokens, req.interviewer_persona)
@@ -171,6 +173,7 @@ class LockdownRequest(BaseModel):
 
 
 @router.patch("/lockdown")
+@router.post("/lockdown")
 def update_lockdown(req: LockdownRequest, request: Request, x_admin_passcode: str = Header(default="")):
     _check_passcode(x_admin_passcode, request)
     runtime_settings.set_lockdown_settings(req.strictness, req.tab_switch_limit)
@@ -183,6 +186,7 @@ class EditorRequest(BaseModel):
 
 
 @router.patch("/editor")
+@router.post("/editor")
 def update_editor(req: EditorRequest, request: Request, x_admin_passcode: str = Header(default="")):
     _check_passcode(x_admin_passcode, request)
     runtime_settings.set_editor_settings(req.font_size, req.theme)
