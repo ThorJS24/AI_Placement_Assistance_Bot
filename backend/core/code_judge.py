@@ -179,13 +179,38 @@ def _normalize(s: str) -> str:
     return "\n".join(line.rstrip() for line in s.strip().splitlines())
 
 
+def run_sql_query(student_code: str, test_cases: list[dict]) -> JudgeResult:
+    import sqlite3
+    result = JudgeResult()
+    for case in test_cases:
+        setup_sql = case.get("input", "")
+        expected = case.get("expected", "")
+        conn = sqlite3.connect(":memory:")
+        cursor = conn.cursor()
+        try:
+            if setup_sql and ("CREATE" in setup_sql.upper() or "INSERT" in setup_sql.upper()):
+                cursor.executescript(setup_sql)
+            cursor.execute(student_code)
+            rows = cursor.fetchall()
+            actual = "\n".join(" ".join(str(val) for val in row) for row in rows)
+            passed = _normalize(actual) == _normalize(expected)
+            result.results.append(TestCaseResult(setup_sql, expected, actual, passed, ""))
+        except Exception as exc:
+            result.results.append(TestCaseResult(setup_sql, expected, "", False, f"SQL Error: {exc}"))
+        finally:
+            conn.close()
+    return result
+
+
 def run_against_tests(student_code: str, test_cases: list[dict], driver_template: str | None = None) -> JudgeResult:
     """
     test_cases: [{"input": "<stdin text>", "expected": "<expected stdout>"}]
-    driver_template: optional code appended after the student's code, e.g. to
-        call a specific function with parsed stdin and print the result.
-        If omitted, the student's code is expected to read stdin / print itself.
+    driver_template: optional code appended after the student's code.
     """
+    cleaned_code = student_code.strip()
+    if cleaned_code.startswith("--") or ("SELECT" in cleaned_code.upper() and "FROM" in cleaned_code.upper()):
+        return run_sql_query(student_code, test_cases)
+
     result = JudgeResult()
 
     full_source = student_code
@@ -200,10 +225,7 @@ def run_against_tests(student_code: str, test_cases: list[dict], driver_template
         result.compile_error = f"Line {exc.lineno}: {exc.msg}"
         return result
 
-    # Import/call safety check - separate from the compile step above so a
-    # blocked import surfaces as its own clear error rather than looking
-    # like a syntax problem. Only the student's own code is checked (not
-    # driver_template, which is our own trusted code).
+    # Import/call safety check
     try:
         validate_code_safety(student_code)
     except UnsafeCodeError as exc:

@@ -619,7 +619,7 @@ function DsaTab() {
             </div>
 
             <div>
-              <CodeEditor value={code} onChange={setCode} ariaLabel="Fused LeetCode Code Editor" />
+              <CodeEditor value={code} onChange={setCode} language={selectedLang} ariaLabel="VS Code IDE Editor" />
             </div>
 
             <div className="flex flex-wrap items-center justify-between gap-3 pt-2">

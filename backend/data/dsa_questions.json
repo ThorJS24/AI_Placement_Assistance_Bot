@@ -27,7 +27,8 @@
         "input": "3\n3 2 4\n6\n",
         "expected": "1 2"
       }
-    ]
+    ],
+    "domain": "dsa"
   },
   {
     "id": "arr-002",
@@ -56,7 +57,8 @@
         "input": "8\n-2 1 -3 4 -1 2 1 -5\n",
         "expected": "6"
       }
-    ]
+    ],
+    "domain": "dsa"
   },
   {
     "id": "str-001",
@@ -84,7 +86,8 @@
         "input": "AI Placement\n",
         "expected": "tnemecalP IA"
       }
-    ]
+    ],
+    "domain": "dsa"
   },
   {
     "id": "str-002",
@@ -112,7 +115,8 @@
         "input": "hello\n",
         "expected": "NO"
       }
-    ]
+    ],
+    "domain": "dsa"
   },
   {
     "id": "str-003",
@@ -140,7 +144,8 @@
         "input": "hello\nworld\n",
         "expected": "NO"
       }
-    ]
+    ],
+    "domain": "dsa"
   },
   {
     "id": "rec-001",
@@ -168,7 +173,8 @@
         "input": "0\n",
         "expected": "1"
       }
-    ]
+    ],
+    "domain": "dsa"
   },
   {
     "id": "rec-002",
@@ -196,7 +202,8 @@
         "input": "1\n",
         "expected": "1"
       }
-    ]
+    ],
+    "domain": "dsa"
   },
   {
     "id": "search-001",
@@ -225,7 +232,8 @@
         "input": "5\n2 4 6 8 10\n5\n",
         "expected": "-1"
       }
-    ]
+    ],
+    "domain": "dsa"
   },
   {
     "id": "sort-001",
@@ -253,7 +261,8 @@
         "input": "4\n-1 0 -5 2\n",
         "expected": "-5 -1 0 2"
       }
-    ]
+    ],
+    "domain": "dsa"
   },
   {
     "id": "twoptr-001",
@@ -280,7 +289,8 @@
         "input": "4\n1 3 5 7\n10\n",
         "expected": "3 7"
       }
-    ]
+    ],
+    "domain": "dsa"
   },
   {
     "id": "dp-001",
@@ -308,7 +318,8 @@
         "input": "abc\ndef\n",
         "expected": "0"
       }
-    ]
+    ],
+    "domain": "dsa"
   },
   {
     "id": "dp-002",
@@ -336,7 +347,8 @@
         "input": "2\n10\n5 4\n10 40\n",
         "expected": "50"
       }
-    ]
+    ],
+    "domain": "dsa"
   },
   {
     "id": "bit-001",
@@ -363,7 +375,8 @@
         "input": "0\n",
         "expected": "0"
       }
-    ]
+    ],
+    "domain": "dsa"
   },
   {
     "id": "bit-002",
@@ -390,7 +403,8 @@
         "input": "3\n1 3 4\n",
         "expected": "2"
       }
-    ]
+    ],
+    "domain": "dsa"
   },
   {
     "id": "stack-001",
@@ -419,7 +433,8 @@
         "input": "{[(])}\n",
         "expected": "NO"
       }
-    ]
+    ],
+    "domain": "dsa"
   },
   {
     "id": "stack-002",
@@ -447,7 +462,8 @@
         "input": "4\n13 7 6 12\n",
         "expected": "-1 12 12 -1"
       }
-    ]
+    ],
+    "domain": "dsa"
   },
   {
     "id": "ll-001",
@@ -465,7 +481,7 @@
     "starter_code": "n = int(input())\nvals = list(map(int, input().split()))\n\nclass Node:\n    def __init__(self, val):\n        self.val = val\n        self.next = None\n\n# TODO: build a linked list from vals, reverse it, print the values head-to-tail\n",
     "hints": [
       "Reversing in place means walking the list once, flipping each node's `next` pointer to point at the previous node.",
-      "Track three pointers as you go: prev, current, and next \u2014 this is the classic O(n) iterative reversal."
+      "Track three pointers as you go: prev, current, and next — this is the classic O(n) iterative reversal."
     ],
     "test_cases": [
       {
@@ -480,7 +496,8 @@
         "input": "4\n10 20 30 40\n",
         "expected": "40 30 20 10"
       }
-    ]
+    ],
+    "domain": "dsa"
   },
   {
     "id": "ll-002",
@@ -491,12 +508,12 @@
       "Microsoft"
     ],
     "title": "Merge Two Sorted Linked Lists",
-    "description": "You're given two already-sorted linked lists (as sequences). Merge them into one sorted sequence and print it \u2014 the classic building block behind merge sort and the merge step of external sorting.",
+    "description": "You're given two already-sorted linked lists (as sequences). Merge them into one sorted sequence and print it — the classic building block behind merge sort and the merge step of external sorting.",
     "input_format": "Line 1: n (size of list A)\nLine 2: n space-separated sorted integers\nLine 3: m (size of list B)\nLine 4: m space-separated sorted integers",
     "output_format": "The merged, sorted sequence of all n + m integers, space-separated, on one line.",
     "starter_code": "n = int(input())\na = list(map(int, input().split()))\nm = int(input())\nb = list(map(int, input().split()))\n\n# TODO: merge the two already-sorted lists into one sorted list, then print it\n",
     "hints": [
-      "Walk both lists with two pointers, always taking the smaller current head \u2014 O(n + m), no extra sorting needed since both inputs are already sorted.",
+      "Walk both lists with two pointers, always taking the smaller current head — O(n + m), no extra sorting needed since both inputs are already sorted.",
       "Don't forget to append whatever's left over once one list runs out."
     ],
     "test_cases": [
@@ -512,7 +529,8 @@
         "input": "2\n-5 0\n2\n-3 10\n",
         "expected": "-5 -3 0 10"
       }
-    ]
+    ],
+    "domain": "dsa"
   },
   {
     "id": "ll-003",
@@ -528,7 +546,7 @@
     "output_format": "The distinct values in sorted order, space-separated, on one line.",
     "starter_code": "n = int(input())\nvals = list(map(int, input().split()))\n\n# TODO: walk the (sorted) list once, skipping any value equal to the previous one\n",
     "hints": [
-      "Because the list is sorted, duplicates are always adjacent \u2014 one linear pass with a 'last value seen' variable is enough."
+      "Because the list is sorted, duplicates are always adjacent — one linear pass with a 'last value seen' variable is enough."
     ],
     "test_cases": [
       {
@@ -543,7 +561,8 @@
         "input": "6\n-2 -2 -1 0 0 0\n",
         "expected": "-2 -1 0"
       }
-    ]
+    ],
+    "domain": "dsa"
   },
   {
     "id": "hash-001",
@@ -575,7 +594,8 @@
         "input": "z\n",
         "expected": "z"
       }
-    ]
+    ],
+    "domain": "dsa"
   },
   {
     "id": "hash-002",
@@ -606,7 +626,8 @@
         "input": "0\n\n0\n\n",
         "expected": "Yes"
       }
-    ]
+    ],
+    "domain": "dsa"
   },
   {
     "id": "hash-003",
@@ -619,10 +640,10 @@
     "title": "Count Distinct Anagram Groups",
     "description": "Given a list of words, group the ones that are anagrams of each other, and print how many distinct groups there are.",
     "input_format": "Line 1: n\nLine 2: n space-separated lowercase words",
-    "output_format": "A single integer \u2014 the number of distinct anagram groups.",
+    "output_format": "A single integer — the number of distinct anagram groups.",
     "starter_code": "n = int(input())\nwords = input().split()\n\n# TODO: group words by their sorted-letters signature, print the number of groups\n",
     "hints": [
-      "Two words are anagrams iff their letters, sorted, are identical \u2014 use that sorted string as a hash map key to bucket words into groups in one pass."
+      "Two words are anagrams iff their letters, sorted, are identical — use that sorted string as a hash map key to bucket words into groups in one pass."
     ],
     "test_cases": [
       {
@@ -637,7 +658,8 @@
         "input": "1\nhello\n",
         "expected": "1"
       }
-    ]
+    ],
+    "domain": "dsa"
   },
   {
     "id": "graph-001",
@@ -650,11 +672,11 @@
     ],
     "title": "Number of Connected Components",
     "description": "Given an undirected graph with n nodes (labeled 0 to n-1) and a list of edges, count how many separate connected components it has.",
-    "input_format": "Line 1: n (number of nodes) and m (number of edges), space-separated\nNext m lines: two space-separated integers u v \u2014 an edge between node u and node v",
-    "output_format": "A single integer \u2014 the number of connected components.",
+    "input_format": "Line 1: n (number of nodes) and m (number of edges), space-separated\nNext m lines: two space-separated integers u v — an edge between node u and node v",
+    "output_format": "A single integer — the number of connected components.",
     "starter_code": "n, m = map(int, input().split())\nedges = [tuple(map(int, input().split())) for _ in range(m)]\n\n# TODO: build an adjacency list, then BFS/DFS from every unvisited node, counting how many times you start a new search\n",
     "hints": [
-      "Build an adjacency list, then repeatedly BFS/DFS from any unvisited node \u2014 each time you have to start a fresh search is one more component.",
+      "Build an adjacency list, then repeatedly BFS/DFS from any unvisited node — each time you have to start a fresh search is one more component.",
       "Don't forget isolated nodes (no edges at all) still count as their own component."
     ],
     "test_cases": [
@@ -670,7 +692,8 @@
         "input": "6 5\n0 1\n1 2\n2 0\n3 4\n4 5\n",
         "expected": "2"
       }
-    ]
+    ],
+    "domain": "dsa"
   },
   {
     "id": "graph-002",
@@ -682,11 +705,11 @@
     ],
     "title": "Shortest Path in an Unweighted Graph",
     "description": "Given an unweighted, undirected graph and a source and target node, find the length of the shortest path between them (number of edges). Print -1 if no path exists.",
-    "input_format": "Line 1: n (nodes) and m (edges)\nNext m lines: u v \u2014 an edge\nLast line: source and target, space-separated",
-    "output_format": "A single integer \u2014 the shortest path length in edges, or -1 if unreachable.",
+    "input_format": "Line 1: n (nodes) and m (edges)\nNext m lines: u v — an edge\nLast line: source and target, space-separated",
+    "output_format": "A single integer — the shortest path length in edges, or -1 if unreachable.",
     "starter_code": "n, m = map(int, input().split())\nedges = [tuple(map(int, input().split())) for _ in range(m)]\nsrc, dst = map(int, input().split())\n\n# TODO: BFS from src, tracking distance, print the distance to dst (or -1)\n",
     "hints": [
-      "BFS naturally explores nodes in order of distance from the source in an unweighted graph \u2014 the first time you reach the target, that's the shortest path."
+      "BFS naturally explores nodes in order of distance from the source in an unweighted graph — the first time you reach the target, that's the shortest path."
     ],
     "test_cases": [
       {
@@ -701,7 +724,8 @@
         "input": "3 0\n0 2\n",
         "expected": "-1"
       }
-    ]
+    ],
+    "domain": "dsa"
   },
   {
     "id": "graph-003",
@@ -713,7 +737,7 @@
     ],
     "title": "Detect a Cycle in a Directed Graph",
     "description": "Given a directed graph, determine whether it contains a cycle.",
-    "input_format": "Line 1: n (nodes) and m (edges)\nNext m lines: u v \u2014 a directed edge from u to v",
+    "input_format": "Line 1: n (nodes) and m (edges)\nNext m lines: u v — a directed edge from u to v",
     "output_format": "\"Yes\" if the graph has a cycle, \"No\" otherwise.",
     "starter_code": "n, m = map(int, input().split())\nedges = [tuple(map(int, input().split())) for _ in range(m)]\n\n# TODO: DFS with a 'currently on this path' set to detect back-edges (cycles)\n",
     "hints": [
@@ -732,7 +756,8 @@
         "input": "4 4\n0 1\n1 2\n2 3\n3 1\n",
         "expected": "Yes"
       }
-    ]
+    ],
+    "domain": "dsa"
   },
   {
     "id": "greedy-001",
@@ -745,10 +770,10 @@
     "title": "Maximum Non-Overlapping Intervals",
     "description": "You're given n intervals (start, end). Find the maximum number of them you can select such that no two selected intervals overlap.",
     "input_format": "Line 1: n\nNext n lines: start end (space-separated integers)",
-    "output_format": "A single integer \u2014 the maximum number of non-overlapping intervals selectable.",
+    "output_format": "A single integer — the maximum number of non-overlapping intervals selectable.",
     "starter_code": "n = int(input())\nintervals = [tuple(map(int, input().split())) for _ in range(n)]\n\n# TODO: sort by end time, greedily pick the interval that finishes earliest and is compatible with what's already picked\n",
     "hints": [
-      "Sort intervals by their END time. Greedily take an interval if its start is >= the end of the last interval you took \u2014 this classic greedy is provably optimal here."
+      "Sort intervals by their END time. Greedily take an interval if its start is >= the end of the last interval you took — this classic greedy is provably optimal here."
     ],
     "test_cases": [
       {
@@ -763,7 +788,8 @@
         "input": "1\n5 10\n",
         "expected": "1"
       }
-    ]
+    ],
+    "domain": "dsa"
   },
   {
     "id": "greedy-002",
@@ -777,7 +803,7 @@
     "title": "Minimum Platforms Needed",
     "description": "A railway station has n trains, each with an arrival and departure time (in 24-hour format as integers, e.g. 900 for 9:00). Find the minimum number of platforms required so that no train ever has to wait.",
     "input_format": "Line 1: n\nLine 2: n space-separated arrival times\nLine 3: n space-separated departure times",
-    "output_format": "A single integer \u2014 the minimum number of platforms needed.",
+    "output_format": "A single integer — the minimum number of platforms needed.",
     "starter_code": "n = int(input())\narr = list(map(int, input().split()))\ndep = list(map(int, input().split()))\n\n# TODO: sort arrivals and departures separately, sweep with two pointers tracking how many platforms are in use at once\n",
     "hints": [
       "Sort arrivals and departures independently, then sweep both with two pointers: each new arrival before the next departure needs one more platform; each departure frees one."
@@ -795,7 +821,8 @@
         "input": "3\n900 900 900\n1000 1000 1000\n",
         "expected": "3"
       }
-    ]
+    ],
+    "domain": "dsa"
   },
   {
     "id": "mat-001",
@@ -808,10 +835,10 @@
     "title": "Transpose of a Matrix",
     "description": "Given an r x c matrix, print its transpose (a c x r matrix where row i, column j becomes row j, column i).",
     "input_format": "Line 1: r and c, space-separated\nNext r lines: c space-separated integers each (the matrix)",
-    "output_format": "The transposed matrix \u2014 c lines, each with r space-separated integers.",
+    "output_format": "The transposed matrix — c lines, each with r space-separated integers.",
     "starter_code": "r, c = map(int, input().split())\nmatrix = [list(map(int, input().split())) for _ in range(r)]\n\n# TODO: print the transpose, one row per line\n",
     "hints": [
-      "Column j of the input becomes row j of the output \u2014 `zip(*matrix)` does exactly this in Python."
+      "Column j of the input becomes row j of the output — `zip(*matrix)` does exactly this in Python."
     ],
     "test_cases": [
       {
@@ -826,7 +853,8 @@
         "input": "3 2\n1 2\n3 4\n5 6\n",
         "expected": "1 3 5\n2 4 6"
       }
-    ]
+    ],
+    "domain": "dsa"
   },
   {
     "id": "mat-002",
@@ -858,7 +886,8 @@
         "input": "1 4\n1 2 3 4\n",
         "expected": "1 2 3 4"
       }
-    ]
+    ],
+    "domain": "dsa"
   },
   {
     "id": "queue-001",
@@ -871,10 +900,10 @@
     "title": "First Negative Number in Every Window of Size K",
     "description": "Given an array and a window size k, for every contiguous window of size k print the first negative number in that window, or 0 if the window has none.",
     "input_format": "Line 1: n and k, space-separated\nLine 2: n space-separated integers",
-    "output_format": "n - k + 1 integers, space-separated, on one line \u2014 the first negative number in each window (0 if none).",
+    "output_format": "n - k + 1 integers, space-separated, on one line — the first negative number in each window (0 if none).",
     "starter_code": "n, k = map(int, input().split())\narr = list(map(int, input().split()))\n\n# TODO: use a deque to track indices of negative numbers currently in the window\n",
     "hints": [
-      "Keep a deque of indices of negative numbers within the current window; the front of the deque is always the first negative \u2014 pop from the front once it slides out of the window."
+      "Keep a deque of indices of negative numbers within the current window; the front of the deque is always the first negative — pop from the front once it slides out of the window."
     ],
     "test_cases": [
       {
@@ -889,7 +918,8 @@
         "input": "6 3\n-1 -2 -3 -4 -5 -6\n",
         "expected": "-1 -2 -3 -4"
       }
-    ]
+    ],
+    "domain": "dsa"
   },
   {
     "id": "arr-003",
@@ -921,7 +951,8 @@
         "input": "4\n4 2 4 0\n",
         "expected": "4 2 4 0"
       }
-    ]
+    ],
+    "domain": "dsa"
   },
   {
     "id": "arr-004",
@@ -953,7 +984,8 @@
         "input": "1\n1 4\n",
         "expected": "1 4"
       }
-    ]
+    ],
+    "domain": "dsa"
   },
   {
     "id": "arr-005",
@@ -967,7 +999,7 @@
     "title": "Product of Array Except Self",
     "description": "Given an array of n integers, print an array where each element is the product of all the other elements (not itself), without using division.",
     "input_format": "Line 1: n\nLine 2: n space-separated integers",
-    "output_format": "n integers, space-separated \u2014 the products, on one line.",
+    "output_format": "n integers, space-separated — the products, on one line.",
     "starter_code": "n = int(input())\na = list(map(int, input().split()))\n\n# TODO: compute prefix products and suffix products, multiply them per index\n",
     "hints": [
       "Build a prefix-product array and a suffix-product array in two passes, then multiply prefix[i] * suffix[i]."
@@ -985,7 +1017,8 @@
         "input": "2\n5 6\n",
         "expected": "6 5"
       }
-    ]
+    ],
+    "domain": "dsa"
   },
   {
     "id": "arr-006",
@@ -999,7 +1032,7 @@
     "title": "Trapping Rain Water",
     "description": "Given n non-negative integers representing an elevation map where the width of each bar is 1, compute how much rainwater it can trap after it rains.",
     "input_format": "Line 1: n\nLine 2: n space-separated non-negative integers (bar heights)",
-    "output_format": "A single integer \u2014 the total trapped water.",
+    "output_format": "A single integer — the total trapped water.",
     "starter_code": "n = int(input())\nheights = list(map(int, input().split()))\n\n# TODO: for each bar, trapped water = min(max height to its left, max height to its right) - its own height\n",
     "hints": [
       "Precompute the running max height from the left and from the right for every index, then sum min(left_max, right_max) - height[i] (never negative)."
@@ -1017,7 +1050,8 @@
         "input": "3\n1 1 1\n",
         "expected": "0"
       }
-    ]
+    ],
+    "domain": "dsa"
   },
   {
     "id": "str-004",
@@ -1031,7 +1065,7 @@
     "title": "Longest Substring Without Repeating Characters",
     "description": "Given a string, find the length of the longest contiguous substring that has no repeated characters.",
     "input_format": "Line 1: a string s",
-    "output_format": "A single integer \u2014 the length of the longest repeat-free substring.",
+    "output_format": "A single integer — the length of the longest repeat-free substring.",
     "starter_code": "s = input()\n\n# TODO: sliding window with a set/dict of characters currently in the window\n",
     "hints": [
       "Use a sliding window: expand the right edge, and whenever a repeat is found, shrink the left edge past the previous occurrence."
@@ -1049,7 +1083,8 @@
         "input": "pwwkew\n",
         "expected": "3"
       }
-    ]
+    ],
+    "domain": "dsa"
   },
   {
     "id": "str-005",
@@ -1081,7 +1116,8 @@
         "input": "wwwwwww\n",
         "expected": "w7"
       }
-    ]
+    ],
+    "domain": "dsa"
   },
   {
     "id": "str-006",
@@ -1113,7 +1149,8 @@
         "input": "2\ninterview interstellar\n",
         "expected": "inter"
       }
-    ]
+    ],
+    "domain": "dsa"
   },
   {
     "id": "rec-003",
@@ -1126,7 +1163,7 @@
     "title": "Fast Power (Exponentiation by Squaring)",
     "description": "Given a base and a non-negative integer exponent, compute base^exponent using recursive exponentiation by squaring (O(log n) multiplications, not a plain loop).",
     "input_format": "Line 1: base and exponent, space-separated integers (exponent >= 0)",
-    "output_format": "A single integer \u2014 base raised to the power exponent.",
+    "output_format": "A single integer — base raised to the power exponent.",
     "starter_code": "base, exp = map(int, input().split())\n\n# TODO: recursive power(base, exp): if exp==0 return 1; if exp is even, square power(base, exp//2); if odd, multiply base by power(base, exp-1)\n",
     "hints": [
       "power(b, e) = power(b, e//2)**2 when e is even, and b * power(b, e-1) when e is odd -- this halves the exponent roughly every two calls."
@@ -1144,7 +1181,8 @@
         "input": "5 4\n",
         "expected": "625"
       }
-    ]
+    ],
+    "domain": "dsa"
   },
   {
     "id": "rec-004",
@@ -1175,7 +1213,8 @@
         "input": "3\n1 2 3\n",
         "expected": "3\n2\n2 3\n1\n1 3\n1 2\n1 2 3"
       }
-    ]
+    ],
+    "domain": "dsa"
   },
   {
     "id": "rec-005",
@@ -1185,10 +1224,10 @@
       "TCS",
       "Accenture"
     ],
-    "title": "Tower of Hanoi \u2014 Move Count",
+    "title": "Tower of Hanoi — Move Count",
     "description": "Given n disks, compute the minimum number of moves required to solve the classic Tower of Hanoi puzzle (move all disks from one rod to another using a third, never placing a larger disk on a smaller one), using the recursive relation.",
     "input_format": "Line 1: n (number of disks)",
-    "output_format": "A single integer \u2014 the minimum number of moves.",
+    "output_format": "A single integer — the minimum number of moves.",
     "starter_code": "n = int(input())\n\n# TODO: moves(n) = 2*moves(n-1) + 1, with moves(0) = 0\n",
     "hints": [
       "To move n disks: move the top n-1 out of the way, move the biggest disk, then move the n-1 back on top -- moves(n) = 2*moves(n-1) + 1."
@@ -1206,7 +1245,8 @@
         "input": "10\n",
         "expected": "1023"
       }
-    ]
+    ],
+    "domain": "dsa"
   },
   {
     "id": "rec-006",
@@ -1220,7 +1260,7 @@
     "title": "Digit Sum (Recursive)",
     "description": "Given a non-negative integer, compute the sum of its digits using recursion (no loops, no converting the whole number to a string and summing with sum()).",
     "input_format": "Line 1: a non-negative integer n",
-    "output_format": "A single integer \u2014 the sum of the digits of n.",
+    "output_format": "A single integer — the sum of the digits of n.",
     "starter_code": "n = int(input())\n\n# TODO: recursive digit_sum(n): base case n < 10, else n%10 + digit_sum(n//10)\n",
     "hints": [
       "digit_sum(n) = n if n < 10, else (n % 10) + digit_sum(n // 10) -- peel off one digit per call."
@@ -1238,7 +1278,8 @@
         "input": "1000\n",
         "expected": "1"
       }
-    ]
+    ],
+    "domain": "dsa"
   },
   {
     "id": "recdp-001",
@@ -1252,7 +1293,7 @@
     "title": "Climbing Stairs",
     "description": "You're climbing a staircase of n steps. Each move you can climb either 1 or 2 steps. Count how many distinct ways there are to reach the top.",
     "input_format": "Line 1: n (number of steps)",
-    "output_format": "A single integer \u2014 the number of distinct ways to reach step n.",
+    "output_format": "A single integer — the number of distinct ways to reach step n.",
     "starter_code": "n = int(input())\n\n# TODO: ways(n) = ways(n-1) + ways(n-2), same recurrence as Fibonacci -- use DP, not naive recursion\n",
     "hints": [
       "The last move to reach step n was either a 1-step from n-1 or a 2-step from n-2, so ways(n) = ways(n-1) + ways(n-2). Build it bottom-up to avoid exponential blowup."
@@ -1270,7 +1311,8 @@
         "input": "1\n",
         "expected": "1"
       }
-    ]
+    ],
+    "domain": "dsa"
   },
   {
     "id": "recdp-002",
@@ -1283,7 +1325,7 @@
     "title": "House Robber",
     "description": "Given n houses in a row, each with a certain amount of money, find the maximum amount you can rob without robbing two adjacent houses.",
     "input_format": "Line 1: n\nLine 2: n space-separated non-negative integers (money per house)",
-    "output_format": "A single integer \u2014 the maximum amount robbable.",
+    "output_format": "A single integer — the maximum amount robbable.",
     "starter_code": "n = int(input())\namounts = list(map(int, input().split()))\n\n# TODO: dp[i] = max(dp[i-1], dp[i-2] + amounts[i]) -- either skip house i or take it\n",
     "hints": [
       "dp[i] = max(dp[i-1], dp[i-2] + amounts[i]): at each house, either skip it (keep the best so far) or rob it (best up to two houses back, plus this one)."
@@ -1301,7 +1343,8 @@
         "input": "1\n5\n",
         "expected": "5"
       }
-    ]
+    ],
+    "domain": "dsa"
   },
   {
     "id": "recdp-003",
@@ -1315,7 +1358,7 @@
     "title": "Minimum Coins for Change",
     "description": "Given n coin denominations and a target amount, find the minimum number of coins needed to make exactly that amount (each denomination can be used any number of times). Print -1 if it's impossible.",
     "input_format": "Line 1: n\nLine 2: n space-separated coin denominations\nLine 3: target amount",
-    "output_format": "A single integer \u2014 the minimum number of coins, or -1 if the amount can't be made.",
+    "output_format": "A single integer — the minimum number of coins, or -1 if the amount can't be made.",
     "starter_code": "n = int(input())\ncoins = list(map(int, input().split()))\namount = int(input())\n\n# TODO: dp[a] = 1 + min(dp[a-c] for c in coins if c<=a), dp[0]=0, unreachable = infinity\n",
     "hints": [
       "Bottom-up DP over amounts 0..target: dp[a] = 1 + the smallest dp[a-c] over every coin c <= a; dp[0] = 0."
@@ -1333,7 +1376,8 @@
         "input": "1\n3\n0\n",
         "expected": "0"
       }
-    ]
+    ],
+    "domain": "dsa"
   },
   {
     "id": "search-002",
@@ -1365,7 +1409,8 @@
         "input": "1\n1\n0\n",
         "expected": "-1"
       }
-    ]
+    ],
+    "domain": "dsa"
   },
   {
     "id": "search-003",
@@ -1378,7 +1423,7 @@
     "title": "First and Last Position of an Element",
     "description": "Given a sorted array (with possible duplicates) and a target, find the first and last index at which target appears, using O(log n) binary searches. Print \"-1 -1\" if the target isn't present.",
     "input_format": "Line 1: n\nLine 2: n space-separated sorted integers\nLine 3: target",
-    "output_format": "Two space-separated integers \u2014 the first and last index of target (or -1 -1).",
+    "output_format": "Two space-separated integers — the first and last index of target (or -1 -1).",
     "starter_code": "n = int(input())\na = list(map(int, input().split()))\ntarget = int(input())\n\n# TODO: binary search for the leftmost occurrence, then binary search for the rightmost\n",
     "hints": [
       "Run two separate binary searches: one biased to keep searching left after finding a match (for the first index), one biased to keep searching right (for the last index)."
@@ -1396,7 +1441,8 @@
         "input": "3\n2 2 2\n2\n",
         "expected": "0 2"
       }
-    ]
+    ],
+    "domain": "dsa"
   },
   {
     "id": "search-004",
@@ -1427,7 +1473,8 @@
         "input": "5\n1 2 1 3 5\n",
         "expected": "4"
       }
-    ]
+    ],
+    "domain": "dsa"
   },
   {
     "id": "search-005",
@@ -1439,9 +1486,9 @@
       "Infosys"
     ],
     "title": "Integer Square Root",
-    "description": "Given a non-negative integer n, find floor(sqrt(n)) \u2014 the largest integer whose square is <= n \u2014 using binary search (not the built-in sqrt).",
+    "description": "Given a non-negative integer n, find floor(sqrt(n)) — the largest integer whose square is <= n — using binary search (not the built-in sqrt).",
     "input_format": "Line 1: a non-negative integer n",
-    "output_format": "A single integer \u2014 floor(sqrt(n)).",
+    "output_format": "A single integer — floor(sqrt(n)).",
     "starter_code": "n = int(input())\n\n# TODO: binary search over candidate answers 0..n, testing mid*mid <= n\n",
     "hints": [
       "Binary search the answer itself over the range [0, n]: if mid*mid <= n, the true answer is mid or higher; otherwise it's lower."
@@ -1459,7 +1506,8 @@
         "input": "0\n",
         "expected": "0"
       }
-    ]
+    ],
+    "domain": "dsa"
   },
   {
     "id": "sort-002",
@@ -1491,7 +1539,8 @@
         "input": "5\n0 1 2 0 1\n",
         "expected": "0 0 1 1 2"
       }
-    ]
+    ],
+    "domain": "dsa"
   },
   {
     "id": "sort-003",
@@ -1505,7 +1554,7 @@
     "title": "Kth Largest Element in an Array",
     "description": "Given an unsorted array of n integers and an integer k, find the kth largest element (the kth largest in sorted-descending order, counting duplicates).",
     "input_format": "Line 1: n and k, space-separated\nLine 2: n space-separated integers",
-    "output_format": "A single integer \u2014 the kth largest element.",
+    "output_format": "A single integer — the kth largest element.",
     "starter_code": "n, k = map(int, input().split())\na = list(map(int, input().split()))\n\n# TODO: sort descending and index k-1 (a full sort is fine here; a heap is the O(n log k) refinement)\n",
     "hints": [
       "Sorting the array descending and taking index k-1 is simplest and correct; a min-heap of size k is the more efficient refinement worth mentioning in an interview."
@@ -1523,7 +1572,8 @@
         "input": "1 1\n7\n",
         "expected": "7"
       }
-    ]
+    ],
+    "domain": "dsa"
   },
   {
     "id": "sort-004",
@@ -1536,7 +1586,7 @@
     "title": "Count Inversions in an Array",
     "description": "An inversion is a pair of indices i < j where a[i] > a[j]. Given an array, count the total number of inversions using an O(n log n) merge-sort-based approach (not the O(n^2) brute force).",
     "input_format": "Line 1: n\nLine 2: n space-separated integers",
-    "output_format": "A single integer \u2014 the total number of inversions.",
+    "output_format": "A single integer — the total number of inversions.",
     "starter_code": "n = int(input())\na = list(map(int, input().split()))\n\n# TODO: modified merge sort that counts, during each merge step, how many elements from the right half had to jump ahead of remaining elements in the left half\n",
     "hints": [
       "During the merge step of merge sort, whenever you take an element from the right half before the left half is exhausted, it forms an inversion with every remaining element in the left half."
@@ -1554,7 +1604,8 @@
         "input": "4\n1 2 3 4\n",
         "expected": "0"
       }
-    ]
+    ],
+    "domain": "dsa"
   },
   {
     "id": "sort-005",
@@ -1585,7 +1636,8 @@
         "input": "aabbcc\n",
         "expected": "aabbcc"
       }
-    ]
+    ],
+    "domain": "dsa"
   },
   {
     "id": "twoptr-002",
@@ -1617,7 +1669,8 @@
         "input": "6\n1 1 1 1 1 1\n",
         "expected": "1"
       }
-    ]
+    ],
+    "domain": "dsa"
   },
   {
     "id": "twoptr-003",
@@ -1631,7 +1684,7 @@
     "title": "Container With Most Water",
     "description": "Given n non-negative integers where each represents a vertical line's height at that index, find two lines that, together with the x-axis, form a container that holds the most water. Print the maximum area.",
     "input_format": "Line 1: n\nLine 2: n space-separated non-negative integers (heights)",
-    "output_format": "A single integer \u2014 the maximum water area.",
+    "output_format": "A single integer — the maximum water area.",
     "starter_code": "n = int(input())\nheights = list(map(int, input().split()))\n\n# TODO: two pointers from both ends, always moving the pointer at the shorter line inward\n",
     "hints": [
       "Start with pointers at both ends; the area is limited by the shorter line, so moving the taller line's pointer can never help -- always move the shorter one inward."
@@ -1649,7 +1702,8 @@
         "input": "4\n1 2 1 2\n",
         "expected": "4"
       }
-    ]
+    ],
+    "domain": "dsa"
   },
   {
     "id": "twoptr-004",
@@ -1663,7 +1717,7 @@
     "title": "Triplets Summing to Zero",
     "description": "Given an array of n integers, find all unique triplets [a, b, c] (by value, not index) such that a + b + c == 0. Print the count of such unique triplets.",
     "input_format": "Line 1: n\nLine 2: n space-separated integers",
-    "output_format": "A single integer \u2014 the number of unique zero-sum triplets.",
+    "output_format": "A single integer — the number of unique zero-sum triplets.",
     "starter_code": "n = int(input())\na = list(map(int, input().split()))\n\n# TODO: sort, fix one element, then two-pointer scan the rest for pairs summing to its negation, skipping duplicates\n",
     "hints": [
       "Sort the array. Fix each index i in turn (skipping duplicate values of a[i]), then use a two-pointer scan on the remainder to find pairs summing to -a[i], also skipping duplicate pairs."
@@ -1681,7 +1735,8 @@
         "input": "3\n1 2 3\n",
         "expected": "0"
       }
-    ]
+    ],
+    "domain": "dsa"
   },
   {
     "id": "twoptr-005",
@@ -1712,7 +1767,8 @@
         "input": "abc\n",
         "expected": "No"
       }
-    ]
+    ],
+    "domain": "dsa"
   },
   {
     "id": "dp-003",
@@ -1726,7 +1782,7 @@
     "title": "Longest Increasing Subsequence (Length Only)",
     "description": "Given an array of n integers, find the length of the longest strictly increasing subsequence (elements need not be contiguous, but must appear in increasing order).",
     "input_format": "Line 1: n\nLine 2: n space-separated integers",
-    "output_format": "A single integer \u2014 the length of the longest strictly increasing subsequence.",
+    "output_format": "A single integer — the length of the longest strictly increasing subsequence.",
     "starter_code": "n = int(input())\na = list(map(int, input().split()))\n\n# TODO: dp[i] = length of the longest increasing subsequence ending exactly at index i\n",
     "hints": [
       "dp[i] = 1 + max(dp[j] for j < i where a[j] < a[i]), or 1 if no such j exists. The O(n^2) version is fine to start; an O(n log n) patience-sorting version is the follow-up."
@@ -1744,7 +1800,8 @@
         "input": "5\n5 4 3 2 1\n",
         "expected": "1"
       }
-    ]
+    ],
+    "domain": "dsa"
   },
   {
     "id": "dp-004",
@@ -1757,7 +1814,7 @@
     "title": "Edit Distance",
     "description": "Given two strings, find the minimum number of single-character insertions, deletions, or substitutions required to transform the first into the second (the classic Levenshtein distance).",
     "input_format": "Line 1: string a\nLine 2: string b",
-    "output_format": "A single integer \u2014 the minimum edit distance between a and b.",
+    "output_format": "A single integer — the minimum edit distance between a and b.",
     "starter_code": "a = input()\nb = input()\n\n# TODO: dp[i][j] = edit distance between a[:i] and b[:j]; base cases dp[i][0]=i, dp[0][j]=j\n",
     "hints": [
       "dp[i][j] = dp[i-1][j-1] if a[i-1]==b[j-1], else 1 + min(dp[i-1][j], dp[i][j-1], dp[i-1][j-1]) for delete/insert/substitute."
@@ -1775,7 +1832,8 @@
         "input": "abc\nabc\n",
         "expected": "0"
       }
-    ]
+    ],
+    "domain": "dsa"
   },
   {
     "id": "dp-005",
@@ -1788,7 +1846,7 @@
     "title": "Maximum Product Subarray",
     "description": "Given an array of n integers (which may include negatives and zeroes), find the contiguous subarray with the largest product, and print that product.",
     "input_format": "Line 1: n\nLine 2: n space-separated integers",
-    "output_format": "A single integer \u2014 the maximum product of any contiguous subarray.",
+    "output_format": "A single integer — the maximum product of any contiguous subarray.",
     "starter_code": "n = int(input())\na = list(map(int, input().split()))\n\n# TODO: track both the max AND min product ending at each index -- a negative number can flip the min into the new max\n",
     "hints": [
       "Because a negative number can turn the smallest running product into the largest, track both a running max and a running min ending at each index, updating both at every step."
@@ -1806,7 +1864,8 @@
         "input": "5\n-2 3 -4 1 2\n",
         "expected": "48"
       }
-    ]
+    ],
+    "domain": "dsa"
   },
   {
     "id": "dp-006",
@@ -1820,7 +1879,7 @@
     "title": "Unique Paths in a Grid",
     "description": "A robot starts at the top-left corner of an r x c grid and can only move right or down. Count how many unique paths lead to the bottom-right corner.",
     "input_format": "Line 1: r and c, space-separated",
-    "output_format": "A single integer \u2014 the number of unique paths.",
+    "output_format": "A single integer — the number of unique paths.",
     "starter_code": "r, c = map(int, input().split())\n\n# TODO: dp[i][j] = dp[i-1][j] + dp[i][j-1], with the first row and first column all 1\n",
     "hints": [
       "Every cell in the first row or first column has exactly 1 path (only one direction is possible); every other cell's path count is the sum of the cell above it and the cell to its left."
@@ -1838,7 +1897,8 @@
         "input": "1 1\n",
         "expected": "1"
       }
-    ]
+    ],
+    "domain": "dsa"
   },
   {
     "id": "bit-003",
@@ -1869,7 +1929,8 @@
         "input": "1\n",
         "expected": "Yes"
       }
-    ]
+    ],
+    "domain": "dsa"
   },
   {
     "id": "bit-004",
@@ -1882,7 +1943,7 @@
     "title": "Single Number (XOR Trick)",
     "description": "Given an array where every element appears exactly twice except for one which appears exactly once, find that single element using XOR (O(n) time, O(1) space).",
     "input_format": "Line 1: n\nLine 2: n space-separated integers",
-    "output_format": "A single integer \u2014 the element that appears only once.",
+    "output_format": "A single integer — the element that appears only once.",
     "starter_code": "n = int(input())\na = list(map(int, input().split()))\n\n# TODO: XOR every element together -- pairs cancel out to 0, leaving only the unique one\n",
     "hints": [
       "x XOR x == 0 and x XOR 0 == x, so XOR-ing every element together cancels all the pairs, leaving only the value that appeared once."
@@ -1900,7 +1961,8 @@
         "input": "7\n1 1 2 2 3 3 9\n",
         "expected": "9"
       }
-    ]
+    ],
+    "domain": "dsa"
   },
   {
     "id": "bit-005",
@@ -1913,7 +1975,7 @@
     "title": "Count Set Bits from 0 to N",
     "description": "Given a non-negative integer n, count the total number of set (1) bits across the binary representations of every integer from 0 to n inclusive.",
     "input_format": "Line 1: a non-negative integer n",
-    "output_format": "A single integer \u2014 the total count of set bits from 0 to n.",
+    "output_format": "A single integer — the total count of set bits from 0 to n.",
     "starter_code": "n = int(input())\n\n# TODO: dp[i] = dp[i >> 1] + (i & 1) -- i's set-bit count equals i//2's set-bit count plus whether i's lowest bit is set\n",
     "hints": [
       "dp[i] = dp[i >> 1] + (i & 1): shifting right by one drops the lowest bit, so i's popcount is i//2's popcount plus i's own lowest bit."
@@ -1931,7 +1993,8 @@
         "input": "10\n",
         "expected": "17"
       }
-    ]
+    ],
+    "domain": "dsa"
   },
   {
     "id": "bit-006",
@@ -1962,7 +2025,8 @@
         "input": "-3 3\n",
         "expected": "3 -3"
       }
-    ]
+    ],
+    "domain": "dsa"
   },
   {
     "id": "stack-003",
@@ -1994,7 +2058,8 @@
         "input": "3\npush 4\nmin\nmin\n",
         "expected": "4\n4"
       }
-    ]
+    ],
+    "domain": "dsa"
   },
   {
     "id": "stack-004",
@@ -2008,7 +2073,7 @@
     "title": "Evaluate a Postfix Expression",
     "description": "Given a postfix (Reverse Polish Notation) arithmetic expression with space-separated tokens, evaluate it and print the result. Operators are + - * / (integer division, truncating toward zero).",
     "input_format": "Line 1: a postfix expression, space-separated tokens (integers and + - * /)",
-    "output_format": "A single integer \u2014 the evaluated result.",
+    "output_format": "A single integer — the evaluated result.",
     "starter_code": "tokens = input().split()\n\n# TODO: push numbers onto a stack; on an operator, pop two operands, apply it, push the result back\n",
     "hints": [
       "Scan left to right: push every number; on an operator, pop the top two values (second-popped is the left operand), apply the operator, and push the result back onto the stack."
@@ -2026,7 +2091,8 @@
         "input": "5 1 2 + 4 * + 3 -\n",
         "expected": "14"
       }
-    ]
+    ],
+    "domain": "dsa"
   },
   {
     "id": "stack-005",
@@ -2039,7 +2105,7 @@
     "title": "Largest Rectangle in a Histogram",
     "description": "Given n bars of a histogram with given heights (each bar has width 1), find the area of the largest rectangle that can be formed within the histogram, using an O(n) monotonic-stack approach.",
     "input_format": "Line 1: n\nLine 2: n space-separated non-negative integers (bar heights)",
-    "output_format": "A single integer \u2014 the largest rectangular area.",
+    "output_format": "A single integer — the largest rectangular area.",
     "starter_code": "n = int(input())\nheights = list(map(int, input().split()))\n\n# TODO: monotonic increasing stack of indices; when a shorter bar is seen, pop and compute the area of the rectangle using the popped bar's height\n",
     "hints": [
       "Keep a stack of indices with increasing heights. When you hit a bar shorter than the stack top, pop it and compute its rectangle's width as (current index - new stack top index - 1), or all the way to the start if the stack empties."
@@ -2057,7 +2123,8 @@
         "input": "1\n5\n",
         "expected": "5"
       }
-    ]
+    ],
+    "domain": "dsa"
   },
   {
     "id": "stack-006",
@@ -2068,7 +2135,7 @@
       "Ola"
     ],
     "title": "Sort a Stack Using Recursion",
-    "description": "Given a stack of n integers, sort it in ascending order (top of stack = smallest after sorting) using only recursion \u2014 no loops, and no auxiliary array/list besides the call stack and one helper stack.",
+    "description": "Given a stack of n integers, sort it in ascending order (top of stack = smallest after sorting) using only recursion — no loops, and no auxiliary array/list besides the call stack and one helper stack.",
     "input_format": "Line 1: n\nLine 2: n space-separated integers, given bottom-to-top (last number is the top of stack)",
     "output_format": "The sorted stack's contents printed bottom-to-top, space-separated.",
     "starter_code": "n = int(input())\nstack = list(map(int, input().split()))  # index -1 is the top\n\n# TODO: recursively pop everything off, then recursively insert each popped value back in sorted position\n",
@@ -2088,7 +2155,8 @@
         "input": "1\n7\n",
         "expected": "7"
       }
-    ]
+    ],
+    "domain": "dsa"
   },
   {
     "id": "ll-004",
@@ -2120,7 +2188,8 @@
         "input": "1\n1\n0\n",
         "expected": "Yes"
       }
-    ]
+    ],
+    "domain": "dsa"
   },
   {
     "id": "ll-005",
@@ -2133,7 +2202,7 @@
     "title": "Middle of a Linked List",
     "description": "Given a linked list as a sequence of n values, find the value at its middle node using the slow/fast pointer technique (one pass, no counting the length first). For an even-length list, return the second of the two middle nodes.",
     "input_format": "Line 1: n\nLine 2: n space-separated integers",
-    "output_format": "A single integer \u2014 the value at the middle node.",
+    "output_format": "A single integer — the value at the middle node.",
     "starter_code": "n = int(input())\nvals = list(map(int, input().split()))\n\n# TODO: move slow one step and fast two steps at a time; when fast reaches the end, slow is at the middle\n",
     "hints": [
       "Move a slow pointer one index at a time and a fast pointer two at a time; when the fast pointer runs off the end, the slow pointer is sitting on the middle node."
@@ -2151,7 +2220,8 @@
         "input": "1\n9\n",
         "expected": "9"
       }
-    ]
+    ],
+    "domain": "dsa"
   },
   {
     "id": "ll-006",
@@ -2183,7 +2253,8 @@
         "input": "1 9\n2 9 9\n",
         "expected": "8 0 1"
       }
-    ]
+    ],
+    "domain": "dsa"
   },
   {
     "id": "hash-004",
@@ -2196,7 +2267,7 @@
     "title": "Subarray Sum Equals K",
     "description": "Given an array of n integers and a target sum k, count the number of contiguous subarrays whose elements sum to exactly k, using a running prefix-sum hash map (O(n), not the O(n^2) brute force).",
     "input_format": "Line 1: n and k, space-separated\nLine 2: n space-separated integers",
-    "output_format": "A single integer \u2014 the number of subarrays summing to exactly k.",
+    "output_format": "A single integer — the number of subarrays summing to exactly k.",
     "starter_code": "n, k = map(int, input().split())\na = list(map(int, input().split()))\n\n# TODO: track prefix sums seen so far in a hash map of sum -> count; a subarray ending here sums to k whenever (running_sum - k) was seen before\n",
     "hints": [
       "Keep a running prefix sum and a hash map counting how many times each prefix-sum value has occurred; at each step, add the count of (running_sum - k) seen so far to the answer, then record the current running_sum."
@@ -2214,7 +2285,8 @@
         "input": "4 0\n0 0 0 0\n",
         "expected": "10"
       }
-    ]
+    ],
+    "domain": "dsa"
   },
   {
     "id": "hash-005",
@@ -2227,7 +2299,7 @@
     "title": "Longest Consecutive Sequence",
     "description": "Given an unsorted array of n integers, find the length of the longest run of consecutive integers (e.g. [1,2,3,4]) that can be formed using elements from the array, in O(n) time using a hash set (not by sorting).",
     "input_format": "Line 1: n\nLine 2: n space-separated integers",
-    "output_format": "A single integer \u2014 the length of the longest consecutive sequence.",
+    "output_format": "A single integer — the length of the longest consecutive sequence.",
     "starter_code": "n = int(input())\na = list(map(int, input().split()))\n\n# TODO: put everything in a set; only start counting a run from a value whose predecessor (value-1) is NOT in the set, then count forward\n",
     "hints": [
       "Only start counting a streak from a number x where x-1 is NOT in the set (so x is guaranteed to be the start of its run) -- this ensures each run is only ever counted once, keeping the whole algorithm O(n)."
@@ -2245,7 +2317,8 @@
         "input": "6\n0 -1 1 -2 2 3\n",
         "expected": "6"
       }
-    ]
+    ],
+    "domain": "dsa"
   },
   {
     "id": "hash-006",
@@ -2257,7 +2330,7 @@
       "Accenture"
     ],
     "title": "Isomorphic Strings",
-    "description": "Given two strings of equal length, determine whether they are isomorphic \u2014 every character in the first string can be consistently replaced by exactly one character in the second to obtain the second string (no two characters may map to the same character).",
+    "description": "Given two strings of equal length, determine whether they are isomorphic — every character in the first string can be consistently replaced by exactly one character in the second to obtain the second string (no two characters may map to the same character).",
     "input_format": "Line 1: string s\nLine 2: string t",
     "output_format": "\"Yes\" if s and t are isomorphic, \"No\" otherwise.",
     "starter_code": "s = input()\nt = input()\n\n# TODO: two hash maps, s->t and t->s, must both stay consistent at every position\n",
@@ -2277,7 +2350,8 @@
         "input": "paper\ntitle\n",
         "expected": "Yes"
       }
-    ]
+    ],
+    "domain": "dsa"
   },
   {
     "id": "graph-004",
@@ -2288,8 +2362,8 @@
       "Goldman Sachs"
     ],
     "title": "Bipartite Graph Check",
-    "description": "Given an undirected graph, determine whether it is bipartite \u2014 its nodes can be split into two groups such that every edge connects nodes from different groups \u2014 using BFS/DFS two-coloring.",
-    "input_format": "Line 1: n (nodes) and m (edges)\nNext m lines: u v \u2014 an edge",
+    "description": "Given an undirected graph, determine whether it is bipartite — its nodes can be split into two groups such that every edge connects nodes from different groups — using BFS/DFS two-coloring.",
+    "input_format": "Line 1: n (nodes) and m (edges)\nNext m lines: u v — an edge",
     "output_format": "\"Yes\" if the graph is bipartite, \"No\" otherwise.",
     "starter_code": "n, m = map(int, input().split())\nedges = [tuple(map(int, input().split())) for _ in range(m)]\n\n# TODO: BFS/DFS coloring each node the opposite color of its parent; a graph is bipartite iff no edge ever connects two same-colored nodes\n",
     "hints": [
@@ -2308,7 +2382,8 @@
         "input": "2 1\n0 1\n",
         "expected": "Yes"
       }
-    ]
+    ],
+    "domain": "dsa"
   },
   {
     "id": "graph-005",
@@ -2321,7 +2396,7 @@
     ],
     "title": "Course Schedule Feasibility (Topological Sort)",
     "description": "There are n courses (0 to n-1) and m prerequisite pairs [a, b] meaning course a requires course b to be completed first. Determine whether it's possible to finish all courses (i.e. the prerequisite graph has no cycle).",
-    "input_format": "Line 1: n and m\nNext m lines: a b \u2014 course a requires course b first",
+    "input_format": "Line 1: n and m\nNext m lines: a b — course a requires course b first",
     "output_format": "\"Yes\" if all courses can be finished, \"No\" otherwise.",
     "starter_code": "n, m = map(int, input().split())\nprereqs = [tuple(map(int, input().split())) for _ in range(m)]\n\n# TODO: Kahn's algorithm -- repeatedly remove nodes with in-degree 0; if you can't remove all n nodes, there's a cycle\n",
     "hints": [
@@ -2340,7 +2415,8 @@
         "input": "4 3\n1 0\n2 0\n3 1\n",
         "expected": "Yes"
       }
-    ]
+    ],
+    "domain": "dsa"
   },
   {
     "id": "graph-006",
@@ -2352,9 +2428,9 @@
       "Ola"
     ],
     "title": "Number of Islands",
-    "description": "Given an r x c grid of 0s (water) and 1s (land), count the number of islands \u2014 groups of adjacent (up/down/left/right, not diagonal) 1s.",
+    "description": "Given an r x c grid of 0s (water) and 1s (land), count the number of islands — groups of adjacent (up/down/left/right, not diagonal) 1s.",
     "input_format": "Line 1: r and c\nNext r lines: c space-separated integers each (0 or 1)",
-    "output_format": "A single integer \u2014 the number of islands.",
+    "output_format": "A single integer — the number of islands.",
     "starter_code": "r, c = map(int, input().split())\ngrid = [list(map(int, input().split())) for _ in range(r)]\n\n# TODO: for every unvisited land cell, flood-fill (BFS/DFS) the whole island and count once per flood-fill started\n",
     "hints": [
       "Scan every cell; whenever you find a '1' that hasn't been visited yet, that's a new island -- flood-fill (BFS/DFS) outward from it marking every connected '1' as visited, then continue scanning."
@@ -2372,7 +2448,8 @@
         "input": "2 2\n1 1\n1 1\n",
         "expected": "1"
       }
-    ]
+    ],
+    "domain": "dsa"
   },
   {
     "id": "greedy-003",
@@ -2403,7 +2480,8 @@
         "input": "2 10\n5 30\n5 30\n",
         "expected": "60.00"
       }
-    ]
+    ],
+    "domain": "dsa"
   },
   {
     "id": "greedy-004",
@@ -2416,7 +2494,7 @@
     "title": "Job Sequencing with Deadlines",
     "description": "Given n jobs, each with a deadline and a profit, and each job takes exactly one unit of time on a single machine, schedule jobs to maximize total profit (a job must be completed by its deadline to earn its profit; not all jobs need to run). Print the maximum achievable profit.",
     "input_format": "Line 1: n\nNext n lines: deadline profit (space-separated)",
-    "output_format": "A single integer \u2014 the maximum total profit.",
+    "output_format": "A single integer — the maximum total profit.",
     "starter_code": "n = int(input())\njobs = [tuple(map(int, input().split())) for _ in range(n)]\n\n# TODO: sort jobs by profit descending; for each, greedily place it in the latest free time slot at or before its deadline\n",
     "hints": [
       "Sort jobs by profit descending. For each job in that order, scan backward from its deadline to slot 1 looking for a free time slot -- taking the LATEST free slot (not the earliest) leaves more room for other jobs with earlier deadlines."
@@ -2434,7 +2512,8 @@
         "input": "1\n1 5\n",
         "expected": "5"
       }
-    ]
+    ],
+    "domain": "dsa"
   },
   {
     "id": "greedy-005",
@@ -2447,7 +2526,7 @@
     "title": "Minimum Coins (Standard Denominations)",
     "description": "Given a target amount and the standard Indian currency denominations [1, 2, 5, 10, 20, 50, 100, 500, 2000], find the minimum number of coins/notes needed using the greedy always-take-the-largest-that-fits approach.",
     "input_format": "Line 1: the target amount (a non-negative integer)",
-    "output_format": "A single integer \u2014 the minimum number of coins/notes using the greedy approach.",
+    "output_format": "A single integer — the minimum number of coins/notes using the greedy approach.",
     "starter_code": "amount = int(input())\ndenominations = [2000, 500, 100, 50, 20, 10, 5, 2, 1]\n\n# TODO: repeatedly take as many of the largest denomination <= remaining amount as possible\n",
     "hints": [
       "Sort denominations largest-first (already given that way); for each, take floor(remaining / denomination) of it, subtract, and move to the next smaller denomination."
@@ -2465,7 +2544,8 @@
         "input": "2468\n",
         "expected": "10"
       }
-    ]
+    ],
+    "domain": "dsa"
   },
   {
     "id": "greedy-006",
@@ -2478,7 +2558,7 @@
     "title": "Candy Distribution",
     "description": "There are n children standing in a line, each with a rating. You must give each child at least one candy, and any child with a higher rating than an immediate neighbor must get more candy than that neighbor. Find the minimum total candies needed.",
     "input_format": "Line 1: n\nLine 2: n space-separated integers (ratings)",
-    "output_format": "A single integer \u2014 the minimum total number of candies.",
+    "output_format": "A single integer — the minimum total number of candies.",
     "starter_code": "n = int(input())\nratings = list(map(int, input().split()))\n\n# TODO: two passes -- left to right enforcing the right-neighbor rule, then right to left enforcing the left-neighbor rule, taking the max of both passes per child\n",
     "hints": [
       "Left-to-right pass: if ratings[i] > ratings[i-1], candies[i] = candies[i-1] + 1. Right-to-left pass: if ratings[i] > ratings[i+1], candies[i] = max(candies[i], candies[i+1] + 1). Sum the result."
@@ -2496,7 +2576,8 @@
         "input": "5\n1 2 3 4 5\n",
         "expected": "15"
       }
-    ]
+    ],
+    "domain": "dsa"
   },
   {
     "id": "mat-003",
@@ -2527,7 +2608,8 @@
         "input": "2\n1 2\n3 4\n",
         "expected": "3 1\n4 2"
       }
-    ]
+    ],
+    "domain": "dsa"
   },
   {
     "id": "mat-004",
@@ -2558,7 +2640,8 @@
         "input": "1 1\n5\n5\n",
         "expected": "Yes"
       }
-    ]
+    ],
+    "domain": "dsa"
   },
   {
     "id": "mat-005",
@@ -2589,7 +2672,8 @@
         "input": "1 1\n1\n",
         "expected": "1"
       }
-    ]
+    ],
+    "domain": "dsa"
   },
   {
     "id": "mat-006",
@@ -2603,7 +2687,7 @@
     "title": "Diagonal Sum of a Matrix",
     "description": "Given an n x n matrix, print the sum of its primary diagonal and the sum of its secondary (anti) diagonal, space-separated. If a cell lies on both diagonals (n is odd, the center cell), it still contributes to both sums independently.",
     "input_format": "Line 1: n\nNext n lines: n space-separated integers each",
-    "output_format": "Two space-separated integers \u2014 primary diagonal sum, then secondary diagonal sum.",
+    "output_format": "Two space-separated integers — primary diagonal sum, then secondary diagonal sum.",
     "starter_code": "n = int(input())\nmatrix = [list(map(int, input().split())) for _ in range(n)]\n\n# TODO: primary diagonal is matrix[i][i]; secondary diagonal is matrix[i][n-1-i]\n",
     "hints": [
       "The primary diagonal is every matrix[i][i]; the secondary (anti) diagonal is every matrix[i][n-1-i] -- sum each independently, even sharing the center cell for odd n."
@@ -2621,7 +2705,8 @@
         "input": "2\n1 2\n3 4\n",
         "expected": "5 5"
       }
-    ]
+    ],
+    "domain": "dsa"
   },
   {
     "id": "queue-002",
@@ -2652,7 +2737,8 @@
         "input": "4\nenqueue 5\ndequeue\ndequeue\nenqueue 6\n",
         "expected": "5\nempty"
       }
-    ]
+    ],
+    "domain": "dsa"
   },
   {
     "id": "queue-003",
@@ -2683,7 +2769,8 @@
         "input": "8\n",
         "expected": "1\n10\n11\n100\n101\n110\n111\n1000"
       }
-    ]
+    ],
+    "domain": "dsa"
   },
   {
     "id": "queue-004",
@@ -2714,7 +2801,8 @@
         "input": "6 2\n1 2 3 4 5 6\n",
         "expected": "2 1 3 4 5 6"
       }
-    ]
+    ],
+    "domain": "dsa"
   },
   {
     "id": "queue-005",
@@ -2728,7 +2816,7 @@
     "title": "Sliding Window Maximum",
     "description": "Given an array and a window size k, for every contiguous window of size k print the maximum value in that window, using an O(n) monotonic deque (not an O(n*k) brute force).",
     "input_format": "Line 1: n and k, space-separated\nLine 2: n space-separated integers",
-    "output_format": "n - k + 1 integers, space-separated, on one line \u2014 the maximum of each window.",
+    "output_format": "n - k + 1 integers, space-separated, on one line — the maximum of each window.",
     "starter_code": "n, k = map(int, input().split())\narr = list(map(int, input().split()))\n\n# TODO: keep a deque of indices with decreasing values; pop smaller values off the back before adding a new one, and drop indices that have slid out of the window from the front\n",
     "hints": [
       "Maintain a deque of indices whose values are in decreasing order. Before adding a new index, remove indices from the back whose values are smaller (they can never be the max again). Remove indices from the front once they've slid out of the current window. The front is always the current window's max."
@@ -2746,7 +2834,8 @@
         "input": "6 3\n-1 -2 -3 -4 -5 -6\n",
         "expected": "-1 -2 -3 -4"
       }
-    ]
+    ],
+    "domain": "dsa"
   },
   {
     "id": "dp-007",
@@ -2760,7 +2849,7 @@
     "title": "Nth Fibonacci via Tabulation",
     "description": "Compute the nth Fibonacci number (F(0)=0, F(1)=1) using bottom-up dynamic programming (an array/two variables built up from the base cases), not plain recursion.",
     "input_format": "Line 1: a non-negative integer n",
-    "output_format": "A single integer \u2014 the nth Fibonacci number.",
+    "output_format": "A single integer — the nth Fibonacci number.",
     "starter_code": "n = int(input())\n\n# TODO: build dp[0..n] bottom-up: dp[0]=0, dp[1]=1, dp[i]=dp[i-1]+dp[i-2]\n",
     "hints": [
       "Start from the base cases dp[0]=0 and dp[1]=1, and build every later value as the sum of the two before it -- no recursive calls needed."
@@ -2778,7 +2867,8 @@
         "input": "10\n",
         "expected": "55"
       }
-    ]
+    ],
+    "domain": "dsa"
   },
   {
     "id": "graph-007",
@@ -2791,7 +2881,7 @@
     ],
     "title": "Print BFS Traversal of a Graph",
     "description": "Given an undirected graph and a starting node, print the order in which its nodes are visited by a breadth-first search (BFS), always visiting a node's neighbors in increasing numeric order.",
-    "input_format": "Line 1: n (nodes) and m (edges)\nNext m lines: u v \u2014 an edge\nLast line: the starting node",
+    "input_format": "Line 1: n (nodes) and m (edges)\nNext m lines: u v — an edge\nLast line: the starting node",
     "output_format": "The BFS visit order, space-separated, on one line.",
     "starter_code": "n, m = map(int, input().split())\nedges = [tuple(map(int, input().split())) for _ in range(m)]\nstart = int(input())\n\n# TODO: build a sorted adjacency list, then standard BFS with a queue and a visited set\n",
     "hints": [
@@ -2810,7 +2900,8 @@
         "input": "1 0\n0\n",
         "expected": "0"
       }
-    ]
+    ],
+    "domain": "dsa"
   },
   {
     "id": "stack-007",
@@ -2842,7 +2933,8 @@
         "input": "3\npush 7\nisEmpty\npeek\n",
         "expected": "false\n7"
       }
-    ]
+    ],
+    "domain": "dsa"
   },
   {
     "id": "hash-007",
@@ -2855,7 +2947,7 @@
     "title": "Longest Substring with At Most K Distinct Characters",
     "description": "Given a string and an integer k, find the length of the longest contiguous substring that contains at most k distinct characters, using a sliding window with a hash map of character counts.",
     "input_format": "Line 1: a string s\nLine 2: an integer k",
-    "output_format": "A single integer \u2014 the length of the longest valid substring.",
+    "output_format": "A single integer — the length of the longest valid substring.",
     "starter_code": "s = input()\nk = int(input())\n\n# TODO: sliding window, expanding right and tracking character counts in a hash map; shrink from the left whenever the map has more than k distinct keys\n",
     "hints": [
       "Expand the window's right edge, incrementing a hash map of character -> count; whenever the map has more than k distinct keys, shrink from the left (decrementing/removing counts) until it's back to at most k."
@@ -2873,7 +2965,8 @@
         "input": "abcadcacacaca\n3\n",
         "expected": "11"
       }
-    ]
+    ],
+    "domain": "dsa"
   },
   {
     "id": "twoptr-006",
@@ -2905,7 +2998,8 @@
         "input": "a\naa\n",
         "expected": ""
       }
-    ]
+    ],
+    "domain": "dsa"
   },
   {
     "id": "arr-007",
@@ -2937,7 +3031,8 @@
         "input": "5\n1 2 3 4 5\n7\n",
         "expected": "4 5 1 2 3"
       }
-    ]
+    ],
+    "domain": "dsa"
   },
   {
     "id": "arr-008",
@@ -2970,7 +3065,8 @@
         "input": "5\n3 3 4 2 3\n",
         "expected": "3"
       }
-    ]
+    ],
+    "domain": "dsa"
   },
   {
     "id": "arr-009",
@@ -3003,7 +3099,8 @@
         "input": "2\n1 2\n",
         "expected": "1"
       }
-    ]
+    ],
+    "domain": "dsa"
   },
   {
     "id": "arr-010",
@@ -3035,7 +3132,8 @@
         "input": "2\n1 2 2\n",
         "expected": "2"
       }
-    ]
+    ],
+    "domain": "dsa"
   },
   {
     "id": "bit-007",
@@ -3066,7 +3164,8 @@
         "input": "8 3\n",
         "expected": "Yes"
       }
-    ]
+    ],
+    "domain": "dsa"
   },
   {
     "id": "bit-008",
@@ -3097,7 +3196,8 @@
         "input": "1\n",
         "expected": "1"
       }
-    ]
+    ],
+    "domain": "dsa"
   },
   {
     "id": "bit-009",
@@ -3129,7 +3229,8 @@
         "input": "2\n10 20\n",
         "expected": "10 20"
       }
-    ]
+    ],
+    "domain": "dsa"
   },
   {
     "id": "bit-010",
@@ -3160,7 +3261,8 @@
         "input": "0\n",
         "expected": "0"
       }
-    ]
+    ],
+    "domain": "dsa"
   },
   {
     "id": "dp-008",
@@ -3192,7 +3294,8 @@
         "input": "1\n5\n0\n",
         "expected": "1"
       }
-    ]
+    ],
+    "domain": "dsa"
   },
   {
     "id": "dp-009",
@@ -3224,7 +3327,8 @@
         "input": "4\n1 1 1 1\n",
         "expected": "Yes"
       }
-    ]
+    ],
+    "domain": "dsa"
   },
   {
     "id": "dp-010",
@@ -3256,7 +3360,8 @@
         "input": "2 2\n1 2\n1 1\n",
         "expected": "3"
       }
-    ]
+    ],
+    "domain": "dsa"
   },
   {
     "id": "graph-008",
@@ -3287,7 +3392,8 @@
         "input": "1 0\n0\n",
         "expected": "0"
       }
-    ]
+    ],
+    "domain": "dsa"
   },
   {
     "id": "graph-009",
@@ -3318,7 +3424,8 @@
         "input": "5 2\n0 1\n2 3\n",
         "expected": "No"
       }
-    ]
+    ],
+    "domain": "dsa"
   },
   {
     "id": "graph-010",
@@ -3351,7 +3458,8 @@
         "input": "2 1\n0 1 10\n0\n",
         "expected": "0 10"
       }
-    ]
+    ],
+    "domain": "dsa"
   },
   {
     "id": "greedy-007",
@@ -3383,7 +3491,8 @@
         "input": "1\n5\n1\n3\n",
         "expected": "0"
       }
-    ]
+    ],
+    "domain": "dsa"
   },
   {
     "id": "greedy-008",
@@ -3415,7 +3524,8 @@
         "input": "1\n10\n1\n",
         "expected": "0"
       }
-    ]
+    ],
+    "domain": "dsa"
   },
   {
     "id": "greedy-009",
@@ -3447,7 +3557,8 @@
         "input": "1\n5\n4\n",
         "expected": "0"
       }
-    ]
+    ],
+    "domain": "dsa"
   },
   {
     "id": "greedy-010",
@@ -3479,7 +3590,8 @@
         "input": "2\n1 2\n2 3\n",
         "expected": "1"
       }
-    ]
+    ],
+    "domain": "dsa"
   },
   {
     "id": "hash-008",
@@ -3511,7 +3623,8 @@
         "input": "4\n1 0 1 1\n1\n",
         "expected": "Yes"
       }
-    ]
+    ],
+    "domain": "dsa"
   },
   {
     "id": "hash-009",
@@ -3543,7 +3656,8 @@
         "input": "aaaa\ndog cat cat dog\n",
         "expected": "No"
       }
-    ]
+    ],
+    "domain": "dsa"
   },
   {
     "id": "hash-010",
@@ -3575,7 +3689,8 @@
         "input": "5\n5 3 3 1 1\n2\n",
         "expected": "3 1"
       }
-    ]
+    ],
+    "domain": "dsa"
   },
   {
     "id": "ll-007",
@@ -3606,7 +3721,8 @@
         "input": "1\n7\n1\n",
         "expected": "7"
       }
-    ]
+    ],
+    "domain": "dsa"
   },
   {
     "id": "ll-008",
@@ -3637,7 +3753,8 @@
         "input": "3\n1 2 3\n",
         "expected": "No"
       }
-    ]
+    ],
+    "domain": "dsa"
   },
   {
     "id": "ll-009",
@@ -3668,7 +3785,8 @@
         "input": "2\n1 2\n2\n1 2\n",
         "expected": "1"
       }
-    ]
+    ],
+    "domain": "dsa"
   },
   {
     "id": "ll-010",
@@ -3700,7 +3818,8 @@
         "input": "2\n1 2\n2\n",
         "expected": "2"
       }
-    ]
+    ],
+    "domain": "dsa"
   },
   {
     "id": "mat-007",
@@ -3731,7 +3850,8 @@
         "input": "2 2\n1 2\n3 4\n",
         "expected": "10"
       }
-    ]
+    ],
+    "domain": "dsa"
   },
   {
     "id": "mat-008",
@@ -3762,7 +3882,8 @@
         "input": "2\n1 2\n3 4\n",
         "expected": "2 4\n1 3"
       }
-    ]
+    ],
+    "domain": "dsa"
   },
   {
     "id": "mat-009",
@@ -3793,7 +3914,8 @@
         "input": "1 3\n1 2 3\n",
         "expected": "Yes"
       }
-    ]
+    ],
+    "domain": "dsa"
   },
   {
     "id": "mat-010",
@@ -3825,7 +3947,8 @@
         "input": "1 1\n1\n",
         "expected": "1"
       }
-    ]
+    ],
+    "domain": "dsa"
   },
   {
     "id": "queue-006",
@@ -3856,7 +3979,8 @@
         "input": "3\nenqueue 7\nisEmpty\nfront\n",
         "expected": "false\n7"
       }
-    ]
+    ],
+    "domain": "dsa"
   },
   {
     "id": "queue-007",
@@ -3887,7 +4011,8 @@
         "input": "3\n2\ndequeue\nenqueue 9\n",
         "expected": "empty\nok"
       }
-    ]
+    ],
+    "domain": "dsa"
   },
   {
     "id": "queue-008",
@@ -3919,7 +4044,8 @@
         "input": "15\n",
         "expected": "24"
       }
-    ]
+    ],
+    "domain": "dsa"
   },
   {
     "id": "queue-009",
@@ -3951,7 +4077,8 @@
         "input": "1 1\n0\n",
         "expected": "0"
       }
-    ]
+    ],
+    "domain": "dsa"
   },
   {
     "id": "queue-010",
@@ -3983,7 +4110,8 @@
         "input": "1\n5\n",
         "expected": "5"
       }
-    ]
+    ],
+    "domain": "dsa"
   },
   {
     "id": "rec-007",
@@ -4014,7 +4142,8 @@
         "input": "3\n-1 -2 3\n",
         "expected": "0"
       }
-    ]
+    ],
+    "domain": "dsa"
   },
   {
     "id": "rec-008",
@@ -4045,7 +4174,8 @@
         "input": "a\n",
         "expected": "Yes"
       }
-    ]
+    ],
+    "domain": "dsa"
   },
   {
     "id": "rec-009",
@@ -4076,7 +4206,8 @@
         "input": "3\n1 2 3\n",
         "expected": "1 2 3\n1 3 2\n2 1 3\n2 3 1\n3 1 2\n3 2 1"
       }
-    ]
+    ],
+    "domain": "dsa"
   },
   {
     "id": "rec-010",
@@ -4107,7 +4238,8 @@
         "input": "2\n",
         "expected": "(())\n()()"
       }
-    ]
+    ],
+    "domain": "dsa"
   },
   {
     "id": "rec-011",
@@ -4138,7 +4270,8 @@
         "input": "4\n10 20 30 40\n",
         "expected": "40 30 20 10"
       }
-    ]
+    ],
+    "domain": "dsa"
   },
   {
     "id": "recdp-004",
@@ -4169,7 +4302,8 @@
         "input": "20\n",
         "expected": "6765"
       }
-    ]
+    ],
+    "domain": "dsa"
   },
   {
     "id": "recdp-005",
@@ -4200,7 +4334,8 @@
         "input": "0\n",
         "expected": "1"
       }
-    ]
+    ],
+    "domain": "dsa"
   },
   {
     "id": "recdp-006",
@@ -4231,7 +4366,8 @@
         "input": "4\n1 1 1 1\n",
         "expected": "3"
       }
-    ]
+    ],
+    "domain": "dsa"
   },
   {
     "id": "recdp-007",
@@ -4262,7 +4398,8 @@
         "input": "a\n",
         "expected": "1"
       }
-    ]
+    ],
+    "domain": "dsa"
   },
   {
     "id": "recdp-008",
@@ -4293,7 +4430,8 @@
         "input": "1\n5\n",
         "expected": "5"
       }
-    ]
+    ],
+    "domain": "dsa"
   },
   {
     "id": "recdp-009",
@@ -4324,7 +4462,8 @@
         "input": "3\n",
         "expected": "4"
       }
-    ]
+    ],
+    "domain": "dsa"
   },
   {
     "id": "search-006",
@@ -4355,7 +4494,8 @@
         "input": "1\n9\n9\n",
         "expected": "1"
       }
-    ]
+    ],
+    "domain": "dsa"
   },
   {
     "id": "search-007",
@@ -4386,7 +4526,8 @@
         "input": "1 1\n5\n5\n",
         "expected": "Yes"
       }
-    ]
+    ],
+    "domain": "dsa"
   },
   {
     "id": "search-008",
@@ -4418,7 +4559,8 @@
         "input": "3\n2 2 2\n2\n",
         "expected": "3"
       }
-    ]
+    ],
+    "domain": "dsa"
   },
   {
     "id": "search-009",
@@ -4449,7 +4591,8 @@
         "input": "1\n5\n1\n5\n",
         "expected": "5.0"
       }
-    ]
+    ],
+    "domain": "dsa"
   },
   {
     "id": "search-010",
@@ -4480,7 +4623,8 @@
         "input": "1\n1\n",
         "expected": "1"
       }
-    ]
+    ],
+    "domain": "dsa"
   },
   {
     "id": "sort-006",
@@ -4511,7 +4655,8 @@
         "input": "1\nx\n",
         "expected": "x"
       }
-    ]
+    ],
+    "domain": "dsa"
   },
   {
     "id": "sort-007",
@@ -4543,7 +4688,8 @@
         "input": "1\n5\n",
         "expected": "0\n5"
       }
-    ]
+    ],
+    "domain": "dsa"
   },
   {
     "id": "sort-008",
@@ -4574,7 +4720,8 @@
         "input": "2\n0\n3 1 2 3\n",
         "expected": "1 2 3"
       }
-    ]
+    ],
+    "domain": "dsa"
   },
   {
     "id": "sort-009",
@@ -4606,7 +4753,8 @@
         "input": "3\n1 2 3\n",
         "expected": "0"
       }
-    ]
+    ],
+    "domain": "dsa"
   },
   {
     "id": "sort-010",
@@ -4637,7 +4785,8 @@
         "input": "1 0\n5\n",
         "expected": "5"
       }
-    ]
+    ],
+    "domain": "dsa"
   },
   {
     "id": "stack-008",
@@ -4668,7 +4817,8 @@
         "input": "aaaa\n",
         "expected": ""
       }
-    ]
+    ],
+    "domain": "dsa"
   },
   {
     "id": "stack-009",
@@ -4699,7 +4849,8 @@
         "input": "2[abc]3[cd]ef\n",
         "expected": "abcabccdcdcdef"
       }
-    ]
+    ],
+    "domain": "dsa"
   },
   {
     "id": "stack-010",
@@ -4730,7 +4881,8 @@
         "input": " 2-1 + 2 \n",
         "expected": "3"
       }
-    ]
+    ],
+    "domain": "dsa"
   },
   {
     "id": "str-007",
@@ -4761,7 +4913,8 @@
         "input": "xyz\n",
         "expected": "0 3"
       }
-    ]
+    ],
+    "domain": "dsa"
   },
   {
     "id": "str-008",
@@ -4793,7 +4946,8 @@
         "input": "1203\n1213\n",
         "expected": "Yes"
       }
-    ]
+    ],
+    "domain": "dsa"
   },
   {
     "id": "str-009",
@@ -4824,7 +4978,8 @@
         "input": "a\n",
         "expected": "0"
       }
-    ]
+    ],
+    "domain": "dsa"
   },
   {
     "id": "str-010",
@@ -4855,7 +5010,8 @@
         "input": "  multiple   spaces here\n",
         "expected": "Multiple Spaces Here"
       }
-    ]
+    ],
+    "domain": "dsa"
   },
   {
     "id": "twoptr-007",
@@ -4887,7 +5043,8 @@
         "input": "1\n0\n",
         "expected": "0"
       }
-    ]
+    ],
+    "domain": "dsa"
   },
   {
     "id": "twoptr-008",
@@ -4918,7 +5075,8 @@
         "input": "4\n-1 -2 -3 -4\n",
         "expected": "-1 -2 -3 -4"
       }
-    ]
+    ],
+    "domain": "dsa"
   },
   {
     "id": "twoptr-009",
@@ -4949,7 +5107,8 @@
         "input": "a\n",
         "expected": "a"
       }
-    ]
+    ],
+    "domain": "dsa"
   },
   {
     "id": "twoptr-010",
@@ -4979,6 +5138,171 @@
       {
         "input": "1 5\n10\n",
         "expected": "0"
+      }
+    ],
+    "domain": "dsa"
+  },
+  {
+    "id": "sql-001",
+    "domain": "sql",
+    "topic": "SQL & Databases",
+    "difficulty": "Easy",
+    "companies": [
+      "Amazon",
+      "Google",
+      "Microsoft",
+      "TCS"
+    ],
+    "title": "Second Highest Salary",
+    "description": "Write a SQL query to find the second highest salary from the Employee table. If there is no second highest salary, return NULL.",
+    "input_format": "Table: Employee (id INT, salary INT)",
+    "output_format": "Single column: SecondHighestSalary",
+    "starter_code": "-- Write your PostgreSQL / SQLite query below\nSELECT DISTINCT salary AS SecondHighestSalary\nFROM Employee\nORDER BY salary DESC\nLIMIT 1 OFFSET 1;\n",
+    "editorial": "### SQL Approach\n\nUse `DISTINCT` to avoid duplicate salaries, `ORDER BY salary DESC` to rank from highest to lowest, and `LIMIT 1 OFFSET 1` to skip the highest salary and pick the second highest.\n\n```sql\nSELECT (\n  SELECT DISTINCT salary\n  FROM Employee\n  ORDER BY salary DESC\n  LIMIT 1 OFFSET 1\n) AS SecondHighestSalary;\n```",
+    "hints": [
+      "Use ORDER BY salary DESC to sort descending.",
+      "Use LIMIT 1 OFFSET 1 to get the 2nd row."
+    ],
+    "test_cases": [
+      {
+        "input": "CREATE TABLE Employee (id INT, salary INT);\nINSERT INTO Employee VALUES (1, 100), (2, 200), (3, 300);",
+        "expected": "200"
+      }
+    ]
+  },
+  {
+    "id": "sql-002",
+    "domain": "sql",
+    "topic": "SQL & Databases",
+    "difficulty": "Medium",
+    "companies": [
+      "Amazon",
+      "Flipkart",
+      "Infosys"
+    ],
+    "title": "Department Highest Salary",
+    "description": "Write a SQL query to find employees who have the highest salary in each of the departments.",
+    "input_format": "Table: Employee (id INT, name VARCHAR, salary INT, departmentId INT)\nTable: Department (id INT, name VARCHAR)",
+    "output_format": "Columns: Department, Employee, Salary",
+    "starter_code": "-- Write your SQL query below\nSELECT d.name AS Department, e.name AS Employee, e.salary AS Salary\nFROM Employee e\nJOIN Department d ON e.departmentId = d.id\nWHERE (e.departmentId, e.salary) IN (\n  SELECT departmentId, MAX(salary)\n  FROM Employee\n  GROUP BY departmentId\n);\n",
+    "editorial": "### SQL Approach\n\nGroup by `departmentId` and compute `MAX(salary)`. Then filter employees whose `(departmentId, salary)` tuple matches the max tuple.\n\n```sql\nSELECT d.name AS Department, e.name AS Employee, e.salary AS Salary\nFROM Employee e\nJOIN Department d ON e.departmentId = d.id\nWHERE (e.departmentId, e.salary) IN (\n  SELECT departmentId, MAX(salary)\n  FROM Employee\n  GROUP BY departmentId\n);\n```",
+    "hints": [
+      "Use GROUP BY departmentId to find max salary per department.",
+      "JOIN Employee with Department on departmentId."
+    ],
+    "test_cases": [
+      {
+        "input": "CREATE TABLE Department (id INT, name VARCHAR);\nCREATE TABLE Employee (id INT, name VARCHAR, salary INT, departmentId INT);\nINSERT INTO Department VALUES (1, 'IT'), (2, 'Sales');\nINSERT INTO Employee VALUES (1, 'Joe', 85000, 1), (2, 'Henry', 80000, 2), (3, 'Sam', 60000, 2), (4, 'Max', 90000, 1);",
+        "expected": "IT Max 90000\nSales Henry 80000"
+      }
+    ]
+  },
+  {
+    "id": "sd-001",
+    "domain": "system_design",
+    "topic": "System Design",
+    "difficulty": "Medium",
+    "companies": [
+      "Google",
+      "Amazon",
+      "Uber"
+    ],
+    "title": "Design a Scalable URL Shortener (TinyURL)",
+    "description": "Design a high-throughput URL shortening service like TinyURL or bit.ly. System needs to handle 100M new URLs created per month and 1B redirects per month (10:1 read/write ratio).\n\nKey Requirements:\n1. Short URL generation (Base62 encoding of 64-bit auto-increment ID or MD5 hash prefix).\n2. Fast redirection (<10ms latency) using Redis cache.\n3. Custom short alias support.\n4. Expiration policy and analytics tracking.\n\nWrite down your architectural design components, database schema (Relational vs NoSQL), caching strategy, and load balancing setup.",
+    "input_format": "Architecture design description & component breakdown",
+    "output_format": "Structured System Architecture Specification",
+    "starter_code": "### 1. High-Level Architecture\n- API Gateway: Nginx / Envoy Load Balancer\n- App Servers: Stateless Node.js / FastAPI web workers\n- Cache Layer: Redis cluster for hot short URL lookups\n- Storage Layer: PostgreSQL / Cassandra for URL mappings\n\n### 2. Base62 Encoding & ID Generation\n# Base62 chars: [0-9a-zA-Z] (62 chars)\n# 62^7 = ~3.5 Trillion unique short URLs\n",
+    "editorial": "### System Architecture Solution\n\n1. **API Endpoints**:\n   - `POST /api/v1/data/shorten` -> `{ longUrl: string, customAlias?: string }`\n   - `GET /{shortCode}` -> `302 Found` redirect to longUrl.\n2. **ID Generator**:\n   - Distributed ID generator (Snowflake / ZooKeeper range allocator) to avoid collision.\n3. **Caching Strategy**:\n   - Redis LRU cache storing `shortCode -> longUrl` with 80/20 rule (cache top 20% URLs).\n4. **Database**:\n   - NoSQL (Cassandra / DynamoDB) or Sharded PostgreSQL for high write throughput.",
+    "hints": [
+      "Base62 uses 62 alphanumeric characters (a-z, A-Z, 0-9).",
+      "Use a 302 (Found) redirect instead of 301 (Moved Permanently) if you want to track analytics per click."
+    ],
+    "test_cases": [
+      {
+        "input": "shorten: https://example.com/very/long/url",
+        "expected": "302 Redirect to https://example.com/very/long/url"
+      }
+    ]
+  },
+  {
+    "id": "sd-002",
+    "domain": "system_design",
+    "topic": "System Design",
+    "difficulty": "Hard",
+    "companies": [
+      "Amazon",
+      "Meta",
+      "Stripe"
+    ],
+    "title": "Design an API Rate Limiter",
+    "description": "Design an API Rate Limiter service to prevent DOS attacks and abuse. The rate limiter should limit clients to 100 requests per minute per IP or User ID.\n\nCompare Rate Limiting Algorithms:\n1. Token Bucket\n2. Leaky Bucket\n3. Fixed Window Counter\n4. Sliding Window Log / Counter",
+    "input_format": "Rate Limiter architectural specification",
+    "output_format": "Redis Lua Script / System Design Breakdown",
+    "starter_code": "### Rate Limiter Architecture\n- Algorithm: Token Bucket with Redis\n- Redis Data Structure: Hash or Sorted Set (ZSET)\n\n```python\nimport time\n\nclass TokenBucket:\n    def __init__(self, capacity, refill_rate):\n        self.capacity = capacity\n        self.tokens = capacity\n        self.refill_rate = refill_rate\n        self.last_refill = time.time()\n\n    def allow_request(self):\n        now = time.time()\n        # Refill tokens based on elapsed time\n        self.tokens = min(self.capacity, self.tokens + (now - self.last_refill) * self.refill_rate)\n        self.last_refill = now\n        if self.tokens >= 1:\n            self.tokens -= 1\n            return True\n        return False\n```",
+    "editorial": "### Rate Limiter Solution\n\n1. **Token Bucket Algorithm**: Allows burst traffic while maintaining average rate.\n2. **Redis + Lua Script**: Ensures atomic increment and time window check in a single round-trip without race conditions.",
+    "hints": [
+      "Redis Lua scripts run atomically, avoiding race conditions in multi-threaded app servers.",
+      "Sliding Window Counter uses less memory than Sliding Window Log."
+    ],
+    "test_cases": [
+      {
+        "input": "105 requests in 60s window (limit=100)",
+        "expected": "First 100 requests ALLOWED (200 OK), last 5 requests BLOCKED (429 Too Many Requests)"
+      }
+    ]
+  },
+  {
+    "id": "web-001",
+    "domain": "web_dev",
+    "topic": "Web Dev & APIs",
+    "difficulty": "Medium",
+    "companies": [
+      "Meta",
+      "Netflix",
+      "Swiggy"
+    ],
+    "title": "Implement Debounce Function in JavaScript",
+    "description": "Implement a `debounce(fn, delay)` utility function in JavaScript / Node.js. The debounced function delays invoking `fn` until after `delay` milliseconds have elapsed since the last time the debounced function was invoked.",
+    "input_format": "fn: function, delay: number in ms",
+    "output_format": "Debounced function wrapper",
+    "starter_code": "function debounce(fn, delay) {\n  let timer = null;\n  return function (...args) {\n    const context = this;\n    clearTimeout(timer);\n    timer = setTimeout(() => {\n      fn.apply(context, args);\n    }, delay);\n  };\n}\n\n// Test execution\nlet count = 0;\nconst increment = debounce(() => { count++; console.log(count); }, 100);\nincrement();\nincrement();\nincrement();\n// Should only print 1 after delay\n",
+    "editorial": "### Debounce Solution\n\nMaintain a `timer` variable in closure. On every invocation, `clearTimeout(timer)` cancels previous pending executions, and a new `setTimeout` is scheduled.\n\n```js\nfunction debounce(fn, delay) {\n  let timer;\n  return function(...args) {\n    clearTimeout(timer);\n    timer = setTimeout(() => fn.apply(this, args), delay);\n  };\n}\n```",
+    "hints": [
+      "Use setTimeout and clearTimeout.",
+      "Preserve 'this' context and arguments using fn.apply(this, args)."
+    ],
+    "test_cases": [
+      {
+        "input": "3 calls triggered within 50ms, delay=100ms",
+        "expected": "1"
+      }
+    ]
+  },
+  {
+    "id": "cs-001",
+    "domain": "cs_fundamentals",
+    "topic": "CS Fundamentals",
+    "difficulty": "Medium",
+    "companies": [
+      "TCS",
+      "Infosys",
+      "Wipro",
+      "Amazon"
+    ],
+    "title": "LRU Cache Implementation",
+    "description": "Design a Data Structure for Least Recently Used (LRU) Cache. It should support `get(key)` and `put(key, value)` operations in O(1) average time complexity.\n\n- `get(key)`: Get the value of key if key exists, otherwise return -1.\n- `put(key, value)`: Update or insert key-value pair. When cache reaches capacity, evict the least recently used key before inserting new item.",
+    "input_format": "Capacity n, followed by operations",
+    "output_format": "Values returned from get calls",
+    "starter_code": "class Node:\n    def __init__(self, key=0, val=0):\n        self.key = key\n        self.val = val\n        self.prev = None\n        self.next = None\n\nclass LRUCache:\n    def __init__(self, capacity: int):\n        self.cap = capacity\n        self.cache = {}  # key -> Node\n        self.head = Node()\n        self.tail = Node()\n        self.head.next = self.tail\n        self.tail.prev = self.head\n\n    def get(self, key: int) -> int:\n        if key in self.cache:\n            node = self.cache[key]\n            self._remove(node)\n            self._add_to_head(node)\n            return node.val\n        return -1\n\n    def put(self, key: int, value: int) -> None:\n        if key in self.cache:\n            self._remove(self.cache[key])\n        node = Node(key, value)\n        self.cache[key] = node\n        self._add_to_head(node)\n        if len(self.cache) > self.cap:\n            lru = self.tail.prev\n            self._remove(lru)\n            del self.cache[lru.key]\n\n    def _remove(self, node):\n        node.prev.next = node.next\n        node.next.prev = node.prev\n\n    def _add_to_head(self, node):\n        node.next = self.head.next\n        node.prev = self.head\n        self.head.next.prev = node\n        self.head.next = node\n",
+    "editorial": "### LRU Cache Solution\n\nCombine a Hash Map (O(1) lookup) with a Doubly Linked List (O(1) insertion/deletion at head/tail).\n\n- `get()` moves accessed node to head.\n- `put()` adds new node to head and evicts node at `tail.prev` if over capacity.",
+    "hints": [
+      "A Doubly Linked List lets you remove a node in O(1) time if you have reference to it.",
+      "A Hash Map stores key -> DoublyLinkedListNode."
+    ],
+    "test_cases": [
+      {
+        "input": "put(1, 1), put(2, 2), get(1), put(3, 3), get(2)",
+        "expected": "1\n-1"
       }
     ]
   }

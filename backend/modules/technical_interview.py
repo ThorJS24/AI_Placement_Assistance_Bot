@@ -111,9 +111,9 @@ def pick_dsa_question(
 
     tiers = [
         (True, True, True, True),
-        (False, True, True, True),
-        (False, True, True, False),
-        (False, True, False, False),
+        (True, True, True, False),
+        (True, True, False, False),
+        (True, False, False, False),
         (False, False, False, False),
     ]
     chosen: list[dict] | None = None
