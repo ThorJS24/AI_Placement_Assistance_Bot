@@ -87,7 +87,11 @@ export default function Sidebar({ open, onClose, appTitle, departmentName, colle
               </div>
               <div className={`leading-tight ${collapsed ? "lg:hidden" : ""}`}>
                 <p className="font-serif text-sm font-bold tracking-wide text-gold-400">CHRIST</p>
-                <p className="text-[11px] font-medium text-white/90">{collegeName || "Deemed to be University"}</p>
+                <p className="text-[11px] font-medium text-white/90">
+                  {collegeName
+                    ? (collegeName.replace(/^CHRIST\s*/i, "").trim() || "(Deemed to be University)")
+                    : "(Deemed to be University)"}
+                </p>
                 <p className="text-[10px] text-white/60">{departmentName || "Dept of CSE"}</p>
               </div>
             </div>

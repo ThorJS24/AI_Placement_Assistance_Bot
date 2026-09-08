@@ -28,13 +28,17 @@ export default function Login({ onAuthenticated, appTitle, departmentName, colle
     <div className="flex min-h-screen items-center justify-center bg-gradient-to-b from-brand-950 via-brand-900 to-brand-950 p-4">
       <div className="w-full max-w-sm rounded-3xl bg-white dark:bg-slate-800 p-6 shadow-2xl sm:p-8">
         <div className="mb-6 flex items-center gap-3">
-          <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl bg-gradient-to-br from-brand-500 to-brand-800 text-white">
-            <GraduationCap size={22} />
+          <div className="flex h-11 w-auto shrink-0 items-center justify-center rounded-xl bg-slate-50 border border-slate-200 dark:bg-slate-900 dark:border-slate-700 p-1.5 shadow-sm">
+            <img
+              src="https://christuniversity.in/images/logo.png"
+              alt="CHRIST Logo"
+              className="h-8 w-auto object-contain"
+              onError={(e) => { e.target.style.display = 'none'; }}
+            />
           </div>
           <div>
-            <h1 className="text-lg font-bold text-slate-900 dark:text-slate-100">{appTitle || "Placement Assistant"}</h1>
-            {collegeName && <p className="text-xs text-slate-500 dark:text-slate-400">{collegeName}</p>}
-            {departmentName && <p className="text-xs text-slate-400 dark:text-slate-500">{departmentName}</p>}
+            <h1 className="font-serif text-base font-bold text-slate-900 dark:text-slate-100">{collegeName || "CHRIST (Deemed to be University)"}</h1>
+            <p className="text-xs font-medium text-brand-600 dark:text-brand-400">{departmentName || "Department of CSE"}</p>
           </div>
         </div>
 
