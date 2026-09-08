@@ -145,20 +145,23 @@ def build_pdf(data: dict) -> str:
     out_path = config.GENERATED_DIR / f"resume_{uuid.uuid4().hex}.pdf"
     doc = SimpleDocTemplate(
         str(out_path), pagesize=A4,
-        leftMargin=18 * mm, rightMargin=18 * mm, topMargin=15 * mm, bottomMargin=15 * mm,
+        leftMargin=14 * mm, rightMargin=14 * mm, topMargin=10 * mm, bottomMargin=10 * mm,
     )
     styles = getSampleStyleSheet()
-    heading_style = ParagraphStyle(
-        "Section", parent=styles["Heading2"], textColor=HexColor("#1F4E79"), spaceBefore=10, spaceAfter=4
-    )
-    name_style = ParagraphStyle("Name", parent=styles["Title"], spaceAfter=2)
-    body = styles["BodyText"]
 
-    contact_style = ParagraphStyle("Contact", parent=body, textColor=HexColor("#1F4E79"))
+    heading_style = ParagraphStyle(
+        "Section", parent=styles["Heading2"],
+        fontName="Helvetica-Bold", fontSize=10, leading=12,
+        textColor=HexColor("#1F4E79"), spaceBefore=7, spaceAfter=2,
+    )
+    name_style = ParagraphStyle("Name", parent=styles["Title"], fontName="Helvetica-Bold", fontSize=16, leading=18, spaceAfter=2, alignment=1)
+    body = ParagraphStyle("CustomBody", parent=styles["BodyText"], fontName="Helvetica", fontSize=9, leading=11.5, spaceAfter=1.5)
+    contact_style = ParagraphStyle("Contact", parent=body, fontSize=8.5, leading=11, textColor=HexColor("#1F4E79"), alignment=1)
+
     story = [
         Paragraph(_safe(data.get("full_name")) or "Your Name", name_style),
         Paragraph(_contact_markup(data), contact_style),
-        Spacer(1, 6),
+        Spacer(1, 4),
     ]
 
     if data.get("summary"):

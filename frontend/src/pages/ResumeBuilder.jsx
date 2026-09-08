@@ -379,32 +379,40 @@ function BuildTab() {
         <div className="lg:col-span-6">
           <div className="sticky top-6 space-y-3">
             <div className="flex items-center justify-between text-xs font-semibold text-slate-500 dark:text-slate-400 px-1">
-              <span>LIVE ATS CANVAS PREVIEW</span>
-              <span>Real-time Rendering</span>
+              <span className="flex items-center gap-1.5 font-bold text-slate-700 dark:text-slate-300">
+                📄 LIVE ATS A4 CANVAS PREVIEW
+              </span>
+              <button
+                type="button"
+                onClick={() => window.print()}
+                className="btn-secondary !py-1 !px-2.5 text-xs bg-white dark:bg-slate-800 shadow-sm border border-slate-300 dark:border-slate-600 hover:bg-slate-50"
+              >
+                🖨️ Print / Save 1-Page PDF
+              </button>
             </div>
 
             <div
               id="resume-canvas"
-              className="rounded-xl bg-white p-8 text-slate-900 shadow-xl border border-slate-200 transition-all duration-300 min-h-[750px]"
+              className="rounded-xl bg-white p-7 text-slate-900 shadow-xl border border-slate-200 transition-all duration-300 min-h-[720px] max-w-[210mm] mx-auto box-border"
               style={{ fontFamily, color: "#1F2937" }}
             >
               {/* Header */}
-              <div className="text-center pb-4 border-b border-slate-200">
-                <h1 className="text-2xl font-bold tracking-tight" style={{ color: accentColor }}>
+              <div className="text-center pb-3 border-b border-slate-200">
+                <h1 className="text-xl font-bold tracking-tight uppercase" style={{ color: accentColor }}>
                   {form.full_name.trim() || "YOUR FULL NAME"}
                 </h1>
-                <p className="mt-0.5 text-xs font-medium text-slate-600">
+                <p className="mt-1 text-[11px] font-medium text-slate-600">
                   {[form.email, form.phone, form.location, form.linkedin, form.github].filter(Boolean).join("  |  ") || "email@example.com | +91 98765 43210 | Location"}
                 </p>
               </div>
 
               {/* Summary */}
               {form.target_role.trim() && (
-                <div className="mt-4">
-                  <h2 className="text-xs font-bold tracking-wider uppercase border-b pb-1 mb-1.5" style={{ color: accentColor, borderColor: accentColor }}>
+                <div className="mt-3">
+                  <h2 className="text-[11px] font-bold tracking-wider uppercase border-b pb-0.5 mb-1" style={{ color: accentColor, borderColor: accentColor }}>
                     PROFESSIONAL SUMMARY
                   </h2>
-                  <p className="text-xs leading-relaxed text-slate-700">
+                  <p className="text-[11px] leading-relaxed text-slate-700">
                     {result?.summary || `Motivated ${form.target_role} targeting entry-level tech opportunities. Skilled in ${form.skillsText || "software development"}. ${form.years_context}`}
                   </p>
                 </div>
@@ -412,11 +420,11 @@ function BuildTab() {
 
               {/* Skills */}
               {skillsList.length > 0 && (
-                <div className="mt-4">
-                  <h2 className="text-xs font-bold tracking-wider uppercase border-b pb-1 mb-1.5" style={{ color: accentColor, borderColor: accentColor }}>
+                <div className="mt-3">
+                  <h2 className="text-[11px] font-bold tracking-wider uppercase border-b pb-0.5 mb-1" style={{ color: accentColor, borderColor: accentColor }}>
                     TECHNICAL SKILLS
                   </h2>
-                  <p className="text-xs leading-relaxed text-slate-800 font-medium">
+                  <p className="text-[11px] leading-relaxed text-slate-800 font-medium">
                     {skillsList.join("  •  ")}
                   </p>
                 </div>
@@ -424,19 +432,19 @@ function BuildTab() {
 
               {/* Work Experience */}
               {experience.length > 0 && (
-                <div className="mt-4">
-                  <h2 className="text-xs font-bold tracking-wider uppercase border-b pb-1 mb-2" style={{ color: accentColor, borderColor: accentColor }}>
+                <div className="mt-3">
+                  <h2 className="text-[11px] font-bold tracking-wider uppercase border-b pb-0.5 mb-1.5" style={{ color: accentColor, borderColor: accentColor }}>
                     WORK EXPERIENCE
                   </h2>
-                  <div className="space-y-3">
+                  <div className="space-y-2.5">
                     {experience.map((exp, i) => (
-                      <div key={i} className="text-xs">
+                      <div key={i} className="text-[11px]">
                         <div className="flex justify-between font-bold text-slate-800">
                           <span>{exp.role || "Role"} {exp.company ? `- ${exp.company}` : ""}</span>
                           <span className="font-normal text-slate-500">{exp.duration}</span>
                         </div>
                         {exp.bulletsText.split("\n").filter(Boolean).map((bullet, bi) => (
-                          <p key={bi} className="mt-1 pl-3 relative text-slate-700 before:content-['•'] before:absolute before:left-0 before:text-slate-400">
+                          <p key={bi} className="mt-0.5 pl-3 relative text-slate-700 leading-snug before:content-['•'] before:absolute before:left-0 before:text-slate-400">
                             {bullet}
                           </p>
                         ))}
@@ -448,18 +456,18 @@ function BuildTab() {
 
               {/* Projects */}
               {projects.length > 0 && (
-                <div className="mt-4">
-                  <h2 className="text-xs font-bold tracking-wider uppercase border-b pb-1 mb-2" style={{ color: accentColor, borderColor: accentColor }}>
+                <div className="mt-3">
+                  <h2 className="text-[11px] font-bold tracking-wider uppercase border-b pb-0.5 mb-1.5" style={{ color: accentColor, borderColor: accentColor }}>
                     PROJECTS
                   </h2>
-                  <div className="space-y-3">
+                  <div className="space-y-2.5">
                     {projects.map((proj, i) => (
-                      <div key={i} className="text-xs">
+                      <div key={i} className="text-[11px]">
                         <div className="font-bold text-slate-800">
                           {proj.title || "Project Title"} {proj.tech && <span className="font-normal text-slate-500">[{proj.tech}]</span>}
                         </div>
                         {proj.bulletsText.split("\n").filter(Boolean).map((bullet, bi) => (
-                          <p key={bi} className="mt-1 pl-3 relative text-slate-700 before:content-['•'] before:absolute before:left-0 before:text-slate-400">
+                          <p key={bi} className="mt-0.5 pl-3 relative text-slate-700 leading-snug before:content-['•'] before:absolute before:left-0 before:text-slate-400">
                             {bullet}
                           </p>
                         ))}
@@ -471,13 +479,13 @@ function BuildTab() {
 
               {/* Education */}
               {education.length > 0 && (
-                <div className="mt-4">
-                  <h2 className="text-xs font-bold tracking-wider uppercase border-b pb-1 mb-2" style={{ color: accentColor, borderColor: accentColor }}>
+                <div className="mt-3">
+                  <h2 className="text-[11px] font-bold tracking-wider uppercase border-b pb-0.5 mb-1.5" style={{ color: accentColor, borderColor: accentColor }}>
                     EDUCATION
                   </h2>
-                  <div className="space-y-2">
+                  <div className="space-y-1.5">
                     {education.map((edu, i) => (
-                      <div key={i} className="text-xs flex justify-between">
+                      <div key={i} className="text-[11px] flex justify-between">
                         <div>
                           <p className="font-bold text-slate-800">{edu.degree || "Degree"} - {edu.institution || "Institution"}</p>
                           {edu.score && <p className="text-slate-600">Score: {edu.score}</p>}
@@ -491,11 +499,11 @@ function BuildTab() {
 
               {/* Certifications */}
               {certsList.length > 0 && (
-                <div className="mt-4">
-                  <h2 className="text-xs font-bold tracking-wider uppercase border-b pb-1 mb-1.5" style={{ color: accentColor, borderColor: accentColor }}>
+                <div className="mt-3">
+                  <h2 className="text-[11px] font-bold tracking-wider uppercase border-b pb-0.5 mb-1" style={{ color: accentColor, borderColor: accentColor }}>
                     CERTIFICATIONS
                   </h2>
-                  <div className="space-y-1 text-xs text-slate-700">
+                  <div className="space-y-0.5 text-[11px] text-slate-700">
                     {certsList.map((c, i) => (
                       <p key={i} className="pl-3 relative before:content-['•'] before:absolute before:left-0 before:text-slate-400">
                         {c}
