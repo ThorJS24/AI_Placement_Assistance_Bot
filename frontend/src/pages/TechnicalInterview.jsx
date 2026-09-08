@@ -201,6 +201,8 @@ function DsaTab() {
   const [loadingQuestion, setLoadingQuestion] = useState(false);
   const [bookmarks, setBookmarks] = useState([]);
   const [matchNote, setMatchNote] = useState("");
+  const [activeTestCaseTab, setActiveTestCaseTab] = useState(0);
+  const [problemSubTab, setProblemSubTab] = useState("description"); // description | format | hints
 
   useEffect(() => {
     apiGet("/technical/dsa/topics").then(setTopics).catch(() => {});
@@ -221,8 +223,7 @@ function DsaTab() {
         setBookmarks((prev) => [question, ...prev]);
       }
     } catch {
-      // Best-effort - bookmarking isn't the critical path, so fail quietly
-      // rather than interrupting the student with an error banner.
+      /* non-fatal */
     }
   };
 
@@ -231,6 +232,7 @@ function DsaTab() {
     setResult(null);
     setReview("");
     setMatchNote("");
+    setActiveTestCaseTab(0);
     setLoadingQuestion(true);
     try {
       const q = await apiPost("/technical/dsa/question", { topic, difficulty, company, exclude_ids: solvedIds });
@@ -250,13 +252,14 @@ function DsaTab() {
     setResult(null);
     setReview("");
     setMatchNote("");
+    setActiveTestCaseTab(0);
     setLoadingQuestion(true);
     try {
       const q = await apiPost(`/technical/dsa/question/${id}`, {});
       setQuestion(q);
       setCode(q.starter_code);
     } catch (err) {
-      setError(err instanceof ApiError ? err.message : "Couldn't reopen that question - it may no longer be available.");
+      setError(err instanceof ApiError ? err.message : "Couldn't reopen that question.");
     } finally {
       setLoadingQuestion(false);
     }
@@ -265,6 +268,7 @@ function DsaTab() {
   const run = async () => {
     setRunning(true);
     setError("");
+    setActiveTestCaseTab(0);
     try {
       const res = await apiPost("/technical/dsa/run", { code, test_cases: question.test_cases });
       setResult(res);
@@ -299,143 +303,281 @@ function DsaTab() {
     }
   };
 
+  const diffBadgeColor = (diff) => {
+    const d = (diff || "").toLowerCase();
+    if (d === "easy") return "bg-emerald-50 text-emerald-700 border-emerald-200 dark:bg-emerald-950/40 dark:text-emerald-300";
+    if (d === "medium") return "bg-amber-50 text-amber-700 border-amber-200 dark:bg-amber-950/40 dark:text-amber-300";
+    return "bg-rose-50 text-rose-700 border-rose-200 dark:bg-rose-950/40 dark:text-rose-300";
+  };
+
   return (
-    <div className="space-y-5">
-      <div className="card flex flex-wrap items-end gap-3 p-4">
-        <div>
-          <label className="label" htmlFor="dsa-topic">Topic</label>
-          <select id="dsa-topic" className="input" value={topic} onChange={(e) => setTopic(e.target.value)}>
-            <option>Any</option>
-            {topics.map((t) => <option key={t}>{t}</option>)}
-          </select>
+    <div className="space-y-4">
+      {/* Top Filter Bar */}
+      <div className="card flex flex-wrap items-center justify-between gap-3 p-4 shadow-soft">
+        <div className="flex flex-wrap items-center gap-3">
+          <div className="flex items-center gap-1.5">
+            <span className="text-xs font-semibold text-slate-500">Topic:</span>
+            <select className="input !py-1 !px-2.5 text-xs font-medium" value={topic} onChange={(e) => setTopic(e.target.value)}>
+              <option>Any</option>
+              {topics.map((t) => <option key={t}>{t}</option>)}
+            </select>
+          </div>
+
+          <div className="flex items-center gap-1.5">
+            <span className="text-xs font-semibold text-slate-500">Difficulty:</span>
+            <select className="input !py-1 !px-2.5 text-xs font-medium" value={difficulty} onChange={(e) => setDifficulty(e.target.value)}>
+              {["Any", "Easy", "Medium", "Hard"].map((d) => <option key={d}>{d}</option>)}
+            </select>
+          </div>
+
+          <div className="flex items-center gap-1.5">
+            <span className="text-xs font-semibold text-slate-500">Company:</span>
+            <select className="input !py-1 !px-2.5 text-xs font-medium" value={company} onChange={(e) => setCompany(e.target.value)}>
+              <option>Any</option>
+              {companies.map((c) => <option key={c}>{c}</option>)}
+            </select>
+          </div>
+
+          <button className="btn-primary !py-1.5 !px-3 text-xs" onClick={newQuestion} disabled={loadingQuestion}>
+            {loadingQuestion ? <Spinner label="Loading..." /> : <><Shuffle size={14} /> Next Problem</>}
+          </button>
         </div>
-        <div>
-          <label className="label" htmlFor="dsa-difficulty">Difficulty</label>
-          <select id="dsa-difficulty" className="input" value={difficulty} onChange={(e) => setDifficulty(e.target.value)}>
-            {["Any", "Easy", "Medium", "Hard"].map((d) => <option key={d}>{d}</option>)}
-          </select>
+
+        <div className="flex items-center gap-3">
+          <span className="rounded-full bg-emerald-50 dark:bg-emerald-950/40 border border-emerald-200 dark:border-emerald-800 px-3 py-1 text-xs font-bold text-emerald-700 dark:text-emerald-300">
+            Solved Session: {solvedIds.length}
+          </span>
         </div>
-        <div>
-          <label className="label" htmlFor="dsa-company">Asked at</label>
-          <select id="dsa-company" className="input" value={company} onChange={(e) => setCompany(e.target.value)}>
-            <option>Any</option>
-            {companies.map((c) => <option key={c}>{c}</option>)}
-          </select>
-        </div>
-        <button className="btn-primary" onClick={newQuestion} disabled={loadingQuestion}>
-          {loadingQuestion ? <Spinner label="Loading..." /> : <><Shuffle size={16} /> New question</>}
-        </button>
-        <span className="ml-auto text-sm text-slate-500 dark:text-slate-400">✅ Solved this session: {solvedIds.length}</span>
       </div>
 
       {bookmarks.length > 0 && (
-        <div className="card p-4">
-          <h4 className="mb-2 flex items-center gap-1.5 text-sm font-semibold text-slate-700 dark:text-slate-300">
-            <Star size={14} className="text-amber-500" fill="currentColor" /> Bookmarked questions
-          </h4>
+        <div className="card p-3">
+          <div className="flex items-center gap-2 text-xs font-semibold text-slate-700 dark:text-slate-300 mb-2">
+            <Star size={14} className="text-amber-500" fill="currentColor" /> Bookmarked Problems:
+          </div>
           <div className="flex flex-wrap gap-2">
             {bookmarks.map((b) => (
               <button
                 key={b.id}
-                className="badge bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 hover:bg-slate-200 dark:hover:bg-slate-700"
+                className="badge border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:bg-slate-50 transition-colors"
                 onClick={() => reopenBookmark(b.id)}
                 disabled={loadingQuestion}
               >
-                {b.title} <span className="ml-1 text-slate-400 dark:text-slate-500">· {b.difficulty}</span>
+                {b.title} <span className="text-slate-400 font-normal ml-1">· {b.difficulty}</span>
               </button>
             ))}
           </div>
         </div>
       )}
 
-      {error && <div role="alert" className="rounded-xl bg-red-50 dark:bg-red-950/40 p-4 text-sm text-red-700 dark:text-red-400 whitespace-pre-wrap">{error}</div>}
-      {matchNote && (
-        <div className="rounded-xl bg-amber-50 dark:bg-amber-950/40 p-3 text-sm text-amber-800 dark:text-amber-300">
-          ℹ️ {matchNote}
-        </div>
-      )}
+      {error && <div role="alert" className="rounded-xl bg-red-50 dark:bg-red-950/40 p-4 text-sm text-red-700 dark:text-red-400">{error}</div>}
+      {matchNote && <div className="rounded-xl bg-amber-50 dark:bg-amber-950/40 p-3 text-xs text-amber-800 dark:text-amber-300">ℹ️ {matchNote}</div>}
 
       {!question ? (
-        <div className="card p-8 text-center text-sm text-slate-400 dark:text-slate-500">Click "New question" to get started.</div>
+        <div className="card p-12 text-center">
+          <Code2 size={40} className="mx-auto text-brand-600 mb-3" />
+          <h3 className="text-lg font-bold text-slate-900 dark:text-slate-100">LeetCode &amp; HackerRank DSA Workspace</h3>
+          <p className="mt-1 text-sm text-slate-500 dark:text-slate-400 max-w-md mx-auto">
+            Select your target topic or difficulty above and click "Next Problem" to load a coding problem.
+          </p>
+          <button className="btn-primary mt-4" onClick={newQuestion} disabled={loadingQuestion}>
+            {loadingQuestion ? <Spinner label="Loading..." /> : <><Shuffle size={16} /> Start Practicing</>}
+          </button>
+        </div>
       ) : (
-        <div className="card space-y-4 p-5">
-          <div>
-            <h3 className="flex items-center gap-2 text-lg font-semibold text-slate-900 dark:text-slate-100">
-              {question.title} <span className="text-sm font-normal text-slate-400 dark:text-slate-500">· {question.topic} · {question.difficulty}</span>
-              <button
-                className={`ml-1 ${isBookmarked ? "text-amber-500 hover:text-amber-600 dark:hover:text-amber-400" : "text-slate-300 hover:text-amber-500"}`}
-                onClick={toggleBookmark}
-                aria-label={isBookmarked ? "Remove bookmark" : "Bookmark this question"}
-                title={isBookmarked ? "Remove bookmark" : "Bookmark this question"}
-              >
-                <Star size={18} fill={isBookmarked ? "currentColor" : "none"} />
-              </button>
-            </h3>
-            {question.companies?.length > 0 && (
-              <div className="mt-1.5 flex flex-wrap gap-1.5">
-                {question.companies.map((c) => (
-                  <span key={c} className="badge bg-slate-100 dark:bg-slate-800 text-slate-500 dark:text-slate-400">Asked at {c}</span>
+        /* Split-Screen LeetCode / HackerRank Workspace */
+        <div className="grid gap-5 lg:grid-cols-12">
+          {/* Left Panel: Problem Statement & Hints */}
+          <div className="card flex flex-col p-5 lg:col-span-5 space-y-4">
+            {/* Header: Title, Tags, Bookmark */}
+            <div>
+              <div className="flex items-start justify-between gap-2">
+                <h2 className="text-xl font-bold tracking-tight text-slate-900 dark:text-slate-100">{question.title}</h2>
+                <button
+                  className={`p-1 transition-colors ${isBookmarked ? "text-amber-500" : "text-slate-300 hover:text-amber-500"}`}
+                  onClick={toggleBookmark}
+                  aria-label="Bookmark problem"
+                >
+                  <Star size={20} fill={isBookmarked ? "currentColor" : "none"} />
+                </button>
+              </div>
+
+              <div className="mt-2 flex flex-wrap items-center gap-2">
+                <span className={`badge border ${diffBadgeColor(question.difficulty)}`}>{question.difficulty}</span>
+                <span className="badge bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400">{question.topic}</span>
+                {question.companies?.map((c) => (
+                  <span key={c} className="badge bg-brand-50 dark:bg-brand-950/40 text-brand-700 dark:text-brand-300">
+                    Asked at {c}
+                  </span>
                 ))}
               </div>
-            )}
-            <p className="mt-2 text-sm text-slate-600 dark:text-slate-400">{question.description}</p>
-          </div>
+            </div>
 
-          <details className="rounded-xl border border-slate-200 dark:border-slate-700 p-3 text-sm">
-            <summary className="cursor-pointer font-medium text-slate-700 dark:text-slate-300">📥 Input / Output format</summary>
-            <p className="mt-2 whitespace-pre-wrap text-slate-600 dark:text-slate-400"><strong>Input:</strong> {question.input_format}</p>
-            <p className="mt-1 whitespace-pre-wrap text-slate-600 dark:text-slate-400"><strong>Output:</strong> {question.output_format}</p>
-          </details>
-
-          {question.hints?.length > 0 && (
-            <details className="rounded-xl border border-slate-200 dark:border-slate-700 p-3 text-sm">
-              <summary className="cursor-pointer font-medium text-slate-700 dark:text-slate-300">💡 Hints</summary>
-              <ul className="mt-2 list-disc space-y-1 pl-5 text-slate-600 dark:text-slate-400">
-                {question.hints.map((h, i) => <li key={i}>{h}</li>)}
-              </ul>
-            </details>
-          )}
-
-          <div>
-            <label className="label">Your solution (read from stdin with input(), print your answer)</label>
-            <CodeEditor value={code} onChange={setCode} ariaLabel="Your solution (read from stdin with input(), print your answer)" />
-          </div>
-
-          <div className="flex gap-3">
-            <button className="btn-primary" onClick={run} disabled={running}>
-              {running ? <Spinner label="Running..." /> : <><Play size={16} /> Run against test cases</>}
-            </button>
-            {result && (
-              <button className="btn-secondary" onClick={getReview} disabled={reviewing}>
-                {reviewing ? <Spinner label="Reviewing..." /> : <><Sparkles size={16} /> Get AI code review</>}
-              </button>
-            )}
-          </div>
-
-          {result && (
-            <div className="space-y-3">
-              {!result.compiled ? (
-                <div role="alert" className="rounded-xl bg-red-50 dark:bg-red-950/40 p-3 text-sm text-red-700 dark:text-red-400">Syntax error: {result.compile_error}</div>
-              ) : result.all_passed ? (
-                <div className="rounded-xl bg-emerald-50 dark:bg-emerald-950/40 p-3 text-sm font-medium text-emerald-700 dark:text-emerald-400">✅ All {result.total_count} test cases passed!</div>
-              ) : (
-                <div className="rounded-xl bg-amber-50 dark:bg-amber-950/40 p-3 text-sm font-medium text-amber-700 dark:text-amber-400">⚠️ {result.passed_count}/{result.total_count} test cases passed.</div>
-              )}
-              {result.results?.map((tc, i) => (
-                <details key={i} className="rounded-xl border border-slate-200 dark:border-slate-700 p-3 text-sm">
-                  <summary className="cursor-pointer font-medium text-slate-700 dark:text-slate-300">
-                    Test case {i + 1}: {tc.passed ? "✅ Passed" : "❌ Failed"}
-                  </summary>
-                  <pre className="mt-2 overflow-x-auto rounded-lg bg-slate-900 p-3 text-xs text-slate-100">
-{`Input:\n${tc.input}\nExpected:\n${tc.expected}\nGot:\n${tc.actual}`}
-                  </pre>
-                  {tc.error && <p className="mt-1 text-xs text-amber-600 dark:text-amber-400">⚠️ {tc.error}</p>}
-                </details>
+            {/* Problem Navigation Sub-tabs */}
+            <div className="flex border-b border-slate-200 dark:border-slate-700 text-xs font-semibold text-slate-500">
+              {[
+                { id: "description", label: "Description" },
+                { id: "format", label: "I/O Format" },
+                { id: "hints", label: `Hints (${question.hints?.length || 0})` },
+              ].map((t) => (
+                <button
+                  key={t.id}
+                  onClick={() => setProblemSubTab(t.id)}
+                  className={`px-3 py-2 border-b-2 transition-colors ${problemSubTab === t.id ? "border-brand-600 text-brand-700 dark:text-brand-400" : "border-transparent hover:text-slate-700"}`}
+                >
+                  {t.label}
+                </button>
               ))}
             </div>
-          )}
 
-          {review && <div className="rounded-xl bg-brand-50 p-4 text-sm text-brand-900">{review}</div>}
+            {/* Sub-tab content */}
+            <div className="flex-1 overflow-y-auto space-y-3 text-xs leading-relaxed text-slate-700 dark:text-slate-300 max-h-[600px]">
+              {problemSubTab === "description" && (
+                <div className="space-y-4">
+                  <p className="whitespace-pre-wrap text-sm leading-relaxed">{question.description}</p>
+
+                  {question.test_cases?.length > 0 && (
+                    <div className="space-y-2">
+                      <p className="font-bold text-slate-900 dark:text-slate-100">Sample Example 1:</p>
+                      <div className="rounded-xl bg-slate-50 dark:bg-slate-900 p-3 font-mono text-xs border border-slate-200 dark:border-slate-800 space-y-1">
+                        <p><strong className="text-brand-600">Input:</strong> {question.test_cases[0].input.trim()}</p>
+                        <p><strong className="text-emerald-600">Expected Output:</strong> {question.test_cases[0].expected.trim()}</p>
+                      </div>
+                    </div>
+                  )}
+                </div>
+              )}
+
+              {problemSubTab === "format" && (
+                <div className="space-y-3">
+                  <div className="rounded-xl bg-slate-50 dark:bg-slate-900 p-3">
+                    <p className="font-bold text-slate-900 dark:text-slate-100 mb-1">Input Format:</p>
+                    <p className="font-mono text-xs">{question.input_format}</p>
+                  </div>
+                  <div className="rounded-xl bg-slate-50 dark:bg-slate-900 p-3">
+                    <p className="font-bold text-slate-900 dark:text-slate-100 mb-1">Output Format:</p>
+                    <p className="font-mono text-xs">{question.output_format}</p>
+                  </div>
+                </div>
+              )}
+
+              {problemSubTab === "hints" && (
+                <div className="space-y-2">
+                  {question.hints?.length > 0 ? (
+                    question.hints.map((h, idx) => (
+                      <div key={idx} className="rounded-xl bg-amber-50 dark:bg-amber-950/40 p-3 text-amber-800 dark:text-amber-300">
+                        <strong>Hint {idx + 1}:</strong> {h}
+                      </div>
+                    ))
+                  ) : (
+                    <p className="text-slate-400">No hints available for this problem.</p>
+                  )}
+                </div>
+              )}
+            </div>
+          </div>
+
+          {/* Right Panel: Code Workspace & Terminal Output */}
+          <div className="card flex flex-col p-5 lg:col-span-7 space-y-4">
+            <div className="flex items-center justify-between">
+              <span className="rounded-lg bg-slate-100 dark:bg-slate-800 px-3 py-1 text-xs font-bold text-slate-700 dark:text-slate-300">
+                Python 3.11 (Standard I/O)
+              </span>
+              <button className="btn-ghost text-xs" onClick={() => setCode(question.starter_code)}>
+                <RotateCcw size={13} /> Reset Starter Code
+              </button>
+            </div>
+
+            <div>
+              <CodeEditor value={code} onChange={setCode} ariaLabel="Python DSA Code Editor" />
+            </div>
+
+            <div className="flex flex-wrap items-center justify-between gap-3 pt-2">
+              <div className="flex gap-2">
+                <button className="btn-secondary !py-2 text-xs" onClick={run} disabled={running}>
+                  {running ? <Spinner label="Running..." /> : <><Play size={14} /> Run Tests</>}
+                </button>
+                <button className="btn-primary !py-2 text-xs bg-emerald-600 hover:bg-emerald-700" onClick={run} disabled={running}>
+                  {running ? <Spinner label="Submitting..." /> : <><CheckCircle2 size={14} /> Submit Solution</>}
+                </button>
+              </div>
+
+              {result && (
+                <button className="btn-secondary !py-2 text-xs" onClick={getReview} disabled={reviewing}>
+                  {reviewing ? <Spinner label="Reviewing..." /> : <><Sparkles size={14} /> AI Code Review</>}
+                </button>
+              )}
+            </div>
+
+            {/* Test Results Output Terminal */}
+            {result && (
+              <div className="rounded-2xl border border-slate-200 dark:border-slate-700 bg-slate-900 p-4 text-white space-y-3 font-mono text-xs">
+                {/* Overall Pass Banner */}
+                <div className="flex items-center justify-between pb-2 border-b border-slate-800">
+                  {!result.compiled ? (
+                    <span className="font-bold text-red-400">⚠️ Compile / Syntax Error</span>
+                  ) : result.all_passed ? (
+                    <span className="font-bold text-emerald-400">✅ Accepted (AC) - {result.passed_count}/{result.total_count} Test Cases Passed</span>
+                  ) : (
+                    <span className="font-bold text-amber-400">❌ Wrong Answer (WA) - {result.passed_count}/{result.total_count} Passed</span>
+                  )}
+                </div>
+
+                {!result.compiled ? (
+                  <div className="text-red-400 whitespace-pre-wrap font-mono p-2 bg-red-950/40 rounded-lg">{result.compile_error}</div>
+                ) : (
+                  <div>
+                    {/* Test case tabs */}
+                    <div className="flex gap-2 border-b border-slate-800 pb-2 mb-3 overflow-x-auto">
+                      {result.results?.map((tc, idx) => (
+                        <button
+                          key={idx}
+                          onClick={() => setActiveTestCaseTab(idx)}
+                          className={`px-3 py-1 rounded-lg text-xs font-semibold transition-colors ${
+                            activeTestCaseTab === idx
+                              ? "bg-slate-700 text-white"
+                              : tc.passed ? "text-emerald-400 hover:bg-slate-800" : "text-red-400 hover:bg-slate-800"
+                          }`}
+                        >
+                          Case {idx + 1} {tc.passed ? "✓" : "✗"}
+                        </button>
+                      ))}
+                    </div>
+
+                    {/* Selected test case detail */}
+                    {result.results?.[activeTestCaseTab] && (
+                      <div className="space-y-2">
+                        <div>
+                          <span className="text-slate-400">Input:</span>
+                          <pre className="mt-0.5 rounded-lg bg-slate-950 p-2 text-slate-200">{result.results[activeTestCaseTab].input}</pre>
+                        </div>
+                        <div>
+                          <span className="text-slate-400">Expected Output:</span>
+                          <pre className="mt-0.5 rounded-lg bg-slate-950 p-2 text-emerald-400">{result.results[activeTestCaseTab].expected}</pre>
+                        </div>
+                        <div>
+                          <span className="text-slate-400">Your Output:</span>
+                          <pre className={`mt-0.5 rounded-lg bg-slate-950 p-2 ${result.results[activeTestCaseTab].passed ? "text-emerald-400" : "text-red-400"}`}>
+                            {result.results[activeTestCaseTab].actual || "<No stdout output>"}
+                          </pre>
+                        </div>
+                        {result.results[activeTestCaseTab].error && (
+                          <div className="text-amber-400 mt-1">⚠️ Error log: {result.results[activeTestCaseTab].error}</div>
+                        )}
+                      </div>
+                    )}
+                  </div>
+                )}
+              </div>
+            )}
+
+            {review && (
+              <div className="rounded-xl bg-brand-50 dark:bg-brand-950/40 p-4 text-xs text-brand-900 dark:text-brand-200 leading-relaxed space-y-1">
+                <strong>🤖 AI Code Review &amp; Complexity Analysis:</strong>
+                <p className="whitespace-pre-wrap mt-1">{review}</p>
+              </div>
+            )}
+          </div>
         </div>
       )}
     </div>
