@@ -118,28 +118,35 @@ export default function Home({ onEditProfile }) {
         <div className="pointer-events-none absolute -right-16 -top-16 h-72 w-72 rounded-full bg-brand-500/20 blur-3xl" />
         <div className="pointer-events-none absolute -bottom-20 left-1/3 h-80 w-80 rounded-full bg-emerald-500/10 blur-3xl" />
 
-        <div className="relative flex flex-wrap items-center justify-between gap-4">
-          <div className="flex items-center gap-3">
-            <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-white/10 backdrop-blur">
-              <GraduationCap size={28} className="text-brand-300" />
+        <div className="relative flex flex-wrap items-center justify-between gap-4 border-b border-white/10 pb-5">
+          <div className="flex items-center gap-3.5">
+            <div className="flex h-12 w-auto shrink-0 items-center justify-center rounded-xl bg-white p-2 shadow-lg">
+              <img
+                src="https://christuniversity.in/images/logo.png"
+                alt="CHRIST (Deemed to be University) Logo"
+                className="h-9 w-auto object-contain"
+                onError={(e) => { e.target.style.display = 'none'; }}
+              />
             </div>
             <div>
-              <span className="rounded-full bg-emerald-500/20 border border-emerald-400/30 px-3 py-0.5 text-xs font-semibold text-emerald-300">
-                Placement Command Center Active
-              </span>
-              <p className="text-xs text-white/60">CIA 3 Assessment Project Module Suite</p>
+              <div className="flex items-center gap-2">
+                <span className="font-serif text-base font-bold tracking-widest text-gold-400">CHRIST</span>
+                <span className="text-xs font-medium text-white/80">(Deemed to be University)</span>
+              </div>
+              <p className="text-xs font-semibold text-white/90">Department of Computer Science and Engineering</p>
+              <p className="text-[11px] text-emerald-300 font-medium">Placement Assistance Command Center</p>
             </div>
           </div>
-          <div className="flex items-center gap-2 text-xs text-white/70">
-            <ShieldCheck size={14} className="text-emerald-400" /> Local &amp; Private · Fully Offline Capable
+          <div className="flex items-center gap-2 rounded-full bg-gold-400/10 border border-gold-400/30 px-3.5 py-1.5 text-xs text-gold-300">
+            <ShieldCheck size={14} className="text-gold-400" /> Official Department Portal
           </div>
         </div>
 
         <div className="relative mt-6 max-w-3xl">
-          <h1 className="text-3xl font-extrabold tracking-tight sm:text-4xl">
-            Welcome back, <span className="text-brand-300">{studentName}</span> 👋
+          <h1 className="font-serif text-3xl font-extrabold tracking-tight sm:text-4xl">
+            Welcome back, <span className="text-gold-400">{studentName}</span> 👋
           </h1>
-          <p className="mt-3 text-base text-white/80 leading-relaxed">
+          <p className="mt-3 text-base text-white/80 leading-relaxed font-sans">
             Your centralized AI assistant for campus placement readiness. Build ATS resumes, practice spoken &amp; technical interviews, generate career roadmaps, and chat with AI grounded in department guidelines.
           </p>
         </div>

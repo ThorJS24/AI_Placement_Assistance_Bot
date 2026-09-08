@@ -8,7 +8,7 @@ export default function PageHeader({ icon: Icon, title, subtitle, right }) {
           </div>
         )}
         <div>
-          <h1 className="text-xl font-bold tracking-tight text-slate-900 dark:text-slate-100 sm:text-2xl">{title}</h1>
+          <h1 className="font-serif text-xl font-bold tracking-tight text-slate-900 dark:text-slate-100 sm:text-2xl">{title}</h1>
           {subtitle && <p className="mt-1 max-w-2xl text-sm text-slate-500 dark:text-slate-400">{subtitle}</p>}
         </div>
       </div>

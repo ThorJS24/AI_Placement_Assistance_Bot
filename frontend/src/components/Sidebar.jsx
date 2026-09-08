@@ -75,15 +75,20 @@ export default function Sidebar({ open, onClose, appTitle, departmentName, colle
           ${open ? "translate-x-0" : "-translate-x-full"}`}
       >
         <div className="flex h-full flex-col overflow-y-auto">
-          <div className={`flex items-center justify-between px-5 pt-6 pb-4 ${collapsed ? "lg:justify-center lg:px-2" : ""}`}>
-            <div className={`flex items-center gap-2.5 ${collapsed ? "lg:flex-col lg:gap-1" : ""}`}>
-              <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-white/10">
-                <GraduationCap size={20} />
+          <div className={`flex items-center justify-between px-4 pt-5 pb-4 border-b border-white/10 ${collapsed ? "lg:justify-center lg:px-2" : ""}`}>
+            <div className={`flex items-center gap-3 ${collapsed ? "lg:flex-col lg:gap-1" : ""}`}>
+              <div className="flex h-10 w-auto shrink-0 items-center justify-center rounded-lg bg-white p-1 shadow-md">
+                <img
+                  src="https://christuniversity.in/images/logo.png"
+                  alt="CHRIST (Deemed to be University) Logo"
+                  className="h-8 w-auto object-contain"
+                  onError={(e) => { e.target.style.display = 'none'; }}
+                />
               </div>
               <div className={`leading-tight ${collapsed ? "lg:hidden" : ""}`}>
-                <p className="text-sm font-semibold">{appTitle || "Placement Assistant"}</p>
-                {collegeName && <p className="text-[11px] text-white/60">{collegeName}</p>}
-                <p className="text-[11px] text-white/50">{departmentName}</p>
+                <p className="font-serif text-sm font-bold tracking-wide text-gold-400">CHRIST</p>
+                <p className="text-[11px] font-medium text-white/90">{collegeName || "Deemed to be University"}</p>
+                <p className="text-[10px] text-white/60">{departmentName || "Dept of CSE"}</p>
               </div>
             </div>
             <button
