@@ -48,6 +48,11 @@ function Field({ label, ...props }) {
   );
 }
 
+const emptyForm = () => ({
+  full_name: "", email: "", phone: "", location: "", linkedin: "", github: "",
+  target_role: "", years_context: "", skillsText: "", certificationsText: "", use_ai: true,
+});
+
 const sampleData = () => ({
   form: {
     full_name: "Alex Mercer",
