@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { Radio, Mic, MicOff, Send, PhoneOff, Keyboard, RotateCcw, SkipForward, Repeat, Hand } from "lucide-react";
+import { Radio, Mic, MicOff, Send, PhoneOff, Keyboard, RotateCcw, SkipForward, Repeat, Hand, Video, VideoOff, MessageSquare, Shield, Bot, Sparkles, X, User } from "lucide-react";
 import PageHeader from "../components/PageHeader.jsx";
 import Spinner from "../components/Spinner.jsx";
 import useLiveInterviewSession from "./live-interview/useLiveInterviewSession.js";
@@ -27,19 +27,19 @@ const DURATIONS = [
 
 const STATUS_LABEL = {
   [STATES.IDLE]: "",
-  [STATES.CONNECTING]: "Connecting live voice stream...",
-  [STATES.READY]: "Connected - Interviewer is starting",
-  [STATES.AI_SPEAKING]: "Interviewer is speaking (Start talking to interrupt)",
-  [STATES.LISTENING]: "Listening to you... (Speak naturally, VAD handles timing)",
+  [STATES.CONNECTING]: "Connecting Zoom voice stream...",
+  [STATES.READY]: "Connected - Interviewer host is starting",
+  [STATES.AI_SPEAKING]: "Interviewer is speaking (Talk to interrupt)",
+  [STATES.LISTENING]: "Listening to you... (Speak naturally)",
   [STATES.PROCESSING]: "Interviewer is processing your response...",
-  [STATES.ENDING]: "Wrapping up the live session...",
-  [STATES.EVALUATING]: "Analyzing your interview performance...",
+  [STATES.ENDING]: "Wrapping up Zoom call...",
+  [STATES.EVALUATING]: "Generating evaluation report...",
   [STATES.COMPLETED]: "Interview complete",
   [STATES.ERROR]: "Live connection error",
-  [STATES.RECONNECTING]: "Reconnecting live audio stream...",
-  [STATES.MIC_PERMISSION_REQUIRED]: "Microphone access required for hands-free mode",
+  [STATES.RECONNECTING]: "Reconnecting video call audio...",
+  [STATES.MIC_PERMISSION_REQUIRED]: "Microphone access required",
   [STATES.MICROPHONE_ERROR]: "Microphone unavailable",
-  [STATES.CONNECTION_ERROR]: "Live audio connection lost. Type your answer below.",
+  [STATES.CONNECTION_ERROR]: "Audio stream lost. Type answer in Zoom chat.",
 };
 
 export default function LiveInterview() {
@@ -54,6 +54,13 @@ export default function LiveInterview() {
   const [voiceMode, setVoiceMode] = useState(true);
   const [confirmEnd, setConfirmEnd] = useState(false);
   const [textInput, setTextInput] = useState("");
+
+  // Zoom Video Call state
+  const webcamRef = useRef(null);
+  const [cameraOn, setCameraOn] = useState(true);
+  const [showChatDrawer, setShowChatDrawer] = useState(true);
+  const [elapsedSecs, setElapsedSecs] = useState(0);
+
   const audioElRef = useRef(null);
   const transcriptEndRef = useRef(null);
 
@@ -68,11 +75,42 @@ export default function LiveInterview() {
 
   useEffect(() => {
     transcriptEndRef.current?.scrollIntoView({ behavior: "smooth", block: "end" });
-  }, [state.transcript.length]);
+  }, [state.transcript.length, state.partialTranscript]);
+
+  // Webcam video stream effect
+  useEffect(() => {
+    if (phase !== "interview" || !cameraOn) return;
+    let stream = null;
+    if (navigator.mediaDevices?.getUserMedia) {
+      navigator.mediaDevices
+        .getUserMedia({ video: true, audio: false })
+        .then((s) => {
+          stream = s;
+          if (webcamRef.current) webcamRef.current.srcObject = s;
+        })
+        .catch(() => {
+          // Camera optional fallback
+        });
+    }
+    return () => {
+      if (stream) stream.getTracks().forEach((track) => track.stop());
+    };
+  }, [phase, cameraOn]);
+
+  // Zoom call timer interval
+  useEffect(() => {
+    if (phase !== "interview") return;
+    const timer = setInterval(() => setElapsedSecs((prev) => prev + 1), 1000);
+    return () => clearInterval(timer);
+  }, [phase]);
+
+  const formatTimer = (secs) => {
+    const m = Math.floor(secs / 60);
+    const s = secs % 60;
+    return `${m.toString().padStart(2, "0")}:${s.toString().padStart(2, "0")}`;
+  };
 
   const handleStart = () => {
-    // Must happen synchronously inside this click handler, before any
-    // await in session.start - see primeAudioPlayback's docstring.
     primeAudioPlayback(audioElRef.current);
     session.start({ role, interviewType, difficulty, style, durationSecs, voiceMode });
   };
@@ -87,20 +125,29 @@ export default function LiveInterview() {
     session.reset();
     setPhase("lobby");
     setConfirmEnd(false);
+    setElapsedSecs(0);
   };
 
   const isBusyConnecting = state.status === STATES.CONNECTING;
   const canInteract = state.status === STATES.READY || state.status === STATES.LISTENING || state.status === STATES.AI_SPEAKING;
+
+  // Latest floating text for Zoom closed caption
+  const lastTurn = state.transcript[state.transcript.length - 1];
+  const floatingCaption = state.status === STATES.AI_SPEAKING && lastTurn?.speaker === "ai"
+    ? lastTurn.text
+    : state.partialTranscript
+    ? state.partialTranscript
+    : null;
 
   return (
     <div>
       <PageHeader
         icon={Radio}
         title="Live AI Interview"
-        subtitle="A real-time, voice-first mock interview - the interviewer speaks, you can jump in any time, just like a real conversation."
+        subtitle="A real-time Zoom video call mock interview with an AI interviewer host."
       />
 
-      {/* Shared audio element for AI speech playback - hidden, controlled by the hook */}
+      {/* Shared audio element for AI speech playback */}
       <audio ref={audioElRef} onEnded={session.onClipEnded} className="hidden" />
 
       {phase === "lobby" && (
@@ -118,98 +165,248 @@ export default function LiveInterview() {
       )}
 
       {phase === "interview" && (
-        <div className="space-y-5">
-          <div role="status" aria-live="polite" className="flex flex-wrap items-center justify-between gap-3 rounded-2xl bg-white dark:bg-slate-800 px-4 py-3 shadow-soft">
+        <div className="flex flex-col overflow-hidden rounded-2xl border border-slate-800 bg-slate-950 shadow-2xl text-slate-100 min-h-[640px]">
+          {/* Zoom Top Navigation Bar */}
+          <div className="flex flex-wrap items-center justify-between border-b border-slate-800 bg-slate-900 px-4 py-3">
             <div className="flex items-center gap-3">
-              <span className="inline-flex items-center gap-2 text-sm font-semibold text-slate-700 dark:text-slate-300">
-                <span className={`h-2.5 w-2.5 rounded-full ${state.status === STATES.AI_SPEAKING || state.status === STATES.LISTENING ? "animate-pulse bg-emerald-500" : "bg-slate-300 dark:bg-slate-600"}`} />
+              <Shield size={16} className="text-emerald-400" />
+              <div className="flex items-center gap-2">
+                <span className="font-semibold text-sm text-slate-200">Zoom Call: {role || "Technical Role"}</span>
+                <span className="rounded bg-slate-800 px-2 py-0.5 text-xs text-slate-400 uppercase tracking-wide">
+                  {interviewType} • {difficulty}
+                </span>
+              </div>
+            </div>
+
+            <div className="flex items-center gap-3">
+              <span className="inline-flex items-center gap-1.5 rounded-full bg-red-500/10 px-2.5 py-1 font-mono text-xs font-medium text-red-400 border border-red-500/20">
+                <span className="h-2 w-2 rounded-full bg-red-500 animate-pulse" />
+                REC {formatTimer(elapsedSecs)}
+              </span>
+
+              <span className="hidden sm:inline-flex items-center gap-1.5 rounded-full bg-emerald-500/10 px-2.5 py-1 text-xs font-medium text-emerald-400 border border-emerald-500/20">
+                <span className="h-2 w-2 rounded-full bg-emerald-500 animate-pulse" />
                 {STATUS_LABEL[state.status] || state.status}
               </span>
-              <span className="rounded-md bg-emerald-50 dark:bg-emerald-950/40 px-2 py-0.5 text-xs font-medium text-emerald-700 dark:text-emerald-300 border border-emerald-200/60 dark:border-emerald-800/60">
-                🎙️ Hands-Free Voice Mode Active
-              </span>
-            </div>
-            {state.stage && <span className="text-xs text-slate-400 dark:text-slate-500">Stage: {state.stage}</span>}
-          </div>
 
-          {(state.status === STATES.MIC_PERMISSION_REQUIRED || state.status === STATES.MICROPHONE_ERROR || state.status === STATES.CONNECTION_ERROR) && (
-            <div className="rounded-xl bg-amber-50 dark:bg-amber-950/40 p-4 text-sm text-amber-800 dark:text-amber-300">
-              <p>{STATUS_LABEL[state.status]}. You can keep going by typing your answers below.</p>
-              {state.status !== STATES.CONNECTION_ERROR && (
-                <button className="btn-secondary mt-2 !py-1.5 text-xs" onClick={session.useTextFallback}>
-                  <Keyboard size={14} /> Continue with text
-                </button>
-              )}
-            </div>
-          )}
-
-          {state.status === STATES.RECONNECTING && (
-            <div className="rounded-xl bg-amber-50 dark:bg-amber-950/40 p-3 text-sm text-amber-800 dark:text-amber-300">
-              Live connection lost - reconnecting...
-            </div>
-          )}
-
-          <div className="grid gap-3 sm:grid-cols-2">
-            <Visualizer analyserRef={session.analyser} active={state.status === STATES.AI_SPEAKING} label="Interviewer audio level" />
-            <Visualizer analyserRef={session.analyser} active={state.status === STATES.LISTENING} label="Your microphone level" />
-          </div>
-
-          <TranscriptPanel transcript={state.transcript} partialTranscript={state.partialTranscript} endRef={transcriptEndRef} />
-
-          <div className="card space-y-3 p-4">
-            <div className="flex flex-wrap items-center gap-2">
               <button
                 type="button"
-                className="btn-secondary"
-                onClick={session.toggleMute}
-                disabled={state.textFallback}
-                aria-pressed={state.micMuted}
-                aria-label={state.micMuted ? "Unmute microphone" : "Mute microphone"}
+                onClick={() => setShowChatDrawer(!showChatDrawer)}
+                className={`flex items-center gap-1.5 rounded-lg px-2.5 py-1.5 text-xs font-medium transition-colors ${
+                  showChatDrawer ? "bg-brand-600 text-white" : "bg-slate-800 text-slate-300 hover:bg-slate-700"
+                }`}
+                title="Toggle In-Meeting Chat"
               >
-                {state.micMuted ? <MicOff size={16} /> : <Mic size={16} />} {state.micMuted ? "Unmute" : "Mute"}
-              </button>
-              {state.status === STATES.AI_SPEAKING && (
-                <button type="button" className="btn-primary" onClick={session.bargeIn}>
-                  <Hand size={16} /> Interrupt
-                </button>
-              )}
-              <button type="button" className="btn-secondary" onClick={() => session.sendControl("repeat")} disabled={!canInteract}>
-                <Repeat size={16} /> Repeat question
-              </button>
-              <button type="button" className="btn-secondary" onClick={() => session.sendControl("skip")} disabled={!canInteract}>
-                <SkipForward size={16} /> Skip
-              </button>
-              <button type="button" className="btn-primary ml-auto bg-red-600 hover:bg-red-700" onClick={() => setConfirmEnd(true)}>
-                <PhoneOff size={16} /> End interview
-              </button>
-            </div>
-
-            <div className="flex gap-2">
-              <label htmlFor="live-text-fallback" className="sr-only">Type your answer</label>
-              <input
-                id="live-text-fallback"
-                className="input"
-                placeholder={state.textFallback ? "Type your answer..." : "Type instead of speaking (always available)..."}
-                value={textInput}
-                onChange={(e) => setTextInput(e.target.value)}
-                onKeyDown={(e) => e.key === "Enter" && submitText()}
-                disabled={!canInteract}
-              />
-              <button className="btn-primary" onClick={submitText} disabled={!canInteract || !textInput.trim()} aria-label="Send typed answer">
-                <Send size={16} />
+                <MessageSquare size={14} />
+                Chat &amp; Captions
               </button>
             </div>
           </div>
 
+          {/* Main Zoom Call Workspace */}
+          <div className="flex min-h-0 flex-1 flex-col lg:flex-row relative">
+            {/* Video Tile Grid */}
+            <div className="flex-1 p-4 grid gap-4 sm:grid-cols-2 relative bg-slate-950 items-center justify-center">
+              {/* Tile 1: AI Interviewer (Host) */}
+              <div className={`relative flex flex-col items-center justify-center rounded-2xl bg-slate-900/90 border border-slate-800 p-6 min-h-[260px] sm:min-h-[320px] transition-all ${
+                state.status === STATES.AI_SPEAKING ? "ring-2 ring-emerald-500 shadow-lg shadow-emerald-500/20" : ""
+              }`}>
+                {/* Host badge */}
+                <div className="absolute top-3 left-3 flex items-center gap-1.5 rounded-md bg-slate-950/80 px-2 py-1 text-[11px] font-semibold text-slate-300 border border-slate-800">
+                  <Bot size={13} className="text-brand-400" />
+                  <span>AI Interviewer (Host)</span>
+                </div>
+
+                {/* Speaker indicator pulse ring */}
+                <div className="relative flex items-center justify-center my-4">
+                  {state.status === STATES.AI_SPEAKING && (
+                    <span className="absolute h-28 w-28 rounded-full bg-emerald-500/20 animate-ping" />
+                  )}
+                  <div className="relative flex h-24 w-24 items-center justify-center rounded-full bg-gradient-to-br from-brand-600 to-indigo-700 text-white shadow-xl">
+                    <Sparkles size={40} className={state.status === STATES.AI_SPEAKING ? "animate-bounce" : ""} />
+                  </div>
+                </div>
+
+                <div className="text-center space-y-1">
+                  <p className="font-semibold text-sm text-slate-200">Senior Technical Interviewer</p>
+                  <p className="text-xs text-slate-400">
+                    {state.status === STATES.AI_SPEAKING ? "Speaking..." : state.status === STATES.PROCESSING ? "Thinking..." : "Listening"}
+                  </p>
+                </div>
+
+                {/* Audio visualizer bar inside AI tile */}
+                <div className="w-48 mt-3">
+                  <Visualizer analyserRef={session.analyser} active={state.status === STATES.AI_SPEAKING} label="Interviewer Audio" />
+                </div>
+              </div>
+
+              {/* Tile 2: Candidate (You) */}
+              <div className={`relative flex flex-col items-center justify-center rounded-2xl bg-slate-900/90 border border-slate-800 overflow-hidden min-h-[260px] sm:min-h-[320px] transition-all ${
+                state.status === STATES.LISTENING ? "ring-2 ring-emerald-500 shadow-lg shadow-emerald-500/20" : ""
+              }`}>
+                {/* Candidate badge */}
+                <div className="absolute top-3 left-3 z-10 flex items-center gap-1.5 rounded-md bg-slate-950/80 px-2 py-1 text-[11px] font-semibold text-slate-300 border border-slate-800">
+                  <User size={13} className="text-emerald-400" />
+                  <span>You (Candidate)</span>
+                </div>
+
+                {cameraOn ? (
+                  <video
+                    ref={webcamRef}
+                    autoPlay
+                    playsInline
+                    muted
+                    className="h-full w-full object-cover transform -scale-x-100"
+                  />
+                ) : (
+                  <div className="flex flex-col items-center justify-center p-6 my-auto">
+                    <div className="flex h-24 w-24 items-center justify-center rounded-full bg-slate-800 text-slate-400 text-2xl font-bold border border-slate-700">
+                      YOU
+                    </div>
+                    <p className="mt-3 text-xs text-slate-400">Camera turned off</p>
+                  </div>
+                )}
+
+                {/* Microphone visualizer bar over Candidate tile */}
+                <div className="absolute bottom-3 left-3 right-3 z-10 bg-slate-950/80 backdrop-blur-md rounded-xl p-2 border border-slate-800/80">
+                  <Visualizer analyserRef={session.analyser} active={state.status === STATES.LISTENING} label="Your Microphone Level" />
+                </div>
+              </div>
+
+              {/* Floating Closed Caption / Subtitle Overlay */}
+              {floatingCaption && (
+                <div className="absolute bottom-6 left-1/2 -translate-x-1/2 z-20 max-w-xl rounded-xl bg-black/85 backdrop-blur-md px-4 py-2.5 text-center text-sm font-medium text-white shadow-2xl border border-slate-700/60 animate-fade-in">
+                  <span className="text-emerald-400 text-xs font-semibold uppercase mr-2">[Subtitles]</span>
+                  {floatingCaption}
+                </div>
+              )}
+            </div>
+
+            {/* Zoom Right Side Chat & Transcript Drawer */}
+            {showChatDrawer && (
+              <div className="w-full lg:w-80 border-t lg:border-t-0 lg:border-l border-slate-800 bg-slate-900 flex flex-col h-[380px] lg:h-auto">
+                <div className="flex items-center justify-between border-b border-slate-800 px-4 py-3">
+                  <span className="text-xs font-bold uppercase tracking-wider text-slate-300">In-Meeting Transcript &amp; Chat</span>
+                  <button onClick={() => setShowChatDrawer(false)} className="text-slate-400 hover:text-white lg:hidden">
+                    <X size={16} />
+                  </button>
+                </div>
+
+                <div role="log" aria-live="polite" className="flex-1 overflow-y-auto p-4 space-y-3">
+                  {state.transcript.length === 0 && (
+                    <p className="text-xs text-slate-500 italic">Conversation transcript will scroll here in real time...</p>
+                  )}
+                  {state.transcript.map((t) => (
+                    <div key={t.id} className={`flex ${t.speaker === "ai" ? "justify-start" : "justify-end"}`}>
+                      <div className={`max-w-[90%] rounded-xl px-3 py-2 text-xs ${
+                        t.speaker === "ai" ? "bg-slate-800 text-slate-200" : "bg-brand-600 text-white"
+                      }`}>
+                        <p className="mb-0.5 font-bold text-[10px] uppercase opacity-75">
+                          {t.speaker === "ai" ? "Interviewer" : "You"}{t.interrupted ? " (interrupted)" : ""}
+                        </p>
+                        <p className="leading-relaxed">{t.text}</p>
+                      </div>
+                    </div>
+                  ))}
+                  {state.partialTranscript && (
+                    <div className="flex justify-end">
+                      <div className="max-w-[90%] rounded-xl bg-brand-900/50 px-3 py-2 text-xs text-brand-200 border border-brand-700/50 opacity-80">
+                        <p className="mb-0.5 font-bold text-[10px] uppercase">You (speaking...)</p>
+                        <p>{state.partialTranscript}</p>
+                      </div>
+                    </div>
+                  )}
+                  <div ref={transcriptEndRef} />
+                </div>
+
+                {/* Text Fallback Input inside Zoom Drawer */}
+                <div className="border-t border-slate-800 p-3 bg-slate-950">
+                  <div className="flex gap-2">
+                    <input
+                      className="flex-1 rounded-xl bg-slate-900 border border-slate-700 px-3 py-1.5 text-xs text-slate-100 outline-none focus:border-brand-500"
+                      placeholder="Type response in chat..."
+                      value={textInput}
+                      onChange={(e) => setTextInput(e.target.value)}
+                      onKeyDown={(e) => e.key === "Enter" && submitText()}
+                      disabled={!canInteract}
+                    />
+                    <button
+                      onClick={submitText}
+                      disabled={!canInteract || !textInput.trim()}
+                      className="rounded-xl bg-brand-600 px-3 py-1.5 text-xs font-semibold text-white hover:bg-brand-700 disabled:opacity-40"
+                    >
+                      <Send size={14} />
+                    </button>
+                  </div>
+                </div>
+              </div>
+            )}
+          </div>
+
+          {/* Zoom Bottom Toolbar */}
+          <div className="border-t border-slate-800 bg-slate-900 p-3 flex flex-wrap items-center justify-between gap-3 text-slate-200">
+            {/* Left audio & video controls */}
+            <div className="flex items-center gap-2">
+              <button
+                type="button"
+                onClick={session.toggleMute}
+                disabled={state.textFallback}
+                className={`flex items-center gap-1.5 rounded-xl px-3 py-2 text-xs font-semibold transition-colors ${
+                  state.micMuted ? "bg-red-600 text-white" : "bg-slate-800 hover:bg-slate-700 text-slate-200"
+                }`}
+              >
+                {state.micMuted ? <MicOff size={15} /> : <Mic size={15} />}
+                <span>{state.micMuted ? "Unmute" : "Mute"}</span>
+              </button>
+
+              <button
+                type="button"
+                onClick={() => setCameraOn(!cameraOn)}
+                className={`flex items-center gap-1.5 rounded-xl px-3 py-2 text-xs font-semibold transition-colors ${
+                  !cameraOn ? "bg-red-600 text-white" : "bg-slate-800 hover:bg-slate-700 text-slate-200"
+                }`}
+              >
+                {!cameraOn ? <VideoOff size={15} /> : <Video size={15} />}
+                <span>{!cameraOn ? "Start Video" : "Stop Video"}</span>
+              </button>
+            </div>
+
+            {/* Center Zoom call interaction buttons */}
+            <div className="flex items-center gap-2">
+              {state.status === STATES.AI_SPEAKING && (
+                <button type="button" className="btn-primary !py-1.5 text-xs bg-amber-600 hover:bg-amber-700 text-white" onClick={session.bargeIn}>
+                  <Hand size={15} /> Raise Hand / Interrupt
+                </button>
+              )}
+              <button type="button" className="btn-secondary !py-1.5 text-xs bg-slate-800 text-slate-200 hover:bg-slate-700 border-slate-700" onClick={() => session.sendControl("repeat")} disabled={!canInteract}>
+                <Repeat size={14} /> Repeat
+              </button>
+              <button type="button" className="btn-secondary !py-1.5 text-xs bg-slate-800 text-slate-200 hover:bg-slate-700 border-slate-700" onClick={() => session.sendControl("skip")} disabled={!canInteract}>
+                <SkipForward size={14} /> Skip
+              </button>
+            </div>
+
+            {/* Right End Call red button */}
+            <button
+              type="button"
+              className="flex items-center gap-1.5 rounded-xl bg-red-600 px-4 py-2 text-xs font-semibold text-white hover:bg-red-700 shadow-md"
+              onClick={() => setConfirmEnd(true)}
+            >
+              <PhoneOff size={15} />
+              <span>End Call</span>
+            </button>
+          </div>
+
+          {/* Zoom Leave Confirmation Dialog */}
           {confirmEnd && (
-            <div role="alertdialog" aria-modal="true" aria-labelledby="end-confirm-title" className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 p-4">
-              <div className="card w-full max-w-sm p-5">
-                <h3 id="end-confirm-title" className="text-base font-semibold text-slate-900 dark:text-slate-100">End this interview?</h3>
-                <p className="mt-2 text-sm text-slate-500 dark:text-slate-400">Your responses so far will be scored. This can't be undone.</p>
+            <div role="alertdialog" aria-modal="true" aria-labelledby="end-confirm-title" className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm p-4">
+              <div className="card w-full max-w-sm p-5 border border-slate-800 bg-slate-900 text-slate-100 shadow-2xl">
+                <h3 id="end-confirm-title" className="text-base font-semibold text-slate-100">Leave Zoom Interview Call?</h3>
+                <p className="mt-2 text-sm text-slate-400">Your interview responses so far will be evaluated and scored into a performance report.</p>
                 <div className="mt-4 flex justify-end gap-2">
-                  <button className="btn-secondary" onClick={() => setConfirmEnd(false)}>Cancel</button>
-                  <button className="btn-primary bg-red-600 hover:bg-red-700" onClick={() => { setConfirmEnd(false); session.endInterview(); }}>
-                    End &amp; score it
+                  <button className="btn-secondary !py-1.5 text-xs bg-slate-800 text-slate-300 border-slate-700" onClick={() => setConfirmEnd(false)}>Cancel</button>
+                  <button className="btn-primary !py-1.5 text-xs bg-red-600 hover:bg-red-700" onClick={() => { setConfirmEnd(false); session.endInterview(); }}>
+                    End &amp; Score Call
                   </button>
                 </div>
               </div>
@@ -217,11 +414,11 @@ export default function LiveInterview() {
           )}
 
           {(state.status === STATES.ENDING || state.status === STATES.EVALUATING) && (
-            <div className="card p-6 text-center"><Spinner label={STATUS_LABEL[state.status]} /></div>
+            <div className="p-6 text-center bg-slate-900 border-t border-slate-800"><Spinner label={STATUS_LABEL[state.status]} /></div>
           )}
 
           {state.status === STATES.ERROR && (
-            <div role="alert" className="rounded-xl bg-red-50 dark:bg-red-950/40 p-4 text-sm text-red-700 dark:text-red-400">{state.errorMessage}</div>
+            <div role="alert" className="p-4 text-sm text-red-400 bg-red-950/60 border-t border-red-800">{state.errorMessage}</div>
           )}
         </div>
       )}

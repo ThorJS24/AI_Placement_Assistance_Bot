@@ -1,11 +1,56 @@
 import { useCallback, useEffect, useRef, useState } from "react";
-import { MessageSquare, Send, User, Sparkles, Square, Copy, Check, RotateCcw, ThumbsUp, ThumbsDown } from "lucide-react";
+import { MessageSquare, Send, User, Sparkles, Square, Copy, Check, RotateCcw, ThumbsUp, ThumbsDown, Volume2, VolumeX } from "lucide-react";
 import Markdown from "../components/Markdown.jsx";
 import ChatSidebar from "../components/ChatSidebar.jsx";
 import { apiGet, apiPostStream, apiDelete, apiPatch, ApiError } from "../api/client.js";
 
 function newSessionId() {
   return (crypto.randomUUID?.() || `${Date.now()}-${Math.random()}`).replace(/-/g, "").slice(0, 20);
+}
+
+function SpeechButton({ text }) {
+  const [speaking, setSpeaking] = useState(false);
+
+  useEffect(() => {
+    return () => {
+      if (speaking) window.speechSynthesis?.cancel();
+    };
+  }, [speaking]);
+
+  const toggleSpeech = () => {
+    if (!window.speechSynthesis) return;
+    if (speaking) {
+      window.speechSynthesis.cancel();
+      setSpeaking(false);
+      return;
+    }
+    window.speechSynthesis.cancel();
+    // Clean text by stripping markdown characters for natural speech
+    const cleanText = text.replace(/[*_#`~]/g, "").replace(/\[(.*?)\]\(.*?\)/g, "$1");
+    const utterance = new SpeechSynthesisUtterance(cleanText);
+    utterance.rate = 1.0;
+    utterance.pitch = 1.0;
+    utterance.onend = () => setSpeaking(false);
+    utterance.onerror = () => setSpeaking(false);
+    setSpeaking(true);
+    window.speechSynthesis.speak(utterance);
+  };
+
+  return (
+    <button
+      onClick={toggleSpeech}
+      className={`inline-flex items-center gap-1 rounded-md px-1.5 py-1 text-xs transition-colors ${
+        speaking
+          ? "bg-brand-100 dark:bg-brand-900/40 text-brand-700 dark:text-brand-300 font-medium"
+          : "text-slate-400 dark:text-slate-500 hover:bg-slate-100 dark:hover:bg-slate-800 hover:text-slate-700 dark:hover:text-slate-300"
+      }`}
+      title={speaking ? "Stop voice readout" : "Listen (natural speech)"}
+      aria-label={speaking ? "Stop voice readout" : "Listen (natural speech)"}
+    >
+      {speaking ? <VolumeX size={13} className="animate-pulse text-brand-600" /> : <Volume2 size={13} />}
+      {speaking ? "Speaking..." : "Read out"}
+    </button>
+  );
 }
 
 function CopyButton({ text }) {
@@ -260,6 +305,7 @@ export default function Chatbot() {
                     </div>
                     {m.role === "assistant" && m.content && !(streaming && i === messages.length - 1) && (
                       <div className="mt-1 flex items-center gap-1">
+                        <SpeechButton text={m.content} />
                         <CopyButton text={m.content} />
                         <FeedbackButtons messageId={m.id} feedback={m.feedback} onSet={setFeedback} />
                         {i === lastAssistantIdx && (
