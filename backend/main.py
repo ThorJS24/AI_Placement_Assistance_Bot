@@ -138,7 +138,10 @@ if DIST.exists() and (DIST / "assets").exists():
         candidate = DIST / full_path
         if full_path and candidate.is_file():
             return FileResponse(candidate)
-        return FileResponse(INDEX_HTML)
+        return FileResponse(
+            INDEX_HTML,
+            headers={"Cache-Control": "no-cache, no-store, must-revalidate", "Pragma": "no-cache", "Expires": "0"}
+        )
 
 else:
 

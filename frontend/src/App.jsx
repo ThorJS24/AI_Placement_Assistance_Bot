@@ -13,15 +13,29 @@ import { applyPreferences, saveLocalPreferences } from "./lib/preferences.js";
 // splitting them out. The heavier, less-universally-visited pages are
 // route-level code-split instead, so a student's first paint only has to
 // parse/execute whichever single page they actually land on.
+function lazyWithRetry(componentImport) {
+  return lazy(async () => {
+    try {
+      return await componentImport();
+    } catch (error) {
+      if (!sessionStorage.getItem("chunk_reload_attempted")) {
+        sessionStorage.setItem("chunk_reload_attempted", "true");
+        window.location.reload();
+      }
+      throw error;
+    }
+  });
+}
+
 import Home from "./pages/Home.jsx";
 import Chatbot from "./pages/Chatbot.jsx";
-const ResumeBuilder = lazy(() => import("./pages/ResumeBuilder.jsx"));
-const RoadmapGenerator = lazy(() => import("./pages/RoadmapGenerator.jsx"));
-const MockInterview = lazy(() => import("./pages/MockInterview.jsx"));
-const LiveInterview = lazy(() => import("./pages/LiveInterview.jsx"));
-const TechnicalInterview = lazy(() => import("./pages/TechnicalInterview.jsx"));
-const SettingsPage = lazy(() => import("./pages/Settings.jsx"));
-const AdminDashboard = lazy(() => import("./pages/AdminDashboard.jsx"));
+const ResumeBuilder = lazyWithRetry(() => import("./pages/ResumeBuilder.jsx"));
+const RoadmapGenerator = lazyWithRetry(() => import("./pages/RoadmapGenerator.jsx"));
+const MockInterview = lazyWithRetry(() => import("./pages/MockInterview.jsx"));
+const LiveInterview = lazyWithRetry(() => import("./pages/LiveInterview.jsx"));
+const TechnicalInterview = lazyWithRetry(() => import("./pages/TechnicalInterview.jsx"));
+const SettingsPage = lazyWithRetry(() => import("./pages/Settings.jsx"));
+const AdminDashboard = lazyWithRetry(() => import("./pages/AdminDashboard.jsx"));
 
 const ONBOARDING_DONE_KEY = "onboarding_done";
 
