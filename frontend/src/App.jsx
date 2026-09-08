@@ -13,11 +13,14 @@ import { applyPreferences, saveLocalPreferences } from "./lib/preferences.js";
 // splitting them out. The heavier, less-universally-visited pages are
 // route-level code-split instead, so a student's first paint only has to
 // parse/execute whichever single page they actually land on.
+import ErrorBoundary from "./components/ErrorBoundary.jsx";
+
 function lazyWithRetry(componentImport) {
   return lazy(async () => {
     try {
       return await componentImport();
     } catch (error) {
+      console.warn("Chunk load error caught, reloading once...", error);
       if (!sessionStorage.getItem("chunk_reload_attempted")) {
         sessionStorage.setItem("chunk_reload_attempted", "true");
         window.location.reload();
@@ -143,20 +146,22 @@ export default function App() {
 
         <main className="flex-1 px-3 py-4 sm:px-5 lg:px-6 lg:py-6">
           <div className="mx-auto w-full max-w-[1700px] animate-fade-in">
-            <Suspense fallback={<div className="flex justify-center py-16"><Spinner label="Loading..." size={20} /></div>}>
-              <Routes>
-                <Route path="/" element={<Home onEditProfile={() => setShowOnboarding(true)} />} />
-                <Route path="/chat" element={<Chatbot />} />
-                <Route path="/resume" element={<ResumeBuilder />} />
-                <Route path="/roadmap" element={<RoadmapGenerator />} />
-                <Route path="/mock-interview" element={<MockInterview />} />
-                <Route path="/live-interview" element={<LiveInterview />} />
-                <Route path="/technical-interview" element={<TechnicalInterview />} />
-                <Route path="/settings" element={<SettingsPage />} />
-                <Route path="/admin" element={<AdminDashboard />} />
-                <Route path="*" element={<Home />} />
-              </Routes>
-            </Suspense>
+            <ErrorBoundary>
+              <Suspense fallback={<div className="flex justify-center py-16"><Spinner label="Loading..." size={20} /></div>}>
+                <Routes>
+                  <Route path="/" element={<Home onEditProfile={() => setShowOnboarding(true)} />} />
+                  <Route path="/chat" element={<Chatbot />} />
+                  <Route path="/resume" element={<ResumeBuilder />} />
+                  <Route path="/roadmap" element={<RoadmapGenerator />} />
+                  <Route path="/mock-interview" element={<MockInterview />} />
+                  <Route path="/live-interview" element={<LiveInterview />} />
+                  <Route path="/technical-interview" element={<TechnicalInterview />} />
+                  <Route path="/settings" element={<SettingsPage />} />
+                  <Route path="/admin" element={<AdminDashboard />} />
+                  <Route path="*" element={<Home />} />
+                </Routes>
+              </Suspense>
+            </ErrorBoundary>
           </div>
         </main>
       </div>
