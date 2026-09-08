@@ -70,10 +70,21 @@ ANALYSIS_SCHEMA_PROMPT = """Analyze the resume text below{jd_clause}.
 
 Return ONLY a JSON object with exactly these keys:
 {{
-  "ats_score": <integer 0-100, how well-structured and keyword-optimized this resume is for ATS systems>,
+  "ats_score": <integer 0-100, overall ATS compatibility score>,
+  "formatting_score": <integer 0-100, layout clarity, standard headers, bullet structure>,
+  "keyword_score": <integer 0-100, presence of relevant technical skills/terms>,
+  "impact_score": <integer 0-100, use of action verbs, metrics, quantifiable achievements>,
+  "structure_score": <integer 0-100, presence of essential sections in logical order>,
   "strengths": [<3-5 short strings>],
   "weaknesses": [<3-5 short strings>],
   "missing_keywords": [<up to 8 short strings - skills/terms likely expected but absent; empty list if no job description was given>],
+  "ats_checklist": [
+    {{"label": "Standard Section Headings", "passed": true/false, "tip": "Use standard headings like WORK EXPERIENCE, EDUCATION"}},
+    {{"label": "Quantifiable Achievements", "passed": true/false, "tip": "Include metrics like %, numbers, or time saved"}},
+    {{"label": "Strong Action Verbs", "passed": true/false, "tip": "Start bullets with verbs like Developed, Architected, Spearheaded"}},
+    {{"label": "Contact Information Completeness", "passed": true/false, "tip": "Ensure email, phone, location, and LinkedIn/GitHub are included"}},
+    {{"label": "Clean Single-Column Structure", "passed": true/false, "tip": "Avoid complex tables, columns, or embedded graphics"}}
+  ],
   "section_feedback": {{"summary": "<1 sentence>", "skills": "<1 sentence>", "experience_or_projects": "<1 sentence>", "education": "<1 sentence>"}},
   "top_action_items": [<3-5 short, concrete, actionable strings - what to fix first>]
 }}

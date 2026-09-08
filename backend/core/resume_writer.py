@@ -79,11 +79,11 @@ def build_docx(data: dict) -> str:
         doc.add_paragraph(_safe(data["summary"]))
 
     if data.get("skills"):
-        _add_heading(doc, "Skills")
+        _add_heading(doc, "Technical Skills")
         doc.add_paragraph(", ".join(s.strip() for s in data["skills"] if s.strip()))
 
     if data.get("experience"):
-        _add_heading(doc, "Experience")
+        _add_heading(doc, "Work Experience")
         for exp in data["experience"]:
             p = doc.add_paragraph()
             p.add_run(f"{_safe(exp.get('role'))} - {_safe(exp.get('company'))}").bold = True
@@ -129,7 +129,7 @@ def _add_heading(doc, text: str) -> None:
     h = doc.add_paragraph()
     run = h.add_run(text.upper())
     run.bold = True
-    run.font.size = Pt(12)
+    run.font.size = Pt(11)
     run.font.color.rgb = RGBColor(0x1F, 0x4E, 0x79)
     h.paragraph_format.space_before = Pt(10)
     h.paragraph_format.space_after = Pt(2)
@@ -165,10 +165,10 @@ def build_pdf(data: dict) -> str:
         story += [Paragraph("PROFESSIONAL SUMMARY", heading_style), Paragraph(_safe(data["summary"]), body)]
 
     if data.get("skills"):
-        story += [Paragraph("SKILLS", heading_style), Paragraph(", ".join(s.strip() for s in data["skills"] if s.strip()), body)]
+        story += [Paragraph("TECHNICAL SKILLS", heading_style), Paragraph(", ".join(s.strip() for s in data["skills"] if s.strip()), body)]
 
     if data.get("experience"):
-        story.append(Paragraph("EXPERIENCE", heading_style))
+        story.append(Paragraph("WORK EXPERIENCE", heading_style))
         for exp in data["experience"]:
             story.append(Paragraph(f"<b>{_safe(exp.get('role'))} - {_safe(exp.get('company'))}</b> ({_safe(exp.get('duration'))})", body))
             for bullet in exp.get("bullets", []):

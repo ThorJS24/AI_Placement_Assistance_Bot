@@ -28,15 +28,19 @@ import { useCallback, useEffect, useRef, useState } from "react";
  * than an accidental blur/tab-switch.
  */
 const VIOLATION_LABELS = {
-  fullscreen_exit: "Exited fullscreen",
+  fullscreen_exit: "Exited fullscreen assessment mode",
   tab_hidden: "Switched tabs / minimized the window",
-  window_blur: "Left the assessment window",
-  copy: "Attempted to copy",
-  paste: "Attempted to paste",
-  cut: "Attempted to cut",
-  context_menu: "Right-click menu",
+  window_blur: "Left the assessment window (focus lost)",
+  mouseleave: "Mouse moved outside the test area",
+  copy: "Attempted to copy test content",
+  paste: "Attempted to paste external content",
+  cut: "Attempted to cut content",
+  context_menu: "Right-click context menu triggered",
   devtools_shortcut: "Attempted to open developer tools",
-  visibility_tamper: "Tab-detection API was tampered with (likely an anti-detection extension)",
+  refresh_attempt: "Attempted to refresh/reload the assessment page",
+  navigation_attempt: "Attempted browser back/forward navigation",
+  window_resize: "Assessment window or display resolution changed",
+  visibility_tamper: "Tab-detection API was tampered with (anti-detection extension detected)",
 };
 
 export function violationLabel(type) {
@@ -50,6 +54,20 @@ function isDevtoolsShortcut(e) {
   const k = (e.key || "").toLowerCase();
   if ((e.ctrlKey || e.metaKey) && e.shiftKey && (k === "i" || k === "j" || k === "c")) return true;
   if ((e.ctrlKey || e.metaKey) && k === "u") return true;
+  return false;
+}
+
+function isRefreshShortcut(e) {
+  if (e.key === "F5") return true;
+  const k = (e.key || "").toLowerCase();
+  if ((e.ctrlKey || e.metaKey) && k === "r") return true;
+  return false;
+}
+
+function isNavigationShortcut(e) {
+  const k = (e.key || "").toLowerCase();
+  if (e.altKey && (e.key === "ArrowLeft" || e.key === "ArrowRight")) return true;
+  if (e.key === "Backspace" && e.target.tagName !== "INPUT" && e.target.tagName !== "TEXTAREA") return true;
   return false;
 }
 
@@ -162,7 +180,24 @@ export default function useLockdown({ active, maxStrikes = 3, onLimitExceeded, o
       if (isDevtoolsShortcut(e)) {
         e.preventDefault();
         report("devtools_shortcut");
+      } else if (isRefreshShortcut(e)) {
+        e.preventDefault();
+        report("refresh_attempt");
+      } else if (isNavigationShortcut(e)) {
+        e.preventDefault();
+        report("navigation_attempt");
       }
+    };
+    const onMouseLeave = () => {
+      report("mouseleave");
+    };
+    const onResize = () => {
+      report("window_resize");
+    };
+    const onBeforeUnload = (e) => {
+      e.preventDefault();
+      e.returnValue = "Assessment in progress - exiting will record a proctoring violation.";
+      report("refresh_attempt");
     };
 
     document.addEventListener("fullscreenchange", onFullscreenChange);
@@ -173,6 +208,9 @@ export default function useLockdown({ active, maxStrikes = 3, onLimitExceeded, o
     document.addEventListener("cut", onCut);
     document.addEventListener("paste", onPaste);
     document.addEventListener("keydown", onKeyDown);
+    document.addEventListener("mouseleave", onMouseLeave);
+    window.addEventListener("resize", onResize);
+    window.addEventListener("beforeunload", onBeforeUnload);
 
     setIsFullscreen(!!document.fullscreenElement);
 
@@ -199,6 +237,9 @@ export default function useLockdown({ active, maxStrikes = 3, onLimitExceeded, o
       document.removeEventListener("cut", onCut);
       document.removeEventListener("paste", onPaste);
       document.removeEventListener("keydown", onKeyDown);
+      document.removeEventListener("mouseleave", onMouseLeave);
+      window.removeEventListener("resize", onResize);
+      window.removeEventListener("beforeunload", onBeforeUnload);
       clearInterval(integrityTimer);
     };
   }, [active, report]);

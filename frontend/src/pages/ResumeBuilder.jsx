@@ -444,13 +444,51 @@ function AnalyzeTab() {
         <div className="card animate-slide-up space-y-5 p-5">
           <div>
             <div className="mb-1 flex items-center justify-between text-sm font-semibold text-slate-700 dark:text-slate-300">
-              <span>ATS Compatibility Score</span>
-              <span>{analysis.ats_score}/100</span>
+              <span>Overall ATS Compatibility Score</span>
+              <span className="text-lg font-bold text-brand-600 dark:text-brand-400">{analysis.ats_score}/100</span>
             </div>
-            <div className="h-2.5 w-full overflow-hidden rounded-full bg-slate-100 dark:bg-slate-800">
-              <div className="h-full rounded-full bg-gradient-to-r from-brand-500 to-brand-700" style={{ width: `${Math.min(100, Math.max(0, analysis.ats_score))}%` }} />
+            <div className="h-3 w-full overflow-hidden rounded-full bg-slate-100 dark:bg-slate-800">
+              <div className="h-full rounded-full bg-gradient-to-r from-brand-500 to-brand-700 transition-all duration-500" style={{ width: `${Math.min(100, Math.max(0, analysis.ats_score))}%` }} />
             </div>
           </div>
+
+          {(analysis.formatting_score !== undefined || analysis.keyword_score !== undefined || analysis.impact_score !== undefined || analysis.structure_score !== undefined) && (
+            <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4 rounded-xl bg-slate-50 dark:bg-slate-800/60 p-4">
+              {[
+                { label: "Formatting", score: analysis.formatting_score ?? analysis.ats_score },
+                { label: "Keywords", score: analysis.keyword_score ?? analysis.ats_score },
+                { label: "Impact", score: analysis.impact_score ?? analysis.ats_score },
+                { label: "Structure", score: analysis.structure_score ?? analysis.ats_score },
+              ].map((sub, i) => (
+                <div key={i} className="space-y-1">
+                  <div className="flex justify-between text-xs font-semibold text-slate-600 dark:text-slate-400">
+                    <span>{sub.label}</span>
+                    <span>{sub.score}%</span>
+                  </div>
+                  <div className="h-1.5 w-full overflow-hidden rounded-full bg-slate-200 dark:bg-slate-700">
+                    <div className="h-full rounded-full bg-brand-600 dark:bg-brand-400" style={{ width: `${Math.min(100, Math.max(0, sub.score))}%` }} />
+                  </div>
+                </div>
+              ))}
+            </div>
+          )}
+
+          {analysis.ats_checklist?.length > 0 && (
+            <div>
+              <p className="mb-2 text-sm font-semibold text-slate-700 dark:text-slate-300">📌 ATS Compliance Checklist</p>
+              <div className="space-y-2">
+                {analysis.ats_checklist.map((chk, i) => (
+                  <div key={i} className="flex items-start gap-2.5 rounded-lg border border-slate-200 dark:border-slate-700 p-2.5 text-xs">
+                    <span className={`mt-0.5 font-bold ${chk.passed ? "text-emerald-600" : "text-amber-600"}`}>{chk.passed ? "✓" : "✗"}</span>
+                    <div>
+                      <p className="font-semibold text-slate-800 dark:text-slate-200">{chk.label}</p>
+                      <p className="text-slate-500 dark:text-slate-400">{chk.tip}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
 
           <div className="grid gap-4 sm:grid-cols-2">
             <div>

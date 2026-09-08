@@ -27,19 +27,19 @@ const DURATIONS = [
 
 const STATUS_LABEL = {
   [STATES.IDLE]: "",
-  [STATES.CONNECTING]: "Connecting...",
-  [STATES.READY]: "Ready - waiting for the interviewer",
-  [STATES.AI_SPEAKING]: "Interviewer is speaking - tap \"Interrupt\" if you want to jump in",
-  [STATES.LISTENING]: "Listening for your answer...",
-  [STATES.PROCESSING]: "Thinking about your answer...",
-  [STATES.ENDING]: "Wrapping up the interview...",
-  [STATES.EVALUATING]: "Scoring your performance...",
+  [STATES.CONNECTING]: "Connecting live voice stream...",
+  [STATES.READY]: "Connected - Interviewer is starting",
+  [STATES.AI_SPEAKING]: "Interviewer is speaking (Start talking to interrupt)",
+  [STATES.LISTENING]: "Listening to you... (Speak naturally, VAD handles timing)",
+  [STATES.PROCESSING]: "Interviewer is processing your response...",
+  [STATES.ENDING]: "Wrapping up the live session...",
+  [STATES.EVALUATING]: "Analyzing your interview performance...",
   [STATES.COMPLETED]: "Interview complete",
-  [STATES.ERROR]: "Something went wrong",
-  [STATES.RECONNECTING]: "Live connection lost - reconnecting...",
-  [STATES.MIC_PERMISSION_REQUIRED]: "Microphone permission needed",
+  [STATES.ERROR]: "Live connection error",
+  [STATES.RECONNECTING]: "Reconnecting live audio stream...",
+  [STATES.MIC_PERMISSION_REQUIRED]: "Microphone access required for hands-free mode",
   [STATES.MICROPHONE_ERROR]: "Microphone unavailable",
-  [STATES.CONNECTION_ERROR]: "Live audio couldn't be restored. Continue with text mode.",
+  [STATES.CONNECTION_ERROR]: "Live audio connection lost. Type your answer below.",
 };
 
 export default function LiveInterview() {
@@ -119,11 +119,16 @@ export default function LiveInterview() {
 
       {phase === "interview" && (
         <div className="space-y-5">
-          <div role="status" aria-live="polite" className="flex items-center justify-between gap-3 rounded-2xl bg-white dark:bg-slate-800 px-4 py-3 shadow-soft">
-            <span className="inline-flex items-center gap-2 text-sm font-semibold text-slate-700 dark:text-slate-300">
-              <span className={`h-2.5 w-2.5 rounded-full ${state.status === STATES.AI_SPEAKING || state.status === STATES.LISTENING ? "animate-pulse bg-emerald-500" : "bg-slate-300 dark:bg-slate-600"}`} />
-              {STATUS_LABEL[state.status] || state.status}
-            </span>
+          <div role="status" aria-live="polite" className="flex flex-wrap items-center justify-between gap-3 rounded-2xl bg-white dark:bg-slate-800 px-4 py-3 shadow-soft">
+            <div className="flex items-center gap-3">
+              <span className="inline-flex items-center gap-2 text-sm font-semibold text-slate-700 dark:text-slate-300">
+                <span className={`h-2.5 w-2.5 rounded-full ${state.status === STATES.AI_SPEAKING || state.status === STATES.LISTENING ? "animate-pulse bg-emerald-500" : "bg-slate-300 dark:bg-slate-600"}`} />
+                {STATUS_LABEL[state.status] || state.status}
+              </span>
+              <span className="rounded-md bg-emerald-50 dark:bg-emerald-950/40 px-2 py-0.5 text-xs font-medium text-emerald-700 dark:text-emerald-300 border border-emerald-200/60 dark:border-emerald-800/60">
+                🎙️ Hands-Free Voice Mode Active
+              </span>
+            </div>
             {state.stage && <span className="text-xs text-slate-400 dark:text-slate-500">Stage: {state.stage}</span>}
           </div>
 
