@@ -36,6 +36,7 @@ class DsaQuestionRequest(BaseModel):
     topic: str = Field("Any", max_length=config.MAX_TEXT_FIELD_CHARS)
     difficulty: str = Field("Any", max_length=config.MAX_TEXT_FIELD_CHARS)
     company: str = Field("Any", max_length=config.MAX_TEXT_FIELD_CHARS)
+    domain: str = Field("Any", max_length=config.MAX_TEXT_FIELD_CHARS)
     exclude_ids: list[str] = Field(default_factory=list, max_length=500)
 
 
@@ -43,7 +44,7 @@ class DsaQuestionRequest(BaseModel):
 def dsa_question(
     req: DsaQuestionRequest, x_student_name: str = Header(default="Guest"), x_student_pin: str = Header(default="")
 ):
-    q = ti.pick_dsa_question(req.topic, req.difficulty, set(req.exclude_ids), company=req.company)
+    q = ti.pick_dsa_question(req.topic, req.difficulty, set(req.exclude_ids), company=req.company, domain=req.domain)
     if not q:
         raise HTTPException(status_code=404, detail="No questions match those filters.")
     session_id = storage.create_interview_session("technical", "DSA", student_name=x_student_name, pin=x_student_pin)
