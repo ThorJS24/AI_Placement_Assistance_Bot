@@ -127,8 +127,8 @@ export default function App() {
           <span className="text-sm font-semibold text-slate-800 dark:text-slate-200">{identity.app_title}</span>
         </header>
 
-        <main className="flex-1 px-4 py-6 sm:px-6 lg:px-10 lg:py-8">
-          <div className="mx-auto w-full max-w-6xl animate-fade-in">
+        <main className="flex-1 px-3 py-4 sm:px-5 lg:px-6 lg:py-6">
+          <div className="mx-auto w-full max-w-[1700px] animate-fade-in">
             <Suspense fallback={<div className="flex justify-center py-16"><Spinner label="Loading..." size={20} /></div>}>
               <Routes>
                 <Route path="/" element={<Home onEditProfile={() => setShowOnboarding(true)} />} />
