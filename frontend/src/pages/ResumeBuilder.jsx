@@ -384,6 +384,7 @@ function BuildTab() {
             </div>
 
             <div
+              id="resume-canvas"
               className="rounded-xl bg-white p-8 text-slate-900 shadow-xl border border-slate-200 transition-all duration-300 min-h-[750px]"
               style={{ fontFamily, color: "#1F2937" }}
             >

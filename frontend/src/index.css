@@ -197,3 +197,29 @@ html[data-density="compact"] .input {
   padding-top: 0.5rem;
   padding-bottom: 0.5rem;
 }
+
+/* Print styles - ensures browser print isolates ONLY the clean A4 resume canvas */
+@media print {
+  body * {
+    visibility: hidden !important;
+  }
+  #resume-canvas, #resume-canvas * {
+    visibility: visible !important;
+  }
+  #resume-canvas {
+    position: absolute !important;
+    left: 0 !important;
+    top: 0 !important;
+    width: 100% !important;
+    margin: 0 !important;
+    padding: 12mm 15mm !important;
+    box-shadow: none !important;
+    border: none !important;
+    background: white !important;
+    color: black !important;
+  }
+  @page {
+    size: A4 portrait;
+    margin: 0;
+  }
+}
