@@ -77,6 +77,7 @@ ADMIN_PASSCODE = _env("ADMIN_PASSCODE", "changeme123")
 LLM_BACKEND = _env("LLM_BACKEND", "auto").lower()          # auto | ollama | groq
 OLLAMA_HOST = _env("OLLAMA_HOST", "http://localhost:11434")
 OLLAMA_MODEL = _env("OLLAMA_MODEL", "llama3.2")
+OLLAMA_EMBED_MODEL = _env("OLLAMA_EMBED_MODEL", "nomic-embed-text")
 GROQ_API_KEY = _env("GROQ_API_KEY")
 GROQ_MODEL = _env("GROQ_MODEL", "llama-3.3-70b-versatile")
 GROQ_BASE_URL = "https://api.groq.com/openai/v1"
